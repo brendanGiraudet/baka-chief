@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/baka-chief-application/obj
+/baka-chief-application/baka-chief-application.csproj.user
+/baka-chief-application/bin/Debug/net7.0
