@@ -16,4 +16,4 @@ RUN dotnet publish "baka-chief-application.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ["dotnet", "baka-chief-application.dll"]
+CMD ["dotnet", "./bin/Release/net7.0/baka-chief-application.dll"]
