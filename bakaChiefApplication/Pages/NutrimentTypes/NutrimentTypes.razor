@@ -1,0 +1,28 @@
+﻿@page "/nutrimenttypes"
+
+<h3>Nutriment Types List</h3>
+
+@if (ViewModel.NutrimentTypes.Count == 0)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nutrimentType in ViewModel.NutrimentTypes)
+            {
+                <tr>
+                    <td>@nutrimentType.Id</td>
+                    <td>@nutrimentType.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

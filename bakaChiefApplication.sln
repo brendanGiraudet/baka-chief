@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bakaChiefApplication.UnitTests", "bakaChiefApplication.UnitTests\bakaChiefApplication.UnitTests.csproj", "{3606ABAE-69C2-42C1-922C-71AB7BE2DD3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bakaChiefApplication", "bakaChiefApplication\bakaChiefApplication.csproj", "{7CD412ED-4B9C-4B4F-85F6-2756D95F18FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bakaChiefApplication", "bakaChiefApplication\bakaChiefApplication.csproj", "{7CD412ED-4B9C-4B4F-85F6-2756D95F18FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
