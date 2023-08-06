@@ -20,7 +20,7 @@ namespace bakaChiefApplication.Repositories
 
 
         /// <summary>
-        /// Gets or sets the <see cref="DbSet{TEntity}"/> of User roles.
+        /// Gets or sets the <see cref="DbSet{NutrimentType}"/> of NutrimentType.
         /// </summary>
         public virtual DbSet<NutrimentType> NutrimentTypes { get; set; }
     }
