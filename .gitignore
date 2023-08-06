@@ -3,9 +3,11 @@
 ################################################################################
 
 /.vs
-/bakaChiefApplication/obj
+
 /bakaChiefApplication/bakaChiefApplication.csproj.user
-/bakaChiefApplication/bin/Debug/net7.0
-/bakaChiefApplication.UnitTests/bin/Debug/net7.0
+
+/bakaChiefApplication/bin
+/bakaChiefApplication/obj
+
 /bakaChiefApplication.UnitTests/obj
-/bakaChiefApplication.UnitTests/bin/Release/net7.0
+/bakaChiefApplication.UnitTests/bin
