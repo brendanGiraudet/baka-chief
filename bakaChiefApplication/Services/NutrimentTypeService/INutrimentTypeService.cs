@@ -1,12 +1,12 @@
-﻿using bakaChiefApplication.DatabaseModels;
+﻿using bakaChiefApplication.Models;
 
 namespace bakaChiefApplication.Services.NutrimentTypeService
 {
     public interface INutrimentTypeService
     {
-        Task CreateNutrimentTypeAsync(NutrimentType nutrimentType);
-        Task<NutrimentType> GetNutrimentTypeByIdAsync(string id);
         Task<List<NutrimentType>> GetAllNutrimentTypesAsync();
+        Task<NutrimentType> GetNutrimentTypeByIdAsync(string id);
+        Task<NutrimentType> CreateNutrimentTypeAsync(NutrimentType nutrimentType);
         Task UpdateNutrimentTypeAsync(NutrimentType nutrimentType);
         Task DeleteNutrimentTypeAsync(string id);
     }

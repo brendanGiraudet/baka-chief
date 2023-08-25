@@ -9,18 +9,21 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.7" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.10" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.20" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.20" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.20">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Database\" />
+	  <None Update="Repositories\database.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
