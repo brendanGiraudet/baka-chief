@@ -1,4 +1,5 @@
 ﻿@page "/nutrimenttypes"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Nutriment Types List</h3>
 
@@ -20,3 +21,6 @@
     </tbody>
 </table>
 
+<div>@currentCount</div>
+
+<button @onclick="() => IncrementCount()">click</button>
