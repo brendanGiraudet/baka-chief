@@ -13,11 +13,10 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
         [Inject]
         public IDispatcher Dispatcher { get; set; }
 
-        private int currentCount => NutrimentTypeState.Value.Count;
-
-        private void IncrementCount()
+        protected override void OnInitialized()
         {
-            Dispatcher.Dispatch(new AddNutrimentTypeAction());
+            base.OnInitialized();
+            Dispatcher.Dispatch(new NutrimentTypeFetchhDataAction());
         }
     }
 }

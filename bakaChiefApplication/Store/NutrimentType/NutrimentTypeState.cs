@@ -5,13 +5,16 @@ namespace bakaChiefApplication.Store.NutrimentType
     [FeatureState]
     public class NutrimentTypeState
     {
-        public int Count { get; set; }
+        public bool IsLoading { get; }
+
+        public IEnumerable<Models.NutrimentType> NutrimentTypes { get; }
 
         private NutrimentTypeState() { }
 
-        public NutrimentTypeState(int count)
+        public NutrimentTypeState(bool isLoading, IEnumerable<Models.NutrimentType>? nutrimentTypes)
         {
-            Count = count;
+            IsLoading = isLoading;
+            NutrimentTypes = nutrimentTypes ?? Array.Empty<Models.NutrimentType>();
         }
     }
 }

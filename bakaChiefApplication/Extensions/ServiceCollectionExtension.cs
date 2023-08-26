@@ -8,5 +8,13 @@ namespace bakaChiefApplication.Extensions
         {
             services.AddTransient<INutrimentTypeService, NutrimentTypeService>();
         }
+
+        public static void AddNamedHttpClient(this IServiceCollection services)
+        {
+            services.AddHttpClient("NutrimentTypeClient", config =>
+            {
+                config.BaseAddress = new Uri("https://localhost:7177");
+            });
+        }
     }
 }

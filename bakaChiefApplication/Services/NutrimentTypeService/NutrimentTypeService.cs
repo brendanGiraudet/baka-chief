@@ -1,5 +1,6 @@
 ﻿using bakaChiefApplication.Models;
 using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Services.NutrimentTypeService
 {
@@ -12,9 +13,12 @@ namespace bakaChiefApplication.Services.NutrimentTypeService
             _httpClient = httpClientFactory.CreateClient("NutrimentTypeClient");
         }
 
-        public async Task<List<NutrimentType>> GetAllNutrimentTypesAsync()
+        public async Task<IEnumerable<NutrimentType>> GetAllNutrimentTypesAsync()
         {
-            var nutrimentTypes = await _httpClient.GetFromJsonAsync<List<NutrimentType>>(NutrimentTypeApiEndpoints.GetAllNutrimentTypes);
+            var nutrimentTypes = await _httpClient.GetFromJsonAsync<IEnumerable<NutrimentType>>(NutrimentTypeApiEndpoints.GetAllNutrimentTypes, options: new System.Text.Json.JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+        });
             return nutrimentTypes;
         }
 

@@ -3,24 +3,35 @@
 
 <h3>Nutriment Types List</h3>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        
+@if (NutrimentTypeState.Value.IsLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>Id</td>
-                <td>Name</td>
+                <th>Id</th>
+                <th>Name</th>
             </tr>
-        
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (NutrimentTypeState.Value.NutrimentTypes == null || NutrimentTypeState.Value.NutrimentTypes.Count() == 0)
+            {
+                <div>vide</div>
+            }
+            else
+            {
+                foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
+                {
+                    <tr>
+                        <td>@nutrimentType.Id</td>
+                        <td>@nutrimentType.Name</td>
+                    </tr>
+                }
+            }
 
-<div>@currentCount</div>
-
-<button @onclick="() => IncrementCount()">click</button>
+        </tbody>
+    </table>
+}

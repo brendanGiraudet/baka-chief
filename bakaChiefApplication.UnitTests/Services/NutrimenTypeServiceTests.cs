@@ -38,7 +38,7 @@ namespace bakaChiefApplication.UnitTests.Service
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(expectedNutrimentTypes.Count, result.Count);
+            Assert.Equal(expectedNutrimentTypes.Count, result.Count());
             Assert.Equal(expectedNutrimentTypes, result, new NutrimentTypeComparer());
         }
 
