@@ -19,5 +19,13 @@ namespace bakaChiefApplication.Store.NutrimentType
 
             dispatcher.Dispatch(new NutrimentTypeFetchDataResultAction(nutrimentTypes));
         }
+        
+        [EffectMethod]
+        public async Task HandleAddNutrimentTypeAction(AddNutrimentTypeAction action, IDispatcher dispatcher)
+        {
+            var nutrimentType = await _nutrimentTypeService.CreateNutrimentTypeAsync(action.NutrimentType);
+
+            dispatcher.Dispatch(new AddNutrimentTypeResultAction(nutrimentType));
+        }
     }
 }

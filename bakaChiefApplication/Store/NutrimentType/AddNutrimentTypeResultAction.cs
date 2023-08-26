@@ -1,10 +1,10 @@
 ﻿namespace bakaChiefApplication.Store.NutrimentType
 {
-    public class AddNutrimentTypeAction
+    public class AddNutrimentTypeResultAction
     {
         public Models.NutrimentType NutrimentType { get; }
 
-        public AddNutrimentTypeAction(Models.NutrimentType nutrimentType)
+        public AddNutrimentTypeResultAction(Models.NutrimentType nutrimentType)
         {
             NutrimentType = nutrimentType;
         }

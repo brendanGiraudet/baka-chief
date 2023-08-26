@@ -1,6 +1,4 @@
-﻿using Fluxor;
-
-namespace bakaChiefApplication.Store.NutrimentType
+﻿namespace bakaChiefApplication.Store.NutrimentType
 {
     public class NutrimentTypeFetchDataResultAction
     {

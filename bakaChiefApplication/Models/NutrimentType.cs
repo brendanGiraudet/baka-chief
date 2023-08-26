@@ -6,7 +6,7 @@ namespace bakaChiefApplication.Models
     public class NutrimentType
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [JsonPropertyName("name")]
         public string Name { get; set; }

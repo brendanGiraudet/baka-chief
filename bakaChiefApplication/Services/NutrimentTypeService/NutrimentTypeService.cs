@@ -30,8 +30,13 @@ namespace bakaChiefApplication.Services.NutrimentTypeService
 
         public async Task<NutrimentType> CreateNutrimentTypeAsync(NutrimentType nutrimentType)
         {
-            var response = await _httpClient.PostAsJsonAsync(NutrimentTypeApiEndpoints.CreateNutrimentType, nutrimentType);
+            var response = await _httpClient.PostAsJsonAsync(NutrimentTypeApiEndpoints.CreateNutrimentType, nutrimentType, options: new System.Text.Json.JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
             response.EnsureSuccessStatusCode();
+
+            await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
 
             var createdNutrimentType = await response.Content.ReadFromJsonAsync<NutrimentType>();
             return createdNutrimentType;

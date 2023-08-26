@@ -1,4 +1,5 @@
-﻿using bakaChiefApplication.Store.NutrimentType;
+﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.NutrimentType;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Dispatcher = Fluxor.Dispatcher;
@@ -13,10 +14,18 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
         [Inject]
         public IDispatcher Dispatcher { get; set; }
 
+        public NutrimentType Model { get; set; } = new NutrimentType();
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
             Dispatcher.Dispatch(new NutrimentTypeFetchhDataAction());
+        }
+
+        private async Task Submit()
+        {
+            await Console.Out.WriteLineAsync("submit");
+            Dispatcher.Dispatch(new AddNutrimentTypeAction(Model));
         }
     }
 }

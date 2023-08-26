@@ -6,6 +6,8 @@ namespace bakaChiefApplication.Store.NutrimentType
     public class NutrimentTypeState
     {
         public bool IsLoading { get; }
+        
+        public bool IsAddLoading { get; }
 
         public IEnumerable<Models.NutrimentType> NutrimentTypes { get; }
 
@@ -15,6 +17,15 @@ namespace bakaChiefApplication.Store.NutrimentType
         {
             IsLoading = isLoading;
             NutrimentTypes = nutrimentTypes ?? Array.Empty<Models.NutrimentType>();
+        }
+        
+        public NutrimentTypeState(bool isAddLoading, Models.NutrimentType? nutrimentType, IEnumerable<Models.NutrimentType>? nutrimentTypes)
+        {
+            IsAddLoading = isAddLoading;
+
+            if(nutrimentType != null && NutrimentTypes != null) NutrimentTypes = NutrimentTypes.Append(nutrimentType);
+
+            NutrimentTypes = nutrimentTypes;
         }
     }
 }
