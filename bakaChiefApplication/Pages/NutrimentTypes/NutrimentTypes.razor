@@ -3,35 +3,24 @@
 
 <h3>Nutriment Types List</h3>
 
+
 @if (NutrimentTypeState.Value.IsLoading)
 {
     <p>Loading...</p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (NutrimentTypeState.Value.NutrimentTypes == null || NutrimentTypeState.Value.NutrimentTypes.Count() == 0)
+    if (NutrimentTypeState.Value.NutrimentTypes == null || NutrimentTypeState.Value.NutrimentTypes.Count() == 0)
+    {
+        <div>Pas de nutriment</div>
+    }
+    else
+    {
+        <div class="nutriment-type-cards">
+            @foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
             {
-                <div>vide</div>
+            <Card Title="@nutrimentType.Name" CardSvgImage="@nutrimentType.SvgImage" />
             }
-            else
-            {
-                foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
-                {
-                    <tr>
-                        <td>@nutrimentType.Id</td>
-                        <td>@nutrimentType.Name</td>
-                    </tr>
-                }
-            }
-
-        </tbody>
-    </table>
+        </div>
+    }
 }
