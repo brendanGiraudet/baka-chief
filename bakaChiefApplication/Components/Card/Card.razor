@@ -1,9 +1,14 @@
-﻿
-<figure>
+﻿@using bakaChiefApplication.Constants;
+
+<figure @onclick="OnCloseClick">
 
     <div class="icon-card">
         @((MarkupString)CardSvgImage)
     </div>
 
     <figcaption>@Title</figcaption>
+
+    <div class="close-svg">
+        @((MarkupString)SvgConstants.CrossSvg)
+    </div>
 </figure>

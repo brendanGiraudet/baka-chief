@@ -9,5 +9,13 @@ namespace bakaChiefApplication.Components.Card
 
         [Parameter] 
         public string CardSvgImage { get; set;}
+
+        [Parameter]
+        public EventCallback OnClickCallback { get; set; }
+
+        private async Task OnCloseClick()
+        {
+            if(OnClickCallback.HasDelegate) await OnClickCallback.InvokeAsync();
+        }
     }
 }
