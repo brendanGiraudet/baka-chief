@@ -27,5 +27,11 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
             await Console.Out.WriteLineAsync("submit");
             Dispatcher.Dispatch(new AddNutrimentTypeAction(Model));
         }
+
+        private async Task RemoveNutrimentType(string id)
+        {
+            await Console.Out.WriteLineAsync("RemoveNutrimentType " + id);
+            Dispatcher.Dispatch(new DeleteNutrimentTypeAction(id));
+        }
     }
 }

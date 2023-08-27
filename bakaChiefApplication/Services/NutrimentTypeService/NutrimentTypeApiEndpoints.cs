@@ -8,6 +8,6 @@
         public static string GetNutrimentTypeById(string id) => $"{BasePath}/{id}";
         public const string CreateNutrimentType = BasePath;
         public static string UpdateNutrimentType(string id) => $"{BasePath}/{id}";
-        public static string DeleteNutrimentType(string id) => $"{BasePath} /{id}";
+        public static string DeleteNutrimentType(string id) => $"{BasePath}/{id}";
     }
 }

@@ -27,5 +27,13 @@ namespace bakaChiefApplication.Store.NutrimentType
 
             dispatcher.Dispatch(new AddNutrimentTypeResultAction(nutrimentType));
         }
+        
+        [EffectMethod]
+        public async Task HandleDeleteNutrimentTypeAction(DeleteNutrimentTypeAction action, IDispatcher dispatcher)
+        {
+            await _nutrimentTypeService.DeleteNutrimentTypeAsync(action.NutrimentTypeId);
+
+            dispatcher.Dispatch(new DeleteNutrimentTypeResultAction(action.NutrimentTypeId));
+        }
     }
 }

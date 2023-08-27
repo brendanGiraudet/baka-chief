@@ -57,7 +57,7 @@ else
         <div class="nutriment-type-cards">
             @foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
             {
-                <Card Title="@nutrimentType.Name" CardSvgImage="@nutrimentType.SvgImage" />
+                <Card Title="@nutrimentType.Name" CardSvgImage="@nutrimentType.SvgImage" OnClickCallback="async () => await RemoveNutrimentType(nutrimentType.Id)" />
             }
         </div>
     }
