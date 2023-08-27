@@ -1,4 +1,4 @@
-﻿namespace bakaChiefApplication.Store.NutrimentType
+﻿namespace bakaChiefApplication.Store.NutrimentType.Actions
 {
     public class AddNutrimentTypeAction
     {

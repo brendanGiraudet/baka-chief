@@ -1,5 +1,6 @@
 ﻿using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.NutrimentType;
+using bakaChiefApplication.Store.NutrimentType.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Dispatcher = Fluxor.Dispatcher;
@@ -35,6 +36,11 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
         private async Task ShowNutrimentTypeForm()
         {
             Dispatcher.Dispatch(new ShowNutrimentTypeFormAction());
+        }
+        
+        private async Task CloseNutrimentTypeForm()
+        {
+            Dispatcher.Dispatch(new CloseNutrimentTypeFormAction());
         }
     }
 }

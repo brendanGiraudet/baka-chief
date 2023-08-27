@@ -1,0 +1,13 @@
+﻿@using bakaChiefApplication.Constants;
+
+<div class="custom-modal" hidden="@Hidden">
+    
+    <div class="close-modal-btn" @onclick="OnCloseClick">
+        @((MarkupString)SvgConstants.CrossSvg)
+    </div>
+    
+    <div>
+        @Content
+    </div>
+    
+</div>

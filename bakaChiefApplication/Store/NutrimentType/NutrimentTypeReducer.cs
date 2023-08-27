@@ -1,4 +1,5 @@
-﻿using Fluxor;
+﻿using bakaChiefApplication.Store.NutrimentType.Actions;
+using Fluxor;
 
 namespace bakaChiefApplication.Store.NutrimentType
 {
@@ -25,5 +26,8 @@ namespace bakaChiefApplication.Store.NutrimentType
         
         [ReducerMethod(typeof(ShowNutrimentTypeFormAction))]
         public static NutrimentTypeState ReduceShowNutrimentTypeFormAction(NutrimentTypeState state) => new NutrimentTypeState(isLoading:false, nutrimentTypes: state.NutrimentTypes, isNutrimentTypeFormHidden: false);
+        
+        [ReducerMethod(typeof(CloseNutrimentTypeFormAction))]
+        public static NutrimentTypeState ReduceCloseNutrimentTypeFormAction(NutrimentTypeState state) => new NutrimentTypeState(isLoading:false, nutrimentTypes: state.NutrimentTypes, isNutrimentTypeFormHidden: true);
     }
 }
