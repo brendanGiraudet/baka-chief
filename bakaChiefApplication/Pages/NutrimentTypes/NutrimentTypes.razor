@@ -3,16 +3,20 @@
 
 <h3>Nutriment Types List</h3>
 
-<div>
-    <button>ajout</button>
+@if (NutrimentTypeState.Value.IsLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="addNutrimentType-button">
+        <Button Type="button" Text="Ajout" OnClickCallback="ShowNutrimentTypeForm" />
+    </div>
 
-    @if (NutrimentTypeState.Value.IsAddLoading)
-    {
-        <p>add loading...</p>
-    }
-    else
-    {
-        <div>
+    <div>
+        
+
+        <div class="creation-form" hidden="@NutrimentTypeState.Value.IsNutrimentTypeFormHidden">
             <EditForm Model="Model" OnValidSubmit="@Submit">
                 <DataAnnotationsValidator />
 
@@ -33,21 +37,14 @@
 
                 @* Submit *@
                 <div>
-                    <button type="submit">Submit</button>
+                    <Button Type="submit" Text="Submit" />
                 </div>
 
             </EditForm>
         </div>
-    }
-</div>
+    </div>
 
 
-@if (NutrimentTypeState.Value.IsLoading)
-{
-    <p>Loading...</p>
-}
-else
-{
     if (NutrimentTypeState.Value.NutrimentTypes == null || NutrimentTypeState.Value.NutrimentTypes.Count() == 0)
     {
         <div>Pas de nutriment</div>
