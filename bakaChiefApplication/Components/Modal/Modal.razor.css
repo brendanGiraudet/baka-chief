@@ -1,18 +1,37 @@
 ﻿.custom-modal {
     border: 1px solid black;
     border-radius: 1.5rem;
-    padding:1rem;
+    padding: 1rem;
+    animation: fadeIn 1s ease both;
+    background-color: #fff;
+    position: absolute;
+    z-index:100;
 }
 
 .close-modal-btn {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    margin-bottom: 1rem;
 }
 
     .close-modal-btn ::deep svg {
         height: 3rem;
         width: 3rem;
     }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.content-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
