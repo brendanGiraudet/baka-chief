@@ -1,4 +1,4 @@
-﻿namespace bakaChiefApplication.Services.NutrimentTypeService
+﻿namespace bakaChiefApplication.Constants
 {
     public static class NutrimentTypeApiEndpoints
     {

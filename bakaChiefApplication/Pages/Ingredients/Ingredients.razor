@@ -1,0 +1,25 @@
+﻿@page "/ingredients"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Ingredient List</h3>
+
+@if (IngredientState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    if (IngredientState.Value.Ingredients == null || IngredientState.Value.Ingredients.Count() == 0)
+    {
+        <div>Pas d'ingredients'</div>
+    }
+    else
+    {
+        <div class="nutriment-type-cards">
+            @foreach (var ingredient in IngredientState.Value.Ingredients)
+            {
+                <Card Title="@ingredient.Name" CardSvgImage="@ingredient.SvgImage" />
+            }
+        </div>
+    }
+}

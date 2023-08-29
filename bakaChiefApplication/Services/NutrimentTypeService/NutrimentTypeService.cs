@@ -1,4 +1,5 @@
-﻿using bakaChiefApplication.Models;
+﻿using bakaChiefApplication.Constants;
+using bakaChiefApplication.Models;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
@@ -10,7 +11,7 @@ namespace bakaChiefApplication.Services.NutrimentTypeService
 
         public NutrimentTypeService(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClientFactory.CreateClient("NutrimentTypeClient");
+            _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
         }
 
         public async Task<IEnumerable<NutrimentType>> GetAllNutrimentTypesAsync()
