@@ -15,9 +15,17 @@
     margin-bottom: 1rem;
 }
 
+    .close-modal-btn ::deep svg:hover{
+        cursor: pointer; 
+    }
+
+    .close-modal-btn ::deep svg:hover path {
+        fill: #B00E0E;
+    }
+
     .close-modal-btn ::deep svg {
-        height: 3rem;
-        width: 3rem;
+        height: 2rem;
+        width: 2rem;
     }
 
 @keyframes fadeIn {

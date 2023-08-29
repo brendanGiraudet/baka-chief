@@ -58,8 +58,8 @@ figure:hover .close-svg {
 }
 
 .close-svg ::deep svg {
-    height: 25%;
-    width: 25%;
+    height: 15%;
+    width: 15%;
     border-radius: 2.5rem;
     border: 1px solid #D9D9D9;
     background-color: #D9D9D9;
