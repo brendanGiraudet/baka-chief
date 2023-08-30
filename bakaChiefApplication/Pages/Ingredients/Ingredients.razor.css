@@ -1,2 +1,32 @@
-﻿body {
+﻿.ingredient-card {
+    display: grid;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    height: 20rem;
+    width: 20rem;
+    border: 1px solid #425a52;
+}
+
+.title, .image{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.nutriments, .selected-nutriment{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+
+
+.selected-nutriment .tag {
+    background-color: #0D0A9B;
+    color: #fff;
+}
+
+.nutriments .tag {
+    background-color: #3B9433;
+    color: #fff;
 }

@@ -9,6 +9,59 @@
 }
 else
 {
+    <div class="addingredient-button">
+        <Button Type="button" Text="Ajout" OnClickCallback="ShowNutrimentTypeForm" />
+    </div>
+
+    <div>
+
+        <Modal Hidden="IngredientState.Value.IsIngredientFormHidden" OnCloseCallback="CloseNutrimentTypeForm">
+            <Content>
+                <div class="creation-form">
+                    <EditForm Model="Model" OnValidSubmit="@Submit">
+                        <DataAnnotationsValidator />
+
+                        @* Name *@
+                        <div>
+                            <CustomInputText Label="Name" @bind-Value="@Model.Name" />
+                        </div>
+
+                        @* SvgImage *@
+                        <div>
+                            <CustomInputText Label="Image" @bind-Value="@Model.SvgImage" />
+                        </div>
+
+                        <div class="selected-nutriment">
+                            @if (IngredientState.Value.SelectedNutrimentType != null)
+                            {
+                                foreach (var nutriment in IngredientState.Value.SelectedNutrimentType)
+                                {
+                                    <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveNutrimentType(nutriment))" />
+                                }
+                            }
+                        </div>
+
+                        <div class="nutriments">
+                            @if (NutrimentTypeState.Value.NutrimentTypes != null)
+                            {
+                                foreach (var nutriment in NutrimentTypeState.Value.NutrimentTypes)
+                                {
+                                    <Tag Content="@nutriment.Name" IsAddable="true" OnClickCallback="@( async () => await AddNutrimentType(nutriment))" />
+                                }
+                            }
+                        </div>
+
+                        @* Submit *@
+                        <div>
+                            <Button Type="submit" Text="Submit" />
+                        </div>
+
+                    </EditForm>
+                </div>
+            </Content>
+        </Modal>
+    </div>
+
     if (IngredientState.Value.Ingredients == null || IngredientState.Value.Ingredients.Count() == 0)
     {
         <div>Pas d'ingredients'</div>
@@ -18,7 +71,19 @@ else
         <div class="nutriment-type-cards">
             @foreach (var ingredient in IngredientState.Value.Ingredients)
             {
-                <Card Title="@ingredient.Name" CardSvgImage="@ingredient.SvgImage" />
+                <div class="ingredient-card">
+                    <div class="title">@ingredient.Name</div>
+
+                    <div class="image">@ingredient.SvgImage</div>
+
+                    <div class="nutriments">
+                        @foreach (var nutriment in ingredient.NutrimentTypes)
+                        {
+                            <div class="tag">@nutriment.Name</div>
+                        }
+                    </div>
+
+                </div>
             }
         </div>
     }

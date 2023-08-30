@@ -1,0 +1,15 @@
+﻿@using bakaChiefApplication.Constants;
+
+<div class="tag">
+    @if (IsAddable)
+    {
+        <div class="add-tag-icon" @onclick="Onclick">@((MarkupString)SvgConstants.PlusSvg)</div>
+    }
+
+    <div class="tag-content">@Content</div>
+
+    @if (IsRemovable)
+    {
+        <div class="remove-tag-icon" @onclick="Onclick">@((MarkupString)SvgConstants.CrossSvg)</div>
+    }
+</div>

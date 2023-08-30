@@ -19,8 +19,6 @@ namespace bakaChiefApplication.Store.Ingredient
         {
             var ingredients = await _ingredientService.GetAllIngredientAsync();
 
-            await Console.Out.WriteLineAsync("HandleIngredientFetchDataAction " + ingredients.Count());
-
             dispatcher.Dispatch(new IngredientFetchDataResultAction(ingredients));
         }
     }
