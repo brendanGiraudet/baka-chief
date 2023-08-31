@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 
 namespace bakaChiefApplication.Components.Card
 {
@@ -8,7 +9,7 @@ namespace bakaChiefApplication.Components.Card
         public string Title { get; set; }
 
         [Parameter] 
-        public string CardSvgImage { get; set;}
+        public RenderFragment Content { get; set;}
 
         [Parameter]
         public EventCallback OnClickCallback { get; set; }

@@ -5,7 +5,7 @@
 
 @if (NutrimentTypeState.Value.IsLoading)
 {
-    <Loader/>
+    <Loader />
 }
 else
 {
@@ -31,11 +31,6 @@ else
                             <CustomInputText Label="Image" @bind-Value="@Model.SvgImage" />
                         </div>
 
-                        @* SvgImage visualization *@
-                        @* <div>
-                    @((MarkupString) Model.SvgImage)
-                    </div> *@
-
                         @* Submit *@
                         <div>
                             <Button Type="submit" Text="Submit" />
@@ -57,7 +52,13 @@ else
         <div class="nutriment-type-cards">
             @foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
             {
-                <Card Title="@nutrimentType.Name" CardSvgImage="@nutrimentType.SvgImage" OnClickCallback="async () => await RemoveNutrimentType(nutrimentType.Id)" />
+                <Card Title="@nutrimentType.Name" OnClickCallback="async () => await RemoveNutrimentType(nutrimentType.Id)">
+                    <Content>
+                        <div class="icon-card">
+                            @((MarkupString)nutrimentType.SvgImage)
+                        </div>
+                    </Content>
+                </Card>
             }
         </div>
     }

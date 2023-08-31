@@ -1,14 +1,4 @@
-﻿.ingredient-card {
-    display: grid;
-    border-radius: 1rem;
-    overflow: hidden;
-    cursor: pointer;
-    height: 20rem;
-    width: 20rem;
-    border: 1px solid #425a52;
-}
-
-.title, .image{
+﻿.image{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -17,16 +7,31 @@
 .nutriments, .selected-nutriment{
     display:flex;
     flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
 }
 
-
-
-.selected-nutriment .tag {
-    background-color: #0D0A9B;
-    color: #fff;
+.ingredient-type-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.nutriments .tag {
-    background-color: #3B9433;
-    color: #fff;
+.nutriments, .image{
+    padding:1rem;
+}
+
+.addingredient-button {
+    margin: 1.5rem 0rem;
+}
+
+.image ::deep svg{
+    height:8rem;
+    width:8rem;
+}
+.ingredient-card{
+    height:100%;
+    width:100%;
 }

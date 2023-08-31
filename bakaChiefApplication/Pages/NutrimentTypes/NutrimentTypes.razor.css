@@ -1,6 +1,6 @@
 ﻿.nutriment-type-cards {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
@@ -8,3 +8,16 @@
 .addNutrimentType-button {
     margin: 1.5rem 0rem;
 }
+
+.icon-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .icon-card ::deep svg {
+        height: 50%;
+        width: 50%;
+    }

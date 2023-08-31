@@ -44,7 +44,8 @@ else
                         <div class="nutriments">
                             @if (NutrimentTypeState.Value.NutrimentTypes != null)
                             {
-                                foreach (var nutriment in NutrimentTypeState.Value.NutrimentTypes)
+                                var nutriments = NutrimentTypeState.Value.NutrimentTypes.Where(n => !IngredientState?.Value?.SelectedNutrimentType?.Contains(n)?? false);
+                                foreach (var nutriment in nutriments)
                                 {
                                     <Tag Content="@nutriment.Name" IsAddable="true" OnClickCallback="@( async () => await AddNutrimentType(nutriment))" />
                                 }
@@ -68,22 +69,26 @@ else
     }
     else
     {
-        <div class="nutriment-type-cards">
+        <div class="ingredient-type-cards">
             @foreach (var ingredient in IngredientState.Value.Ingredients)
             {
-                <div class="ingredient-card">
-                    <div class="title">@ingredient.Name</div>
+                <Card Title="@ingredient.Name" OnClickCallback="async () => await RemoveIngredient(ingredient.Id)">
+                    <Content>
+                        <div class="ingredient-card">
 
-                    <div class="image">@ingredient.SvgImage</div>
+                            <div class="image">@((MarkupString)ingredient.SvgImage)</div>
 
-                    <div class="nutriments">
-                        @foreach (var nutriment in ingredient.NutrimentTypes)
-                        {
-                            <div class="tag">@nutriment.Name</div>
-                        }
-                    </div>
+                            <div class="nutriments">
+                                @foreach (var nutriment in ingredient.NutrimentTypes)
+                                {
+                                    <Tag Content="@nutriment.Name" />
+                                }
+                            </div>
 
-                </div>
+                        </div>
+                    </Content>
+                </Card>
+                
             }
         </div>
     }

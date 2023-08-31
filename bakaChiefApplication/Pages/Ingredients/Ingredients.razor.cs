@@ -1,4 +1,5 @@
 ﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Pages.NutrimentTypes;
 using bakaChiefApplication.Store.Ingredient;
 using bakaChiefApplication.Store.Ingredient.Actions;
 using bakaChiefApplication.Store.NutrimentType;
@@ -41,16 +42,26 @@ namespace bakaChiefApplication.Pages.Ingredients
         private async Task Submit()
         {
             Dispatcher.Dispatch(new AddIngredientAction(Model));
+            Model = new();
         }
         
         private async Task RemoveNutrimentType(NutrimentType nutrimentType)
         {
             Dispatcher.Dispatch(new RemoveSelectedNutrimentAction(nutrimentType));
+
+            Model.NutrimentTypes.Remove(nutrimentType);
         }
         
         private async Task AddNutrimentType(NutrimentType nutrimentType)
         {
             Dispatcher.Dispatch(new AddSelectedNutrimentAction(nutrimentType));
+
+            Model.NutrimentTypes.Add(nutrimentType);
+        }
+
+        private async Task RemoveIngredient(string id)
+        {
+            Dispatcher.Dispatch(new DeleteIngredientAction(id));
         }
     }
 }

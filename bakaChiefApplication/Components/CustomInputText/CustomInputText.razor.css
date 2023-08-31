@@ -10,6 +10,7 @@
         justify-content: flex-start;
         align-items: center;
         transition: 0.2s ease;
+        width: 100%;
     }
 
         .input ::deep input:focus, .input ::deep input:focus-visible, .input ::deep input.valid.modified {

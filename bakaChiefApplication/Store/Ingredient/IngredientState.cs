@@ -15,7 +15,7 @@ namespace bakaChiefApplication.Store.Ingredient
 
         private IngredientState() { }
 
-        public IngredientState(bool isLoading, IEnumerable<Models.Ingredient>? ingredients, bool isIngredientFormHidden = true, IEnumerable<Models.NutrimentType> selectedNutrimentTypes = null)
+        public IngredientState(bool isLoading = false, IEnumerable<Models.Ingredient>? ingredients = null, bool isIngredientFormHidden = true, IEnumerable<Models.NutrimentType> selectedNutrimentTypes = null)
         {
             IsLoading = isLoading;
             Ingredients = ingredients ?? Array.Empty<Models.Ingredient>();
