@@ -1,4 +1,4 @@
-﻿namespace bakaChiefApplication.Store.NutrimentType.Actions
+﻿namespace bakaChiefApplication.Store.NutrimentTypes.Actions
 {
     public class NutrimentTypeFetchhDataAction
     {

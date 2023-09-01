@@ -1,4 +1,4 @@
-﻿namespace bakaChiefApplication.Store.Ingredient.Actions
+﻿namespace bakaChiefApplication.Store.Ingredients.Actions
 {
     public class RemoveSelectedNutrimentAction
     {

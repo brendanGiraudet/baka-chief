@@ -1,9 +1,9 @@
 ﻿using Fluxor;
 
-namespace bakaChiefApplication.Store.Ingredient
+namespace bakaChiefApplication.Store.Ingredients
 {
     [FeatureState]
-    public class IngredientState
+    public class IngredientsState
     {
         public bool IsLoading { get; }
         
@@ -13,9 +13,9 @@ namespace bakaChiefApplication.Store.Ingredient
         
         public IEnumerable<Models.NutrimentType> SelectedNutrimentType { get; }
 
-        private IngredientState() { }
+        private IngredientsState() { }
 
-        public IngredientState(bool isLoading = false, IEnumerable<Models.Ingredient>? ingredients = null, bool isIngredientFormHidden = true, IEnumerable<Models.NutrimentType> selectedNutrimentTypes = null)
+        public IngredientsState(bool isLoading = false, IEnumerable<Models.Ingredient>? ingredients = null, bool isIngredientFormHidden = true, IEnumerable<Models.NutrimentType> selectedNutrimentTypes = null)
         {
             IsLoading = isLoading;
             Ingredients = ingredients ?? Array.Empty<Models.Ingredient>();

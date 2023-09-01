@@ -1,9 +1,9 @@
 ﻿using bakaChiefApplication.Models;
 using bakaChiefApplication.Pages.NutrimentTypes;
-using bakaChiefApplication.Store.Ingredient;
-using bakaChiefApplication.Store.Ingredient.Actions;
-using bakaChiefApplication.Store.NutrimentType;
-using bakaChiefApplication.Store.NutrimentType.Actions;
+using bakaChiefApplication.Store.Ingredients;
+using bakaChiefApplication.Store.Ingredients.Actions;
+using bakaChiefApplication.Store.NutrimentTypes;
+using bakaChiefApplication.Store.NutrimentTypes.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -12,10 +12,10 @@ namespace bakaChiefApplication.Pages.Ingredients
     public partial class Ingredients
     {
         [Inject]
-        public IState<IngredientState> IngredientState { get; set; }
+        public IState<IngredientsState> IngredientState { get; set; }
         
         [Inject]
-        public IState<NutrimentTypeState> NutrimentTypeState { get; set; }
+        public IState<NutrimentTypesState> NutrimentTypeState { get; set; }
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }

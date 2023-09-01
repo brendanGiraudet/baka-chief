@@ -1,6 +1,6 @@
 ﻿using bakaChiefApplication.Models;
-using bakaChiefApplication.Store.NutrimentType;
-using bakaChiefApplication.Store.NutrimentType.Actions;
+using bakaChiefApplication.Store.NutrimentTypes;
+using bakaChiefApplication.Store.NutrimentTypes.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Dispatcher = Fluxor.Dispatcher;
@@ -10,7 +10,7 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
     public partial class NutrimentTypes
     {
         [Inject]
-        public IState<NutrimentTypeState> NutrimentTypeState { get; set; }
+        public IState<NutrimentTypesState> NutrimentTypeState { get; set; }
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }
@@ -26,6 +26,7 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
         private async Task Submit()
         {
             Dispatcher.Dispatch(new AddNutrimentTypeAction(Model));
+            Model = new();
         }
 
         private async Task RemoveNutrimentType(string id)

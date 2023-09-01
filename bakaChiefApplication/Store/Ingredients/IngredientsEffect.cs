@@ -1,15 +1,16 @@
 ﻿using bakaChiefApplication.Services.IngredientService;
-using bakaChiefApplication.Store.Ingredient.Actions;
+using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 
-namespace bakaChiefApplication.Store.Ingredient
+namespace bakaChiefApplication.Store.Ingredients
+
 {
-    public class IngredientEffect
+    public class IngredientsEffect
     {
 
         readonly IIngredientService _ingredientService;
 
-        public IngredientEffect(IIngredientService ingredientService)
+        public IngredientsEffect(IIngredientService ingredientService)
         {
             _ingredientService = ingredientService;
         }
