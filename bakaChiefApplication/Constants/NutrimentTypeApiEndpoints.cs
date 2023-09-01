@@ -2,7 +2,7 @@
 {
     public static class NutrimentTypeApiEndpoints
     {
-        public const string BasePath = "/api/nutrimenttype";
+        public const string BasePath = "/api/nutrimenttypes";
 
         public const string GetAllNutrimentTypes = BasePath;
         public static string GetNutrimentTypeById(string id) => $"{BasePath}/{id}";
