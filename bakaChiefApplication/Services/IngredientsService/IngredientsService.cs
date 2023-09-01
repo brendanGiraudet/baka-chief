@@ -4,11 +4,11 @@ using System.Net.Http.Json;
 
 namespace bakaChiefApplication.Services.IngredientsService
 {
-    public class IngredientService : IIngredientService
+    public class IngredientsService : IIngredientsService
     {
         private readonly HttpClient _httpClient;
 
-        public IngredientService(IHttpClientFactory httpClientFactory)
+        public IngredientsService(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
         }

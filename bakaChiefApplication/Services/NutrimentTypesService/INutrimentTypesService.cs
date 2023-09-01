@@ -2,7 +2,7 @@
 
 namespace bakaChiefApplication.Services.NutrimentTypesService
 {
-    public interface INutrimentTypeService
+    public interface INutrimentTypesService
     {
         Task<IEnumerable<NutrimentType>> GetAllNutrimentTypesAsync();
         Task<NutrimentType> GetNutrimentTypeByIdAsync(string id);

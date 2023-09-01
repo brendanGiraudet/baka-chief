@@ -5,11 +5,11 @@ using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Services.NutrimentTypesService
 {
-    public class NutrimentTypeService : INutrimentTypeService
+    public class NutrimentTypesService : INutrimentTypesService
     {
         private readonly HttpClient _httpClient;
 
-        public NutrimentTypeService(IHttpClientFactory httpClientFactory)
+        public NutrimentTypesService(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
         }

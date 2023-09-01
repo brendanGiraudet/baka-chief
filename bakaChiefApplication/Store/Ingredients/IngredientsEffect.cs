@@ -8,9 +8,9 @@ namespace bakaChiefApplication.Store.Ingredients
     public class IngredientsEffect
     {
 
-        readonly IIngredientService _ingredientService;
+        readonly IIngredientsService _ingredientService;
 
-        public IngredientsEffect(IIngredientService ingredientService)
+        public IngredientsEffect(IIngredientsService ingredientService)
         {
             _ingredientService = ingredientService;
         }

@@ -1,5 +1,5 @@
 ﻿using bakaChiefApplication.Models;
-using bakaChiefApplication.Services.NutrimentTypeService;
+using bakaChiefApplication.Services.NutrimentTypesService;
 using Moq;
 using Moq.Protected;
 using System.Net;
@@ -44,9 +44,9 @@ namespace bakaChiefApplication.UnitTests.Service
 
         #endregion
 
-        private NutrimentTypeService getNutrimenntTypeService()
+        private NutrimentTypesService getNutrimenntTypeService()
         {
-            return new NutrimentTypeService(_httpClientFactoryMock.Object);
+            return new NutrimentTypesService(_httpClientFactoryMock.Object);
         }
 
         #region GetNutrimentTypeByIdAsync

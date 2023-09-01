@@ -2,7 +2,7 @@
 
 namespace bakaChiefApplication.Services.IngredientsService
 {
-    public interface IIngredientService
+    public interface IIngredientsService
     {
         Task<IEnumerable<Ingredient>> GetAllIngredientAsync();
         Task<Ingredient> GetIngredientByIdAsync(string id);

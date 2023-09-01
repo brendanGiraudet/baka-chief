@@ -1,4 +1,4 @@
-﻿using bakaChiefApplication.Services.NutrimentTypeService;
+﻿using bakaChiefApplication.Services.NutrimentTypesService;
 using bakaChiefApplication.Store.NutrimentTypes.Actions;
 using Fluxor;
 
@@ -6,9 +6,9 @@ namespace bakaChiefApplication.Store.NutrimentTypes
 {
     public class NutrimentTypesEffect
     {
-        readonly INutrimentTypeService _nutrimentTypeService;
+        readonly INutrimentTypesService _nutrimentTypeService;
 
-        public NutrimentTypesEffect(INutrimentTypeService nutrimentTypeService)
+        public NutrimentTypesEffect(INutrimentTypesService nutrimentTypeService)
         {
             _nutrimentTypeService = nutrimentTypeService;
         }
