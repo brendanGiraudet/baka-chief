@@ -11,15 +11,15 @@ namespace bakaChiefApplication.Models
         public string Name { get; set; }
 
         [JsonPropertyName("personsNumber")]
-        public int PersonsNumber { get; set; }
+        public int? PersonsNumber { get; set; }
 
         [JsonPropertyName("imageFilePath")]
         public string? ImageFilePath { get; set; }
 
         [JsonPropertyName("recipIngredients")]
-        public ICollection<RecipIngredient> RecipIngredients { get; set; }
+        public IEnumerable<RecipIngredient> RecipIngredients { get; set; } = Enumerable.Empty<RecipIngredient>();
 
         [JsonPropertyName("recipSteps")]
-        public ICollection<RecipStep> RecipSteps { get; set; }
+        public IEnumerable<RecipStep> RecipSteps { get; set; } = Enumerable.Empty<RecipStep>();
     }
 }

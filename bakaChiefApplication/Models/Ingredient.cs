@@ -8,6 +8,6 @@
 
         public string? SvgImage { get; set; }
 
-        public ICollection<NutrimentType> NutrimentTypes { get; set; } = new HashSet<NutrimentType>();
+        public IEnumerable<NutrimentType> NutrimentTypes { get; set; } = Enumerable.Empty<NutrimentType>();
     }
 }
