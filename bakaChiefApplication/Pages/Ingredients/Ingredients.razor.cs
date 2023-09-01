@@ -13,7 +13,7 @@ namespace bakaChiefApplication.Pages.Ingredients
     {
         [Inject]
         public IState<IngredientsState> IngredientState { get; set; }
-        
+
         [Inject]
         public IState<NutrimentTypesState> NutrimentTypeState { get; set; }
 
@@ -44,19 +44,19 @@ namespace bakaChiefApplication.Pages.Ingredients
             Dispatcher.Dispatch(new AddIngredientAction(Model));
             Model = new();
         }
-        
-        private async Task RemoveNutrimentType(NutrimentType nutrimentType)
+
+        private async Task RemoveSelectedNutrimentType(NutrimentType nutrimentType)
         {
             Dispatcher.Dispatch(new RemoveSelectedNutrimentAction(nutrimentType));
 
-            Model.NutrimentTypes.Remove(nutrimentType);
+            Model.NutrimentTypes = Model.NutrimentTypes.Where(n => n.Id != nutrimentType.Id);
         }
-        
-        private async Task AddNutrimentType(NutrimentType nutrimentType)
+
+        private async Task AddSelectedNutrimentType(NutrimentType nutrimentType)
         {
             Dispatcher.Dispatch(new AddSelectedNutrimentAction(nutrimentType));
 
-            Model.NutrimentTypes.Add(nutrimentType);
+            Model.NutrimentTypes = Model.NutrimentTypes.Append(nutrimentType);
         }
 
         private async Task RemoveIngredient(string id)

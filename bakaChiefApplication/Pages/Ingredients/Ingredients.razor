@@ -36,7 +36,7 @@ else
                             {
                                 foreach (var nutriment in IngredientState.Value.SelectedNutrimentType)
                                 {
-                                    <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveNutrimentType(nutriment))" />
+                                    <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveSelectedNutrimentType(nutriment))" />
                                 }
                             }
                         </div>
@@ -47,7 +47,7 @@ else
                                 var nutriments = NutrimentTypeState.Value.NutrimentTypes.Where(n => !IngredientState?.Value?.SelectedNutrimentType?.Contains(n)?? false);
                                 foreach (var nutriment in nutriments)
                                 {
-                                    <Tag Content="@nutriment.Name" IsAddable="true" OnClickCallback="@( async () => await AddNutrimentType(nutriment))" />
+                                    <Tag Content="@nutriment.Name" IsAddable="true" OnClickCallback="@( async () => await AddSelectedNutrimentType(nutriment))" />
                                 }
                             }
                         </div>
