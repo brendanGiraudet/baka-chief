@@ -1,9 +1,8 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Models;
-using bakaChiefApplication.Services.IngredientService;
 using System.Net.Http.Json;
 
-namespace bakaChiefApplication.Services.NutrimentTypeService
+namespace bakaChiefApplication.Services.IngredientsService
 {
     public class IngredientService : IIngredientService
     {

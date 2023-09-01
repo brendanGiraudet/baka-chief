@@ -1,6 +1,6 @@
 ﻿using bakaChiefApplication.Models;
 
-namespace bakaChiefApplication.Services.IngredientService
+namespace bakaChiefApplication.Services.IngredientsService
 {
     public interface IIngredientService
     {

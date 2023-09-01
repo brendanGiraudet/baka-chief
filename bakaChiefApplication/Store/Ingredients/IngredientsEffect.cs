@@ -1,4 +1,4 @@
-﻿using bakaChiefApplication.Services.IngredientService;
+﻿using bakaChiefApplication.Services.IngredientsService;
 using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 

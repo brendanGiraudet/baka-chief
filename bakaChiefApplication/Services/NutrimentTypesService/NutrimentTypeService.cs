@@ -3,7 +3,7 @@ using bakaChiefApplication.Models;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
-namespace bakaChiefApplication.Services.NutrimentTypeService
+namespace bakaChiefApplication.Services.NutrimentTypesService
 {
     public class NutrimentTypeService : INutrimentTypeService
     {

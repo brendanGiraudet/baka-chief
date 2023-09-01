@@ -1,6 +1,6 @@
 ﻿using bakaChiefApplication.Models;
 
-namespace bakaChiefApplication.Services.NutrimentTypeService
+namespace bakaChiefApplication.Services.NutrimentTypesService
 {
     public interface INutrimentTypeService
     {
