@@ -1,0 +1,101 @@
+﻿@page "/recips"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Recip List</h3>
+
+@if (RecipsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div class="addrecip-button">
+        <Button Type="button" Text="Ajout" OnClickCallback="ShowRecipForm" />
+    </div>
+
+    <div>
+
+        <Modal Hidden="RecipsState.Value.IsRecipFormHidden" OnCloseCallback="CloseRecipForm">
+            <Content>
+                <div class="creation-form">
+                    <EditForm Model="Model" OnValidSubmit="@Submit">
+                        <DataAnnotationsValidator />
+
+                        @* Name *@
+                        <div>
+                            <CustomInputText Label="Name" @bind-Value="@Model.Name" />
+                        </div>
+
+                        @* PersonsNumber *@
+                        <div>
+                            <CustomInputNumber Label="PersonsNumber" @bind-Value="@Model.PersonsNumber" />
+                        </div>
+
+                        @* ImageFilePath *@
+                        <div>
+                            <CustomInputText Label="Image" @bind-Value="@Model.ImageFilePath" />
+                        </div>
+
+                        <div class="selected-ingredient">
+                            @if (RecipsState.Value.SelectedIngredients != null)
+                            {
+                                foreach (var ingredient in RecipsState.Value.SelectedIngredients)
+                                {
+                                    <Tag Content="@ingredient.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveSelectedIngredient(ingredient))" />
+                                }
+                            }
+                        </div>
+
+                        <div class="ingredients">
+                            @if (IngredientState.Value.Ingredients != null)
+                            {
+                                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState?.Value?.SelectedIngredients?.Contains(n) ?? false);
+
+                                foreach (var ingredient in ingredients)
+                                {
+                                    <Tag Content="@ingredient.Name" IsAddable="true" OnClickCallback="@( async () => await AddSelectedIngredient(ingredient, "", 0))" />
+                                }
+                            }
+                        </div>
+
+                        @* Submit *@
+                        <div>
+                            <Button Type="submit" Text="Submit" />
+                        </div>
+
+                    </EditForm>
+                </div>
+            </Content>
+        </Modal>
+    </div>
+
+    if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
+    {
+        <div>Pas de recette</div>
+    }
+    else
+    {
+        <div class="recip-type-cards">
+            @foreach (var recip in RecipsState.Value.Recips)
+            {
+                <Card Title="@recip.Name" OnClickCallback="async () => await RemoveRecip(recip.Id)">
+                    <Content>
+                        <div class="recip-card">
+
+                            <div class="image">@((MarkupString)recip.ImageFilePath)</div>
+
+                            <div class="ingredients">
+                                @foreach (var recipIngredient in recip.RecipIngredients)
+                                {
+                                    <Tag Content="@recipIngredient.Ingredient.Name" />
+                                }
+                            </div>
+
+                        </div>
+                    </Content>
+                </Card>
+
+            }
+        </div>
+    }
+}
