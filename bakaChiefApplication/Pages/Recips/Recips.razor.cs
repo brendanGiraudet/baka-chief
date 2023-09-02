@@ -21,6 +21,8 @@ namespace bakaChiefApplication.Pages.Recips
 
         public Recip Model { get; set; } = new Recip();
 
+        public RecipIngredient RecipIngredientModel { get; set; } = new RecipIngredient();
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -44,23 +46,22 @@ namespace bakaChiefApplication.Pages.Recips
             Model = new();
         }
 
-        private async Task RemoveSelectedIngredient(Ingredient ingredient)
+        private async Task RemoveSelectedIngredient(RecipIngredient recipIngredient)
         {
-            Dispatcher.Dispatch(new RemoveSelectedIngredientAction(ingredient));
+            Dispatcher.Dispatch(new RemoveSelectedIngredientAction(recipIngredient));
 
-            Model.RecipIngredients = Model.RecipIngredients.Where(r => r.Ingredient.Id == ingredient.Id).ToArray();
+            Model.RecipIngredients = Model.RecipIngredients.Where(r => r.Ingredient.Id == recipIngredient.Id).ToArray();
         }
 
-        private async Task AddSelectedIngredient(Ingredient ingredient, string measureUnit, int quantity)
+        private async Task AddSelectedIngredient(Ingredient ingredient)
         {
-            Dispatcher.Dispatch(new AddSelectedIngredientAction(ingredient));
+            RecipIngredientModel.Ingredient = ingredient;
 
-            Model.RecipIngredients = Model.RecipIngredients.Append(new RecipIngredient
-            {
-                Ingredient = ingredient,
-                MeasureUnit = measureUnit,
-                Quantity = quantity,
-            });
+            Dispatcher.Dispatch(new AddSelectedIngredientAction(RecipIngredientModel));
+
+            Model.RecipIngredients = Model.RecipIngredients.Append(RecipIngredientModel);
+
+            RecipIngredientModel = new();
         }
 
         private async Task RemoveRecip(string id)

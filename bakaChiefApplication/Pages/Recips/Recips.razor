@@ -37,11 +37,11 @@ else
                         </div>
 
                         <div class="selected-ingredient">
-                            @if (RecipsState.Value.SelectedIngredients != null)
+                            @if (RecipsState.Value.SelectedRecipIngredients != null)
                             {
-                                foreach (var ingredient in RecipsState.Value.SelectedIngredients)
+                                foreach (var recipIngredient in RecipsState.Value.SelectedRecipIngredients)
                                 {
-                                    <Tag Content="@ingredient.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveSelectedIngredient(ingredient))" />
+                                    <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
                                 }
                             }
                         </div>
@@ -49,11 +49,11 @@ else
                         <div class="ingredients">
                             @if (IngredientState.Value.Ingredients != null)
                             {
-                                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState?.Value?.SelectedIngredients?.Contains(n) ?? false);
+                                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState?.Value?.SelectedRecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
 
                                 foreach (var ingredient in ingredients)
                                 {
-                                    <Tag Content="@ingredient.Name" IsAddable="true" OnClickCallback="@( async () => await AddSelectedIngredient(ingredient, "", 0))" />
+                                    <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
                                 }
                             }
                         </div>
@@ -81,16 +81,7 @@ else
                 <Card Title="@recip.Name" OnClickCallback="async () => await RemoveRecip(recip.Id)">
                     <Content>
                         <div class="recip-card">
-
                             <div class="image">@((MarkupString)recip.ImageFilePath)</div>
-
-                            <div class="ingredients">
-                                @foreach (var recipIngredient in recip.RecipIngredients)
-                                {
-                                    <Tag Content="@recipIngredient.Ingredient.Name" />
-                                }
-                            </div>
-
                         </div>
                     </Content>
                 </Card>

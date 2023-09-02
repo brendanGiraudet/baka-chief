@@ -11,7 +11,7 @@ namespace bakaChiefApplication.Models
         public Ingredient Ingredient { get; set; }
 
         [JsonPropertyName("quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         [JsonPropertyName("measureUnit")]
         public string MeasureUnit { get; set; }

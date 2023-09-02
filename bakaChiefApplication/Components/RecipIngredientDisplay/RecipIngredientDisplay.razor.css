@@ -1,0 +1,48 @@
+﻿.recipingredient {
+    border: 1px solid black;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.quantity-measureunit{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items:center;
+    margin:1rem;
+}
+    .quantity-measureunit ::deep input{
+        width:6rem;
+        margin-right:1rem;
+    }
+
+.add-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.add-icon, .remove-icon {
+    margin-bottom: .25rem;
+    cursor: pointer;
+}
+    .add-icon ::deep svg path {
+        fill: #3B9433;
+    }
+.remove-icon{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.remove-icon ::deep svg {
+    width:1.5rem;
+    height:1.5rem;
+}
+
+.remove-icon ::deep svg path {
+    fill: #B00E0E;
+}
+
+.ingredient-name{
+    margin:1rem;
+}

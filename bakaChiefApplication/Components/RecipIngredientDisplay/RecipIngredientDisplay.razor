@@ -1,0 +1,44 @@
+﻿@using bakaChiefApplication.Constants;
+<div class="recipingredient">
+    @if (IsAddable)
+    {
+        <div class="add-icon" @onclick="Onclick">@((MarkupString)SvgConstants.PlusSvg)</div>
+    }
+
+    @if (IsRemovable)
+    {
+        <div class="remove-icon" @onclick="Onclick"><div> @((MarkupString)SvgConstants.CrossSvg)</div></div>
+    }
+
+    @* Ingredient *@
+    <div class="ingredient-name">
+        <span>@IngredientName</span>
+    </div>
+
+    <div class="quantity-measureunit">
+        @* Quantity *@
+        <div>
+            @if (IsAddable)
+            {
+                <CustomInputNumber Label="Quantity" @bind-Value="@CurrentQuantityValue" />
+            }
+            else
+            {
+                <span>@Quantity</span>
+            }
+        </div>
+
+        @* MeasureUnit *@
+        <div>
+            @if (IsAddable)
+            {
+                <CustomInputText Label="MeasureUnit" @bind-Value="@CurrentMeasureUnitValue" />
+            }
+            else
+            {
+                <span>@MeasureUnit</span>
+            }
+        </div>
+    </div>
+
+</div>

@@ -4,11 +4,11 @@ namespace bakaChiefApplication.Store.Recips.Actions
 {
     public class RemoveSelectedIngredientAction
     {
-        public Models.Ingredient Ingredient { get; }
+        public Models.RecipIngredient RecipIngredient { get; }
 
-        public RemoveSelectedIngredientAction(Ingredient ingredient)
+        public RemoveSelectedIngredientAction(RecipIngredient recipIngredient)
         {
-            Ingredient = ingredient;
+            RecipIngredient = recipIngredient;
         }
     }
 }
