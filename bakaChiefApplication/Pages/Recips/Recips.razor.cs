@@ -5,6 +5,7 @@ using bakaChiefApplication.Store.Recips;
 using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using System.Linq;
 
 namespace bakaChiefApplication.Pages.Recips
 {
@@ -22,6 +23,8 @@ namespace bakaChiefApplication.Pages.Recips
         public Recip Model { get; set; } = new Recip();
 
         public RecipIngredient RecipIngredientModel { get; set; } = new RecipIngredient();
+        
+        public RecipStep RecipStepModel { get; set; } = new RecipStep();
 
         protected override void OnInitialized()
         {
@@ -50,7 +53,7 @@ namespace bakaChiefApplication.Pages.Recips
         {
             Dispatcher.Dispatch(new RemoveSelectedIngredientAction(recipIngredient));
 
-            Model.RecipIngredients = Model.RecipIngredients.Where(r => r.Ingredient.Id == recipIngredient.Id).ToArray();
+            Model.RecipIngredients = Model.RecipIngredients.Where(r => r.Ingredient.Id != recipIngredient.Id).ToArray();
         }
 
         private async Task AddSelectedIngredient(Ingredient ingredient)
@@ -64,9 +67,25 @@ namespace bakaChiefApplication.Pages.Recips
             RecipIngredientModel = new();
         }
 
-        private async Task RemoveRecip(string id)
+        private async Task RedirectToRecipDetail(string id)
         {
-            Dispatcher.Dispatch(new DeleteRecipAction(id));
+            //Dispatcher.Dispatch(new DeleteRecipAction(id));
+        }
+
+        private async Task RemoveSelectedStep()
+        {
+            Dispatcher.Dispatch(new RemoveSelectedStepAction(RecipStepModel));
+
+            Model.RecipSteps = Model.RecipSteps.Where(r => r.Id != RecipStepModel.Id).ToArray();
+        }
+
+        private async Task AddSelectedStep()
+        {
+            Dispatcher.Dispatch(new AddSelectedStepAction(RecipStepModel));
+
+            Model.RecipSteps = Model.RecipSteps.Append(RecipStepModel);
+
+            RecipStepModel = new();
         }
     }
 }

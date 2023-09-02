@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.ingredients, .selected-ingredient {
+.ingredients, .selected-ingredient, .steps, .selected-step {
     display: flex;
     flex-wrap: wrap;
     height: fit-content;

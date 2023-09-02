@@ -1,4 +1,5 @@
 ﻿@page "/recips"
+@using bakaChiefApplication.Constants;
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Recip List</h3>
@@ -58,6 +59,20 @@ else
                             }
                         </div>
 
+                        <div class="selected-step">
+                            @if (RecipsState.Value.SelectedRecipSteps != null)
+                            {
+                                foreach (var recipStep in RecipsState.Value.SelectedRecipSteps)
+                                {
+                                    <RecipStepDisplay IsRemovable="true" Number="@RecipStepModel.Number" Description="@RecipStepModel.Description" OnclickCallback="@( async () => await RemoveSelectedStep())" />
+                                }
+                            }
+                        </div>
+
+                        <div class="steps">
+                            <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
+                        </div>
+
                         @* Submit *@
                         <div>
                             <Button Type="submit" Text="Submit" />
@@ -78,7 +93,7 @@ else
         <div class="recip-type-cards">
             @foreach (var recip in RecipsState.Value.Recips)
             {
-                <Card Title="@recip.Name" OnClickCallback="async () => await RemoveRecip(recip.Id)">
+                <Card Title="@recip.Name" OnClickCallback="async () => await RedirectToRecipDetail(recip.Id)">
                     <Content>
                         <div class="recip-card">
                             <div class="image">@((MarkupString)recip.ImageFilePath)</div>

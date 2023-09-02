@@ -8,7 +8,7 @@ namespace bakaChiefApplication.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [JsonPropertyName("number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }

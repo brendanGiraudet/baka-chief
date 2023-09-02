@@ -1,6 +1,6 @@
 ﻿@using bakaChiefApplication.Constants;
 
-<figure @onclick="OnCloseClick">
+<figure @onclick="OnClick">
 
     <div class="content-card">
         @Content
@@ -8,7 +8,10 @@
 
     <figcaption>@Title</figcaption>
 
-    <div class="close-svg">
-        @((MarkupString)SvgConstants.CrossSvg)
-    </div>
+    @if (IsRemovable)
+    {
+        <div class="close-svg">
+            @((MarkupString)SvgConstants.CrossSvg)
+        </div>
+    }
 </figure>

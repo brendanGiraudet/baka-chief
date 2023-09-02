@@ -72,7 +72,7 @@ else
         <div class="ingredient-type-cards">
             @foreach (var ingredient in IngredientState.Value.Ingredients)
             {
-                <Card Title="@ingredient.Name" OnClickCallback="async () => await RemoveIngredient(ingredient.Id)">
+                <Card Title="@ingredient.Name" IsRemovable="true" OnClickCallback="async () => await RemoveIngredient(ingredient.Id)">
                     <Content>
                         <div class="ingredient-card">
 

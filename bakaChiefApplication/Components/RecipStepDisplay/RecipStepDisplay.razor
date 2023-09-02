@@ -1,0 +1,39 @@
+﻿@using bakaChiefApplication.Constants;
+
+<div>
+    @if (IsAddable)
+    {
+        <div class="add-icon" @onclick="Onclick">@((MarkupString)SvgConstants.PlusSvg)</div>
+    }
+
+    @if (IsRemovable)
+    {
+        <div class="remove-icon" @onclick="Onclick"><div> @((MarkupString)SvgConstants.CrossSvg)</div></div>
+    }
+
+    @* Number *@
+    <div>
+        @if (IsAddable)
+        {
+            <CustomInputNumber Label="Number" @bind-Value="@CurrentNumberValue" />
+        }
+        else
+        {
+            <span>@Number</span>
+        }
+    </div>
+
+    @* Description *@
+    <div>
+        @if (IsAddable)
+        {
+            <CustomInputText Label="Description" @bind-Value="@CurrentDescriptionValue" />
+        }
+        else
+        {
+            <span>@Description</span>
+        }
+    </div>
+
+    
+</div>

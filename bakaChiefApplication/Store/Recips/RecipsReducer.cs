@@ -34,5 +34,11 @@ namespace bakaChiefApplication.Store.Recips
 
         [ReducerMethod]
         public static RecipsState ReduceDeleteRecipResultAction(RecipsState state, DeleteRecipResultAction action) => new RecipsState(isLoading: false, recips: state.Recips.Where(r => r.Id != action.RecipId));
+
+        [ReducerMethod]
+        public static RecipsState ReduceAddSelectedStepAction(RecipsState state, AddSelectedStepAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients, isRecipFormHidden: false, selectedRecipSteps: state.SelectedRecipSteps.Append(action.RecipStep));
+
+        [ReducerMethod]
+        public static RecipsState ReduceRemoveSelectedStepAction(RecipsState state, RemoveSelectedStepAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients, isRecipFormHidden: false, selectedRecipSteps: state.SelectedRecipSteps.Where(s => s.Id != action.RecipStep.Id));
     }
 }

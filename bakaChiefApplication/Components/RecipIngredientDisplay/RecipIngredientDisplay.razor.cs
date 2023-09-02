@@ -13,35 +13,12 @@ namespace bakaChiefApplication.Components.RecipIngredientDisplay
 
         public EditContext EditContext { get; set; }
 
-        protected internal FieldIdentifier QuantityFieldIdentifier { get; set; }
-
-        protected internal FieldIdentifier MeasureUnitFieldIdentifier { get; set; }
-
         [Parameter] public string IngredientName { get; set; }
 
         [Parameter] public int? Quantity { get; set; }
-
         [Parameter] public EventCallback<int?> QuantityChanged { get; set; }
-
         [Parameter] public Expression<Func<int?>>? QuantityExpression { get; set; }
-
-        [Parameter] public string MeasureUnit { get; set; }
-
-        [Parameter] public EventCallback<string> MeasureUnitChanged { get; set; }
-
-        [Parameter] public Expression<Func<string>>? MeasureUnitExpression { get; set; }
-
-        [Parameter] public bool IsAddable { get; set; } = false;
-
-        [Parameter] public bool IsRemovable { get; set; } = false;
-
-        [Parameter] public EventCallback OnclickCallback { get; set; }
-
-        private async Task Onclick()
-        {
-            if (OnclickCallback.HasDelegate) await OnclickCallback.InvokeAsync();
-        }
-
+        protected internal FieldIdentifier QuantityFieldIdentifier { get; set; }
         protected int? CurrentQuantityValue
         {
             get => Quantity;
@@ -56,7 +33,12 @@ namespace bakaChiefApplication.Components.RecipIngredientDisplay
                 }
             }
         }
-        
+
+
+        [Parameter] public string MeasureUnit { get; set; }
+        [Parameter] public EventCallback<string> MeasureUnitChanged { get; set; }
+        [Parameter] public Expression<Func<string>>? MeasureUnitExpression { get; set; }
+        protected internal FieldIdentifier MeasureUnitFieldIdentifier { get; set; }
         protected string CurrentMeasureUnitValue
         {
             get => MeasureUnit;
@@ -70,6 +52,17 @@ namespace bakaChiefApplication.Components.RecipIngredientDisplay
                     EditContext?.NotifyFieldChanged(MeasureUnitFieldIdentifier);
                 }
             }
+        }
+
+        [Parameter] public bool IsAddable { get; set; } = false;
+
+        [Parameter] public bool IsRemovable { get; set; } = false;
+
+        [Parameter] public EventCallback OnclickCallback { get; set; }
+
+        private async Task Onclick()
+        {
+            if (OnclickCallback.HasDelegate) await OnclickCallback.InvokeAsync();
         }
 
         public override Task SetParametersAsync(ParameterView parameters)
