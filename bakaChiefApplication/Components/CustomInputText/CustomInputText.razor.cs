@@ -8,23 +8,12 @@ namespace bakaChiefApplication.Components.CustomInputText
     {
         private bool _hasInitializedParameters;
 
-        [Parameter]
-        public string Label { get; set; }
+        [Parameter] public string Label { get; set; }
 
-        [Parameter]
-        public string? Value { get; set; }
-
+        [Parameter] public string? Value { get; set; }
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
-
         [Parameter] public Expression<Func<string>>? ValueExpression { get; set; }
-
-        [CascadingParameter]
-        public EditContext CascadedEditContext { get; set; }
-
-        public EditContext EditContext { get; set; }
-
         protected internal FieldIdentifier FieldIdentifier { get; set; }
-
         protected string? CurrentValue
         {
             get => Value;
@@ -40,6 +29,11 @@ namespace bakaChiefApplication.Components.CustomInputText
             }
         }
 
+        [Parameter(CaptureUnmatchedValues = true)] public IDictionary<string, object>? AdditionalAttributes { get; set; }
+
+        [CascadingParameter] public EditContext CascadedEditContext { get; set; }
+
+        public EditContext EditContext { get; set; }
 
         public override Task SetParametersAsync(ParameterView parameters)
         {

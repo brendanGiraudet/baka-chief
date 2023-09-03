@@ -27,11 +27,15 @@
     margin: 1.5rem 0rem;
 }
 
-.image ::deep svg{
-    height:8rem;
-    width:8rem;
+.ingredient-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.ingredient-card{
-    height:100%;
-    width:100%;
-}
+
+    .ingredient-card ::deep img {
+        height: 100%;
+        width: 100%;
+    }

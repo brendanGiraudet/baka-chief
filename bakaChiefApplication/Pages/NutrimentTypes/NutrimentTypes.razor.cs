@@ -9,11 +9,9 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
 {
     public partial class NutrimentTypes
     {
-        [Inject]
-        public IState<NutrimentTypesState> NutrimentTypeState { get; set; }
+        [Inject] public IState<NutrimentTypesState> NutrimentTypeState { get; set; }
 
-        [Inject]
-        public IDispatcher Dispatcher { get; set; }
+        [Inject] public IDispatcher Dispatcher { get; set; }
 
         public NutrimentType Model { get; set; } = new NutrimentType();
 
@@ -33,12 +31,12 @@ namespace bakaChiefApplication.Pages.NutrimentTypes
         {
             Dispatcher.Dispatch(new DeleteNutrimentTypeAction(id));
         }
-        
+
         private async Task ShowNutrimentTypeForm()
         {
             Dispatcher.Dispatch(new ShowNutrimentTypeFormAction());
         }
-        
+
         private async Task CloseNutrimentTypeForm()
         {
             Dispatcher.Dispatch(new CloseNutrimentTypeFormAction());

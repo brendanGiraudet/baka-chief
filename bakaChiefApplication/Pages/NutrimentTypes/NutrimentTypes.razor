@@ -13,9 +13,9 @@ else
         <Button Type="button" Text="Ajout" OnClickCallback="ShowNutrimentTypeForm" />
     </div>
 
-    <div>
+    <div class="add-nutriment-modal">
 
-        <Modal Hidden="NutrimentTypeState.Value.IsNutrimentTypeFormHidden" OnCloseCallback="CloseNutrimentTypeForm">
+        <Modal Hidden="NutrimentTypeState.Value.IsNutrimentTypeFormHidden" OnCloseCallback="CloseNutrimentTypeForm" Title="Create nutriment">
             <Content>
                 <div class="creation-form">
                     <EditForm Model="Model" OnValidSubmit="@Submit">
@@ -28,7 +28,7 @@ else
 
                         @* SvgImage *@
                         <div>
-                            <CustomInputText Label="Image" @bind-Value="@Model.SvgImage" />
+                            <CustomInputText Label="Image" @bind-Value="@Model.ImageUrl" />
                         </div>
 
                         @* Submit *@
@@ -50,12 +50,12 @@ else
     else
     {
         <div class="nutriment-type-cards">
-            @foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes)
+            @foreach (var nutrimentType in NutrimentTypeState.Value.NutrimentTypes.OrderBy(n => n.Name))
             {
-                <Card Title="@nutrimentType.Name" IsRemovable="true" OnClickCallback="async () => await RemoveNutrimentType(nutrimentType.Id)">
+                <Card Title="@nutrimentType.Name" >
                     <Content>
                         <div class="icon-card">
-                            @((MarkupString)nutrimentType.SvgImage)
+                            <img src="@nutrimentType.ImageUrl" alt="@nutrimentType.Name" />
                         </div>
                     </Content>
                 </Card>

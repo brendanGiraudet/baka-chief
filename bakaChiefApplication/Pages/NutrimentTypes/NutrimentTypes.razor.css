@@ -7,6 +7,10 @@
 
 .addNutrimentType-button {
     margin: 1.5rem 0rem;
+    position:fixed;
+    bottom:1rem;
+    right:1rem;
+    z-index:100;
 }
 
 .icon-card {
@@ -17,7 +21,11 @@
     justify-content: center;
 }
 
-    .icon-card ::deep svg {
-        height: 50%;
-        width: 50%;
+    .icon-card ::deep img {
+        height: 100%;
+        width: 100%;
     }
+
+.add-nutriment-modal{
+
+}

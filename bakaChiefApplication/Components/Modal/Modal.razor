@@ -1,15 +1,21 @@
 ﻿@using bakaChiefApplication.Constants;
 
-<div class="custom-modal" hidden="@Hidden">
+<div class="overlay-modal" hidden="@Hidden" @onclick="OnCloseClick"></div>
+<div class="custom-modal" hidden="@Hidden" @attributes="AdditionalAttributes">
+    
+    <div class="container-modal">
+        <div class="close-modal-btn" >
+            <div class="cross-icon" @onclick="OnCloseClick">
+                @((MarkupString)SvgConstants.CrossSvg)
+            </div>
+        </div>
 
-    <div class="close-modal-btn">
-        <div class="cross-icon" @onclick="OnCloseClick">
-            @((MarkupString)SvgConstants.CrossSvg)
+        <div class="container-modal-title">
+            <h1>@Title</h1>
+        </div>
+
+        <div class="content-modal">
+            @Content
         </div>
     </div>
-
-    <div class="content-modal">
-        @Content
-    </div>
-
 </div>

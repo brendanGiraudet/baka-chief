@@ -28,7 +28,7 @@ else
 
                         @* SvgImage *@
                         <div>
-                            <CustomInputText Label="Image" @bind-Value="@Model.SvgImage" />
+                            <CustomInputText Label="Image" @bind-Value="@Model.ImageUrl" />
                         </div>
 
                         <div class="selected-nutriment">
@@ -70,25 +70,17 @@ else
     else
     {
         <div class="ingredient-type-cards">
-            @foreach (var ingredient in IngredientState.Value.Ingredients)
+            @foreach (var ingredient in IngredientState.Value.Ingredients.OrderBy(i => i.Name))
             {
-                <Card Title="@ingredient.Name" IsRemovable="true" OnClickCallback="async () => await RemoveIngredient(ingredient.Id)">
+                <Card Title="@ingredient.Name">
                     <Content>
                         <div class="ingredient-card">
 
-                            <div class="image">@((MarkupString)ingredient.SvgImage)</div>
-
-                            <div class="nutriments">
-                                @foreach (var nutriment in ingredient.NutrimentTypes)
-                                {
-                                    <Tag Content="@nutriment.Name" />
-                                }
-                            </div>
+                            <img src="@ingredient.ImageUrl" alt="@ingredient.Name" />
 
                         </div>
                     </Content>
                 </Card>
-                
             }
         </div>
     }

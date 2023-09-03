@@ -11,7 +11,7 @@ namespace bakaChiefApplication.Models
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("svgImage")]
-        public string SvgImage { get; set; } = SvgConstants.EmptySvg;
+        [JsonPropertyName("imageUrl")]
+        public string ImageUrl { get; set; } = SvgConstants.EmptySvg;
     }
 }
