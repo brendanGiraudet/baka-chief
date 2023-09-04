@@ -1,0 +1,65 @@
+﻿@page "/nutrimenttypes"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Nutriment List</h3>
+
+@if (NutrimentsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div class="addNutriment-button">
+        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Creation))" />
+    </div>
+
+    <div class="add-nutriment-modal">
+
+        <Modal Hidden="NutrimentsState.Value.IsNutrimentFormHidden" OnCloseCallback="CloseNutrimentForm" Title="Create nutriment">
+            <Content>
+                <div class="nutriment-form">
+                    <EditForm Model="NutrimentsState.Value.Nutriment" OnValidSubmit="@SaveNutriment">
+                        <DataAnnotationsValidator />
+
+                        @* Name *@
+                        <div>
+                            <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
+                        </div>
+
+                        @* ImageUrl *@
+                        <div>
+                            <CustomInputText Label="Image" @bind-Value="@NutrimentsState.Value.Nutriment.ImageUrl" />
+                        </div>
+
+                        @* Submit *@
+                        <div>
+                            <Button Type="submit" Text="Submit" />
+                        </div>
+
+                    </EditForm>
+                </div>
+            </Content>
+        </Modal>
+    </div>
+
+
+    if (NutrimentsState.Value.Nutriments == null || NutrimentsState.Value.Nutriments.Count() == 0)
+    {
+        <div>Pas de nutriment</div>
+    }
+    else
+    {
+        <div class="nutriment-type-cards">
+            @foreach (var nutrimentType in NutrimentsState.Value.Nutriments.OrderBy(n => n.Name))
+            {
+                <Card Title="@nutrimentType.Name" OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Update))">
+                    <Content>
+                        <div class="icon-card">
+                            <img src="@nutrimentType.ImageUrl" alt="@nutrimentType.Name" />
+                        </div>
+                    </Content>
+                </Card>
+            }
+        </div>
+    }
+}

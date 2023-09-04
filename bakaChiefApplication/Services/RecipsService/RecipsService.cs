@@ -15,19 +15,19 @@ namespace bakaChiefApplication.Services.RecipsService
 
         public async Task<IEnumerable<Recip>> GetAllRecipsAsync()
         {
-            var recips = await _httpClient.GetFromJsonAsync<IEnumerable<Recip>>(RecipApiEndpoints.GetAllRecip);
+            var recips = await _httpClient.GetFromJsonAsync<IEnumerable<Recip>>(RecipsApiEndpoints.GetAllRecip);
             return recips;
         }
 
         public async Task<Recip> GetRecipByIdAsync(string id)
         {
-            var ingredient = await _httpClient.GetFromJsonAsync<Recip>(RecipApiEndpoints.GetRecipById(id));
+            var ingredient = await _httpClient.GetFromJsonAsync<Recip>(RecipsApiEndpoints.GetRecipById(id));
             return ingredient;
         }
 
         public async Task<Recip> CreateRecipAsync(Recip ingredient)
         {
-            var response = await _httpClient.PostAsJsonAsync(RecipApiEndpoints.CreateRecip, ingredient);
+            var response = await _httpClient.PostAsJsonAsync(RecipsApiEndpoints.CreateRecip, ingredient);
             response.EnsureSuccessStatusCode();
 
             var createdRecip = await response.Content.ReadFromJsonAsync<Recip>();
@@ -36,13 +36,13 @@ namespace bakaChiefApplication.Services.RecipsService
 
         public async Task UpdateRecipAsync(Recip ingredient)
         {
-            var response = await _httpClient.PutAsJsonAsync(RecipApiEndpoints.UpdateRecip(ingredient.Id), ingredient);
+            var response = await _httpClient.PutAsJsonAsync(RecipsApiEndpoints.UpdateRecip(ingredient.Id), ingredient);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task DeleteRecipAsync(string id)
         {
-            var response = await _httpClient.DeleteAsync(RecipApiEndpoints.DeleteRecip(id));
+            var response = await _httpClient.DeleteAsync(RecipsApiEndpoints.DeleteRecip(id));
             response.EnsureSuccessStatusCode();
         }
     }

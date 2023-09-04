@@ -1,117 +1,116 @@
 ﻿using bakaChiefApplication.Models;
-using bakaChiefApplication.Services.NutrimentTypesService;
+using bakaChiefApplication.Services.NutrimentsService;
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace bakaChiefApplication.UnitTests.Service
 {
-    public class NutrimenTypeServiceTests
+    public class NutrimentsServiceTests
     {
         private readonly Mock<IHttpClientFactory> _httpClientFactoryMock;
 
-        public NutrimenTypeServiceTests()
+        public NutrimentsServiceTests()
         {
             _httpClientFactoryMock = new Mock<IHttpClientFactory>();
         }
 
-        #region GetAllNutrimentTypesAsync
+        private NutrimentsService getNutrimentsService()
+        {
+            return new NutrimentsService(_httpClientFactoryMock.Object);
+        }
+
+        #region GetNutrimentsAsync
         [Fact]
-        public async Task GetAllNutrimentTypesAsync_ShouldReturnListOfNutrimentTypes()
+        public async Task GetNutrimentsAsync_ShouldReturnListOfNutriments()
         {
             // Arrange
-            var expectedNutrimentTypes = new List<NutrimentType>
+            var expectedNutriments = new List<Nutriment>
             {
-                new NutrimentType { Id = "1", Name = "Protein" },
-                new NutrimentType { Id = "2", Name = "Vitamin" }
+                new Nutriment { Id = "1", Name = "Protein" },
+                new Nutriment { Id = "2", Name = "Vitamin" }
             };
 
             // Mock HTTP Client
-            var httpClient = CreateHttpClientMock(HttpStatusCode.OK, expectedNutrimentTypes);
+            var httpClient = CreateHttpClientMock(HttpStatusCode.OK, expectedNutriments);
             _httpClientFactoryMock.Setup(factory => factory.CreateClient(It.IsAny<string>())).Returns(httpClient);
-            var nutrimentTypeService = getNutrimenntTypeService();
+            var nutrimentsService = getNutrimentsService();
 
             // Act
-            var result = await nutrimentTypeService.GetAllNutrimentTypesAsync();
+            var result = await nutrimentsService.GetNutrimentsAsync();
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(expectedNutrimentTypes.Count, result.Count());
-            Assert.Equal(expectedNutrimentTypes, result, new NutrimentTypeComparer());
+            Assert.Equal(expectedNutriments.Count, result.Count());
+            Assert.Equal(expectedNutriments, result, new NutrimentComparer());
         }
 
         #endregion
 
-        private NutrimentTypesService getNutrimenntTypeService()
-        {
-            return new NutrimentTypesService(_httpClientFactoryMock.Object);
-        }
-
-        #region GetNutrimentTypeByIdAsync
+        #region GetNutrimentByIdAsync
         [Fact]
-        public async Task GetNutrimentTypeByIdAsync_ShouldReturnNutrimentType()
+        public async Task GetNutrimentByIdAsync_ShouldReturnNutriment()
         {
             // Arrange
-            var expectedNutrimentType = new NutrimentType { Id = "1", Name = "Protein" };
+            var expectedNutriment = new Nutriment { Id = "1", Name = "Protein" };
 
             // Mock HTTP Client
-            var httpClient = CreateHttpClientMock(HttpStatusCode.OK, expectedNutrimentType);
+            var httpClient = CreateHttpClientMock(HttpStatusCode.OK, expectedNutriment);
             _httpClientFactoryMock.Setup(factory => factory.CreateClient(It.IsAny<string>())).Returns(httpClient);
-            var nutrimentTypeService = getNutrimenntTypeService();
+            var nutrimentsService = getNutrimentsService();
 
             // Act
-            var result = await nutrimentTypeService.GetNutrimentTypeByIdAsync("1");
+            var result = await nutrimentsService.GetNutrimentByIdAsync("1");
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(expectedNutrimentType, result, new NutrimentTypeComparer());
+            Assert.Equal(expectedNutriment, result, new NutrimentComparer());
         }
         #endregion
 
-        #region CreateNutrimentTypeAsync
+        #region CreateNutrimentAsync
         [Fact]
-        public async Task CreateNutrimentTypeAsync_ShouldCreateAndReturnNutrimentType()
+        public async Task CreateNutrimentAsync_ShouldCreateAndReturnNutriment()
         {
             // Arrange
-            var nutrimentTypeToCreate = new NutrimentType { Name = "Vitamin" };
-            var expectedCreatedNutrimentType = new NutrimentType { Id = "1", Name = "Vitamin" };
+            var nutrimentTypeToCreate = new Nutriment { Name = "Vitamin" };
+            var expectedCreatedNutriment = new Nutriment { Id = "1", Name = "Vitamin" };
 
             // Mock HTTP Client
-            var httpClient = CreateHttpClientMock(HttpStatusCode.Created, expectedCreatedNutrimentType);
+            var httpClient = CreateHttpClientMock(HttpStatusCode.Created, expectedCreatedNutriment);
             _httpClientFactoryMock.Setup(factory => factory.CreateClient(It.IsAny<string>())).Returns(httpClient);
-            var nutrimentTypeService = getNutrimenntTypeService();
+            var nutrimentsService = getNutrimentsService();
 
             // Act
-            var result = await nutrimentTypeService.CreateNutrimentTypeAsync(nutrimentTypeToCreate);
+            var result = await nutrimentsService.CreateNutrimentAsync(nutrimentTypeToCreate);
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(expectedCreatedNutrimentType, result, new NutrimentTypeComparer());
+            Assert.Equal(expectedCreatedNutriment, result, new NutrimentComparer());
         }
         #endregion
 
-        #region UpdateNutrimentTypeAsync
+        #region UpdateNutrimentAsync
         [Fact]
-        public async Task UpdateNutrimentTypeAsync_ShouldUpdateNutrimentType()
+        public async Task UpdateNutrimentAsync_ShouldUpdateNutriment()
         {
             // Arrange
-            var nutrimentTypeToUpdate = new NutrimentType { Id = "1", Name = "Updated Vitamin" };
+            var nutrimentTypeToUpdate = new Nutriment { Id = "1", Name = "Updated Vitamin" };
 
             // Mock HTTP Client
             var httpClient = CreateHttpClientMock(HttpStatusCode.NoContent);
             _httpClientFactoryMock.Setup(factory => factory.CreateClient(It.IsAny<string>())).Returns(httpClient);
-            var nutrimentTypeService = getNutrimenntTypeService();
+            var nutrimentsService = getNutrimentsService();
 
             // Act & Assert: If no exception was thrown, the test is successful
-            await nutrimentTypeService.UpdateNutrimentTypeAsync(nutrimentTypeToUpdate);
+            await nutrimentsService.UpdateNutrimentAsync(nutrimentTypeToUpdate);
         }
         #endregion
 
-        #region DeleteNutrimentTypeAsync
+        #region DeleteNutrimentAsync
         [Fact]
-        public async Task DeleteNutrimentTypeAsync_ShouldDeleteNutrimentType()
+        public async Task DeleteNutrimentAsync_ShouldDeleteNutriment()
         {
             // Arrange
             var nutrimentTypeId = "1";
@@ -119,10 +118,10 @@ namespace bakaChiefApplication.UnitTests.Service
             // Mock HTTP Client
             var httpClient = CreateHttpClientMock(HttpStatusCode.NoContent);
             _httpClientFactoryMock.Setup(factory => factory.CreateClient(It.IsAny<string>())).Returns(httpClient);
-            var nutrimentTypeService = getNutrimenntTypeService();
+            var nutrimentsService = getNutrimentsService();
 
             // Act & Assert: If no exception was thrown, the test is successful
-            await nutrimentTypeService.DeleteNutrimentTypeAsync(nutrimentTypeId);
+            await nutrimentsService.DeleteNutrimentAsync(nutrimentTypeId);
         }
         #endregion
 
@@ -154,15 +153,15 @@ namespace bakaChiefApplication.UnitTests.Service
             return httpClient;
         }
 
-        // Custom comparer for NutrimentType objects
-        private class NutrimentTypeComparer : IEqualityComparer<NutrimentType>
+        // Custom comparer for Nutriment objects
+        private class NutrimentComparer : IEqualityComparer<Nutriment>
         {
-            public bool Equals(NutrimentType x, NutrimentType y)
+            public bool Equals(Nutriment x, Nutriment y)
             {
                 return x.Id == y.Id && x.Name == y.Name;
             }
 
-            public int GetHashCode(NutrimentType obj)
+            public int GetHashCode(Nutriment obj)
             {
                 return HashCode.Combine(obj.Id, obj.Name);
             }

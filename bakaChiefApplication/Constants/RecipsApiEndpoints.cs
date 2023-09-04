@@ -1,6 +1,6 @@
 ﻿namespace bakaChiefApplication.Constants
 {
-    public static class RecipApiEndpoints
+    public static class RecipsApiEndpoints
     {
         public const string BasePath = "/api/recips";
 

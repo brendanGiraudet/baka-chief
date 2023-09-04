@@ -1,8 +1,8 @@
 ﻿namespace bakaChiefApplication.Constants
 {
-    public static class NutrimentTypeApiEndpoints
+    public static class NutrimentsApiEndpoints
     {
-        public const string BasePath = "/api/nutrimenttypes";
+        public const string BasePath = "/api/nutriments";
 
         public const string GetAllNutrimentTypes = BasePath;
         public static string GetNutrimentTypeById(string id) => $"{BasePath}/{id}";
