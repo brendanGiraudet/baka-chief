@@ -1,14 +1,42 @@
 ﻿.button {
     border-radius: 0.75rem;
     padding: 0.5rem 1.5rem;
-    background-color: #0D0A9B;
-    color: #fff;
     transition: 0.2s ease;
-    border: 1px solid #0D0A9B;
 }
 
     .button:hover {
+        transition: 0.2s ease;
+    }
+
+.Primary {
+    background-color: #0D0A9B;
+    color: #fff;
+    border: 1px solid #0D0A9B;
+}
+
+    .Primary:hover {
         color: #0D0A9B;
         background-color: #fff;
-        transition: 0.2s ease;
+    }
+
+.Secondary {
+    background-color: #fff;
+    color: #0D0A9B;
+    border: 1px solid #0D0A9B;
+}
+
+    .Secondary:hover {
+        color: #fff;
+        background-color: #0D0A9B;
+    }
+
+.Delete {
+    background-color: #9E1B1B;
+    color: #fff;
+    border: 1px solid #9E1B1B;
+}
+
+    .Delete:hover {
+        color: #9E1B1B;
+        background-color: #fff;
     }
