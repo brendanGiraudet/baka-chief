@@ -36,5 +36,21 @@ namespace bakaChiefApplication.Store.Nutriments
 
             dispatcher.Dispatch(new DeleteNutrimentResultAction(action.NutrimentId));
         }
+        
+        [EffectMethod]
+        public async Task HandleUpdateNutrimentAction(UpdateNutrimentAction action, IDispatcher dispatcher)
+        {
+            await _nutrimentTypeService.UpdateNutrimentAsync(action.Nutriment);
+
+            dispatcher.Dispatch(new UpdateNutrimentResultAction(action.Nutriment));
+        }
+        
+        [EffectMethod]
+        public async Task HandleNutrimentFetchDataAction(NutrimentFetchDataAction action, IDispatcher dispatcher)
+        {
+            var nutriment = await _nutrimentTypeService.GetNutrimentByIdAsync(action.NutrimentId);
+
+            dispatcher.Dispatch(new NutrimentFetchDataResultAction(nutriment));
+        }
     }
 }

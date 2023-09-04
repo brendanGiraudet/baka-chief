@@ -1,4 +1,4 @@
-﻿@page "/nutrimenttypes"
+﻿@page "/nutriments"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Nutriment List</h3>
@@ -15,7 +15,7 @@ else
 
     <div class="add-nutriment-modal">
 
-        <Modal Hidden="NutrimentsState.Value.IsNutrimentFormHidden" OnCloseCallback="CloseNutrimentForm" Title="Create nutriment">
+        <Modal Hidden="NutrimentsState.Value.IsNutrimentFormHidden" OnCloseCallback="CloseNutrimentForm" Title="@TitleNutrimentModel">
             <Content>
                 <div class="nutriment-form">
                     <EditForm Model="NutrimentsState.Value.Nutriment" OnValidSubmit="@SaveNutriment">
@@ -37,6 +37,14 @@ else
                         </div>
 
                     </EditForm>
+
+                    @if (FormMode == Enums.FormMode.Update)
+                    {
+                        @* Remove nutriment button *@
+                        <div class="delete-nutriment">
+                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveNutriment(NutrimentsState.Value.Nutriment.Id))" ButtonStyle="Enums.ButtonStyle.Delete"/>
+                        </div>
+                    }
                 </div>
             </Content>
         </Modal>
@@ -52,7 +60,7 @@ else
         <div class="nutriment-type-cards">
             @foreach (var nutrimentType in NutrimentsState.Value.Nutriments.OrderBy(n => n.Name))
             {
-                <Card Title="@nutrimentType.Name" OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Update))">
+                <Card Title="@nutrimentType.Name" OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Update, nutrimentType.Id))">
                     <Content>
                         <div class="icon-card">
                             <img src="@nutrimentType.ImageUrl" alt="@nutrimentType.Name" />

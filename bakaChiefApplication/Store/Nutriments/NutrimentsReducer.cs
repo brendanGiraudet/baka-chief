@@ -37,5 +37,18 @@ namespace bakaChiefApplication.Store.Nutriments
         public static NutrimentsState ReduceCloseNutrimentFormAction(NutrimentsState state) => new NutrimentsState(nutriments: state.Nutriments, isNutrimentFormHidden: true);
 
         #endregion NutrimentForm
+
+        #region NutrimentFetchDataAction
+        [ReducerMethod(typeof(NutrimentFetchDataAction))]
+        public static NutrimentsState ReduceNutrimentFetchDataAction(NutrimentsState state) => new NutrimentsState(isLoading:true, nutriments: state.Nutriments, isNutrimentFormHidden: false);
+        
+        [ReducerMethod]
+        public static NutrimentsState ReduceNutrimentFetchDataResultAction(NutrimentsState state, NutrimentFetchDataResultAction action) => new NutrimentsState(isLoading:false, nutriments: state.Nutriments, isNutrimentFormHidden: false, nutriment:action.Nutriment);
+        #endregion NutrimentFetchDataAction
+
+        #region UpdateNutrimentAction
+        [ReducerMethod(typeof(UpdateNutrimentAction))]
+        public static NutrimentsState ReduceUpdateNutrimentAction(NutrimentsState state) => new NutrimentsState(isLoading:true, nutriments: state.Nutriments, isNutrimentFormHidden: false);
+        #endregion UpdateNutrimentAction
     }
 }

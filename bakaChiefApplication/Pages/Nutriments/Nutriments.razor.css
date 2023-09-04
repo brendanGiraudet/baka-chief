@@ -25,3 +25,8 @@
         height: 100%;
         width: 100%;
     }
+
+.delete-nutriment {
+    display: flex;
+    justify-content: flex-end;
+}

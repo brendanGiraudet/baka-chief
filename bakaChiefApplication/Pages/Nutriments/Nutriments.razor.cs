@@ -14,6 +14,7 @@ namespace bakaChiefApplication.Pages.Nutriments
         [Inject] public IDispatcher Dispatcher { get; set; }
 
         public FormMode FormMode { get; set; } = FormMode.Creation;
+        public string TitleNutrimentModel => FormMode == FormMode.Update ? "Update nutriment" : "Create nutriment";
 
         protected override void OnInitialized()
         {
@@ -29,21 +30,30 @@ namespace bakaChiefApplication.Pages.Nutriments
                     Dispatcher.Dispatch(new CreateNutrimentAction(NutrimentsState.Value.Nutriment));
                     break;
                 case FormMode.Update:
-                    //Dispatcher.Dispatch(new AddNutrimentTypeAction(Model));
+                    Dispatcher.Dispatch(new UpdateNutrimentAction(NutrimentsState.Value.Nutriment));
                     break;
                 default:
                     break;
             }
         }
 
-        private async Task RemoveNutrimentType(string id)
+        private async Task RemoveNutriment(string id)
         {
             Dispatcher.Dispatch(new DeleteNutrimentAction(id));
         }
 
-        private async Task ShowNutrimentForm(FormMode formMode)
+        private async Task ShowNutrimentForm(FormMode formMode, string nutrimentId = null)
         {
             FormMode = formMode;
+
+            switch (FormMode)
+            {
+                case FormMode.Update:
+                    Dispatcher.Dispatch(new NutrimentFetchDataAction(nutrimentId));
+                    break;
+                default:
+                    break;
+            }
 
             Dispatcher.Dispatch(new ShowNutrimentFormAction());
         }
