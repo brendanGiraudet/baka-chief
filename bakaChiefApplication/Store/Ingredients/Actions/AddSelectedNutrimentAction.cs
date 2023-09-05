@@ -2,11 +2,11 @@
 {
     public class AddSelectedNutrimentAction
     {
-        public Models.Nutriment NutrimentType { get; }
+        public Models.Nutriment Nutriment { get; }
 
         public AddSelectedNutrimentAction(Models.Nutriment nutrimentType)
         {
-            NutrimentType = nutrimentType;
+            Nutriment = nutrimentType;
         }
     }
 }

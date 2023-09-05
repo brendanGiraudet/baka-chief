@@ -1,10 +1,10 @@
 ﻿namespace bakaChiefApplication.Store.Ingredients.Actions
 {
-    public class AddIngredientAction
+    public class CreateIngredientResultAction
     {
         public Models.Ingredient Ingredient { get; }
 
-        public AddIngredientAction(Models.Ingredient ingredient)
+        public CreateIngredientResultAction(Models.Ingredient ingredient)
         {
             Ingredient = ingredient;
         }

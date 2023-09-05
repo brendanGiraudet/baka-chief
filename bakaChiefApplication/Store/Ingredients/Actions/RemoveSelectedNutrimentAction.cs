@@ -2,11 +2,11 @@
 {
     public class RemoveSelectedNutrimentAction
     {
-        public Models.Nutriment NutrimentType { get; }
+        public Models.Nutriment Nutriment { get; }
 
         public RemoveSelectedNutrimentAction(Models.Nutriment nutrimentType)
         {
-            NutrimentType = nutrimentType;
+            Nutriment = nutrimentType;
         }
     }
 }

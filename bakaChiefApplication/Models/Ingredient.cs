@@ -13,7 +13,7 @@ namespace bakaChiefApplication.Models
         [JsonPropertyName("imageUrl")]
         public string? ImageUrl { get; set; }
 
-        [JsonPropertyName("nutrimentTypes")]
+        [JsonPropertyName("nutriments")]
         public IEnumerable<Nutriment> Nutriments { get; set; } = Enumerable.Empty<Nutriment>();
     }
 }

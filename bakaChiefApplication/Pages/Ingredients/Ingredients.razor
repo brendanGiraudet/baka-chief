@@ -10,41 +10,43 @@
 else
 {
     <div class="addingredient-button">
-        <Button Type="button" Text="Ajout" OnClickCallback="ShowNutrimentTypeForm" />
+        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await ShowIngredientForm(Enums.FormMode.Creation))" />
     </div>
 
     <div>
 
-        <Modal Hidden="IngredientState.Value.IsIngredientFormHidden" OnCloseCallback="CloseNutrimentTypeForm">
+        <Modal Hidden="IngredientState.Value.IsIngredientFormHidden" OnCloseCallback="CloseIngredientForm">
             <Content>
                 <div class="creation-form">
-                    <EditForm Model="Model" OnValidSubmit="@Submit">
+                    <EditForm Model="IngredientState.Value.Ingredient" OnValidSubmit="@SaveIngredient">
                         <DataAnnotationsValidator />
 
                         @* Name *@
                         <div>
-                            <CustomInputText Label="Name" @bind-Value="@Model.Name" />
+                            <CustomInputText Label="Name" @bind-Value="@IngredientState.Value.Ingredient.Name" />
                         </div>
 
-                        @* SvgImage *@
+                        @* ImageUrl *@
                         <div>
-                            <CustomInputText Label="Image" @bind-Value="@Model.ImageUrl" />
+                            <CustomInputText Label="Image" @bind-Value="@IngredientState.Value.Ingredient.ImageUrl" />
                         </div>
 
+                        @* SelectedNutriments *@
                         <div class="selected-nutriment">
-                            @if (IngredientState.Value.SelectedNutrimentType != null)
+                            @if (IngredientState.Value.Ingredient.Nutriments != null)
                             {
-                                foreach (var nutriment in IngredientState.Value.SelectedNutrimentType)
+                                foreach (var nutriment in IngredientState.Value.Ingredient.Nutriments)
                                 {
                                     <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(async() => await RemoveSelectedNutriment(nutriment))" />
                                 }
                             }
                         </div>
 
+                        @* Nutriments *@
                         <div class="nutriments">
                             @if (NutrimentsState.Value.Nutriments != null)
                             {
-                                var nutriments = NutrimentsState.Value.Nutriments.Where(n => !IngredientState?.Value?.SelectedNutrimentType?.Contains(n)?? false);
+                                var nutriments = NutrimentsState.Value.Nutriments.Where(n => !IngredientState?.Value?.Ingredient?.Nutriments!.Any(nu => nu.Id == n.Id) ?? false);
                                 foreach (var nutriment in nutriments)
                                 {
                                     <Tag Content="@nutriment.Name" IsAddable="true" OnClickCallback="@( async () => await AddSelectedNutriment(nutriment))" />
@@ -58,6 +60,14 @@ else
                         </div>
 
                     </EditForm>
+
+                    @if (FormMode == Enums.FormMode.Update)
+                    {
+                        @* Remove ingredient button *@
+                        <div class="delete-ingredient">
+                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient(IngredientState.Value.Ingredient.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
+                        </div>
+                    }
                 </div>
             </Content>
         </Modal>
@@ -72,7 +82,7 @@ else
         <div class="ingredient-type-cards">
             @foreach (var ingredient in IngredientState.Value.Ingredients.OrderBy(i => i.Name))
             {
-                <Card Title="@ingredient.Name">
+                <Card Title="@ingredient.Name" OnClickCallback="@(async () => await ShowIngredientForm(Enums.FormMode.Update, ingredient.Id))">
                     <Content>
                         <div class="ingredient-card">
 

@@ -35,7 +35,7 @@ namespace bakaChiefApplication.Pages.Recips
         private async Task ShowRecipForm()
         {
             Dispatcher.Dispatch(new ShowRecipFormAction());
-            Dispatcher.Dispatch(new IngredientFetchDataAction());
+            Dispatcher.Dispatch(new IngredientsFetchDataAction());
         }
 
         private async Task CloseRecipForm()

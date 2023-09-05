@@ -15,20 +15,20 @@ namespace bakaChiefApplication.Store.Ingredients
             _ingredientService = ingredientService;
         }
 
-        [EffectMethod(typeof(IngredientFetchDataAction))]
+        [EffectMethod(typeof(IngredientsFetchDataAction))]
         public async Task HandleIngredientFetchDataAction(IDispatcher dispatcher)
         {
             var ingredients = await _ingredientService.GetAllIngredientAsync();
 
-            dispatcher.Dispatch(new IngredientFetchDataResultAction(ingredients));
+            dispatcher.Dispatch(new IngredientsFetchDataResultAction(ingredients));
         }
         
         [EffectMethod]
-        public async Task HandleAddIngredientAction(AddIngredientAction action, IDispatcher dispatcher)
+        public async Task HandleAddIngredientAction(CreateIngredientAction action, IDispatcher dispatcher)
         {
             var ingredient = await _ingredientService.CreateIngredientAsync(action.Ingredient);
 
-            dispatcher.Dispatch(new AddIngredientResultAction(ingredient));
+            dispatcher.Dispatch(new CreateIngredientResultAction(ingredient));
         }
         
         [EffectMethod]
@@ -37,6 +37,22 @@ namespace bakaChiefApplication.Store.Ingredients
             await _ingredientService.DeleteIngredientAsync(action.IngredientId);
 
             dispatcher.Dispatch(new DeleteIngredientResultAction(action.IngredientId));
+        }
+        
+        [EffectMethod]
+        public async Task HandleIngredientFetchDataAction(IngredientFetchDataAction action, IDispatcher dispatcher)
+        {
+            var ingredient = await _ingredientService.GetIngredientByIdAsync(action.IngredientId);
+
+            dispatcher.Dispatch(new IngredientFetchDataResultAction(ingredient));
+        }
+        
+        [EffectMethod]
+        public async Task HandleUpdateIngredientAction(UpdateIngredientAction action, IDispatcher dispatcher)
+        {
+            await _ingredientService.UpdateIngredientAsync(action.Ingredient);
+
+            dispatcher.Dispatch(new UpdateIngredientResultAction(action.Ingredient));
         }
     }
 }

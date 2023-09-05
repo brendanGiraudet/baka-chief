@@ -2,11 +2,11 @@
 
 namespace bakaChiefApplication.Store.Ingredients.Actions
 {
-    public class IngredientFetchDataResultAction
+    public class UpdateIngredientAction
     {
         public Models.Ingredient Ingredient { get; }
 
-        public IngredientFetchDataResultAction(Ingredient ingredient)
+        public UpdateIngredientAction(Ingredient ingredient)
         {
             Ingredient = ingredient;
         }

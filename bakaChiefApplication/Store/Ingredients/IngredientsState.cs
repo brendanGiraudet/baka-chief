@@ -11,16 +11,16 @@ namespace bakaChiefApplication.Store.Ingredients
 
         public IEnumerable<Models.Ingredient> Ingredients { get; }
         
-        public IEnumerable<Models.Nutriment> SelectedNutrimentType { get; }
-
+        public Models.Ingredient Ingredient { get; }
+        
         private IngredientsState() { }
 
-        public IngredientsState(bool isLoading = false, IEnumerable<Models.Ingredient>? ingredients = null, bool isIngredientFormHidden = true, IEnumerable<Models.Nutriment> selectedNutrimentTypes = null)
+        public IngredientsState(bool isLoading = false, IEnumerable<Models.Ingredient>? ingredients = null, bool isIngredientFormHidden = true, Models.Ingredient ingredient = null)
         {
             IsLoading = isLoading;
             Ingredients = ingredients ?? Array.Empty<Models.Ingredient>();
             IsIngredientFormHidden = isIngredientFormHidden;
-            SelectedNutrimentType = selectedNutrimentTypes ?? Enumerable.Empty<Models.Nutriment>();
+            Ingredient = ingredient ?? new Models.Ingredient();
         }
     }
 }
