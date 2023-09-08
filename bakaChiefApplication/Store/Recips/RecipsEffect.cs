@@ -1,5 +1,4 @@
 ﻿using bakaChiefApplication.Services.RecipsService;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
 
@@ -14,20 +13,20 @@ namespace bakaChiefApplication.Store.Recips
             _recipsService = recipsService;
         }
 
-        [EffectMethod(typeof(RecipFetchDataAction))]
+        [EffectMethod(typeof(RecipsFetchDataAction))]
         public async Task HandleRecipFetchDataAction(IDispatcher dispatcher)
         {
             var recips = await _recipsService.GetAllRecipsAsync();
 
-            dispatcher.Dispatch(new RecipFetchDataResultAction(recips));
+            dispatcher.Dispatch(new RecipsFetchDataResultAction(recips));
         }
 
         [EffectMethod]
-        public async Task HandleAddRecipAction(AddRecipAction action, IDispatcher dispatcher)
+        public async Task HandleCreateRecipAction(CreateRecipAction action, IDispatcher dispatcher)
         {
             var recip = await _recipsService.CreateRecipAsync(action.Recip);
 
-            dispatcher.Dispatch(new AddRecipResultAction(recip));
+            dispatcher.Dispatch(new CreateRecipResultAction(recip));
         }
 
         [EffectMethod]
@@ -36,6 +35,22 @@ namespace bakaChiefApplication.Store.Recips
             await _recipsService.DeleteRecipAsync(action.RecipId);
 
             dispatcher.Dispatch(new DeleteRecipResultAction(action.RecipId));
+        }
+        
+        [EffectMethod]
+        public async Task HandleRecipFetchDataAction(RecipFetchDataAction action, IDispatcher dispatcher)
+        {
+            var recip = await _recipsService.GetRecipByIdAsync(action.RecipId);
+
+            dispatcher.Dispatch(new RecipFetchDataResulAction(recip));
+        }
+        
+        [EffectMethod]
+        public async Task HandleUpdateRecipAction(UpdateRecipAction action, IDispatcher dispatcher)
+        {
+            await _recipsService.UpdateRecipAsync(action.Recip);
+
+            dispatcher.Dispatch(new UpdateRecipResultAction(action.Recip));
         }
     }
 }

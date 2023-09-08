@@ -1,0 +1,66 @@
+﻿@page "/recips/{Action}/{RecipId}"
+@page "/recips/{Action}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div class="creation-form">
+    <EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
+        <DataAnnotationsValidator />
+
+        @* Name *@
+        <div>
+            <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
+        </div>
+
+        @* PersonsNumber *@
+        <div>
+            <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
+        </div>
+
+        @* ImageFilePath *@
+        <div>
+            <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
+        </div>
+
+        <div class="selected-ingredient">
+            @if (RecipsState.Value.Recip.RecipIngredients != null)
+            {
+                foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
+                {
+                    <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
+                }
+            }
+        </div>
+
+        <div class="ingredients">
+            @if (IngredientState.Value.Ingredients != null)
+            {
+                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState.Value.Recip.RecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
+
+                foreach (var ingredient in ingredients)
+                {
+                    <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
+                }
+            }
+        </div>
+
+        <div class="selected-step">
+            @if (RecipsState.Value.Recip.RecipSteps != null)
+            {
+                foreach (var recipStep in RecipsState.Value.Recip.RecipSteps)
+                {
+                    <RecipStepDisplay IsRemovable="true" Number="@recipStep.Number" Description="@recipStep.Description" OnclickCallback="@( async () => await RemoveSelectedStep(recipStep))" />
+                }
+            }
+        </div>
+
+        <div class="steps">
+            <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
+        </div>
+
+        @* Submit *@
+        <div>
+            <Button Type="submit" Text="Submit" />
+        </div>
+
+    </EditForm>
+</div>

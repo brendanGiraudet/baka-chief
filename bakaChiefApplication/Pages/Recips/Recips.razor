@@ -11,77 +11,7 @@
 else
 {
     <div class="addrecip-button">
-        <Button Type="button" Text="Ajout" OnClickCallback="ShowRecipForm" />
-    </div>
-
-    <div>
-
-        <Modal Hidden="RecipsState.Value.IsRecipFormHidden" OnCloseCallback="CloseRecipForm">
-            <Content>
-                <div class="creation-form">
-                    <EditForm Model="Model" OnValidSubmit="@Submit">
-                        <DataAnnotationsValidator />
-
-                        @* Name *@
-                        <div>
-                            <CustomInputText Label="Name" @bind-Value="@Model.Name" />
-                        </div>
-
-                        @* PersonsNumber *@
-                        <div>
-                            <CustomInputNumber Label="PersonsNumber" @bind-Value="@Model.PersonsNumber" />
-                        </div>
-
-                        @* ImageFilePath *@
-                        <div>
-                            <CustomInputText Label="Image" @bind-Value="@Model.ImageFilePath" />
-                        </div>
-
-                        <div class="selected-ingredient">
-                            @if (RecipsState.Value.SelectedRecipIngredients != null)
-                            {
-                                foreach (var recipIngredient in RecipsState.Value.SelectedRecipIngredients)
-                                {
-                                    <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
-                                }
-                            }
-                        </div>
-
-                        <div class="ingredients">
-                            @if (IngredientState.Value.Ingredients != null)
-                            {
-                                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState?.Value?.SelectedRecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
-
-                                foreach (var ingredient in ingredients)
-                                {
-                                    <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
-                                }
-                            }
-                        </div>
-
-                        <div class="selected-step">
-                            @if (RecipsState.Value.SelectedRecipSteps != null)
-                            {
-                                foreach (var recipStep in RecipsState.Value.SelectedRecipSteps)
-                                {
-                                    <RecipStepDisplay IsRemovable="true" Number="@RecipStepModel.Number" Description="@RecipStepModel.Description" OnclickCallback="@( async () => await RemoveSelectedStep())" />
-                                }
-                            }
-                        </div>
-
-                        <div class="steps">
-                            <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
-                        </div>
-
-                        @* Submit *@
-                        <div>
-                            <Button Type="submit" Text="Submit" />
-                        </div>
-
-                    </EditForm>
-                </div>
-            </Content>
-        </Modal>
+        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
     </div>
 
     if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
@@ -93,7 +23,7 @@ else
         <div class="recip-type-cards">
             @foreach (var recip in RecipsState.Value.Recips)
             {
-                <Card Title="@recip.Name" OnClickCallback="async () => await RedirectToRecipDetail(recip.Id)">
+                <Card Title="@recip.Name" OnClickCallback="async () => await RedirectToRecipForm(Enums.FormMode.Update, recip.Id)">
                     <Content>
                         <div class="recip-card">
                             <div class="image">@((MarkupString)recip.ImageFilePath)</div>

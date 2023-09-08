@@ -2,11 +2,11 @@
 
 namespace bakaChiefApplication.Store.Recips.Actions
 {
-    public class RecipFetchDataResultAction
+    public class RecipsFetchDataResultAction
     {
         public IEnumerable<Recip> Recips { get; }
 
-        public RecipFetchDataResultAction(IEnumerable<Recip> recips)
+        public RecipsFetchDataResultAction(IEnumerable<Recip> recips)
         {
             Recips = recips;
         }

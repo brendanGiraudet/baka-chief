@@ -2,11 +2,11 @@
 
 namespace bakaChiefApplication.Store.Recips.Actions
 {
-    public class AddRecipAction
+    public class CreateRecipAction
     {
         public Models.Recip Recip { get; }
 
-        public AddRecipAction(Recip recip)
+        public CreateRecipAction(Recip recip)
         {
             Recip = recip;
         }
