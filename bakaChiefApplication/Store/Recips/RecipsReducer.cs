@@ -15,10 +15,10 @@ namespace bakaChiefApplication.Store.Recips
 
         #region CreateRecip
         [ReducerMethod(typeof(CreateRecipAction))]
-        public static RecipsState ReduceCreateRecipAction(RecipsState state) => new RecipsState(isLoading: true, recips: state.Recips, isRecipFormHidden: false);
+        public static RecipsState ReduceCreateRecipAction(RecipsState state) => new RecipsState(isLoading: true, recips: state.Recips);
 
         [ReducerMethod]
-        public static RecipsState ReduceCreateRecipResultAction(RecipsState state, CreateRecipResultAction action) => new RecipsState(isLoading: false, recips: state.Recips.Append(action.Recip), isRecipFormHidden: true);
+        public static RecipsState ReduceCreateRecipResultAction(RecipsState state, CreateRecipResultAction action) => new RecipsState(isLoading: false, recips: state.Recips.Append(action.Recip));
         #endregion CreateRecip
 
         #region DeleteRecip
@@ -51,16 +51,40 @@ namespace bakaChiefApplication.Store.Recips
         }
         #endregion UpdateRecip
 
-        //[ReducerMethod]
-        //public static RecipsState ReduceAddSelectedStepAction(RecipsState state, AddSelectedStepAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients, isRecipFormHidden: false, selectedRecipSteps: state.SelectedRecipSteps.Append(action.RecipStep));
+        #region SelectedStep
+        [ReducerMethod]
+        public static RecipsState ReduceAddSelectedStepAction(RecipsState state, AddSelectedStepAction action)
+        {
+            state.Recip.RecipSteps = state.Recip.RecipSteps.Append(action.RecipStep);
 
-        //[ReducerMethod]
-        //public static RecipsState ReduceRemoveSelectedStepAction(RecipsState state, RemoveSelectedStepAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients, isRecipFormHidden: false, selectedRecipSteps: state.SelectedRecipSteps.Where(s => s.Id != action.RecipStep.Id));
+            return new RecipsState(recips: state.Recips, recip:state.Recip);
+        }
 
-        //[ReducerMethod]
-        //public static RecipsState ReduceAddSelectedIngredientAction(RecipsState state, AddSelectedIngredientAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients.Append(action.RecipIngredient), isRecipFormHidden: false);
+        [ReducerMethod]
+        public static RecipsState ReduceRemoveSelectedStepAction(RecipsState state, RemoveSelectedStepAction action)
+        {
+            state.Recip.RecipSteps = state.Recip.RecipSteps.Where(s => s.Id != action.RecipStep.Id);
 
-        //[ReducerMethod]
-        //public static RecipsState ReduceRemoveSelectedIngredientAction(RecipsState state, RemoveSelectedIngredientAction action) => new RecipsState(recips: state.Recips, selectedIngredients: state.SelectedRecipIngredients.Where(s => s.Id != action.RecipIngredient.Id), isRecipFormHidden: false);
+            return new RecipsState(recips: state.Recips, recip: state.Recip);
+        }
+        #endregion SelectedStep
+
+        #region SelectedIngredient
+        [ReducerMethod]
+        public static RecipsState ReduceAddSelectedIngredientAction(RecipsState state, AddSelectedIngredientAction action)
+        {
+            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Append(action.RecipIngredient);
+
+            return new RecipsState(recips: state.Recips, recip: state.Recip);
+        }
+
+        [ReducerMethod]
+        public static RecipsState ReduceRemoveSelectedIngredientAction(RecipsState state, RemoveSelectedIngredientAction action)
+        {
+            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Where(i => i.Id != action.RecipIngredient.Id);
+
+            return new RecipsState(recips: state.Recips, recip: state.Recip);
+        }
+        #endregion SelectedIngredient
     }
 }

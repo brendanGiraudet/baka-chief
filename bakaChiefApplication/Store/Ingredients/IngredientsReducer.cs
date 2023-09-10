@@ -75,7 +75,7 @@ namespace bakaChiefApplication.Store.Ingredients
             var ingredients = state.Ingredients.Where(i => i.Id != action.Ingredient.Id);
             ingredients = ingredients.Append(action.Ingredient);
 
-            return new IngredientsState(isLoading: false, ingredients: state.Ingredients);
+            return new IngredientsState(isLoading: false, ingredients: ingredients);
         }
         #endregion UpdateNutrimentAction
     }

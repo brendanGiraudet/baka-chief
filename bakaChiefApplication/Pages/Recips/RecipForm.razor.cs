@@ -62,24 +62,24 @@ namespace bakaChiefApplication.Pages.Recips
 
         private async Task RemoveSelectedIngredient(RecipIngredient recipIngredient)
         {
-            RecipsState.Value.Recip.RecipIngredients = RecipsState.Value.Recip.RecipIngredients.Where(r => r.Id != recipIngredient.Id);
+            Dispatcher.Dispatch(new RemoveSelectedIngredientAction(recipIngredient));
         }
 
         private async Task AddSelectedIngredient(Ingredient ingredient)
         {
             RecipIngredientModel.Ingredient = ingredient;
-            RecipsState.Value.Recip.RecipIngredients = RecipsState.Value.Recip.RecipIngredients.Append(RecipIngredientModel);
+            Dispatcher.Dispatch(new AddSelectedIngredientAction(RecipIngredientModel));
             RecipIngredientModel = new();
         }
 
         private async Task RemoveSelectedStep(RecipStep recipStep)
         {
-            RecipsState.Value.Recip.RecipSteps = RecipsState.Value.Recip.RecipSteps.Where(r => r.Id != recipStep.Id);
+            Dispatcher.Dispatch(new RemoveSelectedStepAction(recipStep));
         }
 
         private async Task AddSelectedStep()
         {
-            RecipsState.Value.Recip.RecipSteps = RecipsState.Value.Recip.RecipSteps.Append(RecipStepModel);
+            Dispatcher.Dispatch(new AddSelectedStepAction(RecipStepModel));
             RecipStepModel = new();
         }
     }
