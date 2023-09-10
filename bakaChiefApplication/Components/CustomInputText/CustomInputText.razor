@@ -1,5 +1,7 @@
-﻿
+﻿@inherits InputText
+
 <div class="input">
-    <InputText @bind-Value="CurrentValue" placeholder @attributes="AdditionalAttributes" />
+    <InputText Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" placeholder @attributes="AdditionalAttributes" />
     <label>@Label</label>
+    <ValidationMessage For="@(() => test)" />
 </div>

@@ -1,5 +1,7 @@
 ﻿.input {
-    margin-bottom: 1rem;
+    max-width:30rem;
+    height:2rem;
+    margin-bottom:1.5rem;
 }
 
     .input ::deep input {
@@ -26,11 +28,12 @@
             font-size: 1rem;
         }
 
-        .input input:focus + label {
-            font-size: 0.8rem;
-            top: -50px;
-            transition: 0.2s ease;
-        }
+    .input input:focus + label {
+        font-size: 0.8rem;
+        top: -50px;
+        transition: 0.2s ease;
+        color: #0D0A9B;
+    }
 
     .input label {
         position: relative;
@@ -39,4 +42,19 @@
         margin-left: 0.5rem;
         pointer-events: none;
         transition: 0.2s ease;
+        color: #0D0A9B;
     }
+
+    .input ::deep .invalid {
+        outline: none;
+        border-bottom: 1px solid red;
+    }
+
+        .input ::deep .invalid + label {
+            color: red;
+        }
+
+        .input + validation-message{
+            top:0;
+            position:relative;
+        }

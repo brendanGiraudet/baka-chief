@@ -3,6 +3,8 @@
     border-radius: 0.75rem;
     padding: 1rem;
     margin: 1rem;
+    max-width: 20rem;
+    max-height: 20rem;
 }
 
 .quantity-measureunit{

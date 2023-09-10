@@ -21,6 +21,7 @@
             <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
         </div>
 
+        <h3>Ingredients</h3>
         <div class="selected-ingredient">
             @if (RecipsState.Value.Recip.RecipIngredients != null)
             {
@@ -43,6 +44,7 @@
             }
         </div>
 
+        <h3>Steps</h3>
         <div class="selected-step">
             @if (RecipsState.Value.Recip.RecipSteps != null)
             {
@@ -54,6 +56,7 @@
         </div>
 
         <div class="steps">
+
             <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
         </div>
 
