@@ -18,7 +18,7 @@ namespace bakaChiefApplication.Store.Nutriments
         {
             var nutriments = await _nutrimentTypeService.GetNutrimentsAsync();
 
-            dispatcher.Dispatch(new NutrimentsFetchDataResultAction(nutriments));
+            dispatcher.Dispatch(new NutrimentsFetchDataResultAction(nutriments.ToArray()));
         }
         
         [EffectMethod]

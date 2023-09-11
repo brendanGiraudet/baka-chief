@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Models
 {
@@ -8,18 +9,25 @@ namespace bakaChiefApplication.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [JsonPropertyName("name")]
+        [Required]
         public string Name { get; set; }
 
         [JsonPropertyName("personsNumber")]
+        [Required]
         public int? PersonsNumber { get; set; }
 
         [JsonPropertyName("imageFilePath")]
+        [Required]
         public string? ImageFilePath { get; set; }
 
         [JsonPropertyName("recipIngredients")]
-        public IEnumerable<RecipIngredient> RecipIngredients { get; set; } = Enumerable.Empty<RecipIngredient>();
+        [Required]
+        [MinLength(1)]
+        public RecipIngredient[] RecipIngredients { get; set; } = Array.Empty<RecipIngredient>();
 
         [JsonPropertyName("recipSteps")]
-        public IEnumerable<RecipStep> RecipSteps { get; set; } = Enumerable.Empty<RecipStep>();
+        [Required]
+        [MinLength(1)]
+        public RecipStep[] RecipSteps { get; set; } = Array.Empty<RecipStep>();
     }
 }

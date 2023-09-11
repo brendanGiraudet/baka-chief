@@ -18,7 +18,7 @@ namespace bakaChiefApplication.Store.Nutriments
         public static NutrimentsState ReduceCreateNutrimentAction(NutrimentsState state) => new NutrimentsState(isLoading: true, nutriments: state.Nutriments, isNutrimentFormHidden: true);
 
         [ReducerMethod]
-        public static NutrimentsState ReduceCreateNutrimentTypeResultAction(NutrimentsState state, CreateNutrimentResultAction action) => new NutrimentsState(isLoading: false, nutriments: state.Nutriments.Append(action.NutrimentType));
+        public static NutrimentsState ReduceCreateNutrimentTypeResultAction(NutrimentsState state, CreateNutrimentResultAction action) => new NutrimentsState(isLoading: false, nutriments: state.Nutriments.Append(action.NutrimentType).ToArray());
         #endregion CreateNutriment
 
         #region DeleteNutriment
@@ -26,7 +26,7 @@ namespace bakaChiefApplication.Store.Nutriments
         public static NutrimentsState ReduceDeleteNutrimentAction(NutrimentsState state) => new NutrimentsState(isLoading: true, nutriments: state.Nutriments);
 
         [ReducerMethod]
-        public static NutrimentsState ReduceDeleteNutrimentResultAction(NutrimentsState state, DeleteNutrimentResultAction action) => new NutrimentsState(isLoading: false, nutriments: state.Nutriments.Where(n => n.Id != action.NutrimentTypeId));
+        public static NutrimentsState ReduceDeleteNutrimentResultAction(NutrimentsState state, DeleteNutrimentResultAction action) => new NutrimentsState(isLoading: false, nutriments: state.Nutriments.Where(n => n.Id != action.NutrimentTypeId).ToArray());
         #endregion DeleteNutriment
 
         #region NutrimentForm
@@ -56,7 +56,7 @@ namespace bakaChiefApplication.Store.Nutriments
             var nutriments = state.Nutriments.Where(n => n.Id != action.Nutriment.Id);
             nutriments = nutriments.Append(action.Nutriment);
 
-            return new NutrimentsState(isLoading: false, nutriments: nutriments, isNutrimentFormHidden: true);
+            return new NutrimentsState(isLoading: false, nutriments: nutriments.ToArray(), isNutrimentFormHidden: true);
         }
         #endregion UpdateNutrimentAction
     }

@@ -22,6 +22,8 @@
         </div>
 
         <h3>Ingredients</h3>
+        <ValidationMessage For="() => RecipsState.Value.Recip.RecipIngredients"/>
+
         <div class="selected-ingredient">
             @if (RecipsState.Value.Recip.RecipIngredients != null)
             {
@@ -45,6 +47,8 @@
         </div>
 
         <h3>Steps</h3>
+        <ValidationMessage For="() => RecipsState.Value.Recip.RecipSteps" />
+
         <div class="selected-step">
             @if (RecipsState.Value.Recip.RecipSteps != null)
             {

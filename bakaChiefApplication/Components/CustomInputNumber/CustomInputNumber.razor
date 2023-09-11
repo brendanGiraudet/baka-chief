@@ -1,5 +1,13 @@
-﻿
+﻿@inherits InputNumber<int?>
+
 <div class="input">
-    <InputNumber min="0" @bind-Value="CurrentValue" placeholder />
+    
+    <InputNumber min="0" Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression"  placeholder />
+    
     <label>@Label</label>
+
+    @foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+    {
+        <div class="validation-message">@message</div>
+    }
 </div>

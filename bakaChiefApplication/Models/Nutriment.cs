@@ -14,6 +14,7 @@ namespace bakaChiefApplication.Models
 
         [JsonPropertyName("imageUrl")]
         [Required]
+        [Url]
         public string ImageUrl { get; set; }
     }
 }

@@ -9,13 +9,13 @@ namespace bakaChiefApplication.Store.Nutriments
         
         public bool IsNutrimentFormHidden { get; }
 
-        public IEnumerable<Models.Nutriment> Nutriments { get; }
+        public Models.Nutriment[] Nutriments { get; }
 
         public Models.Nutriment Nutriment { get; }
 
         private NutrimentsState() { }
 
-        public NutrimentsState(bool isLoading = false, IEnumerable<Models.Nutriment>? nutriments = null, bool isNutrimentFormHidden = true, Models.Nutriment? nutriment = null)
+        public NutrimentsState(bool isLoading = false, Models.Nutriment[]? nutriments = null, bool isNutrimentFormHidden = true, Models.Nutriment? nutriment = null)
         {
             IsLoading = isLoading;
             Nutriments = nutriments ?? Array.Empty<Models.Nutriment>();

@@ -31,6 +31,9 @@ else
                             <CustomInputText Label="Image" @bind-Value="@IngredientState.Value.Ingredient.ImageUrl" />
                         </div>
 
+                        <h3>Nutriments</h3>
+                        <ValidationMessage For="() => IngredientState.Value.Ingredient.Nutriments"/>
+
                         @* SelectedNutriments *@
                         <div class="selected-nutriment">
                             @if (IngredientState.Value.Ingredient.Nutriments != null)

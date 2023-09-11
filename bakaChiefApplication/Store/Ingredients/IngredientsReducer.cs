@@ -26,7 +26,7 @@ namespace bakaChiefApplication.Store.Ingredients
         [ReducerMethod]
         public static IngredientsState ReduceAddSelectedNutrimentAction(IngredientsState state, AddSelectedNutrimentAction action)
         {
-            state.Ingredient.Nutriments = state.Ingredient.Nutriments.Append(action.Nutriment);
+            state.Ingredient.Nutriments = state.Ingredient.Nutriments.Append(action.Nutriment).ToArray();
 
             return new IngredientsState(ingredients: state.Ingredients, ingredient: state.Ingredient, isIngredientFormHidden: false);
         }
@@ -34,7 +34,7 @@ namespace bakaChiefApplication.Store.Ingredients
         [ReducerMethod]
         public static IngredientsState ReduceRemoveSelectedNutrimentAction(IngredientsState state, RemoveSelectedNutrimentAction action)
         {
-            state.Ingredient.Nutriments = state.Ingredient.Nutriments.Where(n => n.Id != action.Nutriment.Id);
+            state.Ingredient.Nutriments = state.Ingredient.Nutriments.Where(n => n.Id != action.Nutriment.Id).ToArray();
 
             return new IngredientsState(ingredients: state.Ingredients, ingredient: state.Ingredient, isIngredientFormHidden: false);
         }

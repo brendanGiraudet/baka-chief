@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Models
 {
@@ -8,12 +9,17 @@ namespace bakaChiefApplication.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [JsonPropertyName("name")]
+        [Required]
         public string Name { get; set; }
 
         [JsonPropertyName("imageUrl")]
-        public string? ImageUrl { get; set; }
+        [Required]
+        [Url]
+        public string ImageUrl { get; set; }
 
         [JsonPropertyName("nutriments")]
-        public IEnumerable<Nutriment> Nutriments { get; set; } = Enumerable.Empty<Nutriment>();
+        [Required]
+        [MinLength(1)]
+        public Nutriment[] Nutriments { get; set; } = Array.Empty<Nutriment>();
     }
 }

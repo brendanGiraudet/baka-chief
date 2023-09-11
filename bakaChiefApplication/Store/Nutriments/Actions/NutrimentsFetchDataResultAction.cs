@@ -2,9 +2,9 @@
 {
     public class NutrimentsFetchDataResultAction
     {
-        public IEnumerable<Models.Nutriment> Nutriments { get; }
+        public Models.Nutriment[] Nutriments { get; }
 
-        public NutrimentsFetchDataResultAction(IEnumerable<Models.Nutriment> nutrimentTypes)
+        public NutrimentsFetchDataResultAction(Models.Nutriment[] nutrimentTypes)
         {
             Nutriments = nutrimentTypes;
         }

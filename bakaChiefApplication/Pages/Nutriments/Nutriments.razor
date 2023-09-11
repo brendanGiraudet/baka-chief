@@ -24,13 +24,11 @@ else
                         @* Name *@
                         <div>
                             <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
-                            <ValidationMessage For="@(() => NutrimentsState.Value.Nutriment.Name)" />
                         </div>
 
                         @* ImageUrl *@
                         <div>
                             <CustomInputText Label="Image" @bind-Value="@NutrimentsState.Value.Nutriment.ImageUrl" />
-                            <ValidationMessage For="@(() => NutrimentsState.Value.Nutriment.ImageUrl)" />
                         </div>
 
                         @* Submit *@

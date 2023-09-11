@@ -55,7 +55,7 @@ namespace bakaChiefApplication.Store.Recips
         [ReducerMethod]
         public static RecipsState ReduceAddSelectedStepAction(RecipsState state, AddSelectedStepAction action)
         {
-            state.Recip.RecipSteps = state.Recip.RecipSteps.Append(action.RecipStep);
+            state.Recip.RecipSteps = state.Recip.RecipSteps.Append(action.RecipStep).ToArray();
 
             return new RecipsState(recips: state.Recips, recip:state.Recip);
         }
@@ -63,7 +63,7 @@ namespace bakaChiefApplication.Store.Recips
         [ReducerMethod]
         public static RecipsState ReduceRemoveSelectedStepAction(RecipsState state, RemoveSelectedStepAction action)
         {
-            state.Recip.RecipSteps = state.Recip.RecipSteps.Where(s => s.Id != action.RecipStep.Id);
+            state.Recip.RecipSteps = state.Recip.RecipSteps.Where(s => s.Id != action.RecipStep.Id).ToArray();
 
             return new RecipsState(recips: state.Recips, recip: state.Recip);
         }
@@ -73,7 +73,7 @@ namespace bakaChiefApplication.Store.Recips
         [ReducerMethod]
         public static RecipsState ReduceAddSelectedIngredientAction(RecipsState state, AddSelectedIngredientAction action)
         {
-            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Append(action.RecipIngredient);
+            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Append(action.RecipIngredient).ToArray();
 
             return new RecipsState(recips: state.Recips, recip: state.Recip);
         }
@@ -81,7 +81,7 @@ namespace bakaChiefApplication.Store.Recips
         [ReducerMethod]
         public static RecipsState ReduceRemoveSelectedIngredientAction(RecipsState state, RemoveSelectedIngredientAction action)
         {
-            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Where(i => i.Id != action.RecipIngredient.Id);
+            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Where(i => i.Id != action.RecipIngredient.Id).ToArray();
 
             return new RecipsState(recips: state.Recips, recip: state.Recip);
         }
