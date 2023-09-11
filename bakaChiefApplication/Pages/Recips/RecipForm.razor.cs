@@ -82,5 +82,12 @@ namespace bakaChiefApplication.Pages.Recips
             Dispatcher.Dispatch(new AddSelectedStepAction(RecipStepModel));
             RecipStepModel = new();
         }
+
+        private async Task RemoveRecip(string id)
+        {
+            Dispatcher.Dispatch(new DeleteRecipAction(id));
+            
+            NavigationManager.NavigateTo(PagesUrl.RecipsUrl);
+        }
     }
 }
