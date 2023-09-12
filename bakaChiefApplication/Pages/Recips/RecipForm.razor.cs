@@ -91,5 +91,10 @@ namespace bakaChiefApplication.Pages.Recips
             
             NavigationManager.NavigateTo(PagesUrl.RecipsUrl);
         }
+
+        private async Task RedirectToRecipsPage()
+        {
+            NavigationManager.NavigateTo(PagesUrl.RecipsUrl);
+        }
     }
 }

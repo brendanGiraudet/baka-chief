@@ -4,6 +4,10 @@
 
 <h3>@TitleRecip</h3>
 
+<div class="recips-button">
+    <Button Type="button" Text="Return to list" OnClickCallback="@(async () => await RedirectToRecipsPage())" />
+</div>
+
 <div class="creation-form">
     <EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
         <DataAnnotationsValidator />
