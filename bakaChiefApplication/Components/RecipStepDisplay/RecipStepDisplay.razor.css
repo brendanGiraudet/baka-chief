@@ -1,4 +1,13 @@
-﻿.add-icon {
+﻿.recipStep {
+    border: 1px solid black;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 27rem;
+    max-height: 13rem;
+}
+
+.add-icon {
     height: 1.5rem;
     width: 1.5rem;
 }

@@ -22,14 +22,10 @@ else
                         <DataAnnotationsValidator />
 
                         @* Name *@
-                        <div>
-                            <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
-                        </div>
+                        <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
 
                         @* ImageUrl *@
-                        <div>
-                            <CustomInputText Label="Image" @bind-Value="@NutrimentsState.Value.Nutriment.ImageUrl" />
-                        </div>
+                        <CustomInputText Label="Image" @bind-Value="@NutrimentsState.Value.Nutriment.ImageUrl" />
 
                         @* Submit *@
                         <div>
@@ -42,7 +38,7 @@ else
                     {
                         @* Remove nutriment button *@
                         <div class="delete-nutriment">
-                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveNutriment(NutrimentsState.Value.Nutriment.Id))" ButtonStyle="Enums.ButtonStyle.Delete"/>
+                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveNutriment(NutrimentsState.Value.Nutriment.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
                         </div>
                     }
                 </div>

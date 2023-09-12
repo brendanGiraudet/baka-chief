@@ -22,17 +22,13 @@ else
                         <DataAnnotationsValidator />
 
                         @* Name *@
-                        <div>
-                            <CustomInputText Label="Name" @bind-Value="@IngredientState.Value.Ingredient.Name" />
-                        </div>
+                        <CustomInputText Label="Name" @bind-Value="@IngredientState.Value.Ingredient.Name" />
 
                         @* ImageUrl *@
-                        <div>
-                            <CustomInputText Label="Image" @bind-Value="@IngredientState.Value.Ingredient.ImageUrl" />
-                        </div>
+                        <CustomInputText Label="Image" @bind-Value="@IngredientState.Value.Ingredient.ImageUrl" />
 
                         <h3>Nutriments</h3>
-                        <ValidationMessage For="() => IngredientState.Value.Ingredient.Nutriments"/>
+                        <ValidationMessage For="() => IngredientState.Value.Ingredient.Nutriments" />
 
                         @* SelectedNutriments *@
                         <div class="selected-nutriment">
