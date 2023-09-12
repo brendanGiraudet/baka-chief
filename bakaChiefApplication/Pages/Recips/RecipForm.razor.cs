@@ -30,6 +30,8 @@ namespace bakaChiefApplication.Pages.Recips
 
         public FormMode FormMode => (FormMode)Enum.Parse(typeof(FormMode), Action);
 
+        public string TitleRecip => FormMode == FormMode.Update ? "Update recip" : "Create recip";
+
         protected override void OnInitialized()
         {
             base.OnInitialized();

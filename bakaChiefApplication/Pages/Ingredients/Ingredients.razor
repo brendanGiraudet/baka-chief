@@ -15,7 +15,7 @@ else
 
     <div>
 
-        <Modal Hidden="IngredientState.Value.IsIngredientFormHidden" OnCloseCallback="CloseIngredientForm">
+        <Modal Hidden="IngredientState.Value.IsIngredientFormHidden" OnCloseCallback="CloseIngredientForm" Title="@TitleIngredientModal">
             <Content>
                 <div class="creation-form">
                     <EditForm Model="IngredientState.Value.Ingredient" OnValidSubmit="@SaveIngredient">

@@ -1,67 +1,13 @@
-﻿/*.custom-modal {
-    border: 1px solid black;
-    border-radius: 1.5rem;
-    padding: 1rem;
-    animation: fadeIn 1s ease both;
-    background-color: #fff;
-    position: absolute;
-    z-index: 100;
-}
-
-.close-modal-btn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-    .close-modal-btn ::deep svg:hover {
-        cursor: pointer;
-    }
-
-        .close-modal-btn ::deep svg:hover path {
-            fill: #B00E0E;
-        }
-
-    .close-modal-btn ::deep svg {
-        height: 2rem;
-        width: 2rem;
-    }
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.content-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.background-modal {
-}
-
-.container-modal {
-}
-
-*/
-
-.custom-modal {
+﻿.custom-modal {
     background: #fff;
     border-radius: 0.5em;
     box-shadow: 0 10px 20px rgba(black, 0.2);
     left: 50%;
-    max-width: 90%;
+    max-width: 45rem;
+    min-width: 25rem;
     position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 30em;
     text-align: left;
     max-height: 90vh;
     display: flex;
@@ -122,4 +68,8 @@
     padding: 2em;
     pointer-events: all;
     overflow: auto;
+}
+
+.cross-icon:hover ::deep svg path {
+    fill: #9E1B1B;
 }

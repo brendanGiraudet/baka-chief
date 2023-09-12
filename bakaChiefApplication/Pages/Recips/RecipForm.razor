@@ -2,24 +2,20 @@
 @page "/recips/{Action}"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
+<h3>@TitleRecip</h3>
+
 <div class="creation-form">
     <EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
         <DataAnnotationsValidator />
 
         @* Name *@
-        <div>
             <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
-        </div>
 
         @* PersonsNumber *@
-        <div>
             <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
-        </div>
 
         @* ImageFilePath *@
-        <div>
             <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
-        </div>
 
         <h3>Ingredients</h3>
         <ValidationMessage For="() => RecipsState.Value.Recip.RecipIngredients"/>
@@ -69,13 +65,13 @@
             <Button Type="submit" Text="Submit" />
         </div>
 
-        @if (FormMode == Enums.FormMode.Update)
-        {
-            @* Remove recip button *@
-            <div class="delete-recip">
-                <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
-            </div>
-        }
-
     </EditForm>
+
+    @if (FormMode == Enums.FormMode.Update)
+    {
+        @* Remove recip button *@
+        <div class="delete-recip">
+            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
+        </div>
+    }
 </div>

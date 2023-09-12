@@ -18,7 +18,7 @@ namespace bakaChiefApplication.Components.Tag
 
         private async Task Onclick()
         {
-            if (OnClickCallback.HasDelegate) await OnClickCallback.InvokeAsync();
+            if (OnClickCallback.HasDelegate && (IsAddable || IsRemovable)) await OnClickCallback.InvokeAsync();
         }
     }
 }

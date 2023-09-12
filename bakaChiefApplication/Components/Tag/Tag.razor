@@ -1,9 +1,11 @@
 ﻿@using bakaChiefApplication.Constants;
 
-<div class="tag">
+
+<div class="tag" @onclick="Onclick">
+
     @if (IsAddable)
     {
-        <div class="add-tag-icon" @onclick="Onclick">@((MarkupString)SvgConstants.PlusSvg)</div>
+        <div class="add-tag-icon">@((MarkupString)SvgConstants.PlusSvg)</div>
     }
 
     <div class="tag-content">@Content</div>

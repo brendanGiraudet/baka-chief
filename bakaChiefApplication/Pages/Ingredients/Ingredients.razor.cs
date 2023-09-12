@@ -18,6 +18,7 @@ namespace bakaChiefApplication.Pages.Ingredients
         [Inject] public IDispatcher Dispatcher { get; set; }
 
         public FormMode FormMode { get; set; } = FormMode.Creation;
+        public string TitleIngredientModal => FormMode == FormMode.Update ? "Update ingredient" : "Create ingredient";
 
         protected override void OnInitialized()
         {

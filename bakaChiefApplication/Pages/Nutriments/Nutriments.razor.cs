@@ -14,7 +14,7 @@ namespace bakaChiefApplication.Pages.Nutriments
         [Inject] public IDispatcher Dispatcher { get; set; }
 
         public FormMode FormMode { get; set; } = FormMode.Creation;
-        public string TitleNutrimentModel => FormMode == FormMode.Update ? "Update nutriment" : "Create nutriment";
+        public string TitleNutrimentModal => FormMode == FormMode.Update ? "Update nutriment" : "Create nutriment";
 
         protected override void OnInitialized()
         {

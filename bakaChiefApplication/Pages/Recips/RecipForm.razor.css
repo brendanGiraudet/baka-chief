@@ -1,2 +1,8 @@
-﻿body {
+﻿.delete-recip {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.creation-form {
+    padding: 1rem;
 }

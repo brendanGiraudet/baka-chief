@@ -15,7 +15,7 @@ else
 
     <div class="add-nutriment-modal">
 
-        <Modal Hidden="NutrimentsState.Value.IsNutrimentFormHidden" OnCloseCallback="CloseNutrimentForm" Title="@TitleNutrimentModel">
+        <Modal Hidden="NutrimentsState.Value.IsNutrimentFormHidden" OnCloseCallback="CloseNutrimentForm" Title="@TitleNutrimentModal">
             <Content>
                 <div class="nutriment-form">
                     <EditForm Model="NutrimentsState.Value.Nutriment" OnValidSubmit="@SaveNutriment">
