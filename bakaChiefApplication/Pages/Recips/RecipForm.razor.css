@@ -3,6 +3,16 @@
     justify-content: flex-end;
 }
 
-.creation-form {
+.recip-form {
     padding: 1rem;
+}
+
+.recip-form-page{
+    display: flex;
+    justify-content: center;
+}
+
+.recip-form-page-container {
+    width: 60%;
+    background-color: var(--secondary-color);
 }

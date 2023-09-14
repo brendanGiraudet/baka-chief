@@ -3,29 +3,30 @@
     border-radius: .75rem;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
     margin-bottom: 1rem;
     width: fit-content;
     padding: .5rem;
     cursor: pointer;
+    color: var(--primary-color);
 }
 
 .add-tag-icon {
-    height: 1rem;
-    width: 1rem;
+    height: var(--icon-size-height);
+    width: var(--icon-size-width);
     margin-right: .25rem;
 }
 
     .add-tag-icon ::deep svg path {
-        fill: #3B9433;
+        fill: var(--success-color);
     }
 
 .remove-tag-icon {
-    height: 1rem;
-    width: 1rem;
+    height: var(--icon-size-height);
+    width: var(--icon-size-width);
     margin-left: .25rem;
 }
 
     .remove-tag-icon ::deep svg path {
-        fill: #B00E0E;
+        fill: var(--error-color);
     }

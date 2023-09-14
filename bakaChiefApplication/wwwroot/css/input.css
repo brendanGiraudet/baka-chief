@@ -16,7 +16,7 @@
 
         .input input:focus, .input input:focus-visible, .input input.valid.modified {
             border: none;
-            border-bottom: 1px solid #0D0A9B;
+            border-bottom: 1px solid var(--info-color);
             outline: none;
             transition: 0.2s ease;
         }
@@ -27,12 +27,12 @@
             font-size: 1rem;
         }
 
-    .input input:focus + label {
-        font-size: 0.8rem;
-        top: -50px;
-        transition: 0.2s ease;
-        color: #0D0A9B;
-    }
+        .input input:focus + label {
+            font-size: 0.8rem;
+            top: -50px;
+            transition: 0.2s ease;
+            color: var(--info-color);
+        }
 
     .input label {
         position: relative;
@@ -41,7 +41,7 @@
         margin-left: 0.5rem;
         pointer-events: none;
         transition: 0.2s ease;
-        color: #0D0A9B;
+        color: var(--info-color);
     }
 
     .input .invalid {

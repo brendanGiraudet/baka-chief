@@ -14,16 +14,10 @@ namespace bakaChiefApplication.Components.Modal
         
         [Parameter(CaptureUnmatchedValues = true)] public IDictionary<string, object>? AdditionalAttributes { get; set; }
 
-        private string HiddenClass => Hidden ? "hidden" : string.Empty;
-
         private async Task OnCloseClick()
         {
+            await Console.Out.WriteLineAsync("coucou");
             if (OnCloseCallback.HasDelegate) await OnCloseCallback.InvokeAsync();
-        }
-        
-        private async Task OnFocus()
-        {
-            await Console.Out.WriteLineAsync("on focus");
         }
     }
 }

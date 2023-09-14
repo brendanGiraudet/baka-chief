@@ -10,7 +10,6 @@
     transform: translate(-50%, -50%);
     text-align: left;
     max-height: 90vh;
-    display: flex;
     flex-direction: column;
     z-index: 100;
 }
@@ -41,6 +40,7 @@
     top: 0;
     width: 4.5em;
     cursor:pointer;
+    z-index:101;
 }
 
     .close-modal-btn ::deep svg {
@@ -71,5 +71,5 @@
 }
 
 .cross-icon:hover ::deep svg path {
-    fill: #9E1B1B;
+    fill: var(--error-color);
 }

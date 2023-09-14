@@ -1,0 +1,13 @@
+﻿:root {
+    /* COLOR */
+    --primary-color: #202020;
+    --secondary-color: #ffff;
+    --info-color: #0D0A9B;
+    --success-color: #3B9433;
+    --error-color: #B00E0E;
+    --warning-color: #f8b500;
+
+    /* SIZE */
+    --icon-size-width: 1.5rem;
+    --icon-size-height: 1.5rem;
+}

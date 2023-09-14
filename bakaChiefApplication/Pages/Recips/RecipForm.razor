@@ -4,78 +4,84 @@
 
 <h3>@TitleRecip</h3>
 
-<div class="recips-button">
-    <Button Type="button" Text="Return to list" OnClickCallback="@(async () => await RedirectToRecipsPage())" />
-</div>
+<div class="recip-form-page">
+    <div class="recip-form-page-container">
 
-<div class="creation-form">
-    <EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
-        <DataAnnotationsValidator />
 
-        @* Name *@
-            <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
+        <div class="recips-button">
+            <Button Type="button" Text="Return to list" OnClickCallback="@(async () => await RedirectToRecipsPage())" />
+        </div>
 
-        @* PersonsNumber *@
-            <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
+        <div class="recip-form">
+            <EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
+                <DataAnnotationsValidator />
 
-        @* ImageFilePath *@
-            <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
+                @* Name *@
+                <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
 
-        <h3>Ingredients</h3>
-        <ValidationMessage For="() => RecipsState.Value.Recip.RecipIngredients"/>
+                @* PersonsNumber *@
+                <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
 
-        <div class="selected-ingredient">
-            @if (RecipsState.Value.Recip.RecipIngredients != null)
+                @* ImageFilePath *@
+                <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
+
+                <h3>Ingredients</h3>
+                <ValidationMessage For="() => RecipsState.Value.Recip.RecipIngredients" />
+
+                <div class="selected-ingredient">
+                    @if (RecipsState.Value.Recip.RecipIngredients != null)
+                    {
+                        foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
+                        {
+                            <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
+                        }
+                    }
+                </div>
+
+                <div class="ingredients">
+                    @if (IngredientState.Value.Ingredients != null)
+                    {
+                        var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState.Value.Recip.RecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
+
+                        foreach (var ingredient in ingredients)
+                        {
+                            <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
+                        }
+                    }
+                </div>
+
+                <h3>Steps</h3>
+                <ValidationMessage For="() => RecipsState.Value.Recip.RecipSteps" />
+
+                <div class="selected-step">
+                    @if (RecipsState.Value.Recip.RecipSteps != null)
+                    {
+                        foreach (var recipStep in RecipsState.Value.Recip.RecipSteps)
+                        {
+                            <RecipStepDisplay IsRemovable="true" Number="@recipStep.Number" Description="@recipStep.Description" OnclickCallback="@( async () => await RemoveSelectedStep(recipStep))" />
+                        }
+                    }
+                </div>
+
+                <div class="steps">
+
+                    <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
+                </div>
+
+                @* Submit *@
+                <div>
+                    <Button Type="submit" Text="Submit" />
+                </div>
+
+            </EditForm>
+
+            @if (FormMode == Enums.FormMode.Update)
             {
-                foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
-                {
-                    <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
-                }
+                @* Remove recip button *@
+                <div class="delete-recip">
+                    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
+                </div>
             }
         </div>
-
-        <div class="ingredients">
-            @if (IngredientState.Value.Ingredients != null)
-            {
-                var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState.Value.Recip.RecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
-
-                foreach (var ingredient in ingredients)
-                {
-                    <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
-                }
-            }
-        </div>
-
-        <h3>Steps</h3>
-        <ValidationMessage For="() => RecipsState.Value.Recip.RecipSteps" />
-
-        <div class="selected-step">
-            @if (RecipsState.Value.Recip.RecipSteps != null)
-            {
-                foreach (var recipStep in RecipsState.Value.Recip.RecipSteps)
-                {
-                    <RecipStepDisplay IsRemovable="true" Number="@recipStep.Number" Description="@recipStep.Description" OnclickCallback="@( async () => await RemoveSelectedStep(recipStep))" />
-                }
-            }
-        </div>
-
-        <div class="steps">
-
-            <RecipStepDisplay IsAddable="true" @bind-Number="RecipStepModel.Number" @bind-Description="RecipStepModel.Description" OnclickCallback="@( async () => await AddSelectedStep())" />
-        </div>
-
-        @* Submit *@
-        <div>
-            <Button Type="submit" Text="Submit" />
-        </div>
-
-    </EditForm>
-
-    @if (FormMode == Enums.FormMode.Update)
-    {
-        @* Remove recip button *@
-        <div class="delete-recip">
-            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
-        </div>
-    }
+    </div>
 </div>
