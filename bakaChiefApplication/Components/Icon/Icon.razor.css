@@ -1,0 +1,18 @@
+﻿
+.icon {
+    height: 3.5em;
+    width: 3.5em;
+    cursor: pointer;
+}
+
+    .icon ::deep svg {
+        fill: none;
+    }
+    
+    .icon ::deep svg path {
+        fill: var(--secondary-color);
+    }
+
+    .icon:hover ::deep svg path {
+        fill: var(--info-color);
+    }

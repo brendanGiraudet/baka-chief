@@ -31,22 +31,15 @@
 
 .close-modal-btn {
     align-items: center;
-    color: #111827;
     display: flex;
-    height: 4.5em;
-    justify-content: center;
-    position: absolute;
+    justify-content: flex-end;
     right: 0;
     top: 0;
-    width: 4.5em;
-    cursor:pointer;
-    z-index:101;
+    z-index: 101;
 }
 
-    .close-modal-btn ::deep svg {
-        display: block;
-        width: 2rem;
-        height: 2rem;
+    .close-modal-btn ::deep svg path {
+        fill: var(--primary-color);
     }
 
 .container-modal-title {

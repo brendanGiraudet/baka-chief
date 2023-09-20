@@ -14,7 +14,8 @@
 }
 
 .navbar-toggler {
-    cursor: pointer;
+    background: none;
+    border:none;
 }
 
     .navbar-toggler i {

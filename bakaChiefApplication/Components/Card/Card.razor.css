@@ -31,14 +31,15 @@
         --_i: 0%;
     }
 
+    figure:hover .close-svg {
+        --_i: 0%;
+    }
+
 .close-svg {
     display: flex;
     justify-content: center;
     align-items: center;
     clip-path: inset(0 var(--_i,100%) 0 0);
-}
-figure:hover .close-svg {
-    --_i: 0%;
 }
 
 .close-svg ::deep svg {

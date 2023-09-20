@@ -1,11 +1,13 @@
-﻿<div class="nav-menu">
+﻿@using bakaChiefApplication.Constants;
+
+<div class="nav-menu">
     <a class="navbar-brand" href="">baka-chief-application</a>
     <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-        <li></li>
+        <Icon IconSvgEnum="Enums.Icon.Burger" />
     </button>
 </div>
 
-<div hidden="@collapseNavMenu" @onclick="ToggleNavMenu">
+<div hidden="@_collapseNavMenu" @onclick="ToggleNavMenu">
     <nav class="nav-container">
         <div class="nav-items">
             <div class="nav-item">
@@ -31,14 +33,3 @@
         </div>
     </nav>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "nav-hidden" : "nav-display";
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
