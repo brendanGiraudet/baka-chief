@@ -38,10 +38,6 @@
     z-index: 101;
 }
 
-    .close-modal-btn ::deep svg path {
-        fill: var(--primary-color);
-    }
-
 .container-modal-title {
     color: #111827;
     padding: 1.5em 2em;
@@ -61,8 +57,4 @@
     padding: 2em;
     pointer-events: all;
     overflow: auto;
-}
-
-.cross-icon:hover ::deep svg path {
-    fill: var(--error-color);
 }

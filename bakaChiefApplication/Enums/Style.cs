@@ -1,9 +1,10 @@
 ﻿namespace bakaChiefApplication.Enums
 {
-    public enum ButtonStyle
+    public enum Style
     {
         Primary,
         Secondary,
-        Delete
+        Error,
+        Success
     }
 }

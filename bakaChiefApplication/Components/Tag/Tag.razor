@@ -5,13 +5,13 @@
 
     @if (IsAddable)
     {
-        <div class="add-tag-icon">@((MarkupString)SvgConstants.PlusSvg)</div>
+        <div class="add-tag-icon"><Icon IconSvgEnum="Enums.Icon.PlusSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Success" /></div>
     }
 
     <div class="tag-content">@Content</div>
 
     @if (IsRemovable)
     {
-        <div class="remove-tag-icon" @onclick="Onclick">@((MarkupString)SvgConstants.CrossSvg)</div>
+        <div class="remove-tag-icon" @onclick="Onclick"><Icon IconSvgEnum="Enums.Icon.CrossSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Error" /></div>
     }
 </div>

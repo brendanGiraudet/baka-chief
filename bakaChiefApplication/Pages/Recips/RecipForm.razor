@@ -79,7 +79,7 @@
             {
                 @* Remove recip button *@
                 <div class="delete-recip">
-                    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
+                    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip(RecipsState.Value.Recip.Id))" ButtonStyle="Enums.Style.Error" />
                 </div>
             }
         </div>

@@ -42,17 +42,11 @@
     clip-path: inset(0 var(--_i,100%) 0 0);
 }
 
-.close-svg ::deep svg {
-    height: 15%;
-    width: 15%;
-    border-radius: 2.5rem;
-    border: 1px solid #D9D9D9;
-    background-color: #D9D9D9;
-}
-
-        .close-svg ::deep svg path {
-            fill: #B00E0E;
-        }
+    .close-svg ::deep svg {
+        border-radius: 2.5rem;
+        border: 1px solid var(--error-color);
+        background-color: var(--error-color);
+    }
 
 
 @supports not (-webkit-mask-clip: text) {

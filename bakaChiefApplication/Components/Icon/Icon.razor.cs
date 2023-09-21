@@ -6,17 +6,17 @@ namespace bakaChiefApplication.Components.Icon
 {
     public partial class Icon
     {
+        // ICON SVG
         [Parameter] public Enums.Icon IconSvgEnum { get; set; }
-        private string _iconSvg;
+        private string _iconSvg => Utilities.GetPropertyValue<string>(typeof(SvgConstants), IconSvgEnum.ToString());
+        
+        // ICON SIZE
+        [Parameter] public Enums.Size IconSize { get; set; } = Enums.Size.Normal;
+        private string _iconSizeClass => IconSize.ToString().ToLower();
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            _iconSvg = Utilities.GetPropertyValue<string>(typeof(SvgConstants), IconSvgEnum.ToString());
-
-            Console.WriteLine("icon " + _iconSvg);
-        }
+        // ICON STYLE
+        [Parameter] public Enums.Style IconStyle { get; set; } = Enums.Style.Secondary;
+        private string _iconStyleClass => IconStyle.ToString().ToLower();
     }
 
     public static class Utilities

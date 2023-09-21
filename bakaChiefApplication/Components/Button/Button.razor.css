@@ -8,35 +8,36 @@
         transition: 0.2s ease;
     }
 
-.Primary {
+/* STYLE */
+.primary {
     background-color: var(--info-color);
     color: #fff;
     border: 1px solid var(--info-color);
 }
 
-    .Primary:hover {
+    .primary:hover {
         color: var(--info-color);
         background-color: #fff;
     }
 
-.Secondary {
+.secondary {
     background-color: #fff;
     color: var(--info-color);
     border: 1px solid var(--info-color);
 }
 
-    .Secondary:hover {
+    .secondary:hover {
         color: #fff;
         background-color: var(--info-color);
     }
 
-.Delete {
-    background-color: #9E1B1B;
-    color: #fff;
-    border: 1px solid #9E1B1B;
+.error {
+    background-color: var(--error-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--error-color);
 }
 
-    .Delete:hover {
-        color: #9E1B1B;
-        background-color: #fff;
+    .error:hover {
+        color: var(--error-color);
+        background-color: var(--secondary-color);
     }

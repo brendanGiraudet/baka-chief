@@ -11,21 +11,13 @@
     color: var(--primary-color);
 }
 
-.add-tag-icon {
-    height: var(--icon-size-height);
-    width: var(--icon-size-width);
+.add-tag-icon, .remove-tag-icon {
     margin-right: .25rem;
 }
 
     .add-tag-icon ::deep svg path {
         fill: var(--success-color);
     }
-
-.remove-tag-icon {
-    height: var(--icon-size-height);
-    width: var(--icon-size-width);
-    margin-left: .25rem;
-}
 
     .remove-tag-icon ::deep svg path {
         fill: var(--error-color);

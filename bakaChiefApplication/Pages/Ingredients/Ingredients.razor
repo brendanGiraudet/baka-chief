@@ -64,7 +64,7 @@ else
                     {
                         @* Remove ingredient button *@
                         <div class="delete-ingredient">
-                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient(IngredientState.Value.Ingredient.Id))" ButtonStyle="Enums.ButtonStyle.Delete" />
+                            <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient(IngredientState.Value.Ingredient.Id))" ButtonStyle="Enums.Style.Error" />
                         </div>
                     }
                 </div>

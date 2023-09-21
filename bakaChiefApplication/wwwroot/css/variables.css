@@ -6,8 +6,9 @@
     --success-color: #3B9433;
     --error-color: #B00E0E;
     --warning-color: #f8b500;
-
     /* SIZE */
-    --icon-size-width: 1.5rem;
-    --icon-size-height: 1.5rem;
+    --icon-small-size-width: 2rem;
+    --icon-small-size-height: 2rem;
+    --icon-normal-size-width: 3.5rem;
+    --icon-normal-size-height: 3.5rem;
 }

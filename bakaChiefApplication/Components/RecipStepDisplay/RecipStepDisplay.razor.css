@@ -6,31 +6,3 @@
     max-width: 27rem;
     max-height: 13rem;
 }
-
-.add-icon {
-    height: 1.5rem;
-    width: 1.5rem;
-}
-
-.add-icon, .remove-icon {
-    margin-bottom: .25rem;
-    cursor: pointer;
-}
-
-    .add-icon ::deep svg path {
-        fill: #3B9433;
-    }
-
-.remove-icon {
-    display: flex;
-    justify-content: flex-end;
-}
-
-    .remove-icon ::deep svg {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-        .remove-icon ::deep svg path {
-            fill: #B00E0E;
-        }

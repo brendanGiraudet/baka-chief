@@ -1,18 +1,34 @@
-﻿
-.icon {
-    height: 3.5em;
-    width: 3.5em;
+﻿.icon {
     cursor: pointer;
 }
 
     .icon ::deep svg {
         fill: none;
     }
-    
-    .icon ::deep svg path {
-        fill: var(--secondary-color);
-    }
 
-    .icon:hover ::deep svg path {
-        fill: var(--info-color);
-    }
+/* SIZE */
+.small {
+    height: var(--icon-small-size-height);
+    width: var(--icon-small-size-width);
+}
+
+.normal {
+    height: var(--icon-normal-size-height);
+    width: var(--icon-normal-size-width);
+}
+
+/* STYLE */
+.secondary ::deep svg path {
+    fill: var(--secondary-color);
+}
+.secondary:hover ::deep svg path {
+    fill: var(--info-color);
+}
+
+.error ::deep svg path {
+    fill: var(--error-color);
+}
+
+.success ::deep svg path {
+    fill: var(--success-color);
+}
