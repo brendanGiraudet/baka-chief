@@ -9,16 +9,9 @@
     padding: .5rem;
     cursor: pointer;
     color: var(--primary-color);
+    font-size: var(--font-size-normal);
 }
 
 .add-tag-icon, .remove-tag-icon {
     margin-right: .25rem;
 }
-
-    .add-tag-icon ::deep svg path {
-        fill: var(--success-color);
-    }
-
-    .remove-tag-icon ::deep svg path {
-        fill: var(--error-color);
-    }

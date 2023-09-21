@@ -12,8 +12,12 @@ namespace bakaChiefApplication.Components.Button
         [Parameter] public EventCallback OnClickCallback { get; set; }
 
         // BUTTON STYLE
-        [Parameter] public Style ButtonStyle { get; set; }
+        [Parameter] public Style ButtonStyle { get; set; } = Style.Primary;
         private string _buttonStyleClass => ButtonStyle.ToString().ToLower();
+
+        // BUTTON SIZE
+        [Parameter] public Size ButtonSize { get; set; } = Size.Normal;
+        private string _buttonSizeClass => ButtonSize.ToString().ToLower();
 
         private async Task Onclick()
         {
