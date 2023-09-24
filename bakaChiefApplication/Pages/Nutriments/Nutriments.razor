@@ -9,9 +9,7 @@
 }
 else
 {
-    <div class="addNutriment-button">
-        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Creation))" />
-    </div>
+    <AddButton OnClickCallback="@(async () => await ShowNutrimentForm(Enums.FormMode.Creation))" />
 
     <div class="add-nutriment-modal">
 

@@ -1,0 +1,8 @@
+﻿.add-button {
+    margin: 1.5rem 0rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    z-index: 100;
+}

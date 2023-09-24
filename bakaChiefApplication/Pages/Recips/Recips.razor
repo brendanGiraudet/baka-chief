@@ -10,9 +10,7 @@
 }
 else
 {
-    <div class="addrecip-button">
-        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
-    </div>
+    <AddButton OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
 
     if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
     {

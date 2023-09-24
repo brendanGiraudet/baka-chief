@@ -9,9 +9,7 @@
 }
 else
 {
-    <div class="addingredient-button">
-        <Button Type="button" Text="Ajout" OnClickCallback="@(async () => await ShowIngredientForm(Enums.FormMode.Creation))" />
-    </div>
+    <AddButton OnClickCallback="@(async () => await ShowIngredientForm(Enums.FormMode.Creation))" />
 
     <div>
 

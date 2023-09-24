@@ -5,14 +5,6 @@
     justify-content: space-evenly;
 }
 
-.addNutriment-button {
-    margin: 1.5rem 0rem;
-    position:fixed;
-    bottom:1rem;
-    right:1rem;
-    z-index:100;
-}
-
 .icon-card {
     height: 100%;
     width: 100%;
@@ -25,8 +17,3 @@
         height: 100%;
         width: 100%;
     }
-
-.delete-nutriment {
-    display: flex;
-    justify-content: flex-end;
-}
