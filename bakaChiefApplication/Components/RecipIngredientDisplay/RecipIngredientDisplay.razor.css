@@ -1,23 +1,14 @@
 ﻿.recipingredient {
     border: 1px solid black;
     border-radius: 0.75rem;
-    padding: 1rem;
-    margin: 1rem;
-    max-width: 25rem;
-    max-height: 13rem;
 }
 
 .quantity-measureunit{
     display:flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items:center;
+    flex-direction: column;
     margin:1rem;
 }
-    .quantity-measureunit ::deep input{
-        width:6rem;
-        margin-right:1rem;
-    }
+
 
 .ingredient-name{
     margin:1rem;

@@ -1,10 +1,6 @@
-﻿.delete-recip {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.recip-form {
+﻿.recip-form {
     padding: 1rem;
+    color: var(--primary-color);
 }
 
 .recip-form-page{
@@ -13,6 +9,6 @@
 }
 
 .recip-form-page-container {
-    width: 60%;
+    width: 100%;
     background-color: var(--secondary-color);
 }

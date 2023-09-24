@@ -1,6 +1,6 @@
 ﻿.icon {
     cursor: pointer;
-    padding:1rem;
+    padding:0.75rem;
 }
 
     .icon ::deep svg {
