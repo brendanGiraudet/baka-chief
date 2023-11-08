@@ -11,7 +11,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddServices();
-builder.Services.AddNamedHttpClient();
+builder.Services.AddNamedHttpClient(builder.Configuration);
+builder.Services.AddConfigurations(builder.Configuration);
 
 // Add Fluxor
 builder.Services.AddFluxor(config =>

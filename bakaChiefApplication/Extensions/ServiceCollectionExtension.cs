@@ -1,4 +1,5 @@
-﻿using bakaChiefApplication.Constants;
+﻿using bakaChiefApplication.Configurations;
+using bakaChiefApplication.Constants;
 using bakaChiefApplication.Services.IngredientsService;
 using bakaChiefApplication.Services.NutrimentsService;
 using bakaChiefApplication.Services.RecipsService;
@@ -14,12 +15,20 @@ namespace bakaChiefApplication.Extensions
             services.AddTransient<IRecipsService, RecipsService>();
         }
 
-        public static void AddNamedHttpClient(this IServiceCollection services)
+        public static void AddNamedHttpClient(this IServiceCollection services, IConfiguration configuration)
         {
+            var bakaChiefAPIConfig = new BakaChiefAPI();
+            configuration.GetSection("BakaChiefAPI").Bind(bakaChiefAPIConfig);
+
             services.AddHttpClient(NameHttpClient.BakaChiefAPI, config =>
             {
-                config.BaseAddress = new Uri("https://localhost:7177");
+                config.BaseAddress = new Uri(bakaChiefAPIConfig.BaseUrl);
             });
+        }
+
+        public static void AddConfigurations(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<BakaChiefAPI>(options => configuration.GetSection(key: "BakaChiefAPI"));
         }
     }
 }

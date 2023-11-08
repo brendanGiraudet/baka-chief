@@ -33,7 +33,7 @@ jobs:
     needs: [Continuous-integration]
     runs-on: ubuntu-latest
     env:
-      Repo: /home/runner/work/baka-chief/baka-chief/baka-chief-application/
+      Repo: /home/runner/work/baka-chief/baka-chief/bakaChiefApplication/
       DockerImageName: bakayarusama/baka-chief:${{  github.ref_name }}
 
     steps:
@@ -45,7 +45,7 @@ jobs:
              -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
     - name: Build Docker image
-      working-directory: /home/runner/work/baka-chief/baka-chief/baka-chief-application/
+      working-directory: /home/runner/work/baka-chief/baka-chief/bakaChiefApplication/
       run: docker build -t $DockerImageName $Repo
 
     - name: Publish Docker image

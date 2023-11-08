@@ -1,19 +1,22 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+﻿#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 3535
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["./baka-chief-application.csproj", "baka-chief-application/"]
-WORKDIR "/src/baka-chief-application"
-RUN dotnet restore "./baka-chief-application.csproj"
 COPY . .
-RUN dotnet build "baka-chief-application.csproj" -c Release -o /app/build
+RUN dotnet restore "./bakaChiefApplication.csproj"
+
+RUN dotnet build "./bakaChiefApplication.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "baka-chief-application.csproj" -c Release -o /app/publish
+WORKDIR /src
+RUN dotnet publish "./bakaChiefApplication.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /src/baka-chief-application/bin/Release/net7.0/wwwroot/_framework .
-CMD ["dotnet", "baka-chief-application.dll"]
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "bakaChiefApplication.dll"]
