@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   labels:
     type: local
-  name: certificate-pv-volume
+  name: baka-chief-certificate-pv
 spec:
   accessModes:
   - ReadWriteOnce

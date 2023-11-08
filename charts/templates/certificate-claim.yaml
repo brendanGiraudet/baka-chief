@@ -2,8 +2,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    io.kompose.service: certificate-claim
-  name: certificate-claim
+    io.kompose.service: baka-chief-certificate-claim
+  name: baka-chief-certificate-claim
   namespace: {{ .Values.applicationName }}
 spec:
   accessModes:
@@ -13,7 +13,7 @@ spec:
       storage: 50Mi
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: certificate-pv-volume
+  volumeName: baka-chief-certificate-pv
 status:
   accessModes:
   - ReadWriteOnce
