@@ -2,6 +2,7 @@
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Services.IngredientsService;
 using bakaChiefApplication.Services.NutrimentsService;
+using bakaChiefApplication.Services.ProductInfosService;
 using bakaChiefApplication.Services.RecipsService;
 
 namespace bakaChiefApplication.Extensions
@@ -13,6 +14,7 @@ namespace bakaChiefApplication.Extensions
             services.AddTransient<INutrimentsService, NutrimentsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IRecipsService, RecipsService>();
+            services.AddTransient<IProductInfosService, ProductInfosService>();
         }
 
         public static void AddNamedHttpClient(this IServiceCollection services, IConfiguration configuration)
@@ -23,6 +25,7 @@ namespace bakaChiefApplication.Extensions
             services.AddHttpClient(NameHttpClient.BakaChiefAPI, config =>
             {
                 config.BaseAddress = new Uri(bakaChiefAPIConfig.BaseUrl);
+                config.Timeout = TimeSpan.FromMinutes(5);
             });
         }
 

@@ -1,0 +1,45 @@
+﻿@page "/products"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Products</h3>
+
+@if (ProductInfosState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    if (ProductInfosState.Value.ProductInfos == null || ProductInfosState.Value.ProductInfos.Count() == 0)
+    {
+        <div>vide</div>
+    }
+    else
+    {
+        foreach (var product in ProductInfosState.Value.ProductInfos)
+        {
+            <div>
+                <Card Title="@product.product_name">
+                    <Content>
+                        <div class="ingredient-card">
+
+                            <img src="@product.image_url" alt="@product.product_name" />
+
+                        </div>
+                    </Content>
+                </Card>
+                <div>
+                    @{
+                        var propName = "energy_kj_100g";
+                        var value = (string)product.GetType().GetProperty(propName).GetValue(product, null);
+
+                        if (!string.IsNullOrWhiteSpace(value))
+                        {
+                            <Tag Content="@($"{propName} : {value}")" />
+                        }
+                    }
+
+                </div>
+            </div>
+        }
+    }
+}
