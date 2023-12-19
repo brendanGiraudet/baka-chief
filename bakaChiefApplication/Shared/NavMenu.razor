@@ -1,7 +1,12 @@
 ﻿@using bakaChiefApplication.Constants;
 
 <div class="nav-menu">
-    <a class="navbar-brand" href="">baka-chief-application</a>
+    
+    <div class="navbar-brand-container">
+        <span class="application_version">@_applicationVersion</span>
+        <a class="navbar-brand" href="">baka-chief-application </a>
+    </div>
+
     <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
         <Icon IconSvgEnum="Enums.Icon.Burger" />
     </button>

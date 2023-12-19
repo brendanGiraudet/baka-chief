@@ -65,3 +65,14 @@
     .nav-item ::deep a:hover {
         color: var(--info-color);
     }
+
+    .navbar-brand-container{
+        display: flex;
+        align-items: center;
+    }
+
+    .application_version{
+        font-size: 0.85rem;
+        font-style: italic;
+        margin: 0.5rem;
+    }
