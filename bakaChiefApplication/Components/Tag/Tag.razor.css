@@ -1,5 +1,5 @@
 ﻿.tag {
-    border: 1px solid black;
+    border: 1px solid var(--border-color);
     border-radius: .75rem;
     display: flex;
     justify-content: space-between;
@@ -8,7 +8,7 @@
     width: fit-content;
     padding: .5rem;
     cursor: pointer;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-size: var(--font-size-normal);
 }
 

@@ -5,7 +5,7 @@
     cursor: pointer;
     height: 17rem;
     width: 17rem;
-    border: 1px solid #425a52;
+    border: 1px solid var(--border-color);
 }
 
     figure > * {

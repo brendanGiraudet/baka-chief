@@ -10,14 +10,15 @@ namespace bakaChiefApplication.Store.ProductInfos
         
         public IEnumerable<ProductInfo> ProductInfos { get; }
 
+        public ProductInfo CurrentProductInfo { get; }
+
         private ProductInfosState() { }
 
-        public ProductInfosState(bool? isLoading = null, IEnumerable<ProductInfo>? productInfos = null)
+        public ProductInfosState(bool? isLoading = null, IEnumerable<ProductInfo>? productInfos = null, ProductInfo productInfo = null)
         {
-            System.Console.WriteLine($"products count: {productInfos?.Count()}");
-            System.Console.WriteLine($"hashcode {GetHashCode()}");
             IsLoading = isLoading ?? false;
             ProductInfos = productInfos ?? Enumerable.Empty<ProductInfo>();
+            CurrentProductInfo = productInfo;
         }
     }
 }

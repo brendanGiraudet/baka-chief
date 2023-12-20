@@ -16,18 +16,16 @@ public class ProductInfosService : IProductInfosService
 
     public async Task<IEnumerable<ProductInfo>> GetProductsAsync()
     {
-        var response = await _httpClient.GetFromJsonAsync<TestProduct>(ProductInfosApiEndpoints.GetProductInfosUrl(10,0));
-
-        System.Console.WriteLine($"service prd : {response.Values?.Count()}");
+        var response = await _httpClient.GetFromJsonAsync<ProductInfoResult>(ProductInfosApiEndpoints.GetProductInfosUrl(10, 0));
 
         return response.Values;
     }
 }
-public class TestProduct
-    {
-        [JsonPropertyName("@data.context")]
-        public string Context { get; set; }
+public class ProductInfoResult
+{
+    [JsonPropertyName("@data.context")]
+    public string Context { get; set; }
 
-        [JsonPropertyName("value")]
-        public IEnumerable<ProductInfo> Values { get; set; }
-    }
+    [JsonPropertyName("value")]
+    public IEnumerable<ProductInfo> Values { get; set; }
+}

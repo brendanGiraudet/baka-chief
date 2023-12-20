@@ -12,5 +12,10 @@ namespace bakaChiefApplication.Store.ProductInfos
         [ReducerMethod]
         public static ProductInfosState ReduceProductInfosFetchDataResultAction(ProductInfosState state, ProductInfosFetchDataResultAction action) => new ProductInfosState(isLoading: false, productInfos: action.ProductInfos);
         #endregion ProductInfosFetchData
+
+        #region ProductInfoDetailsFetchData
+        [ReducerMethod]
+        public static ProductInfosState ReduceProductInfoDetailsFetchDataAction(ProductInfosState state, ProductInfoDetailsFetchDataAction action) => new ProductInfosState(productInfos: state.ProductInfos, productInfo: state.ProductInfos.FirstOrDefault(p => p.code == action.ProductInfoCode));
+        #endregion
     }
 }
