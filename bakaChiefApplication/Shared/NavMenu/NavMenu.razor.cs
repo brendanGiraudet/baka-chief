@@ -1,7 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
-namespace bakaChiefApplication.Shared
+namespace bakaChiefApplication.Shared.NavMenu
 {
     public partial class NavMenu
     {
