@@ -2,13 +2,13 @@
 
 namespace bakaChiefApplication.Store.Recips.Actions
 {
-    public class AddSelectedIngredientAction
+    public class AddSelectedProductInfoAction
     {
-        public Models.RecipIngredient RecipIngredient { get; }
+        public Models.RecipProductInfo RecipProductInfo { get; }
 
-        public AddSelectedIngredientAction(RecipIngredient recipIngredient)
+        public AddSelectedProductInfoAction(RecipProductInfo recipProductInfo)
         {
-            RecipIngredient = recipIngredient;
+            RecipProductInfo = recipProductInfo;
         }
     }
 }

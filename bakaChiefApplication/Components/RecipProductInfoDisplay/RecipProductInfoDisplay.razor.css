@@ -1,4 +1,4 @@
-﻿.recipingredient {
+﻿.recip-productInfo {
     border: 1px solid black;
     border-radius: 0.75rem;
 }
@@ -10,7 +10,7 @@
 }
 
 
-.ingredient-name{
+.productinfo-name{
     margin:1rem;
     display:flex;
     justify-content:center;

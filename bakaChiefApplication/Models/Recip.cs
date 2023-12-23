@@ -20,10 +20,10 @@ namespace bakaChiefApplication.Models
         [Required]
         public string? ImageFilePath { get; set; }
 
-        [JsonPropertyName("recipIngredients")]
+        [JsonPropertyName("RecipProductInfos")]
         [Required]
         [MinLength(1)]
-        public RecipIngredient[] RecipIngredients { get; set; } = Array.Empty<RecipIngredient>();
+        public RecipProductInfo[] RecipProductInfos { get; set; } = Array.Empty<RecipProductInfo>();
 
         [JsonPropertyName("recipSteps")]
         [Required]

@@ -71,17 +71,17 @@ namespace bakaChiefApplication.Store.Recips
 
         #region SelectedIngredient
         [ReducerMethod]
-        public static RecipsState ReduceAddSelectedIngredientAction(RecipsState state, AddSelectedIngredientAction action)
+        public static RecipsState ReduceAddSelectedIngredientAction(RecipsState state, AddSelectedProductInfoAction action)
         {
-            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Append(action.RecipIngredient).ToArray();
+            state.Recip.RecipProductInfos = state.Recip.RecipProductInfos.Append(action.RecipProductInfo).ToArray();
 
             return new RecipsState(recips: state.Recips, recip: state.Recip);
         }
 
         [ReducerMethod]
-        public static RecipsState ReduceRemoveSelectedIngredientAction(RecipsState state, RemoveSelectedIngredientAction action)
+        public static RecipsState ReduceRemoveSelectedIngredientAction(RecipsState state, RemoveSelectedProductInfoAction action)
         {
-            state.Recip.RecipIngredients = state.Recip.RecipIngredients.Where(i => i.Id != action.RecipIngredient.Id).ToArray();
+            state.Recip.RecipProductInfos = state.Recip.RecipProductInfos.Where(i => i.Id != action.RecipProductInfo.Id).ToArray();
 
             return new RecipsState(recips: state.Recips, recip: state.Recip);
         }

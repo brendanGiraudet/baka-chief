@@ -1,6 +1,6 @@
 ﻿@using bakaChiefApplication.Constants;
 
-<div class="recipingredient">
+<div class="recip-productInfo">
     @if (IsAddable)
     {
         <div class="add-icon" @onclick="Onclick"><Icon IconSvgEnum="Enums.Icon.PlusSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Success" /></div>
@@ -11,9 +11,9 @@
         <div class="remove-icon" @onclick="Onclick"><Icon IconSvgEnum="Enums.Icon.CrossSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Error" /></div>
     }
 
-    @* Ingredient *@
-    <div class="ingredient-name">
-        <span>@IngredientName</span>
+    @* Product Info *@
+    <div class="productinfo-name">
+        <span>@ProductInfoName</span>
     </div>
 
     <div class="quantity-measureunit">

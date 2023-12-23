@@ -1,7 +1,5 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
-using bakaChiefApplication.Services.IngredientsService;
-using bakaChiefApplication.Services.NutrimentsService;
 using bakaChiefApplication.Services.ProductInfosService;
 using bakaChiefApplication.Services.RecipsService;
 
@@ -11,8 +9,6 @@ namespace bakaChiefApplication.Extensions
     {
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddTransient<INutrimentsService, NutrimentsService>();
-            services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IRecipsService, RecipsService>();
             services.AddTransient<IProductInfosService, ProductInfosService>();
         }

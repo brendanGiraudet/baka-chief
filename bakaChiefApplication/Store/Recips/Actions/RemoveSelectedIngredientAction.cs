@@ -2,13 +2,13 @@
 
 namespace bakaChiefApplication.Store.Recips.Actions
 {
-    public class RemoveSelectedIngredientAction
+    public class RemoveSelectedProductInfoAction
     {
-        public Models.RecipIngredient RecipIngredient { get; }
+        public Models.RecipProductInfo RecipProductInfo { get; }
 
-        public RemoveSelectedIngredientAction(RecipIngredient recipIngredient)
+        public RemoveSelectedProductInfoAction(RecipProductInfo recipProductInfo)
         {
-            RecipIngredient = recipIngredient;
+            RecipProductInfo = recipProductInfo;
         }
     }
 }

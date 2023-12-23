@@ -3,14 +3,14 @@ using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Models
 {
-    public class RecipIngredient
+    public class RecipProductInfo
     {
         [JsonPropertyName("id")]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [JsonPropertyName("ingredient")]
+        [JsonPropertyName("productInfo")]
         [Required]
-        public Ingredient Ingredient { get; set; }
+        public ProductInfo ProductInfo { get; set; }
 
         [JsonPropertyName("quantity")]
         [Required]

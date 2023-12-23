@@ -25,27 +25,27 @@
                 @* ImageFilePath *@
                 <CustomInputText Label="Image" @bind-Value="@RecipsState.Value.Recip.ImageFilePath" />
 
-                <h3>Ingredients</h3>
-                <ValidationMessage For="() => RecipsState.Value.Recip.RecipIngredients" />
+                <h3>Product infos</h3>
+                <ValidationMessage For="() => RecipsState.Value.Recip.RecipProductInfos" />
 
-                <div class="selected-ingredient">
-                    @if (RecipsState.Value.Recip.RecipIngredients != null)
+                <div class="selected-productInfo">
+                    @if (RecipsState.Value.Recip.RecipProductInfos != null)
                     {
-                        foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
+                        foreach (var recipProductInfo in RecipsState.Value.Recip.RecipProductInfos)
                         {
-                            <RecipIngredientDisplay IngredientName="@recipIngredient.Ingredient.Name" Quantity="@recipIngredient.Quantity" MeasureUnit="@recipIngredient.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedIngredient(recipIngredient))" />
+                            <RecipProductInfoDisplay ProductInfoName="@recipProductInfo.ProductInfo.product_name" Quantity="@recipProductInfo.Quantity" MeasureUnit="@recipProductInfo.MeasureUnit" IsRemovable="true" OnclickCallback="@( async () => await RemoveSelectedProductInfo(recipProductInfo))" />
                         }
                     }
                 </div>
 
-                <div class="ingredients">
-                    @if (IngredientState.Value.Ingredients != null)
+                <div class="productInfos">
+                    @if (ProductInfosState.Value.ProductInfos != null)
                     {
-                        var ingredients = IngredientState.Value.Ingredients.Where(n => !RecipsState.Value.Recip.RecipIngredients?.Any(s => s.Ingredient.Id == n.Id) ?? false);
+                        var ProductInfos = ProductInfosState.Value.ProductInfos.Where(n => !RecipsState.Value.Recip.RecipProductInfos?.Any(s => s.ProductInfo.code == n.code) ?? false);
 
-                        foreach (var ingredient in ingredients)
+                        foreach (var ProductInfo in ProductInfos)
                         {
-                            <RecipIngredientDisplay IngredientName="@ingredient.Name" @bind-Quantity="@RecipIngredientModel.Quantity" @bind-MeasureUnit="@RecipIngredientModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedIngredient(ingredient))" />
+                            <RecipProductInfoDisplay ProductInfoName="@ProductInfo.product_name" @bind-Quantity="@RecipProductInfoModel.Quantity" @bind-MeasureUnit="@RecipProductInfoModel.MeasureUnit" IsAddable="true" OnclickCallback="@( async () => await AddSelectedProductInfo(ProductInfo))" />
                         }
                     }
                 </div>

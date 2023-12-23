@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System.Linq.Expressions;
 
-namespace bakaChiefApplication.Components.RecipIngredientDisplay
+namespace bakaChiefApplication.Components.RecipProductInfoDisplay
 {
-    public partial class RecipIngredientDisplay
+    public partial class RecipProductInfoDisplay
     {
         private bool _hasInitializedParameters;
 
@@ -13,7 +13,7 @@ namespace bakaChiefApplication.Components.RecipIngredientDisplay
 
         public EditContext EditContext { get; set; }
 
-        [Parameter] public string IngredientName { get; set; }
+        [Parameter] public string ProductInfoName { get; set; }
 
         [Parameter] public int? Quantity { get; set; }
         [Parameter] public EventCallback<int?> QuantityChanged { get; set; }

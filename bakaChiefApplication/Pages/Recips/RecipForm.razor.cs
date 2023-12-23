@@ -1,8 +1,7 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Models;
-using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
+using bakaChiefApplication.Store.ProductInfos;
 using bakaChiefApplication.Store.Recips;
 using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
@@ -16,15 +15,15 @@ namespace bakaChiefApplication.Pages.Recips
 
         [Inject] public IState<RecipsState> RecipsState { get; set; }
         
-        [Inject] public IState<IngredientsState> IngredientState { get; set; }
-
+        [Inject] public IState<ProductInfosState> ProductInfosState { get; set; }
+        
         [Inject] public NavigationManager NavigationManager { get; set; }
 
         [Parameter] public string Action { get; set; }
 
         [Parameter] public string? RecipId { get; set; }
 
-        public RecipIngredient RecipIngredientModel { get; set; } = new();
+        public RecipProductInfo RecipProductInfoModel { get; set; } = new();
 
         public RecipStep RecipStepModel { get; set; } = new();
 
@@ -35,7 +34,6 @@ namespace bakaChiefApplication.Pages.Recips
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            Dispatcher.Dispatch(new IngredientsFetchDataAction());
 
             switch (FormMode)
             {
@@ -62,16 +60,16 @@ namespace bakaChiefApplication.Pages.Recips
             NavigationManager.NavigateTo(PagesUrl.RecipsUrl);
         }
 
-        private async Task RemoveSelectedIngredient(RecipIngredient recipIngredient)
+        private async Task RemoveSelectedProductInfo(RecipProductInfo recipProductInfo)
         {
-            Dispatcher.Dispatch(new RemoveSelectedIngredientAction(recipIngredient));
+            Dispatcher.Dispatch(new RemoveSelectedProductInfoAction(recipProductInfo));
         }
 
-        private async Task AddSelectedIngredient(Ingredient ingredient)
+        private async Task AddSelectedProductInfo(ProductInfo productInfo)
         {
-            RecipIngredientModel.Ingredient = ingredient;
-            Dispatcher.Dispatch(new AddSelectedIngredientAction(RecipIngredientModel));
-            RecipIngredientModel = new();
+            RecipProductInfoModel.ProductInfo = productInfo;
+            Dispatcher.Dispatch(new AddSelectedProductInfoAction(RecipProductInfoModel));
+            RecipProductInfoModel = new();
         }
 
         private async Task RemoveSelectedStep(RecipStep recipStep)
