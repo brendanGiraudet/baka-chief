@@ -11,7 +11,7 @@ image:
   pullPolicy: Always
   # pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.1.0"
+  tag: "1.1.1"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -35,11 +35,18 @@ securityContext: {}
 volumeMounts:
   - mountPath: /https/
     name: certificate
+    
+  - mountPath: /etc/nginx/
+    name: nginx
 
 volumes:
   - name: certificate
     persistentVolumeClaim:
       claimName: baka-chief-certificate-claim
+      
+  - name: nginx
+    persistentVolumeClaim:
+      claimName: baka-chief-nginx-claim
 
 service:
   type: NodePort

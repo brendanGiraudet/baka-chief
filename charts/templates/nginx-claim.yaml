@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: baka-chief-nginx-claim
+  name: baka-chief-nginx-claim
+  namespace: {{ .Values.applicationName }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Mi
+  storageClassName: ""
+  volumeMode: Filesystem
+  volumeName: baka-chief-nginx-volume
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 50Mi
+  phase: Bound
