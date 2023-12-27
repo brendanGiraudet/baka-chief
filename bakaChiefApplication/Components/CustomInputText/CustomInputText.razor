@@ -1,13 +1,18 @@
 ﻿@inherits InputText
 
 <div class="input">
-    
-    <InputText Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" placeholder @attributes="AdditionalAttributes" />
-    
+
+    <InputText Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" placeholder
+        @attributes="AdditionalAttributes" />
+
     <label>@Label</label>
 
-    @foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+    @if (EditContext != null)
     {
-        <div class="validation-message">@message</div>
+        foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+        {
+            <div class="validation-message">@message</div>
+        }
     }
+
 </div>

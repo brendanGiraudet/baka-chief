@@ -9,6 +9,10 @@
 }
 else
 {
+    <div>
+        <CustomInputSearch OnInputCallback="UpdateProductInfoSearchTerm" @bind-Value="searchTerm" />
+    </div>
+
     if (ProductInfosState.Value.ProductInfos == null || ProductInfosState.Value.ProductInfos.Count() == 0)
     {
         <div>vide</div>
@@ -19,7 +23,8 @@ else
             @foreach (var product in ProductInfosState.Value.ProductInfos)
             {
                 <div>
-                    <Card Title="@product.product_name" OnClickCallback="() => NavigationManager.NavigateTo(PagesUrl.GetProductDetailsUrl(product.code))">
+                    <Card Title="@product.product_name"
+                        OnClickCallback="() => NavigationManager.NavigateTo(PagesUrl.GetProductDetailsUrl(product.code))">
                         <Content>
                             <div>
 

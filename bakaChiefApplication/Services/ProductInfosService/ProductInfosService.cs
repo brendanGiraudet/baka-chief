@@ -20,6 +20,13 @@ public class ProductInfosService : IProductInfosService
 
         return response.Values;
     }
+    
+    public async Task<IEnumerable<ProductInfo>> GetProductsByNameAsync(string name)
+    {
+        var response = await _httpClient.GetFromJsonAsync<ProductInfoResult>(ProductInfosApiEndpoints.GetProductInfosByNameUrl(10, 0, name));
+
+        return response.Values;
+    }
 }
 public class ProductInfoResult
 {

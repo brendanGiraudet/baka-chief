@@ -7,18 +7,28 @@ namespace bakaChiefApplication.Store.ProductInfos
     public class ProductInfosState
     {
         public bool IsLoading { get; }
-        
+
         public IEnumerable<ProductInfo> ProductInfos { get; }
 
-        public ProductInfo CurrentProductInfo { get; }
+        public ProductInfo? CurrentProductInfo { get; }
 
-        private ProductInfosState() { }
+        public string? ProductInfoSearchTerm { get; }
 
-        public ProductInfosState(bool? isLoading = null, IEnumerable<ProductInfo>? productInfos = null, ProductInfo productInfo = null)
+        private ProductInfosState()
         {
-            IsLoading = isLoading ?? false;
-            ProductInfos = productInfos ?? Enumerable.Empty<ProductInfo>();
-            CurrentProductInfo = productInfo;
+            IsLoading = false;
+            ProductInfos = Enumerable.Empty<ProductInfo>();
+        }
+
+        public ProductInfosState(ProductInfosState? currentState = null,  bool? isLoading = null, IEnumerable<ProductInfo>? productInfos = null, ProductInfo? currentProductInfo = null, string? productInfoSearchTerm = null)
+        {
+            IsLoading = isLoading != null ? isLoading.Value : currentState != null ? currentState.IsLoading : false;
+            
+            ProductInfos = productInfos != null ? productInfos : currentState != null ? currentState.ProductInfos : Enumerable.Empty<ProductInfo>();
+            
+            CurrentProductInfo = currentProductInfo != null ? currentProductInfo : currentState != null ? currentState.CurrentProductInfo : null;
+            
+            ProductInfoSearchTerm = productInfoSearchTerm != null ? productInfoSearchTerm : currentState != null ? currentState.ProductInfoSearchTerm : null;
         }
     }
 }

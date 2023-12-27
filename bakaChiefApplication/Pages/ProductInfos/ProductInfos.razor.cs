@@ -13,9 +13,18 @@ public partial class ProductInfos
 
     [Inject] public NavigationManager NavigationManager { get; set; }
 
+    private string searchTerm;
+
+    private void UpdateProductInfoSearchTerm(string name)
+    {
+        Dispatcher.Dispatch(new ProductInfoSearchByNameFetchDataAction(name));
+        Dispatcher.Dispatch(new UpdateProductInfoSearchTermAction(name));
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Dispatcher.Dispatch(new ProductInfosFetchDataAction());
+        searchTerm = ProductInfosState.Value.ProductInfoSearchTerm;
+        Dispatcher.Dispatch(new ProductInfoSearchByNameFetchDataAction(ProductInfosState.Value.ProductInfoSearchTerm));
     }
 }

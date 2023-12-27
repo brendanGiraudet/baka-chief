@@ -20,5 +20,13 @@ namespace bakaChiefApplication.Store.ProductInfos
 
             dispatcher.Dispatch(new ProductInfosFetchDataResultAction(products));
         }
+        
+        [EffectMethod]
+        public async Task HandleProductInfoSearchByNameFetchDataAction(ProductInfoSearchByNameFetchDataAction action, IDispatcher dispatcher)
+        {
+            var products = await _productInfosService.GetProductsByNameAsync(action.ProductInfoName);
+
+            dispatcher.Dispatch(new ProductInfoSearchByNameFetchDataResultAction(products));
+        }
     }
 }
