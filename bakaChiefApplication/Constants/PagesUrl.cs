@@ -8,6 +8,11 @@ namespace bakaChiefApplication.Constants
         public static string NutrimentsPathUrl => "/nutriments";
         public static string GetNutrimentFormUrl(FormMode formMode) => $"{NutrimentsPathUrl}/{formMode}";
         #endregion
+        
+        #region Ingredients
+        public static string IngredientsPathUrl => "/ingredients";
+        public static string GetIngredientFormUrl(FormMode formMode, string? ingredientId = null) => ingredientId == null ? $"{IngredientsPathUrl}/{formMode}" : $"{IngredientsPathUrl}/{formMode}/{ingredientId}";
+        #endregion
 
         public static string GetRecipFormUrl(FormMode formMode, string? recipId = null) => recipId != null ? $"/recips/{formMode}/{recipId}" : $"/recips/{formMode}";
 

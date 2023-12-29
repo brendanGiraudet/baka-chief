@@ -16,16 +16,16 @@ public class NutrimentsService : INutrimentsService
 
     public async Task<IEnumerable<Nutriment>> GetNutrimentsAsync()
     {
-        var response = await _httpClient.GetFromJsonAsync<NutrimentResult>(NutrimentsApiEndpoints.GetNutrimentsPathUrl(10, 0));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsPathUrl(10, 0));
 
-        return response.Values;
+        return response.Value;
     }
     
     public async Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name)
     {
-        var response = await _httpClient.GetFromJsonAsync<NutrimentResult>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(10, 0, name));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(10, 0, name));
 
-        return response.Values;
+        return response.Value;
     }
     
     public async Task<MethodResult<Nutriment>> CreateNutrimentAsync(Nutriment nutriment)

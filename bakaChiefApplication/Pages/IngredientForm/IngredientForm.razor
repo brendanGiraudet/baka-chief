@@ -1,0 +1,26 @@
+﻿@page "/ingredients/{Action}/{Id}"
+@page "/ingredients/{Action}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Ingredient form</h3>
+
+<EditForm Model="IngredientsState.Value.Ingredient" OnValidSubmit="@SaveIngredient">
+    <DataAnnotationsValidator />
+
+    @* Name *@
+    <CustomInputText Label="Name" @bind-Value="@IngredientsState.Value.Ingredient.Name" />
+    
+    @* ImageUrl *@
+    <CustomInputText Label="ImageUrl" @bind-Value="@IngredientsState.Value.Ingredient.ImageUrl" />
+    
+    @* KcalNumber *@
+    @* <CustomInputNumber Label="KcalNumber" @bind-Value="@IngredientsState.Value.Ingredient.KcalNumber" /> *@
+
+    @* Submit *@
+    <div>
+        <Button Type="submit" Text="Submit" />
+    </div>
+
+</EditForm>
+
+<Button Type="button" Text="return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />

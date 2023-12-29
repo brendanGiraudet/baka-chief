@@ -1,5 +1,6 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
+using bakaChiefApplication.Services.IngredientsService;
 using bakaChiefApplication.Services.NutrimentsService;
 using bakaChiefApplication.Services.ProductInfosService;
 using bakaChiefApplication.Services.RecipsService;
@@ -13,6 +14,7 @@ namespace bakaChiefApplication.Extensions
             services.AddTransient<IRecipsService, RecipsService>();
             services.AddTransient<IProductInfosService, ProductInfosService>();
             services.AddTransient<INutrimentsService, NutrimentsService>();
+            services.AddTransient<IIngredientsService, IngredientsService >();
         }
 
         public static void AddNamedHttpClient(this IServiceCollection services, IConfiguration configuration)
