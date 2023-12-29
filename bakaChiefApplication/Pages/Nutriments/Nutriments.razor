@@ -1,0 +1,31 @@
+﻿@page "/nutriments"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Nutriments</h3>
+
+@if (NutrimentsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+        <CustomInputSearch OnInputCallback="UpdateNutrimentSearchTerm" @bind-Value="searchTerm" />
+    </div>
+
+    if (NutrimentsState.Value.Nutriments == null || NutrimentsState.Value.Nutriments.Count() == 0)
+    {
+        <div>vide</div>
+    }
+    else
+    {
+        <div class="nutriments">
+            @foreach (var nutriment in NutrimentsState.Value.Nutriments)
+            {
+                <div>
+                    <Tag Content="@nutriment.Name" />
+                </div>
+            }
+        </div>
+    }
+}
