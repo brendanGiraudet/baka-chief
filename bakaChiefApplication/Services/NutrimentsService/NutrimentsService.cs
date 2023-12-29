@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Text.Json.Serialization;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
 using bakaChiefApplication.Models;
@@ -40,12 +39,16 @@ public class NutrimentsService : INutrimentsService
 
         return MethodResultBuilder<Nutriment>.CreateSuccessMethodResult(nutriment);
     }
-}
-public class NutrimentResult
-{
-    [JsonPropertyName("@data.context")]
-    public string Context { get; set; } = string.Empty;
+    
+    public async Task<MethodResult<string>> RemoveNutrimentAsync(string nutrimentIdToRemove)
+    {
+        var response = await _httpClient.DeleteAsync(NutrimentsApiEndpoints.RemoveNutrimentPathUrl(nutrimentIdToRemove));
 
-    [JsonPropertyName("value")]
-    public IEnumerable<Nutriment> Values { get; set; } = Enumerable.Empty<Nutriment>();
+        if(!response.IsSuccessStatusCode)
+        {
+            return MethodResultBuilder<string>.CreateFailedMethodResult("Delete Problem");
+        }
+
+        return MethodResultBuilder<string>.CreateSuccessMethodResult(nutrimentIdToRemove);
+    }
 }

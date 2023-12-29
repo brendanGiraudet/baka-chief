@@ -23,4 +23,12 @@ public static class NutrimentsReducer
     [ReducerMethod]
     public static NutrimentsState ReduceCreateNutrimentSucceedAction(NutrimentsState state, CreateNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Append(action.CreatedNutriment), nutriment: new());
     #endregion
+    
+    #region RemoveNutriment
+    [ReducerMethod(typeof(RemoveNutrimentAction))]
+    public static NutrimentsState ReduceRemoveNutrimentAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceRemoveNutrimentSucceedAction(NutrimentsState state, RemoveNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Where(n => n.Id != action.RemovedNutrimentId));
+    #endregion
 }

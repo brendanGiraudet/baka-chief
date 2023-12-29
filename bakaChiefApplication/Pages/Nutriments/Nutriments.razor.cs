@@ -36,4 +36,9 @@ public partial class Nutriments
     {
         NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode));
     }
+
+    private void RemoveNutriment(string id)
+    {
+        Dispatcher.Dispatch(new RemoveNutrimentAction(id));
+    }
 }

@@ -24,4 +24,11 @@ public interface INutrimentsService
     /// <param name="nutriment">Nutriment info</param>
     /// <returns></returns>
     Task<MethodResult<Nutriment>> CreateNutrimentAsync(Nutriment nutriment);
+    
+    /// <summary>
+    /// Delete specific nutriment
+    /// </summary>
+    /// <param name="nutrimentIdToRemove"></param>
+    /// <returns></returns>
+    Task<MethodResult<string>> RemoveNutrimentAsync(string nutrimentIdToRemove);
 }

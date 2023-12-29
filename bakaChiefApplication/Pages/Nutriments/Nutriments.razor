@@ -24,9 +24,7 @@ else
         <div class="nutriments">
             @foreach (var nutriment in NutrimentsState.Value.Nutriments)
             {
-                <div>
-                    <Tag Content="@nutriment.Name" />
-                </div>
+                <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(() => RemoveNutriment(nutriment.Id))" />
             }
         </div>
     }

@@ -33,4 +33,17 @@ public class NutrimentsEffect
 
         dispatcher.Dispatch(new CreateNutrimentSucceedAction(createNutrimentResult.Value!));
     }
+    
+    [EffectMethod]
+    public async Task HandleRemoveNutrimentAction(RemoveNutrimentAction action, IDispatcher dispatcher)
+    {
+        var removedNutrimentResult = await _nutrimentsService.RemoveNutrimentAsync(action.NutrimentIdToRemove);
+
+        if(!removedNutrimentResult.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new RemoveNutrimentSucceedAction(removedNutrimentResult.Value!));
+    }
 }
