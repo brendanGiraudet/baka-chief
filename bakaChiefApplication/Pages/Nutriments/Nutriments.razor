@@ -9,6 +9,8 @@
 }
 else
 {
+    <AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
+
     <div>
         <CustomInputSearch OnInputCallback="UpdateNutrimentSearchTerm" @bind-Value="searchTerm" />
     </div>

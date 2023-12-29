@@ -2,9 +2,11 @@ namespace bakaChiefApplication.Constants;
 
 public static class NutrimentsApiEndpoints
 {
-    public const string BasePath = "/odata/Nutriments";
+    public const string BasePathUrl = "/odata/Nutriments";
 
-    public static string GetNutrimentsUrl(int top, int skip) => $"{BasePath}?$top={top}&$skip={skip}&$orderby=name";
+    public static string GetNutrimentsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetNutrimentsByNameUrl(int top, int skip, string name) => $"{GetNutrimentsUrl(top,skip)}&$filter=startswith(name, '{name}') eq true";
+    public static string GetNutrimentsByNamePathUrl(int top, int skip, string name) => $"{GetNutrimentsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true";
+
+    public static string CreateNutrimentPathUrl => BasePathUrl;
 }

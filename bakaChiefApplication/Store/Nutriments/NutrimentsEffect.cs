@@ -20,4 +20,17 @@ public class NutrimentsEffect
 
         dispatcher.Dispatch(new NutrimentSearchByNameResultAction(nutriments));
     }
+    
+    [EffectMethod]
+    public async Task HandleCreateNutrimentAction(CreateNutrimentAction action, IDispatcher dispatcher)
+    {
+        var createNutrimentResult = await _nutrimentsService.CreateNutrimentAsync(action.NutrimentToCreate);
+
+        if(!createNutrimentResult.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new CreateNutrimentSucceedAction(createNutrimentResult.Value!));
+    }
 }

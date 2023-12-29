@@ -1,4 +1,6 @@
-﻿using bakaChiefApplication.Store.Nutriments;
+﻿using bakaChiefApplication.Constants;
+using bakaChiefApplication.Enums;
+using bakaChiefApplication.Store.Nutriments;
 using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
@@ -28,5 +30,10 @@ public partial class Nutriments
         searchTerm = NutrimentsState.Value.NutrimentSearchTerm;// Keep search value in the input field after navigation
 
         Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm));
+    }
+
+    private async Task RedirectToNutrimentForm(FormMode formMode)
+    {
+        NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode));
     }
 }

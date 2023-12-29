@@ -9,6 +9,8 @@ namespace bakaChiefApplication.Store.Nutriments
         public bool IsLoading { get; }
 
         public IEnumerable<Nutriment> Nutriments { get; }
+        
+        public Nutriment Nutriment { get; }
 
         public string? NutrimentSearchTerm { get; }
 
@@ -16,15 +18,18 @@ namespace bakaChiefApplication.Store.Nutriments
         {
             IsLoading = false;
             Nutriments = Enumerable.Empty<Nutriment>();
+            Nutriment = new();
         }
 
-        public NutrimentsState(NutrimentsState? currentState = null,  bool? isLoading = null, IEnumerable<Nutriment>? nutriments = null, string? nutrimentSearchTerm = null)
+        public NutrimentsState(NutrimentsState? currentState = null,  bool? isLoading = null, IEnumerable<Nutriment>? nutriments = null, string? nutrimentSearchTerm = null, Nutriment? nutriment = null)
         {
             IsLoading = isLoading != null ? isLoading.Value : currentState != null ? currentState.IsLoading : false;
             
             Nutriments = nutriments != null ? nutriments : currentState != null ? currentState.Nutriments : Enumerable.Empty<Nutriment>();
             
             NutrimentSearchTerm = nutrimentSearchTerm != null ? nutrimentSearchTerm : currentState != null ? currentState.NutrimentSearchTerm : null;
+            
+            Nutriment = nutriment != null ? nutriment : currentState != null ? currentState.Nutriment : new();
         }
     }
 }

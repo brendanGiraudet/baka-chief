@@ -1,0 +1,19 @@
+﻿@page "/nutriments/{Action}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Nutriment form</h3>
+
+<EditForm Model="NutrimentsState.Value.Nutriment" OnValidSubmit="@SaveNutriment">
+    <DataAnnotationsValidator />
+
+    @* Name *@
+    <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
+
+    @* Submit *@
+    <div>
+        <Button Type="submit" Text="Submit" />
+    </div>
+
+</EditForm>
+
+<Button Type="button" Text="return" OnClickCallback="@(async () => await RedirectToNutrimentsPage())" />
