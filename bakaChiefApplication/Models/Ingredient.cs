@@ -12,6 +12,7 @@ public class Ingredient
     [Required]
     public string ImageUrl { get; set; } = string.Empty;
 
+    [Range(1,9999)]
     public double KcalNumber { get; set; }
 
     public HashSet<Nutriment> Nutriments { get; set; } = new();
