@@ -11,4 +11,6 @@ public static class IngredientsApiEndpoints
     public static string CreateIngredientPathUrl => BasePathUrl;
     
     public static string RemoveIngredientPathUrl(string id) => $"{BasePathUrl}/{id}";
+    
+    public static string UpdateIngredientPathUrl(string id) => $"{BasePathUrl}/{id}";
 }

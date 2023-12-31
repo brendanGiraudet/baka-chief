@@ -31,4 +31,11 @@ public interface IIngredientsService
     /// <param name="ingredientIdToRemove"></param>
     /// <returns></returns>
     Task<MethodResult<string>> RemoveIngredientAsync(string ingredientIdToRemove);
+    
+    /// <summary>
+    /// Update an ingredient
+    /// </summary>
+    /// <param name="ingredientToUpdate"></param>
+    /// <returns></returns>
+    Task<MethodResult<Ingredient>>UpdateIngredientAsync(Ingredient ingredientToUpdate);
 }

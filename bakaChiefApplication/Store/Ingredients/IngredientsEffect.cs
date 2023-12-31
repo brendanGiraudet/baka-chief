@@ -46,4 +46,17 @@ public class IngredientsEffect
 
         dispatcher.Dispatch(new RemoveIngredientSucceedAction(removedIngredientResult.Value!));
     }
+
+    [EffectMethod]
+    public async Task HandleUpdateIngredientAction(UpdateIngredientAction action, IDispatcher dispatcher)
+    {
+        var updatedIngredientResult = await _ingredientsService.UpdateIngredientAsync(action.IngredientToUpdate);
+
+        if(!updatedIngredientResult.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new UpdateIngredientSucceedAction(updatedIngredientResult.Value!));
+    }
 }

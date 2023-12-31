@@ -20,35 +20,47 @@ public class IngredientsService : IIngredientsService
 
         return response.Value;
     }
-    
+
     public async Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name)
     {
         var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(10, 0, name));
-        
+
         return response.Value;
     }
-    
-    public async Task<MethodResult<Ingredient>> CreateIngredientAsync(Ingredient Ingredient)
-    {
-        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, Ingredient);
 
-        if(!response.IsSuccessStatusCode)
+    public async Task<MethodResult<Ingredient>> CreateIngredientAsync(Ingredient ingredient)
+    {
+        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, ingredient);
+
+        if (!response.IsSuccessStatusCode)
         {
             return MethodResultBuilder<Ingredient>.CreateFailedMethodResult("Creation Problem");
         }
 
-        return MethodResultBuilder<Ingredient>.CreateSuccessMethodResult(Ingredient);
+        return MethodResultBuilder<Ingredient>.CreateSuccessMethodResult(ingredient);
     }
-    
+
     public async Task<MethodResult<string>> RemoveIngredientAsync(string IngredientIdToRemove)
     {
         var response = await _httpClient.DeleteAsync(IngredientsApiEndpoints.RemoveIngredientPathUrl(IngredientIdToRemove));
 
-        if(!response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
             return MethodResultBuilder<string>.CreateFailedMethodResult("Delete Problem");
         }
 
         return MethodResultBuilder<string>.CreateSuccessMethodResult(IngredientIdToRemove);
+    }
+
+    public async Task<MethodResult<Ingredient>> UpdateIngredientAsync(Ingredient ingredientToUpdate)
+    {
+        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(ingredientToUpdate.Id), ingredientToUpdate);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return MethodResultBuilder<Ingredient>.CreateFailedMethodResult("Update Problem");
+        }
+
+        return MethodResultBuilder<Ingredient>.CreateSuccessMethodResult(ingredientToUpdate);
     }
 }

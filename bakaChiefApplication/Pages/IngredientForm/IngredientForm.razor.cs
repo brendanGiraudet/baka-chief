@@ -21,6 +21,18 @@ public partial class IngredientForm
 
     public FormMode FormMode => (FormMode)Enum.Parse(typeof(FormMode), Action);
 
+     protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            switch (FormMode)
+            {
+                case FormMode.Update:
+                    Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
+                    break;
+            }
+        }
+
     private async Task RedirectToIngredientsPage()
     {
         NavigationManager.NavigateTo(PagesUrl.IngredientsPathUrl);
@@ -32,6 +44,10 @@ public partial class IngredientForm
         {
             case FormMode.Creation:
                 Dispatcher.Dispatch(new CreateIngredientAction(IngredientsState.Value.Ingredient));
+                break;
+                
+            case FormMode.Update:
+                Dispatcher.Dispatch(new UpdateIngredientAction(IngredientsState.Value.Ingredient));
                 break;
             default:
                 break;
