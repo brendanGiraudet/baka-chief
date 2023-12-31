@@ -9,10 +9,10 @@
 
     @* Name *@
     <CustomInputText Label="Name" @bind-Value="@IngredientsState.Value.Ingredient.Name" />
-    
+
     @* ImageUrl *@
     <CustomInputText Label="ImageUrl" @bind-Value="@IngredientsState.Value.Ingredient.ImageUrl" />
-    
+
     @* KcalNumber *@
     <CustomInputNumber Label="KcalNumber" @bind-Value="@IngredientsState.Value.Ingredient.KcalNumber" />
 
@@ -23,4 +23,9 @@
 
 </EditForm>
 
-<Button Type="button" Text="return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />
+@if (CanDelete)
+{
+    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient())" />
+}
+
+<Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />

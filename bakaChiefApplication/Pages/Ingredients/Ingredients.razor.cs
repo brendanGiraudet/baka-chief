@@ -29,7 +29,8 @@ public partial class Ingredients
 
         searchTerm = IngredientsState.Value.IngredientSearchTerm;// Keep search value in the input field after navigation
 
-        Dispatcher.Dispatch(new IngredientSearchByNameAction(IngredientsState.Value.IngredientSearchTerm));
+        if(IngredientsState.Value.NeedToReload ?? true)
+            Dispatcher.Dispatch(new IngredientSearchByNameAction(IngredientsState.Value.IngredientSearchTerm));
     }
 
     private async Task RedirectToIngredientForm(FormMode formMode, string? ingredientId = null)

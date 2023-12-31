@@ -13,6 +13,8 @@ namespace bakaChiefApplication.Store.Ingredients
         public Ingredient Ingredient { get; }
 
         public string? IngredientSearchTerm { get; }
+        
+        public bool? NeedToReload { get; }
 
         private IngredientsState()
         {
@@ -21,7 +23,7 @@ namespace bakaChiefApplication.Store.Ingredients
             Ingredient = new();
         }
 
-        public IngredientsState(IngredientsState? currentState = null,  bool? isLoading = null, IEnumerable<Ingredient>? ingredients = null, string? ingredientSearchTerm = null, Ingredient? ingredient = null)
+        public IngredientsState(IngredientsState? currentState = null,  bool? isLoading = null, IEnumerable<Ingredient>? ingredients = null, string? ingredientSearchTerm = null, Ingredient? ingredient = null, bool? needToReload = null)
         {
             IsLoading = isLoading != null ? isLoading.Value : currentState != null ? currentState.IsLoading : false;
             
@@ -30,6 +32,8 @@ namespace bakaChiefApplication.Store.Ingredients
             IngredientSearchTerm = ingredientSearchTerm != null ? ingredientSearchTerm : currentState != null ? currentState.IngredientSearchTerm : null;
             
             Ingredient = ingredient != null ? ingredient : currentState != null ? currentState.Ingredient : new();
+            
+            NeedToReload = needToReload != null ? needToReload : currentState != null ? currentState.NeedToReload : true;
         }
     }
 }

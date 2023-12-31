@@ -20,6 +20,8 @@ public partial class IngredientForm
     [Parameter] public string Id { get; set; }
 
     public FormMode FormMode => (FormMode)Enum.Parse(typeof(FormMode), Action);
+    
+    public bool CanDelete => FormMode == FormMode.Update;
 
      protected override void OnInitialized()
         {
@@ -52,6 +54,13 @@ public partial class IngredientForm
             default:
                 break;
         }
+
+        NavigationManager.NavigateTo(PagesUrl.IngredientsPathUrl);
+    }
+
+    private async Task RemoveIngredient()
+    {
+        Dispatcher.Dispatch(new RemoveIngredientAction(IngredientsState.Value.Ingredient.Id));
 
         NavigationManager.NavigateTo(PagesUrl.IngredientsPathUrl);
     }
