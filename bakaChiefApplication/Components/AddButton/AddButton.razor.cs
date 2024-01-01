@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace bakaChiefApplication.Components.Button
+namespace bakaChiefApplication.Components.AddButton
 {
     public partial class AddButton
     {
