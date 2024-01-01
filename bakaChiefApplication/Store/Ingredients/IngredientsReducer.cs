@@ -48,4 +48,23 @@ public static class IngredientsReducer
         return new IngredientsState(currentState: state, isLoading: false, ingredients: ingredients, ingredient: new(), needToReload: false);
     }
     #endregion
+
+    [ReducerMethod]
+    public static IngredientsState ReduceAppendNutrimentIntoIngredientAction(IngredientsState state, AppendNutrimentIntoIngredientAction action)
+    {
+        var ingredient = state.Ingredient;
+        ingredient.Nutriments = ingredient.Nutriments.Append(action.SelectedNutriment).ToHashSet();
+
+        return new IngredientsState(currentState: state, ingredient: ingredient);
+    }
+    
+    [ReducerMethod]
+    public static IngredientsState ReduceRemoveNutrimentIntoIngredientAction(IngredientsState state, RemoveNutrimentIntoIngredientAction action)
+    {
+        var ingredient = state.Ingredient;
+        ingredient.Nutriments = ingredient.Nutriments.Where(n => n.Id != action.RemovedNutriment.Id).ToHashSet();
+
+        return new IngredientsState(currentState: state, ingredient: ingredient);
+    }
+
 }

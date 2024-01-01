@@ -1,7 +1,10 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.Ingredients;
 using bakaChiefApplication.Store.Ingredients.Actions;
+using bakaChiefApplication.Store.Nutriments;
+using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -14,6 +17,8 @@ public partial class IngredientForm
     [Inject] public IDispatcher Dispatcher { get; set; }
 
     [Inject] public NavigationManager NavigationManager { get; set; }
+
+    [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
 
     [Parameter] public string Action { get; set; }
     
@@ -63,5 +68,20 @@ public partial class IngredientForm
         Dispatcher.Dispatch(new RemoveIngredientAction(IngredientsState.Value.Ingredient.Id));
 
         NavigationManager.NavigateTo(PagesUrl.IngredientsPathUrl);
+    }
+
+    private void UpdateNutrimentSearchTerm(string name)
+    {
+        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name));
+        Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
+    }
+
+    private void AddNutriment(Nutriment nutriment)
+    {
+        Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(nutriment));
+    }
+    private void RemoveNutriment(Nutriment nutriment)
+    {
+        Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(nutriment));
     }
 }

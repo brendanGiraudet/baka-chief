@@ -16,6 +16,26 @@
     @* KcalNumber *@
     <CustomInputNumber Label="KcalNumber" @bind-Value="@IngredientsState.Value.Ingredient.KcalNumber" />
 
+    <h4>Selected Nutriments</h4>
+    <div>
+        @if (IngredientsState.Value.Ingredient.Nutriments.Count != 0)
+        {
+            @foreach (var nutriment in IngredientsState.Value.Ingredient.Nutriments)
+            {
+                <Tag Content="@nutriment.Name" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+                    OnClickCallback="@(() => RemoveNutriment(nutriment))" />
+            }
+        }
+        else
+        {
+            <div>No Nutriments selected</div>
+        }
+    </div>
+
+    <h4>Nutriments</h4>
+    <NutrimentsSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
+        OnTagClickCallback="@((nutriment) => AddNutriment(nutriment))" />
+
     @* Submit *@
     <div>
         <Button Type="submit" Text="Submit" />
