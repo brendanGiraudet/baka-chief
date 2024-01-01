@@ -2,6 +2,7 @@
 {
     public enum Icon
     {
+        NotSet,
         EmptySvg,
         CrossSvg,
         PlusSvg,

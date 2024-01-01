@@ -2,19 +2,12 @@
 
 <div class="tag" @onclick="Onclick">
 
-    @if (IsAddable)
-    {
-        <div class="add-tag-icon">
-            <Icon IconSvgEnum="Enums.Icon.PlusSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Success" />
-        </div>
-    }
-
     <div class="tag-content">@Content</div>
 
-    @if (IsRemovable)
+    @if (Icon != @Enums.Icon.NotSet && Size != @Enums.Size.NotSet && Style != @Enums.Style.NotSet)
     {
-        <div class="remove-tag-icon">
-            <Icon IconSvgEnum="Enums.Icon.CrossSvg" IconSize="Enums.Size.Small" IconStyle="Enums.Style.Error" />
+        <div class="tag-icon">
+            <Icon IconSvgEnum="Icon" IconSize="Size" IconStyle="Style" />
         </div>
     }
 </div>

@@ -12,6 +12,6 @@
     font-size: var(--font-size-normal);
 }
 
-.add-tag-icon, .remove-tag-icon {
+.tag-icon {
     margin-right: .25rem;
 }

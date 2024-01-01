@@ -2,6 +2,7 @@
 {
     public enum Size
     {
+        NotSet,
         Small,
         Normal,
         Large
