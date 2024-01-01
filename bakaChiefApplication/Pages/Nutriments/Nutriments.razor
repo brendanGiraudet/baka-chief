@@ -3,29 +3,7 @@
 
 <h3>Nutriments</h3>
 
-@if (NutrimentsState.Value.IsLoading)
-{
-    <Loader />
-}
-else
-{
-    <AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
+<AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
 
-    <div>
-        <CustomInputSearch OnInputCallback="UpdateNutrimentSearchTerm" @bind-Value="searchTerm" />
-    </div>
-
-    if (NutrimentsState.Value.Nutriments == null || NutrimentsState.Value.Nutriments.Count() == 0)
-    {
-        <div>vide</div>
-    }
-    else
-    {
-        <div class="nutriments">
-            @foreach (var nutriment in NutrimentsState.Value.Nutriments)
-            {
-                <Tag Content="@nutriment.Name" IsRemovable="true" OnClickCallback="@(() => RemoveNutriment(nutriment.Id))" />
-            }
-        </div>
-    }
-}
+<NutrimentsSearch Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+    OnTagClickCallback="@((nutriment) => RemoveNutriment(nutriment.Id))" />

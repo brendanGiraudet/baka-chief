@@ -15,23 +15,6 @@ public partial class Nutriments
 
     [Inject] public NavigationManager NavigationManager { get; set; }
 
-    private string searchTerm;
-
-    private void UpdateNutrimentSearchTerm(string name)
-    {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name));
-        Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
-    }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        searchTerm = NutrimentsState.Value.NutrimentSearchTerm;// Keep search value in the input field after navigation
-
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm));
-    }
-
     private async Task RedirectToNutrimentForm(FormMode formMode)
     {
         NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode));
