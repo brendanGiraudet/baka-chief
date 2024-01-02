@@ -21,24 +21,24 @@ public partial class IngredientForm
     [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
 
     [Parameter] public string Action { get; set; }
-    
+
     [Parameter] public string Id { get; set; }
 
     public FormMode FormMode => (FormMode)Enum.Parse(typeof(FormMode), Action);
-    
+
     public bool CanDelete => FormMode == FormMode.Update;
 
-     protected override void OnInitialized()
-        {
-            base.OnInitialized();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
 
-            switch (FormMode)
-            {
-                case FormMode.Update:
-                    Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
-                    break;
-            }
+        switch (FormMode)
+        {
+            case FormMode.Update:
+                Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
+                break;
         }
+    }
 
     private async Task RedirectToIngredientsPage()
     {
@@ -52,7 +52,7 @@ public partial class IngredientForm
             case FormMode.Creation:
                 Dispatcher.Dispatch(new CreateIngredientAction(IngredientsState.Value.Ingredient));
                 break;
-                
+
             case FormMode.Update:
                 Dispatcher.Dispatch(new UpdateIngredientAction(IngredientsState.Value.Ingredient));
                 break;

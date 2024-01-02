@@ -15,13 +15,8 @@ public partial class Nutriments
 
     [Inject] public NavigationManager NavigationManager { get; set; }
 
-    private async Task RedirectToNutrimentForm(FormMode formMode)
+    private async Task RedirectToNutrimentForm(FormMode formMode, string? nutrimentId = null)
     {
-        NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode));
-    }
-
-    private void RemoveNutriment(string id)
-    {
-        Dispatcher.Dispatch(new RemoveNutrimentAction(id));
+        NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode, nutrimentId));
     }
 }

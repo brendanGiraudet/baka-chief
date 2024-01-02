@@ -1,4 +1,5 @@
 ﻿@page "/nutriments/{Action}"
+@page "/nutriments/{Action}/{Id}"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Nutriment form</h3>
@@ -15,5 +16,10 @@
     </div>
 
 </EditForm>
+
+@if (CanDelete)
+{
+    <Button Type="button" Text="Remove" OnClickCallback="@(() => RemoveNutriment())" />
+}
 
 <Button Type="button" Text="return" OnClickCallback="@(async () => await RedirectToNutrimentsPage())" />

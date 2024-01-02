@@ -28,7 +28,8 @@ public partial class NutrimentsSearch
 
         searchTerm = NutrimentsState.Value.NutrimentSearchTerm;// Keep search value in the input field after navigation
 
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm));
+        if(NutrimentsState.Value.NeedToReload ?? true)
+            Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm));
     }
 
     private void UpdateNutrimentSearchTerm(string name)

@@ -51,4 +51,16 @@ public class NutrimentsService : INutrimentsService
 
         return MethodResultBuilder<string>.CreateSuccessMethodResult(nutrimentIdToRemove);
     }
+
+    public async Task<MethodResult<Nutriment>> UpdateNutrimentAsync(Nutriment nutrimentToUpdate)
+    {
+        var response = await _httpClient.PutAsJsonAsync(NutrimentsApiEndpoints.UpdateNutrimentPathUrl(nutrimentToUpdate.Id), nutrimentToUpdate);
+
+        if(!response.IsSuccessStatusCode)
+        {
+            return MethodResultBuilder<Nutriment>.CreateFailedMethodResult("Update Problem");
+        }
+
+        return MethodResultBuilder<Nutriment>.CreateSuccessMethodResult(nutrimentToUpdate);
+    }
 }

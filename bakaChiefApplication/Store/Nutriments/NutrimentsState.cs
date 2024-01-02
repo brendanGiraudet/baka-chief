@@ -14,6 +14,8 @@ namespace bakaChiefApplication.Store.Nutriments
 
         public string? NutrimentSearchTerm { get; }
 
+        public bool? NeedToReload { get; }
+
         private NutrimentsState()
         {
             IsLoading = false;
@@ -21,7 +23,7 @@ namespace bakaChiefApplication.Store.Nutriments
             Nutriment = new();
         }
 
-        public NutrimentsState(NutrimentsState? currentState = null,  bool? isLoading = null, IEnumerable<Nutriment>? nutriments = null, string? nutrimentSearchTerm = null, Nutriment? nutriment = null)
+        public NutrimentsState(NutrimentsState? currentState = null,  bool? isLoading = null, IEnumerable<Nutriment>? nutriments = null, string? nutrimentSearchTerm = null, Nutriment? nutriment = null, bool? needToReload = null)
         {
             IsLoading = isLoading != null ? isLoading.Value : currentState != null ? currentState.IsLoading : false;
             
@@ -30,6 +32,8 @@ namespace bakaChiefApplication.Store.Nutriments
             NutrimentSearchTerm = nutrimentSearchTerm != null ? nutrimentSearchTerm : currentState != null ? currentState.NutrimentSearchTerm : null;
             
             Nutriment = nutriment != null ? nutriment : currentState != null ? currentState.Nutriment : new();
+
+            NeedToReload = needToReload != null ? needToReload : currentState != null ? currentState.NeedToReload : true;
         }
     }
 }

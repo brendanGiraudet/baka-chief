@@ -5,5 +5,4 @@
 
 <AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
 
-<NutrimentsSearch Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
-    OnTagClickCallback="@((nutriment) => RemoveNutriment(nutriment.Id))" />
+<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" />

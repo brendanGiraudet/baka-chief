@@ -46,4 +46,17 @@ public class NutrimentsEffect
 
         dispatcher.Dispatch(new RemoveNutrimentSucceedAction(removedNutrimentResult.Value!));
     }
+    
+    [EffectMethod]
+    public async Task HandleUpdateNutrimentAction(UpdateNutrimentAction action, IDispatcher dispatcher)
+    {
+        var updatedNutrimentResult = await _nutrimentsService.UpdateNutrimentAsync(action.NutrimentToUpdate);
+
+        if(!updatedNutrimentResult.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new UpdateNutrimentSucceedAction(updatedNutrimentResult.Value!));
+    }
 }
