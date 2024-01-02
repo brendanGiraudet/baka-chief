@@ -24,10 +24,11 @@ else
         <div class="ingredients">
             @foreach (var ingredient in IngredientsState.Value.Ingredients)
             {
-                <Card Title="@ingredient.Name" OnClickCallback="async () => await RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id)">
+                <Card Title="@ingredient.Name"
+                    OnClickCallback="async () => await RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id)">
                     <Content>
                         <div class="ingredient-card">
-                            <div class="image">@((MarkupString)ingredient.ImageUrl)</div>
+                            <div class="image"><img alt="@ingredient.Name" src="@ingredient.ImageUrl" /></div>
                         </div>
                     </Content>
                 </Card>
