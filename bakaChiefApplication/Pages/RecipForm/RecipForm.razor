@@ -1,0 +1,51 @@
+﻿@page "/recips/{Action}/{Id}"
+@page "/recips/{Action}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>Recip form</h3>
+
+<EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
+    <DataAnnotationsValidator />
+
+    @* Name *@
+    <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
+
+    @* ImageUrl *@
+    <CustomInputText Label="ImageUrl" @bind-Value="@RecipsState.Value.Recip.ImageUrl" />
+
+    @* PersonsNumber *@
+    <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
+
+    <h4>Selected Ingredients</h4>
+    <div>
+        @if (RecipsState.Value.Recip.Ingredients.Count != 0)
+        {
+            @foreach (var Ingredient in RecipsState.Value.Recip.Ingredients)
+            {
+                <Tag Content="@Ingredient.Name" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+                    OnClickCallback="@(() => RemoveIngredient(Ingredient))" />
+            }
+        }
+        else
+        {
+            <div>No Ingredients selected</div>
+        }
+    </div>
+
+    <h4>Ingredients</h4>
+    <IngredientsSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
+        OnTagClickCallback="@((ingredient) => AddIngredient(ingredient))" />
+
+    @* Submit *@
+    <div>
+        <Button Type="submit" Text="Submit" />
+    </div>
+
+</EditForm>
+
+@if (CanDelete)
+{
+    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveRecip())" />
+}
+
+<Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToRecipsPage())" />

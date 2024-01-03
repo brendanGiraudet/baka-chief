@@ -1,0 +1,31 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (IngredientsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+
+        <div>
+            <CustomInputSearch OnInputCallback="UpdateIngredientSearchTerm" @bind-Value="searchTerm" />
+        </div>
+
+        @if (IngredientsState.Value.Ingredients == null || IngredientsState.Value.Ingredients.Count() == 0)
+        {
+            <div>vide</div>
+        }
+        else
+        {
+            <div class="ingredients">
+                @foreach (var Ingredient in IngredientsState.Value.Ingredients)
+                {
+                    <Tag Content="@Ingredient.Name" Icon="@Icon" Size="@Size" Style="@Style"
+                        OnClickCallback="@(async () => await OnTagClick(Ingredient))" />
+                }
+            </div>
+        }
+
+    </div>
+}

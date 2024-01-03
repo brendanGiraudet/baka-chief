@@ -1,13 +1,16 @@
-﻿namespace bakaChiefApplication.Constants
-{
-    public static class RecipsApiEndpoints
-    {
-        public const string BasePath = "/api/recips";
+namespace bakaChiefApplication.Constants;
 
-        public const string GetAllRecip = BasePath;
-        public static string GetRecipById(string id) => $"{BasePath}/{id}";
-        public const string CreateRecip = BasePath;
-        public static string UpdateRecip(string id) => $"{BasePath}/{id}";
-        public static string DeleteRecip(string id) => $"{BasePath}/{id}";
-    }
+public static class RecipsApiEndpoints
+{
+    public const string BasePathUrl = "/odata/Recips";
+
+    public static string GetRecipsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
+   
+    public static string GetRecipsByNamePathUrl(int top, int skip, string name) => $"{GetRecipsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true&$expand=Ingredients";
+
+    public static string CreateRecipPathUrl => BasePathUrl;
+    
+    public static string RemoveRecipPathUrl(string id) => $"{BasePathUrl}/{id}";
+    
+    public static string UpdateRecipPathUrl(string id) => $"{BasePathUrl}/{id}";
 }
