@@ -4,9 +4,9 @@ namespace bakaChiefApplication.Store.Ingredients.Actions;
 
 public class AppendNutrimentIntoIngredientAction
 {
-    public Models.Nutriment SelectedNutriment { get; set; }
+    public IngredientNutriment SelectedNutriment { get; set; }
 
-    public AppendNutrimentIntoIngredientAction(Nutriment selectedNutriment)
+    public AppendNutrimentIntoIngredientAction(IngredientNutriment selectedNutriment)
     {
         SelectedNutriment = selectedNutriment;
     }

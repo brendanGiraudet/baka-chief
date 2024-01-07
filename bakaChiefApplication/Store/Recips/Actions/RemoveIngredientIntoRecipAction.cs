@@ -4,9 +4,9 @@ namespace bakaChiefApplication.Store.Recips.Actions;
 
 public class RemoveIngredientIntoRecipAction
 {
-    public Models.Ingredient RemovedIngredient { get; set; }
+    public RecipIngredient RemovedIngredient { get; set; }
 
-    public RemoveIngredientIntoRecipAction(Ingredient removedIngredient)
+    public RemoveIngredientIntoRecipAction(RecipIngredient removedIngredient)
     {
         RemovedIngredient = removedIngredient;
     }

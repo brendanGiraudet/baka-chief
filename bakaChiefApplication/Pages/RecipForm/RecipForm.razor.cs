@@ -76,12 +76,27 @@ public partial class RecipForm
         Dispatcher.Dispatch(new UpdateIngredientSearchTermAction(name));
     }
 
-    private void AddIngredient(Ingredient Ingredient)
+    private void AddIngredient(Ingredient ingredient)
     {
-        Dispatcher.Dispatch(new AppendIngredientIntoRecipAction(Ingredient));
+        RecipIngredient recipIngredient = CreateRecipIngredient(ingredient);
+
+        Dispatcher.Dispatch(new AppendIngredientIntoRecipAction(recipIngredient));
     }
-    private void RemoveIngredient(Ingredient Ingredient)
+
+    private RecipIngredient CreateRecipIngredient(Ingredient ingredient)
     {
-        Dispatcher.Dispatch(new RemoveIngredientIntoRecipAction(Ingredient));
+        return new RecipIngredient
+        {
+            IngredientId = ingredient.Id,
+            Ingredient = ingredient,
+            RecipId = RecipsState.Value.Recip.Id
+        };
+    }
+
+    private void RemoveIngredient(Ingredient ingredient)
+    {
+        RecipIngredient recipIngredient = CreateRecipIngredient(ingredient);
+
+        Dispatcher.Dispatch(new RemoveIngredientIntoRecipAction(recipIngredient));
     }
 }

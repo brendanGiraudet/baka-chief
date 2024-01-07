@@ -53,7 +53,7 @@ public static class IngredientsReducer
     public static IngredientsState ReduceAppendNutrimentIntoIngredientAction(IngredientsState state, AppendNutrimentIntoIngredientAction action)
     {
         var ingredient = state.Ingredient;
-        ingredient.Nutriments = ingredient.Nutriments.Append(action.SelectedNutriment).ToHashSet();
+        ingredient.IngredientNutriments = ingredient.IngredientNutriments?.Append(action.SelectedNutriment).ToHashSet();
 
         return new IngredientsState(currentState: state, ingredient: ingredient);
     }
@@ -62,7 +62,7 @@ public static class IngredientsReducer
     public static IngredientsState ReduceRemoveNutrimentIntoIngredientAction(IngredientsState state, RemoveNutrimentIntoIngredientAction action)
     {
         var ingredient = state.Ingredient;
-        ingredient.Nutriments = ingredient.Nutriments.Where(n => n.Id != action.RemovedNutriment.Id).ToHashSet();
+        ingredient.IngredientNutriments = ingredient.IngredientNutriments.Where(n => n.NutrimentId != action.RemovedNutriment.NutrimentId).ToHashSet();
 
         return new IngredientsState(currentState: state, ingredient: ingredient);
     }

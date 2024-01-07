@@ -1,21 +1,27 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Models;
 
 public class Ingredient
 {
+    [JsonPropertyName("id")]
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
     [Required]
+    [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
 
     [Required]
+    [JsonPropertyName("imageUrl")]
     public string ImageUrl { get; set; } = string.Empty;
 
-    [Range(1,9999)]
+    [JsonPropertyName("kcalNumber")]
     public double KcalNumber { get; set; }
 
-    public HashSet<Nutriment> Nutriments { get; set; } = new();
+    [JsonPropertyName("ingredientNutriments")]
+    public ICollection<IngredientNutriment> IngredientNutriments { get; set; } = new HashSet<IngredientNutriment>();
 
-    public HashSet<Recip> Recips { get; set; } = new();
+    [JsonPropertyName("recipIngredients")]
+    public ICollection<RecipIngredient> RecipIngredients { get; set; } = new HashSet<RecipIngredient>();
 }

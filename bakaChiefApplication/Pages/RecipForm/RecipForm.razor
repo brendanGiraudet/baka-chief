@@ -18,12 +18,12 @@
 
     <h4>Selected Ingredients</h4>
     <div>
-        @if (RecipsState.Value.Recip.Ingredients.Count != 0)
+        @if (RecipsState.Value.Recip.RecipIngredients.Count() != 0)
         {
-            @foreach (var Ingredient in RecipsState.Value.Recip.Ingredients)
+            @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
             {
-                <Tag Content="@Ingredient.Name" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
-                    OnClickCallback="@(() => RemoveIngredient(Ingredient))" />
+                <Tag Content="@recipIngredient.Ingredient.Name" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+                    OnClickCallback="@(() => RemoveIngredient(recipIngredient.Ingredient))" />
             }
         }
         else

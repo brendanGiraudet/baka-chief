@@ -6,7 +6,7 @@ public static class IngredientsApiEndpoints
 
     public static string GetIngredientsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetIngredientsByNamePathUrl(int top, int skip, string name) => $"{GetIngredientsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true&$expand=Nutriments";
+    public static string GetIngredientsByNamePathUrl(int top, int skip, string name) => $"{GetIngredientsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true&$expand=IngredientNutriments/Nutriment";
 
     public static string CreateIngredientPathUrl => BasePathUrl;
     

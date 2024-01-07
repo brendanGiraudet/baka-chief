@@ -78,10 +78,25 @@ public partial class IngredientForm
 
     private void AddNutriment(Nutriment nutriment)
     {
-        Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(nutriment));
+        IngredientNutriment ingredientNutriment = CreateIngredientNutriment(nutriment);
+
+        Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(ingredientNutriment));
     }
+
+    private IngredientNutriment CreateIngredientNutriment(Nutriment nutriment)
+    {
+        return new IngredientNutriment
+        {
+            IngredientId = IngredientsState.Value.Ingredient.Id,
+            NutrimentId = nutriment.Id,
+            Nutriment = nutriment
+        };
+    }
+
     private void RemoveNutriment(Nutriment nutriment)
     {
-        Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(nutriment));
+        IngredientNutriment ingredientNutriment = CreateIngredientNutriment(nutriment);
+
+        Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(ingredientNutriment));
     }
 }

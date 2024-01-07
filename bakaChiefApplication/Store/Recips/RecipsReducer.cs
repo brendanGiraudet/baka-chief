@@ -53,7 +53,7 @@ public static class RecipsReducer
     public static RecipsState ReduceAppendIngredientIntoRecipAction(RecipsState state, AppendIngredientIntoRecipAction action)
     {
         var recip = state.Recip;
-        recip.Ingredients = recip.Ingredients.Append(action.SelectedIngredient).ToHashSet();
+        recip.RecipIngredients = recip.RecipIngredients.Append(action.SelectedIngredient).ToHashSet();
 
         return new RecipsState(currentState: state, recip: recip);
     }
@@ -62,7 +62,7 @@ public static class RecipsReducer
     public static RecipsState ReduceRemoveIngredientIntoRecipAction(RecipsState state, RemoveIngredientIntoRecipAction action)
     {
         var Recip = state.Recip;
-        Recip.Ingredients = Recip.Ingredients.Where(n => n.Id != action.RemovedIngredient.Id).ToHashSet();
+        Recip.RecipIngredients = Recip.RecipIngredients.Where(n => n.IngredientId != action.RemovedIngredient.IngredientId).ToHashSet();
 
         return new RecipsState(currentState: state, recip: Recip);
     }

@@ -4,9 +4,9 @@ namespace bakaChiefApplication.Store.Ingredients.Actions;
 
 public class RemoveNutrimentIntoIngredientAction
 {
-    public Models.Nutriment RemovedNutriment { get; set; }
+    public IngredientNutriment RemovedNutriment { get; set; }
 
-    public RemoveNutrimentIntoIngredientAction(Nutriment removedNutriment)
+    public RemoveNutrimentIntoIngredientAction(IngredientNutriment removedNutriment)
     {
         RemovedNutriment = removedNutriment;
     }

@@ -4,9 +4,9 @@ namespace bakaChiefApplication.Store.Recips.Actions;
 
 public class AppendIngredientIntoRecipAction
 {
-    public Models.Ingredient SelectedIngredient { get; set; }
+    public RecipIngredient SelectedIngredient { get; set; }
 
-    public AppendIngredientIntoRecipAction(Ingredient selectedIngredient)
+    public AppendIngredientIntoRecipAction(RecipIngredient selectedIngredient)
     {
         SelectedIngredient = selectedIngredient;
     }
