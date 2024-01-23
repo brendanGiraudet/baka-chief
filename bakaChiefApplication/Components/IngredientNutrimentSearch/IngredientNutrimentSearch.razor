@@ -1,0 +1,38 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (NutrimentsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+
+        <div>
+            <CustomInputSearch OnInputCallback="UpdateNutrimentSearchTerm" @bind-Value="searchTerm" />
+        </div>
+
+        @if (NutrimentsState.Value.Nutriments == null || NutrimentsState.Value.Nutriments.Count() == 0)
+        {
+            <div>vide</div>
+        }
+        else
+        {
+            <div class="ingredient-nutriments">
+                @foreach (var nutriment in NutrimentsState.Value.Nutriments.Where(n => IngredientsState.Value.Ingredient.IngredientNutriments.FirstOrDefault(i => i.Nutriment.Id == n.Id) == null))
+                {
+                    var ingredientNutriment = new Models.IngredientNutriment
+                        {
+                            Nutriment = nutriment,
+                            NutrimentId = nutriment.Id,
+                            IngredientId = IngredientId
+                        };
+
+                    <IngredientNutriment CurrentIngredientNutriment="@ingredientNutriment" Icon="@Icon" Size="@Size" Style="@Style"
+                        OnIconClickCallback="@(async () => await OnTagClick(ingredientNutriment))" />
+                }
+            </div>
+        }
+
+    </div>
+}

@@ -7,6 +7,7 @@ using bakaChiefApplication.Store.Nutriments;
 using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace bakaChiefApplication.Pages.IngredientForm;
 
@@ -76,27 +77,14 @@ public partial class IngredientForm
         Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
     }
 
-    private void AddNutriment(Nutriment nutriment)
+    private void AddNutriment(IngredientNutriment ingredientNutriment)
     {
-        IngredientNutriment ingredientNutriment = CreateIngredientNutriment(nutriment);
-
+        System.Console.WriteLine("test ");
         Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(ingredientNutriment));
     }
 
-    private IngredientNutriment CreateIngredientNutriment(Nutriment nutriment)
+    private void RemoveNutriment(IngredientNutriment ingredientNutriment)
     {
-        return new IngredientNutriment
-        {
-            IngredientId = IngredientsState.Value.Ingredient.Id,
-            NutrimentId = nutriment.Id,
-            Nutriment = nutriment
-        };
-    }
-
-    private void RemoveNutriment(Nutriment nutriment)
-    {
-        IngredientNutriment ingredientNutriment = CreateIngredientNutriment(nutriment);
-
         Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(ingredientNutriment));
     }
 }

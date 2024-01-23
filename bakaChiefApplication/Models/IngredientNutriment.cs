@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace bakaChiefApplication.Models;
 
@@ -17,5 +18,6 @@ public class IngredientNutriment
     public string IngredientId { get; set; } = string.Empty;
 
     [JsonPropertyName("quantity")]
-    public double? Quantity { get; set; }
+    [Required]
+    public double Quantity { get; set; } = default;
 }

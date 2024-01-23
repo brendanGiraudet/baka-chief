@@ -1,0 +1,15 @@
+<div class="ingredient-nutriment">
+    <div>@CurrentIngredientNutriment.Nutriment.Name</div>
+
+    <div>
+        <CustomInputNumber @bind-Value="CurrentIngredientNutriment.Quantity" />
+    </div>
+    <span>/100g</span>
+
+    @if (Icon != @Enums.Icon.NotSet && Size != @Enums.Size.NotSet && Style != @Enums.Style.NotSet)
+    {
+        <div class="tag-icon" @onclick="OnIconClick">
+            <Icon IconSvgEnum="Icon" IconSize="Size" IconStyle="Style" />
+        </div>
+    }
+</div>

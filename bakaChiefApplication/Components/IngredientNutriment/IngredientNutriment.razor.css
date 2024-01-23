@@ -1,0 +1,7 @@
+.ingredient-nutriment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+}
