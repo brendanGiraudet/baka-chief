@@ -57,7 +57,7 @@ public static class IngredientsReducer
 
         return new IngredientsState(currentState: state, ingredient: ingredient);
     }
-    
+
     [ReducerMethod]
     public static IngredientsState ReduceRemoveNutrimentIntoIngredientAction(IngredientsState state, RemoveNutrimentIntoIngredientAction action)
     {
@@ -66,5 +66,8 @@ public static class IngredientsReducer
 
         return new IngredientsState(currentState: state, ingredient: ingredient);
     }
+
+    [ReducerMethod(typeof(IngredientCreationInitialisationAction))]
+    public static IngredientsState ReduceIngredientCreationInitialisationAction(IngredientsState state) => new IngredientsState(currentState: state, ingredient: new());
 
 }

@@ -4,7 +4,6 @@ using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.Recips;
 using bakaChiefApplication.Store.Recips.Actions;
 using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -36,6 +35,10 @@ public partial class RecipForm
         {
             case FormMode.Update:
                 Dispatcher.Dispatch(new RecipSearchByIdAction(Id));
+                break;
+
+            case FormMode.Creation:
+                Dispatcher.Dispatch(new RecipCreationInitialisationAction());
                 break;
         }
     }
@@ -70,33 +73,7 @@ public partial class RecipForm
         NavigationManager.NavigateTo(PagesUrl.RecipsPathUrl);
     }
 
-    private void UpdateIngredientSearchTerm(string name)
-    {
-        Dispatcher.Dispatch(new IngredientSearchByNameAction(name));
-        Dispatcher.Dispatch(new UpdateIngredientSearchTermAction(name));
-    }
+    private void AddIngredient(RecipIngredient recipIngredient) => Dispatcher.Dispatch(new AppendIngredientIntoRecipAction(recipIngredient));
 
-    private void AddIngredient(Ingredient ingredient)
-    {
-        RecipIngredient recipIngredient = CreateRecipIngredient(ingredient);
-
-        Dispatcher.Dispatch(new AppendIngredientIntoRecipAction(recipIngredient));
-    }
-
-    private RecipIngredient CreateRecipIngredient(Ingredient ingredient)
-    {
-        return new RecipIngredient
-        {
-            IngredientId = ingredient.Id,
-            Ingredient = ingredient,
-            RecipId = RecipsState.Value.Recip.Id
-        };
-    }
-
-    private void RemoveIngredient(Ingredient ingredient)
-    {
-        RecipIngredient recipIngredient = CreateRecipIngredient(ingredient);
-
-        Dispatcher.Dispatch(new RemoveIngredientIntoRecipAction(recipIngredient));
-    }
+    private void RemoveIngredient(RecipIngredient recipIngredient) => Dispatcher.Dispatch(new RemoveIngredientIntoRecipAction(recipIngredient));
 }

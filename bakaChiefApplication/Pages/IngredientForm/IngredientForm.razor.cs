@@ -38,6 +38,10 @@ public partial class IngredientForm
             case FormMode.Update:
                 Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
                 break;
+
+            case FormMode.Creation:
+                Dispatcher.Dispatch(new IngredientCreationInitialisationAction());
+                break;
         }
     }
 
@@ -77,14 +81,7 @@ public partial class IngredientForm
         Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
     }
 
-    private void AddNutriment(IngredientNutriment ingredientNutriment)
-    {
-        System.Console.WriteLine("test ");
-        Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(ingredientNutriment));
-    }
+    private void AddNutriment(IngredientNutriment ingredientNutriment) => Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(ingredientNutriment));
 
-    private void RemoveNutriment(IngredientNutriment ingredientNutriment)
-    {
-        Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(ingredientNutriment));
-    }
+    private void RemoveNutriment(IngredientNutriment ingredientNutriment) => Dispatcher.Dispatch(new RemoveNutrimentIntoIngredientAction(ingredientNutriment));
 }

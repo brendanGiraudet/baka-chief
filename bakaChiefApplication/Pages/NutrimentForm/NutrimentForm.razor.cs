@@ -32,6 +32,10 @@ public partial class NutrimentForm
             case FormMode.Update:
                 Dispatcher.Dispatch(new NutrimentSearchByIdAction(Id));
                 break;
+                
+            case FormMode.Creation:
+                Dispatcher.Dispatch(new NutrimentCreationInitialisationAction());
+                break;
         }
     }
 

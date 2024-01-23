@@ -67,4 +67,7 @@ public static class RecipsReducer
         return new RecipsState(currentState: state, recip: Recip);
     }
 
+    [ReducerMethod(typeof(RecipCreationInitialisationAction))]
+    public static RecipsState ReduceRecipCreationInitialisationAction(RecipsState state) => new RecipsState(currentState: state, recip: new());
+
 }

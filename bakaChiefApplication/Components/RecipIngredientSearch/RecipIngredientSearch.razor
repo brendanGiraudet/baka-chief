@@ -1,0 +1,39 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (IngredientsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+
+        <div>
+            <CustomInputSearch OnInputCallback="UpdateIngredientSearchTerm" @bind-Value="searchTerm" />
+        </div>
+
+        @if (IngredientsState.Value.Ingredients == null || IngredientsState.Value.Ingredients.Count() == 0)
+        {
+            <div>vide</div>
+        }
+        else
+        {
+            <div class="recip-ingredients">
+                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n =>
+               IngredientsState.Value.Ingredient.RecipIngredients.FirstOrDefault(i => i.Ingredient.Id == n.Id) == null))
+                {
+                    var recipIngredient = new Models.RecipIngredient
+                        {
+                            Ingredient = ingredient,
+                            IngredientId = ingredient.Id,
+                            RecipId = RecipId
+                        };
+
+                    <RecipIngredient CurrentRecipIngredient="@recipIngredient" Icon="@Icon" Size="@Size" Style="@Style"
+                        OnIconClickCallback="@(async () => await OnTagClick(recipIngredient))" />
+                }
+            </div>
+        }
+
+    </div>
+}

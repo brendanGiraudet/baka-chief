@@ -3,36 +3,7 @@
 
 <h3>Ingredients</h3>
 
-@if (IngredientsState.Value.IsLoading)
-{
-    <Loader />
-}
-else
-{
-    <AddButton OnClickCallback="@(async () => await RedirectToIngredientForm(Enums.FormMode.Creation))" />
+<AddButton OnClickCallback="@(async () => await RedirectToIngredientForm(Enums.FormMode.Creation))" />
 
-    <div>
-        <CustomInputSearch OnInputCallback="UpdateIngredientSearchTerm" @bind-Value="searchTerm" />
-    </div>
-
-    if (IngredientsState.Value.Ingredients == null || IngredientsState.Value.Ingredients.Count() == 0)
-    {
-        <div>vide</div>
-    }
-    else
-    {
-        <div class="ingredients">
-            @foreach (var ingredient in IngredientsState.Value.Ingredients)
-            {
-                <Card Title="@ingredient.Name"
-                    OnClickCallback="async () => await RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id)">
-                    <Content>
-                        <div class="ingredient-card">
-                            <div class="image"><img alt="@ingredient.Name" src="@ingredient.ImageUrl" /></div>
-                        </div>
-                    </Content>
-                </Card>
-            }
-        </div>
-    }
-}
+<IngredientsSearch
+    OnTagClickCallback="@((ingredient) => RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id))" />

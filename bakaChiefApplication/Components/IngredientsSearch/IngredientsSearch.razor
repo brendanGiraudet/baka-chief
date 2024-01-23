@@ -19,10 +19,15 @@ else
         else
         {
             <div class="ingredients">
-                @foreach (var Ingredient in IngredientsState.Value.Ingredients)
+                @foreach (var ingredient in IngredientsState.Value.Ingredients)
                 {
-                    <Tag Content="@Ingredient.Name" Icon="@Icon" Size="@Size" Style="@Style"
-                        OnClickCallback="@(async () => await OnTagClick(Ingredient))" />
+                    <Card Title="@ingredient.Name" OnClickCallback="@(async () => await OnTagClick(ingredient))">
+                        <Content>
+                            <div class="ingredient-card">
+                                <div class="image"><img alt="@ingredient.Name" src="@ingredient.ImageUrl" /></div>
+                            </div>
+                        </Content>
+                    </Card>
                 }
             </div>
         }

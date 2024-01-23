@@ -9,14 +9,12 @@ namespace bakaChiefApplication.Pages.Nutriments;
 
 public partial class Nutriments
 {
-    [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
-
-    [Inject] public IDispatcher Dispatcher { get; set; }
-
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     private async Task RedirectToNutrimentForm(FormMode formMode, string? nutrimentId = null)
     {
         NavigationManager.NavigateTo(PagesUrl.GetNutrimentFormUrl(formMode, nutrimentId));
+
+        await Task.CompletedTask;
     }
 }

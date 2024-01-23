@@ -23,7 +23,7 @@ public static class NutrimentsReducer
     [ReducerMethod]
     public static NutrimentsState ReduceCreateNutrimentSucceedAction(NutrimentsState state, CreateNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Append(action.CreatedNutriment), nutriment: new());
     #endregion
-    
+
     #region RemoveNutriment
     [ReducerMethod(typeof(RemoveNutrimentAction))]
     public static NutrimentsState ReduceRemoveNutrimentAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true, needToReload: false);
@@ -48,4 +48,7 @@ public static class NutrimentsReducer
         return new NutrimentsState(currentState: state, isLoading: false, nutriments: nutriments, nutriment: new(), needToReload: false);
     }
     #endregion
+
+    [ReducerMethod(typeof(NutrimentCreationInitialisationAction))]
+    public static NutrimentsState ReduceNutrimentCreationInitialisationAction(NutrimentsState state) => new NutrimentsState(currentState: state, nutriment: new());
 }

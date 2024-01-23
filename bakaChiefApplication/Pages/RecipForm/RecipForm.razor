@@ -22,8 +22,8 @@
         {
             @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
             {
-                <Tag Content="@recipIngredient.Ingredient.Name" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
-                    OnClickCallback="@(() => RemoveIngredient(recipIngredient.Ingredient))" />
+                <RecipIngredient CurrentRecipIngredient="@recipIngredient" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+                    OnIconClickCallback="@(() => RemoveIngredient(recipIngredient))" />
             }
         }
         else
@@ -33,8 +33,8 @@
     </div>
 
     <h4>Ingredients</h4>
-    <IngredientsSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnTagClickCallback="@((ingredient) => AddIngredient(ingredient))" />
+    <RecipIngredientSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
+        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" />
 
     @* Submit *@
     <div>
