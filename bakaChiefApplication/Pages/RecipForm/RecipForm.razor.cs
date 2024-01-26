@@ -76,4 +76,8 @@ public partial class RecipForm
     private void AddIngredient(RecipIngredient recipIngredient) => Dispatcher.Dispatch(new AppendIngredientIntoRecipAction(recipIngredient));
 
     private void RemoveIngredient(RecipIngredient recipIngredient) => Dispatcher.Dispatch(new RemoveIngredientIntoRecipAction(recipIngredient));
+
+    private void AddStep(RecipStep recipStep) => Dispatcher.Dispatch(new AppendStepIntoRecipAction(recipStep));
+
+    private void RemoveStep(RecipStep recipStep) => Dispatcher.Dispatch(new RemoveStepIntoRecipAction(recipStep));
 }

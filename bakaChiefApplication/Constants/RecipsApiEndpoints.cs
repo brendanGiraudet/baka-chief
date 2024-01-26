@@ -6,7 +6,7 @@ public static class RecipsApiEndpoints
 
     public static string GetRecipsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetRecipsByNamePathUrl(int top, int skip, string name) => $"{GetRecipsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true&$expand=RecipIngredients/Ingredient";
+    public static string GetRecipsByNamePathUrl(int top, int skip, string name) => $"{GetRecipsPathUrl(top,skip)}&$filter=startswith(name, '{name}') eq true&$expand=RecipIngredients/Ingredient,RecipSteps";
 
     public static string CreateRecipPathUrl => BasePathUrl;
     
