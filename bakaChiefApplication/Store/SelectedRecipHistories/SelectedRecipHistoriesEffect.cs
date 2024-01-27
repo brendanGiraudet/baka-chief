@@ -25,4 +25,17 @@ public class SelectedRecipHistoriesEffect
 
         dispatcher.Dispatch(new SelectedRecipHistoriesFetchResultAction(selectedRecipHistoriesResponse.Value));
     }
+    
+    [EffectMethod]
+    public async Task HandleGenerateSelectedRecipHistoryAction(GenerateSelectedRecipHistoryAction action, IDispatcher dispatcher)
+    {
+        var selectedRecipHistoryResponse = await _selectedRecipHistoriesService.GenerateSelectedRecipHistoriesAsync();
+
+        if (!selectedRecipHistoryResponse.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new GenerateSelectedRecipHistoryResultAction(selectedRecipHistoryResponse.Value));
+    }
 }

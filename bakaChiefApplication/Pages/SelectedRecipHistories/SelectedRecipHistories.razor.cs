@@ -16,11 +16,14 @@ public partial class SelectedRecipHistories
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        
         Dispatcher.Dispatch(new SelectedRecipHistoriesFetchAction());
     }
 
     private async Task GenerateSelectedRecipHistory()
     {
+        Dispatcher.Dispatch(new GenerateSelectedRecipHistoryAction());
+
         await Task.CompletedTask;
     }
 }
