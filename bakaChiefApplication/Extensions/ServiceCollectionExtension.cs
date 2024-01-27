@@ -3,6 +3,7 @@ using bakaChiefApplication.Constants;
 using bakaChiefApplication.Services.IngredientsService;
 using bakaChiefApplication.Services.NutrimentsService;
 using bakaChiefApplication.Services.RecipsService;
+using bakaChiefApplication.Services.SelectedRecipHistoriesService;
 
 namespace bakaChiefApplication.Extensions
 {
@@ -11,8 +12,9 @@ namespace bakaChiefApplication.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<INutrimentsService, NutrimentsService>();
-            services.AddTransient<IIngredientsService, IngredientsService >();
-            services.AddTransient<IRecipsService, RecipsService >();
+            services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<IRecipsService, RecipsService>();
+            services.AddTransient<ISelectedRecipHistoriesService, SelectedRecipHistoriesService>();
         }
 
         public static void AddNamedHttpClient(this IServiceCollection services, IConfiguration configuration)

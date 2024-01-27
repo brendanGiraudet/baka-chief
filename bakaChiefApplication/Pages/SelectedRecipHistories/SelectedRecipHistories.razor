@@ -1,0 +1,27 @@
+﻿@page "/selectedRecipHistories"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>SelectedRecipHistories</h3>
+
+@if (SelectedRecipHistoriesState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <AddButton OnClickCallback="@(async () => await GenerateSelectedRecipHistory())" />
+
+    if (SelectedRecipHistoriesState.Value.SelectedRecipHistories == null || SelectedRecipHistoriesState.Value.SelectedRecipHistories.Count() == 0)
+    {
+        <div>vide</div>
+    }
+    else
+    {
+        <div class="selectedRecipHistories">
+            @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.SelectedRecipHistories)
+            {
+                <Card Title="@selectedRecipHistory.Date.ToString()"/>
+            }
+        </div>
+    }
+}

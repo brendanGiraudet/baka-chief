@@ -20,7 +20,6 @@ builder.Services.AddFluxor(config =>
     config
       .ScanAssemblies(typeof(Program).Assembly)
       .UseReduxDevTools();
-
 });
 
 await builder.Build().RunAsync();
