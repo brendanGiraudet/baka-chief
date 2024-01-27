@@ -20,7 +20,7 @@ else
         <div class="selectedRecipHistories">
             @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.SelectedRecipHistories)
             {
-                <Card Title="@selectedRecipHistory.Date.ToString()"/>
+                <Card Title="@selectedRecipHistory.Date.ToString()" OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)"/>
             }
         </div>
     }

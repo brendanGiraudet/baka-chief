@@ -1,4 +1,5 @@
-﻿using bakaChiefApplication.Store.SelectedRecipHistories;
+﻿using bakaChiefApplication.Constants;
+using bakaChiefApplication.Store.SelectedRecipHistories;
 using bakaChiefApplication.Store.SelectedRecipHistories.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
@@ -25,5 +26,10 @@ public partial class SelectedRecipHistories
         Dispatcher.Dispatch(new GenerateSelectedRecipHistoryAction());
 
         await Task.CompletedTask;
+    }
+
+    private async Task RedirectToSelectedRecipHistoryPage(string id)
+    {
+        NavigationManager.NavigateTo(PagesUrl.GetSelectedRecipHistoryUrl(id));
     }
 }

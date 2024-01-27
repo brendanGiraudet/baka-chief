@@ -24,4 +24,7 @@ public static class SelectedRecipHistoriesReducer
     public static SelectedRecipHistoriesState ReduceGenerateSelectedRecipHistoryResultAction(SelectedRecipHistoriesState state, GenerateSelectedRecipHistoryResultAction action) => new SelectedRecipHistoriesState(currentState: state, isLoading: false, selectedRecipHistories: state.SelectedRecipHistories.Prepend(action.GeneratedSelectedRecipHistory));
     
     #endregion
+
+    [ReducerMethod]
+    public static SelectedRecipHistoriesState ReduceSelectedRecipHistoryFetchAction(SelectedRecipHistoriesState state, SelectedRecipHistoryFetchAction action) => new SelectedRecipHistoriesState(currentState: state, selectedRecipHistory: state.SelectedRecipHistories.FirstOrDefault(s => s.Id == action.SelectedRecipHistoryId));
 }

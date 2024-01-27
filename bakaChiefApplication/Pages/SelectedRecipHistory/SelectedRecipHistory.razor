@@ -1,0 +1,28 @@
+﻿@page "/selectedRecipHistories/{Id}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>SelectedRecipHistories</h3>
+
+<div>@SelectedRecipHistoriesState.Value.SelectedRecipHistory.Date.ToString()</div>
+
+@if (SelectedRecipHistoriesState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    
+    if (SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips == null || SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips.Count() == 0)
+    {
+        <div>vide</div>
+    }
+    else
+    {
+        <div class="recips">
+            @foreach (var recip in SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips)
+            {
+                <Card Title="@recip.Name"/>
+            }
+        </div>
+    }
+}
