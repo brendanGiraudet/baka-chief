@@ -16,6 +16,9 @@
     @* PersonsNumber *@
     <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
 
+    @* Preparation *@
+    <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Recip.Preparation" />
+
     <h4>Selected Ingredients</h4>
     <div>
         @if (RecipsState.Value.Recip.RecipIngredients.Count() != 0)
@@ -34,13 +37,7 @@
 
     <h4>Ingredients</h4>
     <RecipIngredientSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" />
-
-    <h4>Steps</h4>
-    <div>
-        @* Preparation *@
-        <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Recip.Preparation" />
-    </div>
+        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" Take="5" />
 
     @* Submit *@
     <div>

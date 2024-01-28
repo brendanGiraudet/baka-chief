@@ -16,7 +16,7 @@ public class IngredientsEffect
     [EffectMethod]
     public async Task HandleIngredientSearchByNameAction(IngredientSearchByNameAction action, IDispatcher dispatcher)
     {
-        var ingredients = await _ingredientsService.GetIngredientsByNameAsync(action.IngredientSearchTerm);
+        var ingredients = await _ingredientsService.GetIngredientsByNameAsync(action.IngredientSearchTerm, action.Take);
 
         dispatcher.Dispatch(new IngredientSearchByNameResultAction(ingredients));
     }

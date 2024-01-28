@@ -19,6 +19,8 @@ public partial class IngredientsSearch
     [Parameter] public Enums.Size Size { get; set; } = Enums.Size.NotSet;
 
     [Parameter] public EventCallback<Ingredient> OnTagClickCallback { get; set; }
+    
+    [Parameter] public int Take { get; set; } = 10;
 
     private string searchTerm;
 
@@ -29,12 +31,12 @@ public partial class IngredientsSearch
         searchTerm = IngredientsState.Value.IngredientSearchTerm;// Keep search value in the input field after navigation
 
         if(IngredientsState.Value.NeedToReload ?? true)
-            Dispatcher.Dispatch(new IngredientSearchByNameAction(IngredientsState.Value.IngredientSearchTerm));
+            Dispatcher.Dispatch(new IngredientSearchByNameAction(IngredientsState.Value.IngredientSearchTerm, Take));
     }
 
     private void UpdateIngredientSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new IngredientSearchByNameAction(name));
+        Dispatcher.Dispatch(new IngredientSearchByNameAction(name, Take));
         Dispatcher.Dispatch(new UpdateIngredientSearchTermAction(name));
     }
 

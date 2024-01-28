@@ -6,4 +6,4 @@
 <AddButton OnClickCallback="@(async () => await RedirectToIngredientForm(Enums.FormMode.Creation))" />
 
 <IngredientsSearch
-    OnTagClickCallback="@((ingredient) => RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id))" />
+    OnTagClickCallback="@((ingredient) => RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id))" Take="25" />
