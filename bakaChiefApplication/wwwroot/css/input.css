@@ -3,59 +3,62 @@
     margin: 1.5rem;
 }
 
-    .input input {
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid #7180D4;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        transition: 0.2s ease;
-        width: 100%;
-        font-size: var(--font-size-normal);
-    }
+.input input {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #7180D4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.2s ease;
+    width: 100%;
+    font-size: var(--font-size-normal);
+}
 
-        .input input:focus, .input input:focus-visible, .input input.valid.modified {
-            border: none;
-            border-bottom: 1px solid var(--info-color);
-            outline: none;
-            transition: 0.2s ease;
-        }
+.input input:focus,
+.input input:focus-visible,
+.input input.valid.modified {
+    border: none;
+    border-bottom: 1px solid var(--info-color);
+    outline: none;
+    transition: 0.2s ease;
+}
 
-        .input input:placeholder-shown + label {
-            top: calc(var(--font-size-normal) * -1);
-            transition: 0.2s ease;
-            font-size: 1rem;
-        }
+.input input:placeholder-shown+label {
+    top: calc(var(--font-size-normal) * -1);
+    transition: 0.2s ease;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
 
-        .input input:focus + label {
-            font-size: 0.8rem;
-            top: calc((var(--font-size-normal) + 2rem) * -1);
-            transition: 0.2s ease;
-            color: var(--info-color);
-        }
+.input input:focus+label {
+    font-size: 0.8rem;
+    top: calc((var(--font-size-normal) + 2rem) * -1);
+    transition: 0.2s ease;
+    color: var(--secondary-color);
+}
 
-    .input label {
-        position: relative;
-        top: calc((var(--font-size-normal) + 2rem) * -1);
-        font-size: 0.8rem;
-        margin-left: 0.5rem;
-        pointer-events: none;
-        transition: 0.2s ease;
-        color: var(--info-color);
-    }
+.input label {
+    position: relative;
+    top: calc((var(--font-size-normal) + 2rem) * -1);
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    pointer-events: none;
+    transition: 0.2s ease;
+    color: var(--secondary-color);
+}
 
-    .input .invalid {
-        outline: none;
-        border-bottom: 1px solid red;
-    }
+.input .invalid {
+    outline: none;
+    border-bottom: 1px solid var(--error-color);
+}
 
-        .input .invalid + label {
-            color: red;
-        }
+.input .invalid+label {
+    color: var(--error-color);
+}
 
-    .input .validation-message {
-        top: -1.25rem;
-        position:relative;
-        font-size:0.8rem;
-    }
+.input .validation-message {
+    top: -1.25rem;
+    position: relative;
+    font-size: 0.8rem;
+}
