@@ -38,27 +38,8 @@
 
     <h4>Steps</h4>
     <div>
-        @if (RecipsState.Value.Recip.RecipSteps.Count() != 0)
-        {
-            @foreach (var recipStep in RecipsState.Value.Recip.RecipSteps.OrderBy(r => r.Number))
-            {
-                <RecipStep CurrentRecipStep="@recipStep" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small"
-                    Style="@Enums.Style.Error" OnIconClickCallback="@(() => RemoveStep(recipStep))" />
-            }
-        }
-        else
-        {
-            <div>No step selected</div>
-        }
-    </div>
-    <div>
-        @{
-            var stepNumber = RecipsState.Value.Recip.RecipSteps.Count() != 0 ? RecipsState.Value.Recip.RecipSteps.Count() + 1
-            : 1;
-            var step = new Models.RecipStep { Number = stepNumber };
-        }
-        <RecipStep CurrentRecipStep="@step" Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small"
-                    Style="@Enums.Style.Success" OnIconClickCallback="@(() => AddStep(step))" />
+        @* Preparation *@
+        <CustomInputText Label="ImageUrl" @bind-Value="@RecipsState.Value.Recip.Preparation" />
     </div>
 
     @* Submit *@

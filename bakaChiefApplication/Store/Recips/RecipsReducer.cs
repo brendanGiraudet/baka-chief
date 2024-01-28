@@ -70,22 +70,4 @@ public static class RecipsReducer
     [ReducerMethod(typeof(RecipCreationInitialisationAction))]
     public static RecipsState ReduceRecipCreationInitialisationAction(RecipsState state) => new RecipsState(currentState: state, recip: new());
 
-    [ReducerMethod]
-    public static RecipsState ReduceAppendStepIntoRecipAction(RecipsState state, AppendStepIntoRecipAction action)
-    {
-        var recip = state.Recip;
-        recip.RecipSteps = recip.RecipSteps.Append(action.SelectedStep).ToHashSet();
-
-        return new RecipsState(currentState: state, recip: recip);
-    }
-    
-    [ReducerMethod]
-    public static RecipsState ReduceRemoveStepIntoRecipAction(RecipsState state, RemoveStepIntoRecipAction action)
-    {
-        var recip = state.Recip;
-        recip.RecipSteps = recip.RecipSteps.Where(n => n.Id != action.RemovedStep.Id).ToHashSet();
-
-        return new RecipsState(currentState: state, recip: recip);
-    }
-
 }

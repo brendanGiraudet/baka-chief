@@ -21,6 +21,6 @@ public class Recip
     [JsonPropertyName("recipIngredients")]
     public ICollection<RecipIngredient> RecipIngredients { get; set; } = new HashSet<RecipIngredient>();
 
-    [JsonPropertyName("recipSteps")]
-    public ICollection<RecipStep> RecipSteps { get; set; }= new HashSet<RecipStep>();
+    [JsonPropertyName("preparation")]
+    public string Preparation { get; set; } = string.Empty;
 }
