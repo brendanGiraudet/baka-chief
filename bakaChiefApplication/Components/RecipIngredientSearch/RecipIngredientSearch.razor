@@ -19,8 +19,7 @@ else
         else
         {
             <div class="recip-ingredients">
-                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n =>
-               IngredientsState.Value.Ingredient.RecipIngredients.FirstOrDefault(i => i.Ingredient.Id == n.Id) == null))
+                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n => !(SelectedIngredientIds?.Contains(n.Id) ?? false)))
                 {
                     var recipIngredient = new Models.RecipIngredient
                         {
