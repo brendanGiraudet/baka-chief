@@ -31,7 +31,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<MethodResult<Ingredient>> CreateIngredientAsync(Ingredient ingredient)
     {
-        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, ingredient.Format());
+        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, ingredient);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -55,7 +55,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<MethodResult<Ingredient>> UpdateIngredientAsync(Ingredient ingredientToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(ingredientToUpdate.Id), ingredientToUpdate.Format());
+        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(ingredientToUpdate.Id), ingredientToUpdate);
 
         if (!response.IsSuccessStatusCode)
         {

@@ -31,7 +31,7 @@ public class RecipsService : IRecipsService
 
     public async Task<MethodResult<Recip>> CreateRecipAsync(Recip recip)
     {
-        var response = await _httpClient.PostAsJsonAsync(RecipsApiEndpoints.CreateRecipPathUrl, recip.Format());
+        var response = await _httpClient.PostAsJsonAsync(RecipsApiEndpoints.CreateRecipPathUrl, recip);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -55,7 +55,7 @@ public class RecipsService : IRecipsService
 
     public async Task<MethodResult<Recip>> UpdateRecipAsync(Recip recipToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(RecipsApiEndpoints.UpdateRecipPathUrl(recipToUpdate.Id), recipToUpdate.Format());
+        var response = await _httpClient.PutAsJsonAsync(RecipsApiEndpoints.UpdateRecipPathUrl(recipToUpdate.Id), recipToUpdate);
 
         if (!response.IsSuccessStatusCode)
         {

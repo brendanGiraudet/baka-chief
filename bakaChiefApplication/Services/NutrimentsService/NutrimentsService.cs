@@ -31,7 +31,7 @@ public class NutrimentsService : INutrimentsService
     
     public async Task<MethodResult<Nutriment>> CreateNutrimentAsync(Nutriment nutriment)
     {
-        var response = await _httpClient.PostAsJsonAsync(NutrimentsApiEndpoints.CreateNutrimentPathUrl, nutriment.Format());
+        var response = await _httpClient.PostAsJsonAsync(NutrimentsApiEndpoints.CreateNutrimentPathUrl, nutriment);
 
         if(!response.IsSuccessStatusCode)
         {
@@ -55,7 +55,7 @@ public class NutrimentsService : INutrimentsService
 
     public async Task<MethodResult<Nutriment>> UpdateNutrimentAsync(Nutriment nutrimentToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(NutrimentsApiEndpoints.UpdateNutrimentPathUrl(nutrimentToUpdate.Id), nutrimentToUpdate.Format());
+        var response = await _httpClient.PutAsJsonAsync(NutrimentsApiEndpoints.UpdateNutrimentPathUrl(nutrimentToUpdate.Id), nutrimentToUpdate);
 
         if(!response.IsSuccessStatusCode)
         {
