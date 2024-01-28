@@ -19,7 +19,7 @@ else
         else
         {
             <div class="ingredient-nutriments">
-                @foreach (var nutriment in NutrimentsState.Value.Nutriments.Where(n => IngredientsState.Value.Ingredient.IngredientNutriments.FirstOrDefault(i => i.Nutriment.Id == n.Id) == null))
+                @foreach (var nutriment in NutrimentsState.Value.Nutriments.Where(n => !(ExceptedNutrimentIds?.Contains(n.Id) ?? false)))
                 {
                     var ingredientNutriment = new Models.IngredientNutriment
                         {

@@ -26,7 +26,7 @@ public partial class RecipIngredientSearch
     
     [Parameter] public int Take { get; set; } = 10;
     
-    [Parameter] public IEnumerable<string>? SelectedIngredientIds { get; set; }
+    [Parameter] public IEnumerable<string>? ExceptedIngredientIds { get; set; }
 
     private string searchTerm;
 

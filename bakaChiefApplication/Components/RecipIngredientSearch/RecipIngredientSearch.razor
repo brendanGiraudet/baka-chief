@@ -19,7 +19,7 @@ else
         else
         {
             <div class="recip-ingredients">
-                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n => !(SelectedIngredientIds?.Contains(n.Id) ?? false)))
+                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n => !(ExceptedIngredientIds?.Contains(n.Id) ?? false)))
                 {
                     var recipIngredient = new Models.RecipIngredient
                         {

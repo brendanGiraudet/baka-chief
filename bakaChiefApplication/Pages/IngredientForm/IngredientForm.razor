@@ -34,7 +34,7 @@
 
     <h4>Nutriments</h4>
     <IngredientNutrimentSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((nutriment) => AddNutriment(nutriment))" IngredientId="@IngredientsState.Value.Ingredient.Id" />
+        OnIconClickCallback="@((nutriment) => AddNutriment(nutriment))" IngredientId="@IngredientsState.Value.Ingredient.Id" ExceptedNutrimentIds="@IngredientsState.Value.Ingredient.IngredientNutriments?.Select(r => r.NutrimentId)" />
 
     @* Submit *@
     <div>

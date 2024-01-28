@@ -23,6 +23,8 @@ public partial class IngredientNutrimentSearch
     [Parameter] public EventCallback<Models.IngredientNutriment> OnIconClickCallback { get; set; }
     
     [Parameter] public string IngredientId { get; set; }
+    
+    [Parameter] public IEnumerable<string>? ExceptedNutrimentIds { get; set; }
 
     private string searchTerm;
 
