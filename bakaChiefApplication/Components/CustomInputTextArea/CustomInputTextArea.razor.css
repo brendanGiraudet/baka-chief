@@ -1,0 +1,3 @@
+﻿.input ::deep textarea, .input ::deep textarea:placeholder-shown+label{
+    --input-height:15rem;
+}

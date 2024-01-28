@@ -1,0 +1,18 @@
+﻿@inherits InputTextArea
+
+<div class="input">
+
+    <InputTextArea Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" placeholder
+        @attributes="AdditionalAttributes" />
+
+    <label>@Label</label>
+
+    @if (EditContext != null)
+    {
+        foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+        {
+            <div class="validation-message">@message</div>
+        }
+    }
+
+</div>

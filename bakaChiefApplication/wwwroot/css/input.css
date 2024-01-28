@@ -1,9 +1,8 @@
 ﻿.input {
-    max-width: 50rem;
     margin: 1.5rem;
 }
 
-.input input {
+.input input, .input textarea {
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #7180D4;
@@ -13,35 +12,39 @@
     transition: 0.2s ease;
     width: 100%;
     font-size: var(--font-size-normal);
+    height: var(--input-height);
 }
 
 .input input:focus,
 .input input:focus-visible,
-.input input.valid.modified {
+.input input.valid.modified,
+.input textarea:focus,
+.input textarea:focus-visible,
+.input textarea.valid.modified {
     border: none;
     border-bottom: 1px solid var(--info-color);
     outline: none;
     transition: 0.2s ease;
 }
 
-.input input:placeholder-shown+label {
-    top: calc(var(--font-size-normal) * -1);
+.input input:placeholder-shown+label, .input textarea:placeholder-shown+label {
+    top: calc((var(--input-height) - 0.25rem) * -1);
     transition: 0.2s ease;
-    font-size: 1rem;
+    font-size: var(--font-size-normal);
     color: var(--primary-color);
 }
 
-.input input:focus+label {
-    font-size: 0.8rem;
-    top: calc((var(--font-size-normal) + 2rem) * -1);
+.input input:focus+label, .input textarea:focus+label {
+    font-size: var(--font-size-small);
+    top: calc((var(--font-size-small) + var(--input-height) + 1rem) * -1);
     transition: 0.2s ease;
     color: var(--secondary-color);
 }
 
 .input label {
     position: relative;
-    top: calc((var(--font-size-normal) + 2rem) * -1);
-    font-size: 0.8rem;
+    top: calc((var(--font-size-small) + var(--input-height) + 1rem) * -1);
+    font-size: var(--font-size-small);
     margin-left: 0.5rem;
     pointer-events: none;
     transition: 0.2s ease;
