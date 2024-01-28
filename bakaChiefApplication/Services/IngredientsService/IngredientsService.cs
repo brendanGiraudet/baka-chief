@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
+using bakaChiefApplication.Extensions;
 using bakaChiefApplication.Models;
 
 namespace bakaChiefApplication.Services.IngredientsService;
@@ -30,7 +31,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<MethodResult<Ingredient>> CreateIngredientAsync(Ingredient ingredient)
     {
-        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, ingredient);
+        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, ingredient.Format());
 
         if (!response.IsSuccessStatusCode)
         {
@@ -54,7 +55,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<MethodResult<Ingredient>> UpdateIngredientAsync(Ingredient ingredientToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(ingredientToUpdate.Id), ingredientToUpdate);
+        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(ingredientToUpdate.Id), ingredientToUpdate.Format());
 
         if (!response.IsSuccessStatusCode)
         {

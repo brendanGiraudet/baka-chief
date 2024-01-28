@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
+using bakaChiefApplication.Extensions;
 using bakaChiefApplication.Models;
 
 namespace bakaChiefApplication.Services.RecipsService;
@@ -28,16 +29,16 @@ public class RecipsService : IRecipsService
         return response.Value;
     }
 
-    public async Task<MethodResult<Recip>> CreateRecipAsync(Recip Recip)
+    public async Task<MethodResult<Recip>> CreateRecipAsync(Recip recip)
     {
-        var response = await _httpClient.PostAsJsonAsync(RecipsApiEndpoints.CreateRecipPathUrl, Recip);
+        var response = await _httpClient.PostAsJsonAsync(RecipsApiEndpoints.CreateRecipPathUrl, recip.Format());
 
         if (!response.IsSuccessStatusCode)
         {
             return MethodResultBuilder<Recip>.CreateFailedMethodResult("Creation Problem");
         }
 
-        return MethodResultBuilder<Recip>.CreateSuccessMethodResult(Recip);
+        return MethodResultBuilder<Recip>.CreateSuccessMethodResult(recip);
     }
 
     public async Task<MethodResult<string>> RemoveRecipAsync(string RecipIdToRemove)
@@ -52,15 +53,15 @@ public class RecipsService : IRecipsService
         return MethodResultBuilder<string>.CreateSuccessMethodResult(RecipIdToRemove);
     }
 
-    public async Task<MethodResult<Recip>> UpdateRecipAsync(Recip RecipToUpdate)
+    public async Task<MethodResult<Recip>> UpdateRecipAsync(Recip recipToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(RecipsApiEndpoints.UpdateRecipPathUrl(RecipToUpdate.Id), RecipToUpdate);
+        var response = await _httpClient.PutAsJsonAsync(RecipsApiEndpoints.UpdateRecipPathUrl(recipToUpdate.Id), recipToUpdate.Format());
 
         if (!response.IsSuccessStatusCode)
         {
             return MethodResultBuilder<Recip>.CreateFailedMethodResult("Update Problem");
         }
 
-        return MethodResultBuilder<Recip>.CreateSuccessMethodResult(RecipToUpdate);
+        return MethodResultBuilder<Recip>.CreateSuccessMethodResult(recipToUpdate);
     }
 }
