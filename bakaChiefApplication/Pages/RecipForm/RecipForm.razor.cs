@@ -6,12 +6,16 @@ using bakaChiefApplication.Store.Recips.Actions;
 using bakaChiefApplication.Store.Ingredients;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using bakaChiefApplication.Store.RecipTypes;
+using bakaChiefApplication.Store.RecipTypes.Actions;
 
 namespace bakaChiefApplication.Pages.RecipForm;
 
 public partial class RecipForm
 {
     [Inject] public IState<RecipsState> RecipsState { get; set; }
+    
+    [Inject] public IState<RecipTypesState> RecipTypesState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }
 
@@ -41,6 +45,8 @@ public partial class RecipForm
                 Dispatcher.Dispatch(new RecipCreationInitialisationAction());
                 break;
         }
+
+        Dispatcher.Dispatch(new RecipTypeSearchByNameAction(string.Empty));
     }
 
     private async Task RedirectToRecipsPage()

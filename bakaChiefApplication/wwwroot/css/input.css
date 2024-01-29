@@ -2,7 +2,7 @@
     margin: 1.5rem;
 }
 
-.input input, .input textarea {
+.input input, .input textarea, .input select {
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #7180D4;

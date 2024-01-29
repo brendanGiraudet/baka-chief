@@ -18,6 +18,17 @@
 
     @* Preparation *@
     <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Recip.Preparation" />
+    
+    @* RecipType *@
+    <CustomInputSelect @bind-Value="@RecipsState.Value.Recip.RecipTypeId" >
+        @foreach(var recipType in RecipTypesState.Value.RecipTypes)
+        {
+            <option checked="@(RecipsState.Value.Recip.RecipType?.Id == recipType.Id)" value="@recipType.Id">
+                @recipType.Name
+            </option>
+        }
+    
+    </CustomInputSelect>
 
     <h4>Selected Ingredients</h4>
     <div>

@@ -23,4 +23,13 @@ public class Recip
 
     [JsonPropertyName("preparation")]
     public string Preparation { get; set; } = string.Empty;
+
+    [JsonPropertyName("selectedRecipHistories")]
+    public ICollection<SelectedRecipHistory> SelectedRecipHistories { get; set; }= new HashSet<SelectedRecipHistory>();
+
+    [JsonPropertyName("recipType")]
+    public RecipType? RecipType { get; set; }
+    
+    [JsonPropertyName("recipTypeId")]
+    public string? RecipTypeId { get; set; }
 }
