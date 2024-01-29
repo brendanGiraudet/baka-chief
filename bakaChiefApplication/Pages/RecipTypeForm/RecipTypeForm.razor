@@ -1,0 +1,25 @@
+﻿@page "/recipTypes/{Action}"
+@page "/recipTypes/{Action}/{Id}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>RecipType form</h3>
+
+<EditForm Model="RecipTypesState.Value.RecipType" OnValidSubmit="@SaveRecipType">
+    <DataAnnotationsValidator />
+
+    @* Name *@
+    <CustomInputText Label="Name" @bind-Value="@RecipTypesState.Value.RecipType.Name" />
+
+    @* Submit *@
+    <div>
+        <Button Type="submit" Text="Submit" />
+    </div>
+
+</EditForm>
+
+@if (CanDelete)
+{
+    <Button Type="button" Text="Remove" OnClickCallback="@(() => RemoveRecipType())" />
+}
+
+<Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToRecipTypesPage())" />

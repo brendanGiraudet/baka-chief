@@ -24,5 +24,11 @@ namespace bakaChiefApplication.Constants
         public static string SelectedRecipHistoriesPathUrl => "/selectedRecipHistories";
         public static string GetSelectedRecipHistoryUrl(string Id) =>$"{SelectedRecipHistoriesPathUrl}/{Id}";
         #endregion
+
+        #region RecipTypes
+        public static string RecipTypesPathUrl => "/recipTypes";
+        public static string GetRecipTypeFormUrl(FormMode formMode) => $"{RecipTypesPathUrl}/{formMode}";
+        public static string GetRecipTypeFormUrl(FormMode formMode, string? RecipTypeId) => RecipTypeId == null ? GetRecipTypeFormUrl(formMode) : $"{GetRecipTypeFormUrl(formMode)}/{RecipTypeId}";
+        #endregion
     }
 }

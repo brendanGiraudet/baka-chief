@@ -1,0 +1,8 @@
+﻿@page "/recipTypes"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>RecipTypes</h3>
+
+<AddButton OnClickCallback="@(async () => await RedirectToRecipTypeForm(Enums.FormMode.Creation))" />
+
+<RecipTypesSearch OnTagClickCallback="@((RecipType) => RedirectToRecipTypeForm(Enums.FormMode.Update, RecipType.Id))" />
