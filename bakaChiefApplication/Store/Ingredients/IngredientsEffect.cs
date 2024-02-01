@@ -59,4 +59,12 @@ public class IngredientsEffect
 
         dispatcher.Dispatch(new UpdateIngredientSucceedAction(updatedIngredientResult.Value!));
     }
+
+        [EffectMethod]
+    public async Task HandleAddMoreIngredientsAction(AddMoreIngredientsAction action, IDispatcher dispatcher)
+    {
+        var ingredients = await _ingredientsService.GetIngredientsByNameAsync(action.IngredientsearchTerm, action.Take, action.Skip);
+
+        dispatcher.Dispatch(new AddMoreIngredientsResultAction(ingredients));
+    }
 }

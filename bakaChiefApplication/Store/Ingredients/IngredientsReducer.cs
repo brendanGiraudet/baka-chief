@@ -70,4 +70,19 @@ public static class IngredientsReducer
     [ReducerMethod(typeof(IngredientCreationInitialisationAction))]
     public static IngredientsState ReduceIngredientCreationInitialisationAction(IngredientsState state) => new IngredientsState(currentState: state, ingredient: new());
 
+    #region AddMoreIngredients
+    [ReducerMethod(typeof(AddMoreIngredientsAction))]
+    public static IngredientsState ReduceAddMoreIngredientsAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static IngredientsState ReduceAddMoreIngredientsResultAction(IngredientsState state, AddMoreIngredientsResultAction action)
+    {
+        var ingredients = state.Ingredients.ToList();
+
+        ingredients.AddRange(action.SearchedIngredients);
+
+        return new IngredientsState(currentState: state, isLoading: false, ingredients: ingredients);
+    }
+    #endregion
+
 }

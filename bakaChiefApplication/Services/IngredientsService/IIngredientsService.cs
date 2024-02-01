@@ -16,7 +16,7 @@ public interface IIngredientsService
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int take);
+    Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int? take = null, int? skip = null);
 
     /// <summary>
     /// Create a Ingredient

@@ -10,6 +10,10 @@ namespace bakaChiefApplication.Pages.Ingredients;
 public partial class Ingredients
 {
     [Inject] public NavigationManager NavigationManager { get; set; }
+    
+    [Inject] public IDispatcher Dispatcher { get; set; }
+    
+    [Inject] public IState<IngredientsState> IngredientsState { get; set; }
 
     private async Task RedirectToIngredientForm(FormMode formMode, string? ingredientId = null)
     {
@@ -17,4 +21,6 @@ public partial class Ingredients
         
         await Task.CompletedTask;
     }
+
+    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, Search.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
 }

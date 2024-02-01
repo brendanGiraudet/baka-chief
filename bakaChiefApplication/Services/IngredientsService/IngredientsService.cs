@@ -22,9 +22,9 @@ public class IngredientsService : IIngredientsService
         return response.Value;
     }
 
-    public async Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int take)
+    public async Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take, 0, name?.ToLower()));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take ?? Search.DefaultNumberOfItemsToTake, skip ?? Search.DefaultNumberOfItemsToSkip, name?.ToLower()));
 
         return response.Value;
     }
