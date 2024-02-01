@@ -52,7 +52,7 @@
     font-weight: 600;
     text-transform: uppercase;
     margin:1rem;
-    
+    text-align: center;
 }
     .nav-item ::deep a {
         text-decoration: none;
