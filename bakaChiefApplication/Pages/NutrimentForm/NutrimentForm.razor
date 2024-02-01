@@ -19,7 +19,11 @@
 
 @if (CanDelete)
 {
-    <Button Type="button" Text="Remove" OnClickCallback="@(() => RemoveNutriment())" />
+    <div>
+        <Button Type="button" Text="Remove" OnClickCallback="@(() => RemoveNutriment())" />
+    </div>
 }
 
-<Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToNutrimentsPage())" />
+<div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToNutrimentsPage())" />
+</div>

@@ -5,7 +5,7 @@
 
 <AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
 
-<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" />
+<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
 <div>

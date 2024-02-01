@@ -20,7 +20,7 @@ public partial class IngredientsSearch
 
     [Parameter] public EventCallback<Ingredient> OnTagClickCallback { get; set; }
     
-    [Parameter] public int Take { get; set; } = 10;
+    [Parameter] public int Take { get; set; }
 
     private string searchTerm;
 

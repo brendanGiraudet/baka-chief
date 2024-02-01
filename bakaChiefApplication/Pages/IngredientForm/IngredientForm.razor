@@ -22,7 +22,8 @@
         {
             @foreach (var ingredientNutriment in IngredientsState.Value.Ingredient.IngredientNutriments)
             {
-                <IngredientNutriment CurrentIngredientNutriment="@ingredientNutriment" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Error"
+                <IngredientNutriment CurrentIngredientNutriment="@ingredientNutriment" Icon="@Enums.Icon.CrossSvg"
+                    Size="@Enums.Size.Small" Style="@Enums.Style.Error"
                     OnIconClickCallback="@(() => RemoveNutriment(ingredientNutriment))" />
             }
         }
@@ -34,7 +35,9 @@
 
     <h4>Nutriments</h4>
     <IngredientNutrimentSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((nutriment) => AddNutriment(nutriment))" IngredientId="@IngredientsState.Value.Ingredient.Id" ExceptedNutrimentIds="@IngredientsState.Value.Ingredient.IngredientNutriments?.Select(r => r.NutrimentId)" />
+        OnIconClickCallback="@((nutriment) => AddNutriment(nutriment))"
+        IngredientId="@IngredientsState.Value.Ingredient.Id"
+        ExceptedNutrimentIds="@IngredientsState.Value.Ingredient.IngredientNutriments?.Select(r => r.NutrimentId)" Take="@SearchConstants.DefaultNumberOfItemsToTakeInForm" />
 
     @* Submit *@
     <div>
@@ -45,7 +48,11 @@
 
 @if (CanDelete)
 {
-    <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient())" />
+    <div>
+        <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveIngredient())" />
+    </div>
 }
 
-<Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />
+<div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />
+</div>

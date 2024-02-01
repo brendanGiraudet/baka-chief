@@ -77,7 +77,7 @@ public partial class IngredientForm
 
     private void UpdateNutrimentSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name));
+        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, SearchConstants.DefaultNumberOfItemsToTake));
         Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
     }
 

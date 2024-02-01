@@ -25,6 +25,8 @@ public partial class IngredientNutrimentSearch
     [Parameter] public string IngredientId { get; set; }
     
     [Parameter] public IEnumerable<string>? ExceptedNutrimentIds { get; set; }
+    
+    [Parameter] public int Take { get; set; }
 
     private string searchTerm;
 
@@ -35,12 +37,12 @@ public partial class IngredientNutrimentSearch
         searchTerm = NutrimentsState.Value.NutrimentSearchTerm;// Keep search value in the input field after navigation
 
         if(NutrimentsState.Value.NeedToReload ?? true)
-            Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm));
+            Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm, Take));
     }
 
     private void UpdateNutrimentSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name));
+        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, Take));
         Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
     }
 

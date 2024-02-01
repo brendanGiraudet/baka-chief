@@ -1,0 +1,36 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (RecipsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+
+        <div>
+            <CustomInputSearch OnInputCallback="UpdateRecipSearchTerm" @bind-Value="searchTerm" />
+        </div>
+
+        @if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
+        {
+            <div>vide</div>
+        }
+        else
+        {
+            <div class="recips">
+                @foreach (var recip in RecipsState.Value.Recips)
+                {
+                    <Card Title="@recip.Name" OnClickCallback="async () => await OnTagClick(recip)">
+                    <Content>
+                        <div class="recip-card">
+                            <div class="image"><img alt="@recip.Name" src="@recip.ImageUrl" /></div>
+                        </div>
+                    </Content>
+                </Card>
+                }
+            </div>
+        }
+
+    </div>
+}

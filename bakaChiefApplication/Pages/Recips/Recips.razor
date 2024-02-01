@@ -3,40 +3,11 @@
 
 <h3>Recips</h3>
 
-@if (RecipsState.Value.IsLoading)
-{
-    <Loader />
-}
-else
-{
-    <AddButton OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
+<AddButton OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
+  
+<RecipsSearch OnTagClickCallback="@((Recip) => RedirectToRecipForm(Enums.FormMode.Update, Recip.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
 
-    <div>
-        <CustomInputSearch OnInputCallback="UpdateRecipSearchTerm" @bind-Value="searchTerm" />
-    </div>
-
-    if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
-    {
-        <div>vide</div>
-    }
-    else
-    {
-        <div class="recips">
-            @foreach (var Recip in RecipsState.Value.Recips)
-            {
-                <Card Title="@Recip.Name" OnClickCallback="async () => await RedirectToRecipForm(Enums.FormMode.Update, Recip.Id)">
-                    <Content>
-                        <div class="recip-card">
-                            <div class="image"><img alt="@Recip.Name" src="@Recip.ImageUrl" /></div>
-                        </div>
-                    </Content>
-                </Card>
-            }
-        </div>
-
-        @* Show more *@
-        <div>
-            <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreRecip)" />
-        </div>
-    }
-}
+@* Show more *@
+<div>
+    <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreRecip)" />
+</div>
