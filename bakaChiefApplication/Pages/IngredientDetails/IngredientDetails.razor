@@ -1,0 +1,48 @@
+﻿@page "/ingredients/{Id}/details"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToIngredientsPage())" />
+</div>
+
+<div>
+    <Button Type="button" Text="Update"
+        OnClickCallback="@(async () => await RedirectToIngredientForm(Id))" />
+</div>
+
+<h3>Ingredient details</h3>
+
+@* Name *@
+<div class="ingredient-nutriment-row">
+    <span>Name :</span>
+    <span>@IngredientsState.Value.Ingredient.Name</span>
+</div>
+
+@* ImageUrl *@
+<div class="ingredient-nutriment-row">
+    <span>ImageUrl :</span>
+    <span>@IngredientsState.Value.Ingredient.ImageUrl</span>
+</div>
+
+@* KcalNumber *@
+<div class="ingredient-nutriment-row">
+    <span>KcalNumber :</span>
+    <span>@IngredientsState.Value.Ingredient.KcalNumber</span>
+</div>
+
+<h4>Nutriments</h4>
+<div>
+    @if (IngredientsState.Value.Ingredient.IngredientNutriments.Count() != 0)
+    {
+        @foreach (var ingredientNutriment in IngredientsState.Value.Ingredient.IngredientNutriments)
+        {
+            <div>
+                <span>@ingredientNutriment.Nutriment.Name</span>
+            </div>
+        }
+    }
+    else
+    {
+        <div>No Nutriments</div>
+    }
+</div>

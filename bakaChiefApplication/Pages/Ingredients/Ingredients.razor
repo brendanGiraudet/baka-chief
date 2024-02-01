@@ -5,12 +5,12 @@
 
 @* Add button *@
 <div>
-    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToIngredientForm(Enums.FormMode.Creation))" />
+    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToIngredientForm())" />
 </div>
 
 @* Search ingredient *@
 <IngredientsSearch
-    OnTagClickCallback="@((ingredient) => RedirectToIngredientForm(Enums.FormMode.Update, ingredient.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake" />
+    OnTagClickCallback="@((ingredient) => RedirectToIngredientDetails(ingredient.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake" />
 
 @* Show more button *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreIngredients)" />

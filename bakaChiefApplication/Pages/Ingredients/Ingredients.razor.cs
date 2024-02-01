@@ -15,9 +15,16 @@ public partial class Ingredients
     
     [Inject] public IState<IngredientsState> IngredientsState { get; set; }
 
-    private async Task RedirectToIngredientForm(FormMode formMode, string? ingredientId = null)
+    private async Task RedirectToIngredientDetails(string ingredientId)
     {
-        NavigationManager.NavigateTo(PagesUrl.GetIngredientFormUrl(formMode, ingredientId));
+        NavigationManager.NavigateTo(PagesUrl.GetIngredientDetailsUrl(ingredientId));
+        
+        await Task.CompletedTask;
+    }
+
+    private async Task RedirectToIngredientForm()
+    {
+        NavigationManager.NavigateTo(PagesUrl.GetIngredientFormUrl(FormMode.Creation));
         
         await Task.CompletedTask;
     }

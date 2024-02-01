@@ -12,7 +12,10 @@ namespace bakaChiefApplication.Constants
         
         #region Ingredients
         public static string IngredientsPathUrl => "/ingredients";
+        
         public static string GetIngredientFormUrl(FormMode formMode, string? ingredientId = null) => ingredientId == null ? $"{IngredientsPathUrl}/{formMode}" : $"{IngredientsPathUrl}/{formMode}/{ingredientId}";
+        
+        public static string GetIngredientDetailsUrl(string ingredientId) => $"{IngredientsPathUrl}/{ingredientId}/details";
         #endregion
         
         #region Recips
