@@ -16,7 +16,7 @@ public interface INutrimentsService
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name);
+    Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name, int? take = null, int? skip = null);
 
     /// <summary>
     /// Create a nutriment

@@ -6,3 +6,8 @@
 <AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
 
 <NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" />
+
+@* Show more *@
+<div>
+    <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreNutriments)" />
+</div>

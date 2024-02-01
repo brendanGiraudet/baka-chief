@@ -22,9 +22,9 @@ public class NutrimentsService : INutrimentsService
         return response.Value;
     }
     
-    public async Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name)
+    public async Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(10, 0, name));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(take ?? SearchConstants.DefaultNumberOfItemsToTake, skip ?? SearchConstants.DefaultNumberOfItemsToSkip, name));
 
         return response.Value;
     }

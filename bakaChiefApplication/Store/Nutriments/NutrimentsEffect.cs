@@ -59,4 +59,12 @@ public class NutrimentsEffect
 
         dispatcher.Dispatch(new UpdateNutrimentSucceedAction(updatedNutrimentResult.Value!));
     }
+
+    [EffectMethod]
+    public async Task HandleAddMoreNutrimentsAction(AddMoreNutrimentsAction action, IDispatcher dispatcher)
+    {
+        var nutriments = await _nutrimentsService.GetNutrimentsByNameAsync(action.NutrimentsearchTerm, action.Take, action.Skip);
+
+        dispatcher.Dispatch(new AddMoreNutrimentsResultAction(nutriments));
+    }
 }

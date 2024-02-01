@@ -51,4 +51,19 @@ public static class NutrimentsReducer
 
     [ReducerMethod(typeof(NutrimentCreationInitialisationAction))]
     public static NutrimentsState ReduceNutrimentCreationInitialisationAction(NutrimentsState state) => new NutrimentsState(currentState: state, nutriment: new());
+
+    #region AddMoreNutriments
+    [ReducerMethod(typeof(AddMoreNutrimentsAction))]
+    public static NutrimentsState ReduceAddMoreNutrimentsAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceAddMoreNutrimentsResultAction(NutrimentsState state, AddMoreNutrimentsResultAction action)
+    {
+        var nutriments = state.Nutriments.ToList();
+
+        nutriments.AddRange(action.SearchedNutriments);
+
+        return new NutrimentsState(currentState: state, isLoading: false, nutriments: nutriments);
+    }
+    #endregion
 }
