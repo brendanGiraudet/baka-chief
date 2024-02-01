@@ -5,11 +5,11 @@
 
 @* Add button *@
 <div>
-    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
+    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToRecipForm())" />
 </div>
   
 @* Search Recips  *@
-<RecipsSearch OnTagClickCallback="@((Recip) => RedirectToRecipForm(Enums.FormMode.Update, Recip.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
+<RecipsSearch OnTagClickCallback="@((recip) => RedirectToRecipDetails(recip.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreRecip)" />

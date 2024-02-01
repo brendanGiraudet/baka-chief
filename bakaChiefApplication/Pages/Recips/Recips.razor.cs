@@ -15,9 +15,18 @@ public partial class Recips
 
     [Inject] public NavigationManager NavigationManager { get; set; }
 
-    private async Task RedirectToRecipForm(FormMode formMode, string? RecipId = null)
+    private async Task RedirectToRecipDetails(string recipId)
     {
-        NavigationManager.NavigateTo(PagesUrl.GetRecipFormUrl(formMode, RecipId));
+        NavigationManager.NavigateTo(PagesUrl.GetRecipDetailsUrl(recipId));
+        
+        await Task.CompletedTask;
+    }
+
+    private async Task RedirectToRecipForm()
+    {
+        NavigationManager.NavigateTo(PagesUrl.GetRecipFormUrl(FormMode.Creation));
+        
+        await Task.CompletedTask;
     }
 
     private void ShowMoreRecip() => Dispatcher.Dispatch(new AddMoreRecipsAction(RecipsState.Value.RecipSearchTerm, SearchConstants.DefaultNumberOfItemsToTake, RecipsState.Value.Recips.Count()));

@@ -1,0 +1,60 @@
+﻿@page "/recips/{Id}/details"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToRecipsPage())" />
+</div>
+
+<div>
+    <Button Type="button" Text="Update"
+        OnClickCallback="@(async () => await RedirectToRecipForm(Id))" />
+</div>
+
+<h3>Recip details</h3>
+
+@* Name *@
+<div class="recip-ingredient-row">
+    <span>Name :</span>
+    <span>@RecipsState.Value.Recip.Name</span>
+</div>
+
+@* PersonsNumber *@
+<div class="recip-ingredient-row">
+    <span>PersonsNumber :</span>
+    <span>@RecipsState.Value.Recip.PersonsNumber</span>
+</div>
+
+@* ImageUrl *@
+<div class="recip-ingredient-row">
+    <span>ImageUrl :</span>
+    <span>@RecipsState.Value.Recip.ImageUrl</span>
+</div>
+
+@* Preparation *@
+<div class="recip-ingredient-row">
+    <span>Preparation :</span>
+    <span>@RecipsState.Value.Recip.Preparation</span>
+</div>
+
+@* Recip Type *@
+<div class="recip-ingredient-row">
+    <span>Recip Type :</span>
+    <span>@RecipsState.Value.Recip?.RecipType?.Name</span>
+</div>
+
+<h4>Ingredients</h4>
+<div>
+    @if (RecipsState.Value.Recip.RecipIngredients?.Count() != 0)
+    {
+        @foreach (var RecipIngredient in RecipsState.Value.Recip.RecipIngredients)
+        {
+            <div>
+                <span>@RecipIngredient.Ingredient.Name</span>
+            </div>
+        }
+    }
+    else
+    {
+        <div>No Ingredients</div>
+    }
+</div>

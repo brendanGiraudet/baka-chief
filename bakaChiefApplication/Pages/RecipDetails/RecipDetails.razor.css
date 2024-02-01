@@ -1,0 +1,5 @@
+﻿.recip-ingredient-row {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
