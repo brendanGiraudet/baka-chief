@@ -3,11 +3,13 @@
 
 <h3>Recips</h3>
 
-<AddButton OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
+@* Add button *@
+<div>
+    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToRecipForm(Enums.FormMode.Creation))" />
+</div>
   
+@* Search Recips  *@
 <RecipsSearch OnTagClickCallback="@((Recip) => RedirectToRecipForm(Enums.FormMode.Update, Recip.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
-<div>
-    <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreRecip)" />
-</div>
+<FlottedButton Text="Show more" OnClickCallback="@(ShowMoreRecip)" />

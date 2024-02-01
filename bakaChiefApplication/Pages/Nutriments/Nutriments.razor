@@ -3,11 +3,13 @@
 
 <h3>Nutriments</h3>
 
-<AddButton OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
+@* Add button *@
+<div>
+    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
+</div>
 
+@* Search nutriments *@
 <NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
-<div>
-    <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreNutriments)" />
-</div>
+<FlottedButton Text="Show more" OnClickCallback="@(ShowMoreNutriments)" />
