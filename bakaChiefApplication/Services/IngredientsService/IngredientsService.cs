@@ -24,7 +24,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take ?? Search.DefaultNumberOfItemsToTake, skip ?? Search.DefaultNumberOfItemsToSkip, name?.ToLower()));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take ?? SearchConstants.DefaultNumberOfItemsToTake, skip ?? SearchConstants.DefaultNumberOfItemsToSkip, name?.ToLower()));
 
         return response.Value;
     }

@@ -22,5 +22,5 @@ public partial class Ingredients
         await Task.CompletedTask;
     }
 
-    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, Search.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
+    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, SearchConstants.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
 }
