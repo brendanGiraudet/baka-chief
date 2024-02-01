@@ -22,9 +22,9 @@ public class RecipsService : IRecipsService
         return response.Value;
     }
 
-    public async Task<IEnumerable<Recip>> GetRecipsByNameAsync(string name)
+    public async Task<IEnumerable<Recip>> GetRecipsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Recip>>(RecipsApiEndpoints.GetRecipsByNamePathUrl(10, 0, name));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Recip>>(RecipsApiEndpoints.GetRecipsByNamePathUrl(take ?? Search.DefaultNumberOfItemsToTake, skip ?? Search.DefaultNumberOfItemsToSkip, name));
 
         return response.Value;
     }

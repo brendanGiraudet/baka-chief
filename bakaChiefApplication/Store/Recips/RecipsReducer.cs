@@ -57,7 +57,7 @@ public static class RecipsReducer
 
         return new RecipsState(currentState: state, recip: recip);
     }
-    
+
     [ReducerMethod]
     public static RecipsState ReduceRemoveIngredientIntoRecipAction(RecipsState state, RemoveIngredientIntoRecipAction action)
     {
@@ -69,5 +69,20 @@ public static class RecipsReducer
 
     [ReducerMethod(typeof(RecipCreationInitialisationAction))]
     public static RecipsState ReduceRecipCreationInitialisationAction(RecipsState state) => new RecipsState(currentState: state, recip: new());
+
+    #region AddMoreRecips
+    [ReducerMethod(typeof(AddMoreRecipsAction))]
+    public static RecipsState ReduceAddMoreRecipsAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipsState ReduceAddMoreRecipsResultAction(RecipsState state, AddMoreRecipsResultAction action)
+    {
+        var recips = state.Recips.ToList();
+
+        recips.AddRange(action.SearchedRecips);
+
+        return new RecipsState(currentState: state, isLoading: false, recips: recips);
+    }
+    #endregion
 
 }

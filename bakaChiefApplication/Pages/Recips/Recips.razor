@@ -24,8 +24,7 @@ else
         <div class="recips">
             @foreach (var Recip in RecipsState.Value.Recips)
             {
-                <Card Title="@Recip.Name"
-                    OnClickCallback="async () => await RedirectToRecipForm(Enums.FormMode.Update, Recip.Id)">
+                <Card Title="@Recip.Name" OnClickCallback="async () => await RedirectToRecipForm(Enums.FormMode.Update, Recip.Id)">
                     <Content>
                         <div class="recip-card">
                             <div class="image"><img alt="@Recip.Name" src="@Recip.ImageUrl" /></div>
@@ -33,6 +32,11 @@ else
                     </Content>
                 </Card>
             }
+        </div>
+
+        @* Show more *@
+        <div>
+            <Button Type="button" Text="Show more" OnClickCallback="@(ShowMoreRecip)" />
         </div>
     }
 }

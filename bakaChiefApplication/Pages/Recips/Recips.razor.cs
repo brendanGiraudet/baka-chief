@@ -42,4 +42,6 @@ public partial class Recips
     {
         Dispatcher.Dispatch(new RemoveRecipAction(id));
     }
+
+    private void ShowMoreRecip() => Dispatcher.Dispatch(new AddMoreRecipsAction(RecipsState.Value.RecipSearchTerm, Search.DefaultNumberOfItemsToTake, RecipsState.Value.Recips.Count()));
 }

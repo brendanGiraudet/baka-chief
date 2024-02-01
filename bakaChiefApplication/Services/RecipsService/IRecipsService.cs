@@ -16,7 +16,7 @@ public interface IRecipsService
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Task<IEnumerable<Recip>> GetRecipsByNameAsync(string name);
+    Task<IEnumerable<Recip>> GetRecipsByNameAsync(string name, int? take = null, int? skip = null);
 
     /// <summary>
     /// Create a Recip
@@ -24,18 +24,18 @@ public interface IRecipsService
     /// <param name="Recip">Recip info</param>
     /// <returns></returns>
     Task<MethodResult<Recip>> CreateRecipAsync(Recip Recip);
-    
+
     /// <summary>
     /// Delete specific Recip
     /// </summary>
     /// <param name="RecipIdToRemove"></param>
     /// <returns></returns>
     Task<MethodResult<string>> RemoveRecipAsync(string RecipIdToRemove);
-    
+
     /// <summary>
     /// Update an Recip
     /// </summary>
     /// <param name="RecipToUpdate"></param>
     /// <returns></returns>
-    Task<MethodResult<Recip>>UpdateRecipAsync(Recip RecipToUpdate);
+    Task<MethodResult<Recip>> UpdateRecipAsync(Recip RecipToUpdate);
 }

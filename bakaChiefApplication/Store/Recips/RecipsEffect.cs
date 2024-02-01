@@ -59,4 +59,12 @@ public class RecipsEffect
 
         dispatcher.Dispatch(new UpdateRecipSucceedAction(updatedRecipResult.Value!));
     }
+
+    [EffectMethod]
+    public async Task HandleAddMoreRecipsAction(AddMoreRecipsAction action, IDispatcher dispatcher)
+    {
+        var recips = await _recipsService.GetRecipsByNameAsync(action.RecipSearchTerm, action.Take, action.Skip);
+
+        dispatcher.Dispatch(new AddMoreRecipsResultAction(recips));
+    }
 }
