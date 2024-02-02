@@ -16,7 +16,7 @@ public interface IRecipTypesService
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Task<IEnumerable<RecipType>> GetRecipTypesByNameAsync(string name);
+    Task<IEnumerable<RecipType>> GetRecipTypesByNameAsync(string name, int? take = null, int? skip = null);
 
     /// <summary>
     /// Create a RecipType
@@ -24,14 +24,14 @@ public interface IRecipTypesService
     /// <param name="recipType">RecipType info</param>
     /// <returns></returns>
     Task<MethodResult<RecipType>> CreateRecipTypeAsync(RecipType recipType);
-    
+
     /// <summary>
     /// Delete specific RecipType
     /// </summary>
     /// <param name="recipTypeIdToRemove"></param>
     /// <returns></returns>
     Task<MethodResult<string>> RemoveRecipTypeAsync(string recipTypeIdToRemove);
-    
+
     /// <summary>
     /// Update a RecipType
     /// </summary>

@@ -13,7 +13,8 @@ public class RecipsService : IRecipsService
 
     SearchConfiguration _searchConfiguration;
 
-    public RecipsService(IHttpClientFactory httpClientFactory, IOptions<SearchConfiguration> SearchConfigurationOptions)
+    public RecipsService(IHttpClientFactory httpClientFactory, 
+        IOptions<SearchConfiguration> SearchConfigurationOptions)
     {
         _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
         _searchConfiguration = SearchConfigurationOptions.Value;

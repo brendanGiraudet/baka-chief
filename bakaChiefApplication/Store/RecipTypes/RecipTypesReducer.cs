@@ -51,4 +51,19 @@ public static class RecipTypesReducer
 
     [ReducerMethod(typeof(RecipTypeCreationInitialisationAction))]
     public static RecipTypesState ReduceRecipTypeCreationInitialisationAction(RecipTypesState state) => new RecipTypesState(currentState: state, recipType: new());
+
+    #region AddMoreRecipTypes
+    [ReducerMethod(typeof(AddMoreRecipTypesAction))]
+    public static RecipTypesState ReduceAddMoreRecipTypesAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipTypesState ReduceAddMoreRecipTypesResultAction(RecipTypesState state, AddMoreRecipTypesResultAction action)
+    {
+        var recipTypes = state.RecipTypes.ToList();
+
+        recipTypes.AddRange(action.SearchedRecipTypes);
+
+        return new RecipTypesState(currentState: state, isLoading: false, recipTypes: recipTypes);
+    }
+    #endregion
 }

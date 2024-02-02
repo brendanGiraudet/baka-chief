@@ -3,6 +3,14 @@
 
 <h3>RecipTypes</h3>
 
-<AddButton OnClickCallback="@(async () => await RedirectToRecipTypeForm(Enums.FormMode.Creation))" />
+@* Add button *@
+<div>
+    <Button Type="button" Text="+"
+        OnClickCallback="@(async () => await RedirectToRecipTypeForm(Enums.FormMode.Creation))" />
+</div>
 
+@* Search Recip types *@
 <RecipTypesSearch OnTagClickCallback="@((RecipType) => RedirectToRecipTypeForm(Enums.FormMode.Update, RecipType.Id))" />
+
+@* Show more *@
+<FlottedButton Text="Show more" OnClickCallback="@(ShowMoreRecipTypes)" />

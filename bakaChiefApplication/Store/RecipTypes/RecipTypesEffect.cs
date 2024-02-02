@@ -59,4 +59,12 @@ public class RecipTypesEffect
 
         dispatcher.Dispatch(new UpdateRecipTypeSucceedAction(updatedRecipTypeResult.Value!));
     }
+
+    [EffectMethod]
+    public async Task HandleAddMoreRecipTypesAction(AddMoreRecipTypesAction action, IDispatcher dispatcher)
+    {
+        var recipTypes = await _RecipTypesService.GetRecipTypesByNameAsync(action.RecipTypeSearchTerm, action.Take, action.Skip);
+
+        dispatcher.Dispatch(new AddMoreRecipTypesResultAction(recipTypes));
+    }
 }
