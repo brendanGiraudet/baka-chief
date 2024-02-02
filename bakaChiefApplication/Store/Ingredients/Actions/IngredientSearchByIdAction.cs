@@ -2,10 +2,10 @@ namespace bakaChiefApplication.Store.Ingredients.Actions;
 
 public class IngredientSearchByIdAction
 {
-    public string IngredientSearchTerm { get; }
+    public string IngredientId { get; }
 
-    public IngredientSearchByIdAction(string ingredientSearchTerm)
+    public IngredientSearchByIdAction(string ingredientId)
     {
-        IngredientSearchTerm = ingredientSearchTerm;
+        IngredientId = ingredientId;
     }
 }

@@ -24,18 +24,25 @@ public interface IIngredientsService
     /// <param name="ingredient">Ingredient info</param>
     /// <returns></returns>
     Task<MethodResult<Ingredient>> CreateIngredientAsync(Ingredient ingredient);
-    
+
     /// <summary>
     /// Delete specific Ingredient
     /// </summary>
     /// <param name="ingredientIdToRemove"></param>
     /// <returns></returns>
     Task<MethodResult<string>> RemoveIngredientAsync(string ingredientIdToRemove);
-    
+
     /// <summary>
     /// Update an ingredient
     /// </summary>
     /// <param name="ingredientToUpdate"></param>
     /// <returns></returns>
-    Task<MethodResult<Ingredient>>UpdateIngredientAsync(Ingredient ingredientToUpdate);
+    Task<MethodResult<Ingredient>> UpdateIngredientAsync(Ingredient ingredientToUpdate);
+
+    /// <summary>
+    /// Get ingredient by Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<MethodResult<Ingredient>> GetIngredientsByIdAsync(string id);
 }

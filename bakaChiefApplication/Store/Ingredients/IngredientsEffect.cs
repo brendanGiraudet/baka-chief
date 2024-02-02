@@ -67,4 +67,12 @@ public class IngredientsEffect
 
         dispatcher.Dispatch(new AddMoreIngredientsResultAction(ingredients));
     }
+
+    [EffectMethod]
+    public async Task HandleIngredientSearchByIdAction(IngredientSearchByIdAction action, IDispatcher dispatcher)
+    {
+        var getIngredientsByIdResult = await _ingredientsService.GetIngredientsByIdAsync(action.IngredientId);
+
+        dispatcher.Dispatch(new IngredientSearchByIdResultAction(getIngredientsByIdResult.Value));
+    }
 }

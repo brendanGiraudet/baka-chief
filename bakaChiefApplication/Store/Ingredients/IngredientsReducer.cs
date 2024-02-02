@@ -32,8 +32,14 @@ public static class IngredientsReducer
     public static IngredientsState ReduceRemoveIngredientSucceedAction(IngredientsState state, RemoveIngredientSucceedAction action) => new IngredientsState(currentState: state, isLoading: false, ingredients: state.Ingredients.Where(n => n.Id != action.RemovedIngredientId), ingredient: new(), needToReload: false);
     #endregion
 
+    #region IngredientSearchById
     [ReducerMethod]
-    public static IngredientsState ReduceIngredientSearchByIdAction(IngredientsState state, IngredientSearchByIdAction action) => new IngredientsState(currentState: state, ingredient: state.Ingredients.FirstOrDefault(i => i.Id == action.IngredientSearchTerm));
+    public static IngredientsState ReduceIngredientSearchByIdAction(IngredientsState state, IngredientSearchByIdAction action) => new IngredientsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static IngredientsState ReduceIngredientSearchByIdResultAction(IngredientsState state, IngredientSearchByIdResultAction action) => new IngredientsState(currentState: state, isLoading: false, ingredient: action.Ingredient);
+
+    #endregion
 
     #region UpdateIngredient
     [ReducerMethod(typeof(UpdateIngredientAction))]

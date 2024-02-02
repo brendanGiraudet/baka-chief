@@ -13,4 +13,6 @@ public static class IngredientsApiEndpoints
     public static string RemoveIngredientPathUrl(string id) => $"{BasePathUrl}/{id}";
     
     public static string UpdateIngredientPathUrl(string id) => $"{BasePathUrl}/{id}";
+
+    public static string GetIngredientsByIdPathUrl(string id) => $"{BasePathUrl}?$filter=id eq '{id}'&$expand=IngredientNutriments/Nutriment";
 }

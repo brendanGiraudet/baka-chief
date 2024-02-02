@@ -68,4 +68,16 @@ public class IngredientsService : IIngredientsService
 
         return MethodResultBuilder<Ingredient>.CreateSuccessMethodResult(ingredientToUpdate);
     }
+
+    public async Task<MethodResult<Ingredient>> GetIngredientsByIdAsync(string id)
+    {
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByIdPathUrl(id));
+
+        if (response.Value == null || response.Value.Count() == 0)
+        {
+            return MethodResultBuilder<Ingredient>.CreateFailedMethodResult("Update Problem");
+        }
+
+        return MethodResultBuilder<Ingredient>.CreateSuccessMethodResult(response.Value.First());
+    }
 }
