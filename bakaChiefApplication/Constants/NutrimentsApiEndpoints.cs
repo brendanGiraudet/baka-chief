@@ -6,7 +6,7 @@ public static class NutrimentsApiEndpoints
 
     public static string GetNutrimentsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetNutrimentsByNamePathUrl(int top, int skip, string name) => $"{GetNutrimentsPathUrl(top,skip)}&$filter=startswith(tolower(name), '{name?.ToLower()}') eq true";
+    public static string GetNutrimentsByNamePathUrl(int top, int skip, string name) => $"{GetNutrimentsPathUrl(top,skip)}&$filter=contains(tolower(name), '{name?.ToLower()}') eq true";
 
     public static string CreateNutrimentPathUrl => BasePathUrl;
     

@@ -6,7 +6,7 @@ public static class RecipTypesApiEndpoints
 
     public static string GetRecipTypesPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetRecipTypesByNamePathUrl(int top, int skip, string name) => $"{GetRecipTypesPathUrl(top,skip)}&$filter=startswith(tolower(name), '{name?.ToLower()}') eq true";
+    public static string GetRecipTypesByNamePathUrl(int top, int skip, string name) => $"{GetRecipTypesPathUrl(top,skip)}&$filter=contains(tolower(name), '{name?.ToLower()}') eq true";
 
     public static string CreateRecipTypePathUrl => BasePathUrl;
     
