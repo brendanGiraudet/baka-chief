@@ -13,4 +13,6 @@ public static class NutrimentsApiEndpoints
     public static string RemoveNutrimentPathUrl(string id) => $"{BasePathUrl}/{id}";
     
     public static string UpdateNutrimentPathUrl(string id) => $"{BasePathUrl}/{id}";
+
+    public static string GetNutrimentsByIdPathUrl(string id) => $"{BasePathUrl}/{id}";
 }

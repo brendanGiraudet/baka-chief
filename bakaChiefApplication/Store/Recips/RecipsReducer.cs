@@ -32,9 +32,6 @@ public static class RecipsReducer
     public static RecipsState ReduceRemoveRecipSucceedAction(RecipsState state, RemoveRecipSucceedAction action) => new RecipsState(currentState: state, isLoading: false, recips: state.Recips.Where(n => n.Id != action.RemovedRecipId), recip: new(), needToReload: false);
     #endregion
 
-    [ReducerMethod]
-    public static RecipsState ReduceRecipSearchByIdAction(RecipsState state, RecipSearchByIdAction action) => new RecipsState(currentState: state, recip: state.Recips.FirstOrDefault(i => i.Id == action.RecipSearchTerm));
-
     #region UpdateRecip
     [ReducerMethod(typeof(UpdateRecipAction))]
     public static RecipsState ReduceUpdateRecipAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
@@ -83,6 +80,15 @@ public static class RecipsReducer
 
         return new RecipsState(currentState: state, isLoading: false, recips: recips);
     }
+    #endregion
+
+    #region RecipSearchById
+    [ReducerMethod]
+    public static RecipsState ReduceRecipSearchByIdAction(RecipsState state, RecipSearchByIdAction action) => new RecipsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipsState ReduceRecipSearchByIdResultAction(RecipsState state, RecipSearchByIdResultAction action) => new RecipsState(currentState: state, isLoading: false, recip: action.Recip);
+
     #endregion
 
 }

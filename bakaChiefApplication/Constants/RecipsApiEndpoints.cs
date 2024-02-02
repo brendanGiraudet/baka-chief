@@ -6,11 +6,13 @@ public static class RecipsApiEndpoints
 
     public static string GetRecipsPathUrl(int top, int skip) => $"{BasePathUrl}?$top={top}&$skip={skip}&$orderby=name";
    
-    public static string GetRecipsByNamePathUrl(int top, int skip, string name) => $"{GetRecipsPathUrl(top,skip)}&$filter=contains(tolower(name), '{name?.ToLower()}') eq true&$expand=RecipIngredients/Ingredient";
+    public static string GetRecipsByNamePathUrl(int top, int skip, string name) => $"{GetRecipsPathUrl(top,skip)}&$filter=contains(tolower(name), '{name?.ToLower()}') eq true";
 
     public static string CreateRecipPathUrl => BasePathUrl;
     
     public static string RemoveRecipPathUrl(string id) => $"{BasePathUrl}/{id}";
     
     public static string UpdateRecipPathUrl(string id) => $"{BasePathUrl}/{id}";
+
+    public static string GetRecipByIdPathUrl(string id) => $"{BasePathUrl}?$filter=id eq '{id}'&$expand=RecipIngredients/Ingredient";
 }

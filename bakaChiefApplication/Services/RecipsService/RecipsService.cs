@@ -69,4 +69,16 @@ public class RecipsService : IRecipsService
 
         return MethodResultBuilder<Recip>.CreateSuccessMethodResult(recipToUpdate);
     }
+
+    public async Task<MethodResult<Recip>> GetRecipsByIdAsync(string id)
+    {
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Recip>>(RecipsApiEndpoints.GetRecipByIdPathUrl(id));
+
+        if (response.Value == null || response.Value.Count() == 0)
+        {
+            return MethodResultBuilder<Recip>.CreateFailedMethodResult("Get by id Problem");
+        }
+
+        return MethodResultBuilder<Recip>.CreateSuccessMethodResult(response.Value.First());
+    }
 }

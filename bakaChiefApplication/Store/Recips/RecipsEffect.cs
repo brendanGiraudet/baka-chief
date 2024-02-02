@@ -67,4 +67,12 @@ public class RecipsEffect
 
         dispatcher.Dispatch(new AddMoreRecipsResultAction(recips));
     }
+
+    [EffectMethod]
+    public async Task HandleRecipSearchByIdAction(RecipSearchByIdAction action, IDispatcher dispatcher)
+    {
+        var getRecipsByIdResult = await _recipsService.GetRecipsByIdAsync(action.RecipId);
+
+        dispatcher.Dispatch(new RecipSearchByIdResultAction(getRecipsByIdResult.Value));
+    }
 }

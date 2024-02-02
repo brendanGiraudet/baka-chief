@@ -38,4 +38,11 @@ public interface IRecipsService
     /// <param name="RecipToUpdate"></param>
     /// <returns></returns>
     Task<MethodResult<Recip>> UpdateRecipAsync(Recip RecipToUpdate);
+
+    /// <summary>
+    /// Get recip by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<MethodResult<Recip>> GetRecipsByIdAsync(string id);
 }

@@ -2,10 +2,10 @@ namespace bakaChiefApplication.Store.Recips.Actions;
 
 public class RecipSearchByIdAction
 {
-    public string RecipSearchTerm { get; }
+    public string RecipId { get; }
 
-    public RecipSearchByIdAction(string recipSearchTerm)
+    public RecipSearchByIdAction(string recipId)
     {
-        RecipSearchTerm = recipSearchTerm;
+        RecipId = recipId;
     }
 }

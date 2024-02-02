@@ -67,4 +67,12 @@ public class NutrimentsEffect
 
         dispatcher.Dispatch(new AddMoreNutrimentsResultAction(nutriments));
     }
+
+    [EffectMethod]
+    public async Task HandleNutrimentSearchByIdAction(NutrimentSearchByIdAction action, IDispatcher dispatcher)
+    {
+        var getNutrimentsByIdResult = await _nutrimentsService.GetNutrimentsByIdAsync(action.NutrimentId);
+
+        dispatcher.Dispatch(new NutrimentSearchByIdResultAction(getNutrimentsByIdResult.Value));
+    }
 }

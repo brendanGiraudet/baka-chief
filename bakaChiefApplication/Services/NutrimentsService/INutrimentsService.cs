@@ -38,4 +38,11 @@ public interface INutrimentsService
     /// <param name="nutrimentToUpdate"></param>
     /// <returns></returns>
     Task<MethodResult<Nutriment>> UpdateNutrimentAsync(Nutriment nutrimentToUpdate);
+
+    /// <summary>
+    /// Get nutriment by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<MethodResult<Nutriment>> GetNutrimentsByIdAsync(string id);
 }

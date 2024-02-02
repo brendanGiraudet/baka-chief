@@ -2,10 +2,10 @@ namespace bakaChiefApplication.Store.Nutriments.Actions;
 
 public class NutrimentSearchByIdAction
 {
-    public string NutrimentSearchTerm { get; }
+    public string NutrimentId { get; }
 
-    public NutrimentSearchByIdAction(string nutrimentSearchTerm)
+    public NutrimentSearchByIdAction(string nutrimentId)
     {
-        NutrimentSearchTerm = nutrimentSearchTerm;
+        NutrimentId = nutrimentId;
     }
 }

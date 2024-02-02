@@ -28,8 +28,6 @@ public class NutrimentsService : INutrimentsService
     
     public async Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        System.Console.WriteLine("take " + take);
-        System.Console.WriteLine("take " + _searchConfiguration.DefaultNumberOfItemsToTake);
         var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip, name));
 
         return response.Value;
@@ -69,5 +67,17 @@ public class NutrimentsService : INutrimentsService
         }
 
         return MethodResultBuilder<Nutriment>.CreateSuccessMethodResult(nutrimentToUpdate);
+    }
+
+    public async Task<MethodResult<Nutriment>> GetNutrimentsByIdAsync(string id)
+    {
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByIdPathUrl(id));
+
+        if (response.Value == null || response.Value.Count() == 0)
+        {
+            return MethodResultBuilder<Nutriment>.CreateFailedMethodResult("get by id Problem");
+        }
+
+        return MethodResultBuilder<Nutriment>.CreateSuccessMethodResult(response.Value.First());
     }
 }

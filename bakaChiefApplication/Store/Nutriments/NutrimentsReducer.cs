@@ -32,8 +32,14 @@ public static class NutrimentsReducer
     public static NutrimentsState ReduceRemoveNutrimentSucceedAction(NutrimentsState state, RemoveNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Where(n => n.Id != action.RemovedNutrimentId));
     #endregion
 
+    #region NutrimentSearchById
     [ReducerMethod]
-    public static NutrimentsState ReduceNutrimentSearchByIdAction(NutrimentsState state, NutrimentSearchByIdAction action) => new NutrimentsState(currentState: state, nutriment: state.Nutriments.FirstOrDefault(n => n.Id == action.NutrimentSearchTerm));
+    public static NutrimentsState ReduceNutrimentSearchByIdAction(NutrimentsState state, NutrimentSearchByIdAction action) => new NutrimentsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceNutrimentSearchByIdResultAction(NutrimentsState state, NutrimentSearchByIdResultAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriment: action.Nutriment);
+
+    #endregion
 
     #region UpdateNutriment
     [ReducerMethod(typeof(UpdateNutrimentAction))]
