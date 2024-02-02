@@ -8,6 +8,8 @@ using Fluxor;
 using Microsoft.AspNetCore.Components;
 using bakaChiefApplication.Store.RecipTypes;
 using bakaChiefApplication.Store.RecipTypes.Actions;
+using bakaChiefApplication.Configurations;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.RecipForm;
 
@@ -22,6 +24,10 @@ public partial class RecipForm
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Inject] public IState<IngredientsState> IngredientsState { get; set; }
+
+    [Inject] public IOptions<SearchConfiguration> SearchConfigurationOptions { get; set; }
+
+    SearchConfiguration SearchConfiguration => SearchConfigurationOptions.Value;
 
     [Parameter] public string Action { get; set; }
 

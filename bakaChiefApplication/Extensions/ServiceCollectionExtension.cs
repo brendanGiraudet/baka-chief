@@ -33,7 +33,9 @@ namespace bakaChiefApplication.Extensions
 
         public static void AddConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<BakaChiefAPI>(options => configuration.GetSection(key: "BakaChiefAPI"));
+            services.Configure<BakaChiefAPI>(options => configuration.GetSection(key: "BakaChiefAPI").Bind(options));
+
+            services.Configure<SearchConfiguration>(options => configuration.GetSection(key: "SearchConfiguration").Bind(options));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using bakaChiefApplication.Constants;
+﻿using bakaChiefApplication.Configurations;
+using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.Ingredients;
@@ -8,6 +9,7 @@ using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.IngredientForm;
 
@@ -20,10 +22,14 @@ public partial class IngredientForm
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
+    
+    [Inject] public IOptions<SearchConfiguration> SearchConfigurationOptions { get; set; }
 
     [Parameter] public string Action { get; set; }
 
     [Parameter] public string Id { get; set; }
+
+    SearchConfiguration SearchConfiguration => SearchConfigurationOptions.Value;
 
     public FormMode FormMode => (FormMode)Enum.Parse(typeof(FormMode), Action);
 
@@ -77,7 +83,7 @@ public partial class IngredientForm
 
     private void UpdateNutrimentSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, SearchConstants.DefaultNumberOfItemsToTake));
+        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, SearchConfiguration.DefaultNumberOfItemsToTake));
         Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
     }
 

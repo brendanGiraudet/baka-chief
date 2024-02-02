@@ -1,8 +1,9 @@
 using System.Net.Http.Json;
+using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
-using bakaChiefApplication.Extensions;
 using bakaChiefApplication.Models;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Services.NutrimentsService;
 
@@ -10,9 +11,12 @@ public class NutrimentsService : INutrimentsService
 {
     private readonly HttpClient _httpClient;
 
-    public NutrimentsService(IHttpClientFactory httpClientFactory)
+    SearchConfiguration _searchConfiguration;
+
+    public NutrimentsService(IHttpClientFactory httpClientFactory, IOptions<SearchConfiguration> searchConfigurationOptions)
     {
         _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
+        _searchConfiguration = searchConfigurationOptions.Value;
     }
 
     public async Task<IEnumerable<Nutriment>> GetNutrimentsAsync()
@@ -24,7 +28,9 @@ public class NutrimentsService : INutrimentsService
     
     public async Task<IEnumerable<Nutriment>> GetNutrimentsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(take ?? SearchConstants.DefaultNumberOfItemsToTake, skip ?? SearchConstants.DefaultNumberOfItemsToSkip, name));
+        System.Console.WriteLine("take " + take);
+        System.Console.WriteLine("take " + _searchConfiguration.DefaultNumberOfItemsToTake);
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Nutriment>>(NutrimentsApiEndpoints.GetNutrimentsByNamePathUrl(take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip, name));
 
         return response.Value;
     }

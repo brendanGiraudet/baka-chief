@@ -10,7 +10,7 @@
 
 @* Search ingredient *@
 <IngredientsSearch
-    OnTagClickCallback="@((ingredient) => RedirectToIngredientDetails(ingredient.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake" />
+    OnTagClickCallback="@((ingredient) => RedirectToIngredientDetails(ingredient.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake" />
 
 @* Show more button *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreIngredients)" />

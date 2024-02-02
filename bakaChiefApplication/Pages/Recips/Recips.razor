@@ -9,7 +9,7 @@
 </div>
   
 @* Search Recips  *@
-<RecipsSearch OnTagClickCallback="@((recip) => RedirectToRecipDetails(recip.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
+<RecipsSearch OnTagClickCallback="@((recip) => RedirectToRecipDetails(recip.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreRecip)" />

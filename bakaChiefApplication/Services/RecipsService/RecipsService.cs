@@ -1,8 +1,9 @@
 using System.Net.Http.Json;
+using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
-using bakaChiefApplication.Extensions;
 using bakaChiefApplication.Models;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Services.RecipsService;
 
@@ -10,9 +11,12 @@ public class RecipsService : IRecipsService
 {
     private readonly HttpClient _httpClient;
 
-    public RecipsService(IHttpClientFactory httpClientFactory)
+    SearchConfiguration _searchConfiguration;
+
+    public RecipsService(IHttpClientFactory httpClientFactory, IOptions<SearchConfiguration> SearchConfigurationOptions)
     {
         _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
+        _searchConfiguration = SearchConfigurationOptions.Value;
     }
 
     public async Task<IEnumerable<Recip>> GetRecipsAsync()
@@ -24,7 +28,7 @@ public class RecipsService : IRecipsService
 
     public async Task<IEnumerable<Recip>> GetRecipsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Recip>>(RecipsApiEndpoints.GetRecipsByNamePathUrl(take ?? SearchConstants.DefaultNumberOfItemsToTake, skip ?? SearchConstants.DefaultNumberOfItemsToSkip, name));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Recip>>(RecipsApiEndpoints.GetRecipsByNamePathUrl(take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip, name));
 
         return response.Value;
     }

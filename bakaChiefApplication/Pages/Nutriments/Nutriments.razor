@@ -9,7 +9,7 @@
 </div>
 
 @* Search nutriments *@
-<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConstants.DefaultNumberOfItemsToTake"/>
+<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake"/>
 
 @* Show more *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreNutriments)" />

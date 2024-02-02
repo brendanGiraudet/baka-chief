@@ -1,9 +1,11 @@
-﻿using bakaChiefApplication.Constants;
+﻿using bakaChiefApplication.Configurations;
+using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Store.Recips;
 using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.Recips;
 
@@ -14,6 +16,10 @@ public partial class Recips
     [Inject] public IDispatcher Dispatcher { get; set; }
 
     [Inject] public NavigationManager NavigationManager { get; set; }
+
+    [Inject] public IOptions<SearchConfiguration> SearchConfigurationOptions { get; set; }
+
+    SearchConfiguration SearchConfiguration => SearchConfigurationOptions.Value;
 
     private async Task RedirectToRecipDetails(string recipId)
     {
@@ -29,5 +35,5 @@ public partial class Recips
         await Task.CompletedTask;
     }
 
-    private void ShowMoreRecip() => Dispatcher.Dispatch(new AddMoreRecipsAction(RecipsState.Value.RecipSearchTerm, SearchConstants.DefaultNumberOfItemsToTake, RecipsState.Value.Recips.Count()));
+    private void ShowMoreRecip() => Dispatcher.Dispatch(new AddMoreRecipsAction(RecipsState.Value.RecipSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, RecipsState.Value.Recips.Count()));
 }

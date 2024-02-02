@@ -48,7 +48,7 @@
 
     <h4>Ingredients</h4>
     <RecipIngredientSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" Take="@SearchConstants.DefaultNumberOfItemsToTakeInForm" ExceptedIngredientIds="@RecipsState.Value.Recip.RecipIngredients?.Select(r => r.IngredientId)" />
+        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" Take="@SearchConfiguration.DefaultNumberOfItemsToTakeInForm" ExceptedIngredientIds="@RecipsState.Value.Recip.RecipIngredients?.Select(r => r.IngredientId)" />
 
     @* Submit *@
     <div>

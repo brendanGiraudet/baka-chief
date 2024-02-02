@@ -1,8 +1,9 @@
 using System.Net.Http.Json;
+using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Dtos;
-using bakaChiefApplication.Extensions;
 using bakaChiefApplication.Models;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Services.IngredientsService;
 
@@ -10,9 +11,12 @@ public class IngredientsService : IIngredientsService
 {
     private readonly HttpClient _httpClient;
 
-    public IngredientsService(IHttpClientFactory httpClientFactory)
+    SearchConfiguration _searchConfiguration;
+
+    public IngredientsService(IHttpClientFactory httpClientFactory, IOptions<SearchConfiguration> searchConfigurationOptions)
     {
         _httpClient = httpClientFactory.CreateClient(NameHttpClient.BakaChiefAPI);
+        _searchConfiguration = searchConfigurationOptions.Value;
     }
 
     public async Task<IEnumerable<Ingredient>> GetIngredientsAsync()
@@ -24,7 +28,7 @@ public class IngredientsService : IIngredientsService
 
     public async Task<IEnumerable<Ingredient>> GetIngredientsByNameAsync(string name, int? take = null, int? skip = null)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take ?? SearchConstants.DefaultNumberOfItemsToTake, skip ?? SearchConstants.DefaultNumberOfItemsToSkip, name?.ToLower()));
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<Ingredient>>(IngredientsApiEndpoints.GetIngredientsByNamePathUrl(take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip, name?.ToLower()));
 
         return response.Value;
     }

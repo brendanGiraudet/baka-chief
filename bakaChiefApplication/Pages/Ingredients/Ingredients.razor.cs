@@ -1,9 +1,11 @@
-﻿using bakaChiefApplication.Constants;
+﻿using bakaChiefApplication.Configurations;
+using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Store.Ingredients;
 using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.Ingredients;
 
@@ -14,6 +16,10 @@ public partial class Ingredients
     [Inject] public IDispatcher Dispatcher { get; set; }
     
     [Inject] public IState<IngredientsState> IngredientsState { get; set; }
+
+    [Inject] public IOptions<SearchConfiguration> SearchConfigurationOptions { get; set; }
+
+    SearchConfiguration SearchConfiguration => SearchConfigurationOptions.Value;
 
     private async Task RedirectToIngredientDetails(string ingredientId)
     {
@@ -29,5 +35,5 @@ public partial class Ingredients
         await Task.CompletedTask;
     }
 
-    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, SearchConstants.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
+    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
 }
