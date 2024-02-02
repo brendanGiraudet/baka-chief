@@ -21,13 +21,7 @@ else
             <div class="ingredients">
                 @foreach (var ingredient in IngredientsState.Value.Ingredients)
                 {
-                    <Card Title="@ingredient.Name" OnClickCallback="@(async () => await OnTagClick(ingredient))">
-                        <Content>
-                            <div class="ingredient-card">
-                                <div class="image"><img alt="@ingredient.Name" src="@ingredient.ImageUrl" /></div>
-                            </div>
-                        </Content>
-                    </Card>
+                    <IngredientDisplay OnClickCallback="@(async () => await OnTagClick(ingredient))" Ingredient="ingredient" />
                 }
             </div>
         }

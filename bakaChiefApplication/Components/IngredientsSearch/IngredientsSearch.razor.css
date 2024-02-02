@@ -5,8 +5,3 @@
     justify-content: space-evenly;
     align-items: center;
 }
-
-.ingredient-card, .ingredient-card .image, .ingredient-card .image img{
-    height: 100%;
-    width: 100%;
-}

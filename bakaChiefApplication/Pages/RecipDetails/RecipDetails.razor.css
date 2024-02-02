@@ -1,5 +1,24 @@
-﻿.recip-ingredient-row {
+﻿.recip-name {
     display: flex;
     justify-content: space-evenly;
     margin: 1rem;
+}
+
+.recip-image{
+    display: flex;
+    justify-content: center;
+}
+
+.recip-image img{
+    height: var(--icon-tall-size-height);
+    width: var(--icon-tall-size-width);
+    border-radius: 1rem;
+}
+
+.ingredients{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }

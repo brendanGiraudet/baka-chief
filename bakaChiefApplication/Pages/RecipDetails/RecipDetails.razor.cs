@@ -38,4 +38,11 @@ public partial class RecipDetails
         
         await Task.CompletedTask;
     }
+
+    private async Task RedirectToIngredientDetails(string ingredientId)
+    {
+        NavigationManager.NavigateTo(PagesUrl.GetIngredientDetailsUrl(ingredientId));
+        
+        await Task.CompletedTask;
+    }
 }

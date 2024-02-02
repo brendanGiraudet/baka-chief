@@ -6,55 +6,54 @@
 </div>
 
 <div>
-    <Button Type="button" Text="Update"
-        OnClickCallback="@(async () => await RedirectToRecipForm(Id))" />
+    <Button Type="button" Text="Update" OnClickCallback="@(async () => await RedirectToRecipForm(Id))" />
 </div>
 
 <h3>Recip details</h3>
 
-@* Name *@
-<div class="recip-ingredient-row">
-    <span>Name :</span>
-    <span>@RecipsState.Value.Recip.Name</span>
-</div>
+<div>
+    @* Name *@
+    <div class="recip-name">
+        <span>@RecipsState.Value.Recip.Name</span>
+    </div>
 
-@* PersonsNumber *@
-<div class="recip-ingredient-row">
-    <span>PersonsNumber :</span>
-    <span>@RecipsState.Value.Recip.PersonsNumber</span>
-</div>
+    @* ImageUrl *@
+    <div class="recip-image">
+        <img src="@RecipsState.Value.Recip.ImageUrl" alt="@RecipsState.Value.Recip.Name" />
+    </div>
 
-@* ImageUrl *@
-<div class="recip-ingredient-row">
-    <span>ImageUrl :</span>
-    <span>@RecipsState.Value.Recip.ImageUrl</span>
-</div>
+    @* PersonsNumber *@
+    <div class="recip-ingredient-row">
+        <span>PersonsNumber :</span>
+        <span>@RecipsState.Value.Recip.PersonsNumber</span>
+    </div>
 
-@* Preparation *@
-<div class="recip-ingredient-row">
-    <span>Preparation :</span>
-    <span>@RecipsState.Value.Recip.Preparation</span>
-</div>
 
-@* Recip Type *@
-<div class="recip-ingredient-row">
-    <span>Recip Type :</span>
-    <span>@RecipsState.Value.Recip?.RecipType?.Name</span>
+
+    @* Recip Type *@
+    <div class="recip-ingredient-row">
+        <span>Recip Type :</span>
+        <span>@RecipsState.Value.Recip?.RecipType?.Name</span>
+    </div>
 </div>
 
 <h4>Ingredients</h4>
-<div>
+<div class="ingredients">
     @if (RecipsState.Value.Recip.RecipIngredients?.Count() != 0)
     {
-        @foreach (var RecipIngredient in RecipsState.Value.Recip.RecipIngredients)
+        @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
         {
-            <div>
-                <span>@RecipIngredient.Ingredient.Name</span>
-            </div>
+            <IngredientDisplay  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Ingredient="@recipIngredient.Ingredient" />
         }
     }
     else
     {
         <div>No Ingredients</div>
     }
+</div>
+
+<h4>Preparation</h4>
+@* Preparation *@
+<div class="recip-ingredient-row">
+    <span>@RecipsState.Value.Recip.Preparation</span>
 </div>
