@@ -12,6 +12,10 @@ namespace bakaChiefApplication.Components.Card
         
         [Parameter] public bool IsRemovable { get; set; } = false;
 
+        [Parameter] public Enums.Size Size { get; set; } = Enums.Size.Normal;
+
+        private string _sizeCssClass => Size.ToString().ToLower();
+
         private async Task OnClick()
         {
             if (OnClickCallback.HasDelegate) await OnClickCallback.InvokeAsync();

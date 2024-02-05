@@ -43,7 +43,7 @@
     {
         @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
         {
-            <IngredientDisplay  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Ingredient="@recipIngredient.Ingredient" />
+            <CardWithImage  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Title="@recipIngredient.Ingredient.Name" ImageUrl="@recipIngredient.Ingredient.ImageUrl" ImageSize="@Enums.Size.Small" />
         }
     }
     else

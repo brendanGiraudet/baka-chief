@@ -1,66 +1,73 @@
-﻿figure {
+﻿:root {
+    --card-size-height: 17rem;
+    --card-size-width: 17rem;
+}
+
+.card {
     display: grid;
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
-    height: 17rem;
-    width: 17rem;
+    height: var(--card-size-height);
+    width: var(--card-size-width);
     border: 1px solid var(--border-color);
 }
 
-    figure > * {
-        grid-area: 1/1;
-        transition: .4s;
-    }
+.card>* {
+    grid-area: 1/1;
+    transition: .4s;
+}
 
-    figure figcaption {
-        display: grid;
-        font-family: sans-serif;
-        font-size: 2.3rem;
-        font-weight: bold;
-        color: #fff;
-        padding: .75rem;
-        background: var(--c,#0009);
-        clip-path: inset(0 var(--_i,100%) 0 0);
-        margin: -1px;
-        word-break: break-all;
-        font-size: 1.5rem;
-    }
+.card figcaption {
+    display: grid;
+    font-family: sans-serif;
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #fff;
+    padding: .75rem;
+    background: var(--c, #0009);
+    clip-path: inset(0 var(--_i, 100%) 0 0);
+    margin: -1px;
+    word-break: break-all;
+    font-size: 1.5rem;
+}
 
-    figure:hover figcaption {
-        --_i: 0%;
-    }
+.card:hover figcaption {
+    --_i: 0%;
+}
 
-    figure:hover .close-svg {
-        --_i: 0%;
-    }
+.card:hover .close-svg {
+    --_i: 0%;
+}
 
 .close-svg {
     display: flex;
     justify-content: center;
     align-items: center;
-    clip-path: inset(0 var(--_i,100%) 0 0);
+    clip-path: inset(0 var(--_i, 100%) 0 0);
 }
 
-    .close-svg ::deep svg {
-        border-radius: 2.5rem;
-        border: 1px solid var(--error-color);
-        background-color: var(--error-color);
-    }
+.close-svg ::deep svg {
+    border-radius: 2.5rem;
+    border: 1px solid var(--error-color);
+    background-color: var(--error-color);
+}
 
 
 @supports not (-webkit-mask-clip: text) {
-    figure figcaption {
+    .card figcaption {
         -webkit-mask: none;
         color: #fff;
     }
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    grid-auto-flow: column;
-    place-content: center;
-    background: #425a52;
+/* SIZE */
+.small {
+    --card-size-height: 10rem;
+    --card-size-width: 10rem;
+}
+
+.normal {
+    --card-size-height: 17rem;
+    --card-size-width: 17rem;
 }
