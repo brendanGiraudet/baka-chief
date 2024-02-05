@@ -6,14 +6,13 @@ namespace bakaChiefApplication.Constants
     {
         #region Nutriments
         public static string NutrimentsPathUrl => "/nutriments";
-        public static string GetNutrimentFormUrl(FormMode formMode) => $"{NutrimentsPathUrl}/{formMode}";
-        public static string GetNutrimentFormUrl(FormMode formMode, string? nutrimentId) => nutrimentId == null ? GetNutrimentFormUrl(formMode) : $"{GetNutrimentFormUrl(formMode)}/{nutrimentId}";
+        public static string GetNutrimentFormUrl(FormMode formMode, string? nutrimentId) => nutrimentId == null ? $"{NutrimentsPathUrl}/{formMode}" : $"{NutrimentsPathUrl}/{nutrimentId}/{formMode}";
         #endregion
         
         #region Ingredients
         public static string IngredientsPathUrl => "/ingredients";
         
-        public static string GetIngredientFormUrl(FormMode formMode, string? ingredientId = null) => ingredientId == null ? $"{IngredientsPathUrl}/{formMode}" : $"{IngredientsPathUrl}/{formMode}/{ingredientId}";
+        public static string GetIngredientFormUrl(FormMode formMode, string? ingredientId = null) => ingredientId == null ? $"{IngredientsPathUrl}/{formMode}" : $"{IngredientsPathUrl}/{ingredientId}/{formMode}";
         
         public static string GetIngredientDetailsUrl(string ingredientId) => $"{IngredientsPathUrl}/{ingredientId}/details";
         #endregion
@@ -21,7 +20,7 @@ namespace bakaChiefApplication.Constants
         #region Recips
         public static string RecipsPathUrl => "/recips";
         
-        public static string GetRecipFormUrl(FormMode formMode, string? RecipId = null) => RecipId == null ? $"{RecipsPathUrl}/{formMode}" : $"{RecipsPathUrl}/{formMode}/{RecipId}";
+        public static string GetRecipFormUrl(FormMode formMode, string? recipId = null) => recipId == null ? $"{RecipsPathUrl}/{formMode}" : $"{RecipsPathUrl}/{recipId}/{formMode}";
         
         public static string GetRecipDetailsUrl(string recipId) => $"{RecipsPathUrl}/{recipId}/details";
         #endregion
@@ -33,8 +32,7 @@ namespace bakaChiefApplication.Constants
 
         #region RecipTypes
         public static string RecipTypesPathUrl => "/recipTypes";
-        public static string GetRecipTypeFormUrl(FormMode formMode) => $"{RecipTypesPathUrl}/{formMode}";
-        public static string GetRecipTypeFormUrl(FormMode formMode, string? RecipTypeId) => RecipTypeId == null ? GetRecipTypeFormUrl(formMode) : $"{GetRecipTypeFormUrl(formMode)}/{RecipTypeId}";
+        public static string GetRecipTypeFormUrl(FormMode formMode, string? recipTypeId) => recipTypeId == null ? $"{RecipTypesPathUrl}/{formMode}" : $"{RecipTypesPathUrl}/{recipTypeId}/{formMode}";
         #endregion
     }
 }
