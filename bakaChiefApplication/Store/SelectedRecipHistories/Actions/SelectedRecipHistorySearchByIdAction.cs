@@ -1,10 +1,10 @@
 namespace bakaChiefApplication.Store.SelectedRecipHistories.Actions;
 
-public class SelectedRecipHistoryFetchAction
+public class SelectedRecipHistorySearchByIdAction
 {
     public string SelectedRecipHistoryId { get; }
 
-    public SelectedRecipHistoryFetchAction(string selectedRecipHistoryId)
+    public SelectedRecipHistorySearchByIdAction(string selectedRecipHistoryId)
     {
         SelectedRecipHistoryId = selectedRecipHistoryId;
     }

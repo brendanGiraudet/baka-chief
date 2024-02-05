@@ -16,4 +16,11 @@ public interface ISelectedRecipHistoriesService
     /// </summary>
     /// <returns></returns>
     Task<MethodResult<SelectedRecipHistory>> GenerateSelectedRecipHistoriesAsync();
+
+    /// <summary>
+    /// Get selected recip hitory by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<MethodResult<SelectedRecipHistory>> GetSelectedRecipHistoryByIdAsync(string id);
 }

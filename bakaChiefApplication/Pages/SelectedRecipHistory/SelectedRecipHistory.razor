@@ -21,7 +21,7 @@ else
         <div class="selectedRecipHistories">
             @foreach (var recip in SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips)
             {
-                <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl"/>
+                <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl" OnClickCallback="async () => await RedirectToRecipDetailsPage(recip.Id)"/>
             }
         </div>
     }

@@ -9,9 +9,14 @@
 }
 else
 {
-    <AddButton OnClickCallback="@(async () => await GenerateSelectedRecipHistory())" />
+    @* Add button *@
+    <div>
+        <Button Type="button" Text="+" OnClickCallback="@(async () => await  GenerateSelectedRecipHistory())" />
+    </div>
 
-    if (SelectedRecipHistoriesState.Value.SelectedRecipHistories == null || SelectedRecipHistoriesState.Value.SelectedRecipHistories.Count() == 0)
+
+    if (SelectedRecipHistoriesState.Value.SelectedRecipHistories == null ||
+    SelectedRecipHistoriesState.Value.SelectedRecipHistories.Count() == 0)
     {
         <div>vide</div>
     }
@@ -20,7 +25,8 @@ else
         <div class="selectedRecipHistories">
             @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.SelectedRecipHistories)
             {
-                <Card Title="@selectedRecipHistory.Date.ToString()" OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)"/>
+                <Card Title="@selectedRecipHistory.Date.ToString()"
+                    OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)" />
             }
         </div>
     }

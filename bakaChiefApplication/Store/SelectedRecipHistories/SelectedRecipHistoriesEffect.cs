@@ -38,4 +38,12 @@ public class SelectedRecipHistoriesEffect
 
         dispatcher.Dispatch(new GenerateSelectedRecipHistoryResultAction(selectedRecipHistoryResponse.Value));
     }
+
+    [EffectMethod]
+    public async Task HandleRecipSearchByIdAction(SelectedRecipHistorySearchByIdAction action, IDispatcher dispatcher)
+    {
+        var getRecipsByIdResult = await _selectedRecipHistoriesService.GetSelectedRecipHistoryByIdAsync(action.SelectedRecipHistoryId);
+
+        dispatcher.Dispatch(new SelectedRecipHistorySearchByIdResultAction(getRecipsByIdResult.Value));
+    }
 }

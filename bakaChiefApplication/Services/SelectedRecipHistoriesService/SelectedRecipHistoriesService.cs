@@ -39,4 +39,18 @@ public class SelectedRecipHistoriesService : ISelectedRecipHistoriesService
 
         return MethodResultBuilder<SelectedRecipHistory>.CreateSuccessMethodResult(new SelectedRecipHistory());
     }
+
+    public async Task<MethodResult<SelectedRecipHistory>> GetSelectedRecipHistoryByIdAsync(string id)
+    {
+        try
+        {
+            var response = await _httpClient.GetFromJsonAsync<ODataResult<SelectedRecipHistory>>(SelectedRecipHistoriesApiEndpoints.GetSelectedRecipHistoryByIdPathUrl(id));
+
+            return MethodResultBuilder<SelectedRecipHistory>.CreateSuccessMethodResult(response.Value.FirstOrDefault());
+        }
+        catch (System.Exception)
+        {
+            return MethodResultBuilder<SelectedRecipHistory>.CreateFailedMethodResult("Selection Problem");
+        }
+    }
 }
