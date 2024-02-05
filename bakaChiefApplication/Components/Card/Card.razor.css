@@ -11,6 +11,7 @@
     height: var(--card-size-height);
     width: var(--card-size-width);
     border: 1px solid var(--border-color);
+    margin: 0.5rem;
 }
 
 .card>* {
@@ -63,8 +64,8 @@
 
 /* SIZE */
 .small {
-    --card-size-height: 10rem;
-    --card-size-width: 10rem;
+    --card-size-height: 6rem;
+    --card-size-width: 6rem;
 }
 
 .normal {

@@ -6,6 +6,7 @@
         EmptySvg,
         CrossSvg,
         PlusSvg,
-        Burger
+        Burger,
+        Person
     }
 }
