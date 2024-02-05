@@ -27,4 +27,16 @@ public partial class SelectedRecipHistory
     {
         NavigationManager.NavigateTo(PagesUrl.GetRecipDetailsUrl(id));
     }
+
+    private async Task RemoveSelectedRecipHistory()
+    {
+        Dispatcher.Dispatch(new RemoveSelectedRecipHistoryAction(Id));
+
+        NavigationManager.NavigateTo(PagesUrl.SelectedRecipHistoriesPathUrl);
+    }
+    
+    private async Task RedirectToSelectedRecipHistoriesPage()
+    {
+        NavigationManager.NavigateTo(PagesUrl.SelectedRecipHistoriesPathUrl);
+    }
 }

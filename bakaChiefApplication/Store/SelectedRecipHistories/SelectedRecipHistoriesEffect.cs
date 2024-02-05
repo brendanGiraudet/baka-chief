@@ -46,4 +46,17 @@ public class SelectedRecipHistoriesEffect
 
         dispatcher.Dispatch(new SelectedRecipHistorySearchByIdResultAction(getRecipsByIdResult.Value));
     }
+
+    [EffectMethod]
+    public async Task HandleRemoveSelectedRecipHistoryAction(RemoveSelectedRecipHistoryAction action, IDispatcher dispatcher)
+    {
+        var removedSelectedRecipHistoryResult = await _selectedRecipHistoriesService.RemoveSelectedRecipHistoryAsync(action.SelectedRecipHistoryIdToRemove);
+
+        if(!removedSelectedRecipHistoryResult.IsSuccess())
+        {
+            // TODO show error message
+        }
+
+        dispatcher.Dispatch(new RemoveSelectedRecipHistorySucceedAction(removedSelectedRecipHistoryResult.Value!));
+    }
 }

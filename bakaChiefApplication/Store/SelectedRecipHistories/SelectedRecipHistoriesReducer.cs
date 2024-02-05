@@ -32,4 +32,12 @@ public static class SelectedRecipHistoriesReducer
     [ReducerMethod]
     public static SelectedRecipHistoriesState ReduceSelectedRecipHistorySearchByIdResultAction(SelectedRecipHistoriesState state, SelectedRecipHistorySearchByIdResultAction action) => new SelectedRecipHistoriesState(currentState: state, isLoading: false, selectedRecipHistory: action.SelectedRecipHistory);
     #endregion
+
+     #region RemoveSelectedRecipHistory
+    [ReducerMethod(typeof(RemoveSelectedRecipHistoryAction))]
+    public static SelectedRecipHistoriesState ReduceRemoveSelectedRecipHistoryAction(SelectedRecipHistoriesState state) => new SelectedRecipHistoriesState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static SelectedRecipHistoriesState ReduceRemoveSelectedRecipHistorySucceedAction(SelectedRecipHistoriesState state, RemoveSelectedRecipHistorySucceedAction action) => new SelectedRecipHistoriesState(currentState: state, isLoading: false, selectedRecipHistories: state.SelectedRecipHistories.Where(n => n.Id != action.RemovedSelectedRecipHistoryId), selectedRecipHistory: new(), needToReload: false);
+    #endregion
 }

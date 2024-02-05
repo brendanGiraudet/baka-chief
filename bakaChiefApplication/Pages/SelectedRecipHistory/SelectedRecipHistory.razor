@@ -25,4 +25,14 @@ else
             }
         </div>
     }
+
+    @* Delete button *@
+    <div>
+        <Button Type="button" Text="Remove" OnClickCallback="@(async () => await RemoveSelectedRecipHistory())" />
+    </div>
+    
+    @* Selected Recip Histories go back button *@
+    <div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToSelectedRecipHistoriesPage())" />
+</div>
 }

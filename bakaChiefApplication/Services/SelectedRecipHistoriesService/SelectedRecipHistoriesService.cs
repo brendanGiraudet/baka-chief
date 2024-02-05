@@ -53,4 +53,20 @@ public class SelectedRecipHistoriesService : ISelectedRecipHistoriesService
             return MethodResultBuilder<SelectedRecipHistory>.CreateFailedMethodResult("Selection Problem");
         }
     }
+    
+    public async Task<MethodResult<string>> RemoveSelectedRecipHistoryAsync(string id)
+    {
+        try
+        {
+            var response = await _httpClient.DeleteAsync(SelectedRecipHistoriesApiEndpoints.DeleteSelectedRecipHistoryPathUrl(id));
+
+            if(!response.IsSuccessStatusCode) return MethodResultBuilder<string>.CreateFailedMethodResult("Delete Problem");
+
+            return MethodResultBuilder<string>.CreateSuccessMethodResult(id);
+        }
+        catch (System.Exception)
+        {
+            return MethodResultBuilder<string>.CreateFailedMethodResult("Delete Problem");
+        }
+    }
 }
