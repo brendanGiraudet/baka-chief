@@ -9,7 +9,7 @@ namespace bakaChiefApplication.Components.CustomInputNumber;
 
 public partial class CustomInputNumber<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TValue> : InputNumber<TValue>
 {
-    [Parameter] public string Label { get; set; }
+    [Parameter] public string Label { get; set; } = string.Empty;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -36,7 +36,7 @@ public partial class CustomInputNumber<[DynamicallyAccessedMembers(DynamicallyAc
         builder.AddAttribute(8, "onchange", EventCallback.Factory.CreateBinder<string>((object)this, (Action<string>)delegate (string __value)
         {
             base.CurrentValueAsString = __value;
-        }, base.CurrentValueAsString, (CultureInfo?)null));
+        }, base.CurrentValueAsString ?? string.Empty, (CultureInfo?)null));
         builder.AddElementReferenceCapture(7, delegate (ElementReference __inputReference)
         {
             Element = __inputReference;

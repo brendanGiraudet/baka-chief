@@ -5,10 +5,10 @@ namespace bakaChiefApplication.Components.Button
 {
     public partial class Button
     {
-        [Parameter] public string Text { get; set; }
-        
-        [Parameter] public string Type { get; set; }
-        
+        [Parameter] public string Text { get; set; } = string.Empty;
+
+        [Parameter] public string Type { get; set; } = string.Empty;
+
         [Parameter] public EventCallback OnClickCallback { get; set; }
 
         // BUTTON STYLE
@@ -21,7 +21,7 @@ namespace bakaChiefApplication.Components.Button
 
         private async Task Onclick()
         {
-            if(OnClickCallback.HasDelegate) await OnClickCallback.InvokeAsync();
+            if (OnClickCallback.HasDelegate) await OnClickCallback.InvokeAsync();
         }
     }
 }
