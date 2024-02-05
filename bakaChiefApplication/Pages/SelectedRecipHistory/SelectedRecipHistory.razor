@@ -1,7 +1,7 @@
 ﻿@page "/selectedRecipHistories/{Id}"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-<h3>SelectedRecipHistories</h3>
+<h3>SelectedRecipHistory</h3>
 
 <div>@SelectedRecipHistoriesState.Value.SelectedRecipHistory.Date.ToString()</div>
 
@@ -18,10 +18,10 @@ else
     }
     else
     {
-        <div class="recips">
+        <div class="selectedRecipHistories">
             @foreach (var recip in SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips)
             {
-                <Card Title="@recip.Name"/>
+                <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl"/>
             }
         </div>
     }
