@@ -1,35 +1,60 @@
-﻿.icon {
+﻿:root{
+    --icon-size-width: 3.5rem;
+    --icon-size-height: 3.5rem;
+
+    --icon-color: var(--secondary-color);
+    --icon-hover-color: var(--info-color);
+}
+
+.icon {
     cursor: pointer;
     padding:0.75rem;
+    height: var(--icon-size-height);
+    width: var(--icon-size-width);
 }
 
     .icon ::deep svg {
         fill: none;
     }
 
+    .icon ::deep svg path {
+        fill: var(--icon-color);
+    }
+
+    .icon:hover ::deep svg path {
+        fill: var(--icon-hover-color);
+    }
+
+
 /* SIZE */
 .small {
-    height: var(--icon-small-size-height);
-    width: var(--icon-small-size-width);
+    --icon-size-height :2rem;
+    --icon-size-width:2rem;
 }
 
 .normal {
-    height: var(--icon-normal-size-height);
-    width: var(--icon-normal-size-width);
+    --icon-size-height :3.5rem;
+    --icon-size-width:3.5rem;
 }
 
 /* STYLE */
-.secondary ::deep svg path {
-    fill: var(--secondary-color);
+.secondary {
+    --icon-color: var(--secondary-color);
 }
-.secondary:hover ::deep svg path {
-    fill: var(--info-color);
+.secondary:hover {
+    --icon-hover-color: var(--warning-color);
 }
 
-.error ::deep svg path {
-    fill: var(--error-color);
+.error {
+    --icon-color: var(--error-color);
+}
+.error:hover {
+    --icon-hover-color: var(--warning-color);
 }
 
 .success ::deep svg path {
-    fill: var(--success-color);
+    --icon-color: var(--success-color);
+}
+.success:hover {
+    --icon-hover-color: var(--warning-color);
 }
