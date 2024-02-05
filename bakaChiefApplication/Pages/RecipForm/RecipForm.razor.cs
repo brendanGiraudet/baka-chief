@@ -16,7 +16,7 @@ namespace bakaChiefApplication.Pages.RecipForm;
 public partial class RecipForm
 {
     [Inject] public IState<RecipsState> RecipsState { get; set; }
-    
+
     [Inject] public IState<RecipTypesState> RecipTypesState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }
@@ -52,7 +52,7 @@ public partial class RecipForm
                 break;
         }
 
-        Dispatcher.Dispatch(new RecipTypeSearchByNameAction(string.Empty));
+        Dispatcher.Dispatch(new RecipTypeSearchByNameAction(string.Empty, take:SearchConfiguration.MaxNumberOfItemsToTake));
     }
 
     private async Task RedirectToRecipsPage()

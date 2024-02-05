@@ -7,4 +7,6 @@ public class SearchConfiguration
     public int DefaultNumberOfItemsToSkip { get; set; }
 
     public int DefaultNumberOfItemsToTakeInForm { get; set; }
+    
+    public int MaxNumberOfItemsToTake { get; set; }
 }

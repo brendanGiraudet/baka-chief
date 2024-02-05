@@ -16,7 +16,7 @@ public class RecipTypesEffect
     [EffectMethod]
     public async Task HandleRecipTypeSearchByNameAction(RecipTypeSearchByNameAction action, IDispatcher dispatcher)
     {
-        var RecipTypes = await _RecipTypesService.GetRecipTypesByNameAsync(action.RecipTypeSearchTerm);
+        var RecipTypes = await _RecipTypesService.GetRecipTypesByNameAsync(action.RecipTypeSearchTerm, take: action.Take, skip: action.Skip);
 
         dispatcher.Dispatch(new RecipTypeSearchByNameResultAction(RecipTypes));
     }
