@@ -21,13 +21,7 @@ else
             <div class="recips">
                 @foreach (var recip in RecipsState.Value.Recips)
                 {
-                    <Card Title="@recip.Name" OnClickCallback="async () => await OnTagClick(recip)">
-                    <Content>
-                        <div class="recip-card">
-                            <div class="image"><img alt="@recip.Name" src="@recip.ImageUrl" /></div>
-                        </div>
-                    </Content>
-                </Card>
+                    <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl" OnClickCallback="async () => await OnTagClick(recip)" />
                 }
             </div>
         }
