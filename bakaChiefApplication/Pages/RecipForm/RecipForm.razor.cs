@@ -10,6 +10,7 @@ using bakaChiefApplication.Store.RecipTypes;
 using bakaChiefApplication.Store.RecipTypes.Actions;
 using bakaChiefApplication.Configurations;
 using Microsoft.Extensions.Options;
+using bakaChiefApplication.Store.BaseStore.Actions;
 
 namespace bakaChiefApplication.Pages.RecipForm;
 
@@ -44,11 +45,11 @@ public partial class RecipForm
         switch (FormMode)
         {
             case FormMode.Update:
-                Dispatcher.Dispatch(new RecipSearchByIdAction(Id));
+                Dispatcher.Dispatch(new SearchByIdAction<Recip>(Id));
                 break;
 
             case FormMode.Creation:
-                Dispatcher.Dispatch(new RecipCreationInitialisationAction());
+                Dispatcher.Dispatch(new CreationInitialisationAction<Recip>());
                 break;
         }
 
@@ -65,11 +66,11 @@ public partial class RecipForm
         switch (FormMode)
         {
             case FormMode.Creation:
-                Dispatcher.Dispatch(new CreateRecipAction(RecipsState.Value.Recip));
+                Dispatcher.Dispatch(new CreateAction<Recip>(RecipsState.Value.Item));
                 break;
 
             case FormMode.Update:
-                Dispatcher.Dispatch(new UpdateRecipAction(RecipsState.Value.Recip));
+                Dispatcher.Dispatch(new UpdateAction<Recip>(RecipsState.Value.Item, RecipsState.Value.Item.Id));
                 break;
             default:
                 break;
@@ -80,7 +81,7 @@ public partial class RecipForm
 
     private async Task RemoveRecip()
     {
-        Dispatcher.Dispatch(new RemoveRecipAction(RecipsState.Value.Recip.Id));
+        Dispatcher.Dispatch(new DeleteAction<Recip>(RecipsState.Value.Item.Id));
 
         NavigationManager.NavigateTo(PagesUrl.RecipsPathUrl);
     }

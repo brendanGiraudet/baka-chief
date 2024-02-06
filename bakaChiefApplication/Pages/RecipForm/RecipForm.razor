@@ -4,26 +4,26 @@
 
 <h3>Recip form</h3>
 
-<EditForm Model="RecipsState.Value.Recip" OnValidSubmit="@SaveRecip">
+<EditForm Model="RecipsState.Value.Item" OnValidSubmit="@SaveRecip">
     <DataAnnotationsValidator />
 
     @* Name *@
-    <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Recip.Name" />
+    <CustomInputText Label="Name" @bind-Value="@RecipsState.Value.Item.Name" />
 
     @* ImageUrl *@
-    <CustomInputText Label="ImageUrl" @bind-Value="@RecipsState.Value.Recip.ImageUrl" />
+    <CustomInputText Label="ImageUrl" @bind-Value="@RecipsState.Value.Item.ImageUrl" />
 
     @* PersonsNumber *@
-    <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Recip.PersonsNumber" />
+    <CustomInputNumber Label="PersonsNumber" @bind-Value="@RecipsState.Value.Item.PersonsNumber" />
 
     @* Preparation *@
-    <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Recip.Preparation" />
+    <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Item.Preparation" />
     
     @* RecipType *@
-    <CustomInputSelect @bind-Value="@RecipsState.Value.Recip.RecipTypeId" >
+    <CustomInputSelect @bind-Value="@RecipsState.Value.Item.RecipTypeId" >
         @foreach(var recipType in RecipTypesState.Value.RecipTypes)
         {
-            <option checked="@(RecipsState.Value.Recip.RecipType?.Id == recipType.Id)" value="@recipType.Id">
+            <option checked="@(RecipsState.Value.Item.RecipType?.Id == recipType.Id)" value="@recipType.Id">
                 @recipType.Name
             </option>
         }
@@ -32,9 +32,9 @@
 
     <h4>Selected Ingredients</h4>
     <div>
-        @if (RecipsState.Value.Recip.RecipIngredients.Count() != 0)
+        @if (RecipsState.Value.Item.RecipIngredients.Count() != 0)
         {
-            @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
+            @foreach (var recipIngredient in RecipsState.Value.Item.RecipIngredients)
             {
                 <RecipIngredient CurrentRecipIngredient="@recipIngredient" Icon="@Enums.Icon.CrossSvg" Size="@Enums.Size.Small"
                     Style="@Enums.Style.Error" OnIconClickCallback="@(() => RemoveIngredient(recipIngredient))" />
@@ -48,7 +48,7 @@
 
     <h4>Ingredients</h4>
     <RecipIngredientSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Recip.Id" Take="@SearchConfiguration.DefaultNumberOfItemsToTakeInForm" ExceptedIngredientIds="@RecipsState.Value.Recip.RecipIngredients?.Select(r => r.IngredientId)" />
+        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Item.Id" Take="@SearchConfiguration.DefaultNumberOfItemsToTakeInForm" ExceptedIngredientIds="@RecipsState.Value.Item.RecipIngredients?.Select(r => r.IngredientId)" />
 
     @* Submit *@
     <div>

@@ -12,14 +12,14 @@ else
             <CustomInputSearch OnInputCallback="UpdateRecipSearchTerm" @bind-Value="searchTerm" />
         </div>
 
-        @if (RecipsState.Value.Recips == null || RecipsState.Value.Recips.Count() == 0)
+        @if (RecipsState.Value.Items == null || RecipsState.Value.Items.Count() == 0)
         {
             <div>vide</div>
         }
         else
         {
             <div class="recips">
-                @foreach (var recip in RecipsState.Value.Recips)
+                @foreach (var recip in RecipsState.Value.Items)
                 {
                     <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl" OnClickCallback="async () => await OnTagClick(recip)" />
                 }

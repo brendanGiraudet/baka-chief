@@ -4,9 +4,6 @@
     <div>
         <CustomInputNumber @bind-Value="CurrentRecipIngredient.Quantity" />
     </div>
-    <div>
-        <CustomInputText @bind-Value="CurrentRecipIngredient.MeasureUnit" />
-    </div>
 
     @if (Icon != @Enums.Icon.NotSet && Size != @Enums.Size.NotSet && Style != @Enums.Style.NotSet)
     {

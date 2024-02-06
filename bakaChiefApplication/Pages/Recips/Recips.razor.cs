@@ -1,8 +1,9 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Recips;
-using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
@@ -35,5 +36,5 @@ public partial class Recips
         await Task.CompletedTask;
     }
 
-    private void ShowMoreRecip() => Dispatcher.Dispatch(new AddMoreRecipsAction(RecipsState.Value.RecipSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, RecipsState.Value.Recips.Count()));
+    private void ShowMoreRecip() => Dispatcher.Dispatch(new SearchByNameMoreAction<Recip>(RecipsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, RecipsState.Value.Items.Count()));
 }

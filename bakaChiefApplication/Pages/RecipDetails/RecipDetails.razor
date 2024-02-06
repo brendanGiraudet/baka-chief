@@ -14,18 +14,18 @@
 <div>
     @* Name *@
     <div class="recip-name">
-        <span>@RecipsState.Value.Recip.Name</span>
+        <span>@RecipsState.Value.Item.Name</span>
     </div>
 
     @* ImageUrl *@
     <div class="recip-image">
-        <img src="@RecipsState.Value.Recip.ImageUrl" alt="@RecipsState.Value.Recip.Name" />
+        <img src="@RecipsState.Value.Item.ImageUrl" alt="@RecipsState.Value.Item.Name" />
     </div>
 
     @* PersonsNumber *@
     <div class="recip-person">
         <Icon IconSvgEnum="@Enums.Icon.Person" IconSize="@Enums.Size.Small" IconStyle="@Enums.Style.Secondary" />
-        <span>@RecipsState.Value.Recip.PersonsNumber</span>
+        <span>@RecipsState.Value.Item.PersonsNumber</span>
     </div>
 
 
@@ -33,15 +33,15 @@
     @* Recip Type *@
     <div class="recip-ingredient-row">
         <span>Recip Type :</span>
-        <span>@RecipsState.Value.Recip?.RecipType?.Name</span>
+        <span>@RecipsState.Value.Item?.RecipType?.Name</span>
     </div>
 </div>
 
 <h4>Ingredients</h4>
 <div class="ingredients">
-    @if (RecipsState.Value.Recip.RecipIngredients?.Count() != 0)
+    @if (RecipsState.Value.Item.RecipIngredients?.Count() != 0)
     {
-        @foreach (var recipIngredient in RecipsState.Value.Recip.RecipIngredients)
+        @foreach (var recipIngredient in RecipsState.Value.Item.RecipIngredients)
         {
             <CardWithImage  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Title="@recipIngredient.Ingredient.Name" ImageUrl="@recipIngredient.Ingredient.ImageUrl" ImageSize="@Enums.Size.Small" />
         }
@@ -55,5 +55,5 @@
 <h4>Preparation</h4>
 @* Preparation *@
 <div class="recip-ingredient-row">
-    <span>@RecipsState.Value.Recip.Preparation</span>
+    <span>@RecipsState.Value.Item.Preparation</span>
 </div>

@@ -1,16 +1,16 @@
-namespace bakaChiefApplication.Store.Recips.Actions;
+namespace bakaChiefApplication.Store.RecipTypes.Actions;
 
-public class AddMoreRecipsAction
+public class AddMoreRecipTypesAction
 {
-    public string RecipSearchTerm { get; }
+    public string RecipTypeSearchTerm { get; }
     
     public int Take { get; }
     
     public int Skip { get; }
 
-    public AddMoreRecipsAction(string recipSearchTerm, int take, int skip)
+    public AddMoreRecipTypesAction(string recipSearchTerm, int take, int skip)
     {
-        RecipSearchTerm = recipSearchTerm;
+        RecipTypeSearchTerm = recipSearchTerm;
         Take = take;
         Skip = skip;
     }

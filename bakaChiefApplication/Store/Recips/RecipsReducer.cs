@@ -1,94 +1,100 @@
-﻿using bakaChiefApplication.Store.Recips.Actions;
+﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
+using bakaChiefApplication.Store.Recips.Actions;
 using Fluxor;
 
 namespace bakaChiefApplication.Store.Recips;
 
 public static class RecipsReducer
 {
-    #region RecipSearchByName
-    [ReducerMethod(typeof(RecipSearchByNameAction))]
-    public static RecipsState ReduceRecipSearchByNameAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
+    #region SearchByName
+    [ReducerMethod]
+    public static RecipsState ReduceSearchByNameAction(RecipsState state, SearchByNameAction<Recip> action) => new RecipsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static RecipsState ReduceRecipSearchByNameResultAction(RecipsState state, RecipSearchByNameResultAction action) => new RecipsState(currentState: state, isLoading: false, recips: action.SearchedRecips);
+    public static RecipsState ReduceSearchByNameResultAction(RecipsState state, SearchByNameResultAction<Recip> action) => new RecipsState(currentState: state, isLoading: false, items: action.SearchedItems);
     #endregion
 
     [ReducerMethod]
-    public static RecipsState ReduceUpdateRecipSearchTermAction(RecipsState state, UpdateRecipSearchTermAction action) => new RecipsState(currentState: state, recipSearchTerm: action.RecipSearchTerm);
+    public static RecipsState ReduceUpdateNameToSearchAction(RecipsState state, UpdateNameToSearchAction<Recip> action) => new RecipsState(currentState: state, nameToSearch: action.NameToSearch);
 
-    #region CreateRecip
-    [ReducerMethod(typeof(CreateRecipAction))]
-    public static RecipsState ReduceCreateRecipAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
+    #region Create
+    [ReducerMethod]
+    public static RecipsState ReduceCreateAction(RecipsState state, CreateAction<Recip> action) => new RecipsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static RecipsState ReduceCreateRecipSucceedAction(RecipsState state, CreateRecipSucceedAction action) => new RecipsState(currentState: state, isLoading: false, recips: state.Recips.Append(action.CreatedRecip), recip: new(), needToReload: false);
+    public static RecipsState ReduceCreateSucceedAction(RecipsState state, CreateSucceedAction<Recip> action) => new RecipsState(currentState: state, isLoading: false, items: state.Items.Append(action.CreatedItem), item: new());
     #endregion
 
-    #region RemoveRecip
-    [ReducerMethod(typeof(RemoveRecipAction))]
-    public static RecipsState ReduceRemoveRecipAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
+    #region Delete
+    [ReducerMethod]
+    public static RecipsState ReduceDeleteAction(RecipsState state, DeleteAction<Recip> action) => new RecipsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static RecipsState ReduceRemoveRecipSucceedAction(RecipsState state, RemoveRecipSucceedAction action) => new RecipsState(currentState: state, isLoading: false, recips: state.Recips.Where(n => n.Id != action.RemovedRecipId), recip: new(), needToReload: false);
+    public static RecipsState ReduceDeleteSucceedAction(RecipsState state, DeleteAction<Recip> action) {
+        var items = state.Items.Where(i => i.Id != action.ItemIdToRemove);
+
+        return new RecipsState(currentState: state, isLoading: false, items: items);
+    }
     #endregion
 
-    #region UpdateRecip
-    [ReducerMethod(typeof(UpdateRecipAction))]
-    public static RecipsState ReduceUpdateRecipAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
+    #region SearchById
+    [ReducerMethod]
+    public static RecipsState ReduceSearchByIdAction(RecipsState state, SearchByIdAction<Recip> action) => new RecipsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static RecipsState ReduceUpdateRecipSucceedAction(RecipsState state, UpdateRecipSucceedAction action)
+    public static RecipsState ReduceSearchByIdResultAction(RecipsState state, SearchByIdResultAction<Recip> action) => new RecipsState(currentState: state, isLoading: false, item: action.Item);
+
+    #endregion
+
+    #region Update
+    [ReducerMethod]
+    public static RecipsState ReduceUpdateAction(RecipsState state, UpdateAction<Recip> action) => new RecipsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipsState ReduceUpdateSucceedAction(RecipsState state, UpdateSucceedAction<Recip> action)
     {
-        var recips = state.Recips.Where(i => i.Id != action.UpdatedRecip.Id);
-        recips = recips.Append(action.UpdatedRecip);
+        var items = state.Items.Where(i => i.Id != action.UpdatedItem.Id);
 
-        return new RecipsState(currentState: state, isLoading: false, recips: recips, recip: new(), needToReload: false);
+        items = items.Append(action.UpdatedItem);
+
+        return new RecipsState(currentState: state, isLoading: false, items: items, item: new(), needToReload: false);
     }
     #endregion
 
     [ReducerMethod]
+    public static RecipsState ReduceCreationInitialisationAction(RecipsState state, CreationInitialisationAction<Recip> action) => new RecipsState(currentState: state, item: new());
+
+    #region SearchByNameMore
+    [ReducerMethod]
+    public static RecipsState ReduceSearchByNameMoreAction(RecipsState state, SearchByNameMoreAction<Recip> action) => new RecipsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipsState ReduceSearchByNameMoreResultAction(RecipsState state, SearchByNameMoreResultAction<Recip> action)
+    {
+        var items = state.Items.ToList();
+
+        items.AddRange(action.SearchedItems);
+
+        return new RecipsState(currentState: state, isLoading: false, items: items);
+    }
+    #endregion
+
+     [ReducerMethod]
     public static RecipsState ReduceAppendIngredientIntoRecipAction(RecipsState state, AppendIngredientIntoRecipAction action)
     {
-        var recip = state.Recip;
-        recip.RecipIngredients = recip.RecipIngredients.Append(action.SelectedIngredient).ToHashSet();
+        var recip = state.Item;
+        recip.RecipIngredients = recip.RecipIngredients?.Append(action.SelectedIngredient).ToHashSet();
 
-        return new RecipsState(currentState: state, recip: recip);
+        return new RecipsState(currentState: state, item: recip);
     }
 
     [ReducerMethod]
     public static RecipsState ReduceRemoveIngredientIntoRecipAction(RecipsState state, RemoveIngredientIntoRecipAction action)
     {
-        var Recip = state.Recip;
+        var Recip = state.Item;
         Recip.RecipIngredients = Recip.RecipIngredients.Where(n => n.IngredientId != action.RemovedIngredient.IngredientId).ToHashSet();
 
-        return new RecipsState(currentState: state, recip: Recip);
+        return new RecipsState(currentState: state, item: Recip);
     }
-
-    [ReducerMethod(typeof(RecipCreationInitialisationAction))]
-    public static RecipsState ReduceRecipCreationInitialisationAction(RecipsState state) => new RecipsState(currentState: state, recip: new());
-
-    #region AddMoreRecips
-    [ReducerMethod(typeof(AddMoreRecipsAction))]
-    public static RecipsState ReduceAddMoreRecipsAction(RecipsState state) => new RecipsState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static RecipsState ReduceAddMoreRecipsResultAction(RecipsState state, AddMoreRecipsResultAction action)
-    {
-        var recips = state.Recips.ToList();
-
-        recips.AddRange(action.SearchedRecips);
-
-        return new RecipsState(currentState: state, isLoading: false, recips: recips);
-    }
-    #endregion
-
-    #region RecipSearchById
-    [ReducerMethod]
-    public static RecipsState ReduceRecipSearchByIdAction(RecipsState state, RecipSearchByIdAction action) => new RecipsState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static RecipsState ReduceRecipSearchByIdResultAction(RecipsState state, RecipSearchByIdResultAction action) => new RecipsState(currentState: state, isLoading: false, recip: action.Recip);
-
-    #endregion
-
 }

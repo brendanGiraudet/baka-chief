@@ -1,10 +1,11 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Store.Recips;
-using bakaChiefApplication.Store.Recips.Actions;
 using bakaChiefApplication.Store.Ingredients;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 
 namespace bakaChiefApplication.Pages.RecipDetails;
 
@@ -24,7 +25,7 @@ public partial class RecipDetails
     {
         base.OnInitialized();
 
-        Dispatcher.Dispatch(new RecipSearchByIdAction(Id));
+        Dispatcher.Dispatch(new SearchByIdAction<Recip>(Id));
     }
 
     private async Task RedirectToRecipsPage()
