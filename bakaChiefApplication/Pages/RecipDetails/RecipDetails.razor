@@ -52,12 +52,12 @@
     }
     else
     {
-            <div>No Ingredients</div>
+        <div>No Ingredients</div>
     }
 </div>
 
 <h4>Preparation</h4>
 @* Preparation *@
 <div class="recip-ingredient-row">
-    <span>@RecipsState.Value.Item.Preparation</span>
+    <span>@((MarkupString)RecipsState.Value.Item.Preparation)</span>
 </div>
