@@ -2,6 +2,7 @@
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
 using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Nutriments;
@@ -83,8 +84,8 @@ public partial class IngredientForm
 
     private void UpdateNutrimentSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, SearchConfiguration.DefaultNumberOfItemsToTake));
-        Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
+        Dispatcher.Dispatch(new SearchByNameAction<Nutriment>(name, SearchConfiguration.DefaultNumberOfItemsToTake));
+        Dispatcher.Dispatch(new UpdateNameToSearchAction<Nutriment>(name));
     }
 
     private void AddNutriment(IngredientNutriment ingredientNutriment) => Dispatcher.Dispatch(new AppendNutrimentIntoIngredientAction(ingredientNutriment));

@@ -1,8 +1,8 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Nutriments;
-using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
@@ -28,5 +28,7 @@ public partial class Nutriments
         await Task.CompletedTask;
     }
 
-    private void ShowMoreNutriments() => Dispatcher.Dispatch(new AddMoreNutrimentsAction(NutrimentsState.Value.NutrimentSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, NutrimentsState.Value.Nutriments.Count()));
+    // private void ShowMoreNutriments() => Dispatcher.Dispatch(new AddMoreNutrimentsAction(NutrimentsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, NutrimentsState.Value.Items.Count()));
+    
+    private void ShowMoreNutriments() => Dispatcher.Dispatch(new SearchByNameMoreAction<Models.Nutriment>(NutrimentsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, NutrimentsState.Value.Items.Count()));
 }

@@ -1,75 +1,83 @@
-﻿using bakaChiefApplication.Store.Nutriments.Actions;
+﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
+using bakaChiefApplication.Store.Ingredients.Actions;
+using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 
 namespace bakaChiefApplication.Store.Nutriments;
 
 public static class NutrimentsReducer
 {
-    #region NutrimentSearchByName
-    [ReducerMethod(typeof(NutrimentSearchByNameAction))]
-    public static NutrimentsState ReduceNutrimentSearchByNameAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true);
+    #region SearchByName
+    [ReducerMethod]
+    public static NutrimentsState ReduceSearchByNameAction(NutrimentsState state, SearchByNameAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static NutrimentsState ReduceNutrimentSearchByNameAction(NutrimentsState state, NutrimentSearchByNameResultAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: action.SearchedNutriments);
+    public static NutrimentsState ReduceSearchByNameResultAction(NutrimentsState state, SearchByNameResultAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: false, items: action.SearchedItems);
     #endregion
 
     [ReducerMethod]
-    public static NutrimentsState ReduceUpdateNutrimentSearchTermAction(NutrimentsState state, UpdateNutrimentSearchTermAction action) => new NutrimentsState(currentState: state, nutrimentSearchTerm: action.NutrimentSearchTerm);
+    public static NutrimentsState ReduceUpdateNameToSearchAction(NutrimentsState state, UpdateNameToSearchAction<Nutriment> action) => new NutrimentsState(currentState: state, nameToSearch: action.NameToSearch);
 
-    #region CreateNutriment
-    [ReducerMethod(typeof(CreateNutrimentAction))]
-    public static NutrimentsState ReduceCreateNutrimentAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true, needToReload: false);
+    #region Create
+    [ReducerMethod]
+    public static NutrimentsState ReduceCreateAction(NutrimentsState state, CreateAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static NutrimentsState ReduceCreateNutrimentSucceedAction(NutrimentsState state, CreateNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Append(action.CreatedNutriment), nutriment: new());
+    public static NutrimentsState ReduceCreateSucceedAction(NutrimentsState state, CreateSucceedAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: false, items: state.Items.Append(action.CreatedItem), item: new());
     #endregion
 
-    #region RemoveNutriment
-    [ReducerMethod(typeof(RemoveNutrimentAction))]
-    public static NutrimentsState ReduceRemoveNutrimentAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true, needToReload: false);
+    #region Delete
+    [ReducerMethod]
+    public static NutrimentsState ReduceDeleteAction(NutrimentsState state, DeleteAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static NutrimentsState ReduceRemoveNutrimentSucceedAction(NutrimentsState state, RemoveNutrimentSucceedAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriments: state.Nutriments.Where(n => n.Id != action.RemovedNutrimentId));
-    #endregion
+    public static NutrimentsState ReduceDeleteSucceedAction(NutrimentsState state, DeleteAction<Nutriment> action) {
+        var items = state.Items.Where(i => i.Id != action.ItemIdToRemove);
 
-    #region NutrimentSearchById
-    [ReducerMethod]
-    public static NutrimentsState ReduceNutrimentSearchByIdAction(NutrimentsState state, NutrimentSearchByIdAction action) => new NutrimentsState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static NutrimentsState ReduceNutrimentSearchByIdResultAction(NutrimentsState state, NutrimentSearchByIdResultAction action) => new NutrimentsState(currentState: state, isLoading: false, nutriment: action.Nutriment);
-
-    #endregion
-
-    #region UpdateNutriment
-    [ReducerMethod(typeof(UpdateNutrimentAction))]
-    public static NutrimentsState ReduceUpdateNutrimentAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static NutrimentsState ReduceUpdateNutrimentSucceedAction(NutrimentsState state, UpdateNutrimentSucceedAction action)
-    {
-        var nutriments = state.Nutriments.Where(i => i.Id != action.UpdatedNutriment.Id);
-        nutriments = nutriments.Append(action.UpdatedNutriment);
-
-        return new NutrimentsState(currentState: state, isLoading: false, nutriments: nutriments, nutriment: new(), needToReload: false);
+        return new NutrimentsState(currentState: state, isLoading: false, items: items);
     }
     #endregion
 
-    [ReducerMethod(typeof(NutrimentCreationInitialisationAction))]
-    public static NutrimentsState ReduceNutrimentCreationInitialisationAction(NutrimentsState state) => new NutrimentsState(currentState: state, nutriment: new());
-
-    #region AddMoreNutriments
-    [ReducerMethod(typeof(AddMoreNutrimentsAction))]
-    public static NutrimentsState ReduceAddMoreNutrimentsAction(NutrimentsState state) => new NutrimentsState(currentState: state, isLoading: true);
+    #region SearchById
+    [ReducerMethod]
+    public static NutrimentsState ReduceSearchByIdAction(NutrimentsState state, SearchByIdAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static NutrimentsState ReduceAddMoreNutrimentsResultAction(NutrimentsState state, AddMoreNutrimentsResultAction action)
+    public static NutrimentsState ReduceSearchByIdResultAction(NutrimentsState state, SearchByIdResultAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: false, item: action.Item);
+
+    #endregion
+
+    #region Update
+    [ReducerMethod]
+    public static NutrimentsState ReduceUpdateAction(NutrimentsState state, UpdateAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceUpdateSucceedAction(NutrimentsState state, UpdateSucceedAction<Nutriment> action)
     {
-        var nutriments = state.Nutriments.ToList();
+        var items = state.Items.Where(i => i.Id != action.UpdatedItem.Id);
 
-        nutriments.AddRange(action.SearchedNutriments);
+        items = items.Append(action.UpdatedItem);
 
-        return new NutrimentsState(currentState: state, isLoading: false, nutriments: nutriments);
+        return new NutrimentsState(currentState: state, isLoading: false, items: items, item: new(), needToReload: false);
+    }
+    #endregion
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceCreationInitialisationAction(NutrimentsState state, CreationInitialisationAction<Nutriment> action) => new NutrimentsState(currentState: state, item: new());
+
+    #region SearchByNameMore
+    [ReducerMethod]
+    public static NutrimentsState ReduceSearchByNameMoreAction(NutrimentsState state, SearchByNameMoreAction<Nutriment> action) => new NutrimentsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static NutrimentsState ReduceSearchByNameMoreResultAction(NutrimentsState state, SearchByNameMoreResultAction<Nutriment> action)
+    {
+        var items = state.Items.ToList();
+
+        items.AddRange(action.SearchedItems);
+
+        return new NutrimentsState(currentState: state, isLoading: false, items: items);
     }
     #endregion
 }

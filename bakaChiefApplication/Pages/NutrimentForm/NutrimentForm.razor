@@ -4,11 +4,11 @@
 
 <h3>Nutriment form</h3>
 
-<EditForm Model="NutrimentsState.Value.Nutriment" OnValidSubmit="@SaveNutriment">
+<EditForm Model="NutrimentsState.Value.Item" OnValidSubmit="@SaveNutriment">
     <DataAnnotationsValidator />
 
     @* Name *@
-    <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Nutriment.Name" />
+    <CustomInputText Label="Name" @bind-Value="@NutrimentsState.Value.Item.Name" />
 
     @* Submit *@
     <div>
@@ -20,7 +20,7 @@
 @if (CanDelete)
 {
     <div>
-        <Button Type="button" Text="Remove" OnClickCallback="@(() => RemoveNutriment())" />
+        <Button Type="button" Text="Remove" OnClickCallback="@(() => DeleteNutriment())" />
     </div>
 }
 

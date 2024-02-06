@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Services.BaseService;
 
-public class BaseService<T>
+public class BaseService<T> : IBaseService<T>
 {
     private readonly HttpClient _httpClient;
 
@@ -27,7 +27,9 @@ public class BaseService<T>
     {
         try
         {
-            var response = await _httpClient.GetFromJsonAsync<ODataResult<T>>(_apiEndpointsService.GetByNamePathUrl(name?.ToLower() ?? string.Empty, take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip));
+            var url = _apiEndpointsService.GetByNamePathUrl(name?.ToLower() ?? string.Empty, take ?? _searchConfiguration.DefaultNumberOfItemsToTake, skip ?? _searchConfiguration.DefaultNumberOfItemsToSkip);
+
+            var response = await _httpClient.GetFromJsonAsync<ODataResult<T>>(url);
 
             if (response == null) return MethodResultBuilder<IEnumerable<T>>.CreateFailedMethodResult("Get by name Problem");
 
@@ -44,7 +46,9 @@ public class BaseService<T>
     /// <inheritdoc/>
     public async Task<MethodResult<T>> GetByIdAsync(string id)
     {
-        var response = await _httpClient.GetFromJsonAsync<ODataResult<T>>(IngredientsApiEndpoints.GetIngredientsByIdPathUrl(id));
+        var url = _apiEndpointsService.GetByIdPathUrl(id);
+        
+        var response = await _httpClient.GetFromJsonAsync<ODataResult<T>>(url);
 
         if (response == null || response.Value == null || response.Value.Count() == 0)
         {
@@ -57,7 +61,7 @@ public class BaseService<T>
     /// <inheritdoc/>
     public async Task<MethodResult<T>> CreateAsync(T item)
     {
-        var response = await _httpClient.PostAsJsonAsync(IngredientsApiEndpoints.CreateIngredientPathUrl, item);
+        var response = await _httpClient.PostAsJsonAsync(_apiEndpointsService.CreatePathUrl(), item);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -70,7 +74,7 @@ public class BaseService<T>
     /// <inheritdoc/>
     public async Task<MethodResult<string>> DeleteAsync(string itemIdToDelete)
     {
-        var response = await _httpClient.DeleteAsync(IngredientsApiEndpoints.RemoveIngredientPathUrl(itemIdToDelete));
+        var response = await _httpClient.DeleteAsync(_apiEndpointsService.DeletePathUrl(itemIdToDelete));
 
         if (!response.IsSuccessStatusCode)
         {
@@ -83,7 +87,7 @@ public class BaseService<T>
     /// <inheritdoc/>
     public async Task<MethodResult<T>> UpdateAsync(string id, T itemToUpdate)
     {
-        var response = await _httpClient.PutAsJsonAsync(IngredientsApiEndpoints.UpdateIngredientPathUrl(id), itemToUpdate);
+        var response = await _httpClient.PutAsJsonAsync(_apiEndpointsService.UpdatePathUrl(id), itemToUpdate);
 
         if (!response.IsSuccessStatusCode)
         {

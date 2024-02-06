@@ -1,78 +1,11 @@
 ﻿using bakaChiefApplication.Services.NutrimentsService;
-using bakaChiefApplication.Store.Nutriments.Actions;
-using Fluxor;
+using bakaChiefApplication.Store.BaseStore;
 
 namespace bakaChiefApplication.Store.Nutriments;
 
-public class NutrimentsEffect
+public class NutrimentsEffect : BaseEffect<Models.Nutriment>
 {
-    INutrimentsService _nutrimentsService;
-
-    public NutrimentsEffect(INutrimentsService nutrimentsService)
+    public NutrimentsEffect(INutrimentsService nutrimentsService): base(nutrimentsService)
     {
-        _nutrimentsService = nutrimentsService;
-    }
-
-    [EffectMethod]
-    public async Task HandleNutrimentSearchByNameAction(NutrimentSearchByNameAction action, IDispatcher dispatcher)
-    {
-        var nutriments = await _nutrimentsService.GetNutrimentsByNameAsync(action.NutrimentSearchTerm);
-
-        dispatcher.Dispatch(new NutrimentSearchByNameResultAction(nutriments));
-    }
-    
-    [EffectMethod]
-    public async Task HandleCreateNutrimentAction(CreateNutrimentAction action, IDispatcher dispatcher)
-    {
-        var createNutrimentResult = await _nutrimentsService.CreateNutrimentAsync(action.NutrimentToCreate);
-
-        if(!createNutrimentResult.IsSuccess())
-        {
-            // TODO show error message
-        }
-
-        dispatcher.Dispatch(new CreateNutrimentSucceedAction(createNutrimentResult.Value!));
-    }
-    
-    [EffectMethod]
-    public async Task HandleRemoveNutrimentAction(RemoveNutrimentAction action, IDispatcher dispatcher)
-    {
-        var removedNutrimentResult = await _nutrimentsService.RemoveNutrimentAsync(action.NutrimentIdToRemove);
-
-        if(!removedNutrimentResult.IsSuccess())
-        {
-            // TODO show error message
-        }
-
-        dispatcher.Dispatch(new RemoveNutrimentSucceedAction(removedNutrimentResult.Value!));
-    }
-    
-    [EffectMethod]
-    public async Task HandleUpdateNutrimentAction(UpdateNutrimentAction action, IDispatcher dispatcher)
-    {
-        var updatedNutrimentResult = await _nutrimentsService.UpdateNutrimentAsync(action.NutrimentToUpdate);
-
-        if(!updatedNutrimentResult.IsSuccess())
-        {
-            // TODO show error message
-        }
-
-        dispatcher.Dispatch(new UpdateNutrimentSucceedAction(updatedNutrimentResult.Value!));
-    }
-
-    [EffectMethod]
-    public async Task HandleAddMoreNutrimentsAction(AddMoreNutrimentsAction action, IDispatcher dispatcher)
-    {
-        var nutriments = await _nutrimentsService.GetNutrimentsByNameAsync(action.NutrimentsearchTerm, action.Take, action.Skip);
-
-        dispatcher.Dispatch(new AddMoreNutrimentsResultAction(nutriments));
-    }
-
-    [EffectMethod]
-    public async Task HandleNutrimentSearchByIdAction(NutrimentSearchByIdAction action, IDispatcher dispatcher)
-    {
-        var getNutrimentsByIdResult = await _nutrimentsService.GetNutrimentsByIdAsync(action.NutrimentId);
-
-        dispatcher.Dispatch(new NutrimentSearchByIdResultAction(getNutrimentsByIdResult.Value));
     }
 }

@@ -1,6 +1,7 @@
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
+using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Nutriments;
-using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -28,16 +29,16 @@ public partial class NutrimentsSearch
     {
         base.OnInitialized();
 
-        searchTerm = NutrimentsState.Value.NutrimentSearchTerm;// Keep search value in the input field after navigation
+        searchTerm = NutrimentsState.Value.NameToSearch;// Keep search value in the input field after navigation
 
         if(NutrimentsState.Value.NeedToReload ?? true)
-            Dispatcher.Dispatch(new NutrimentSearchByNameAction(NutrimentsState.Value.NutrimentSearchTerm, Take));
+            Dispatcher.Dispatch(new SearchByNameAction<Models.Nutriment>(NutrimentsState.Value.NameToSearch, Take));
     }
 
     private void UpdateNutrimentSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new NutrimentSearchByNameAction(name, Take));
-        Dispatcher.Dispatch(new UpdateNutrimentSearchTermAction(name));
+        Dispatcher.Dispatch(new SearchByNameAction<Nutriment>(name, Take));
+        Dispatcher.Dispatch(new UpdateNameToSearchAction<Nutriment>(name));
     }
 
     private async Task OnTagClick(Nutriment clikedNutriment)

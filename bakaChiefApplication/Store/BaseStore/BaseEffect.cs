@@ -61,7 +61,7 @@ public class BaseEffect<T>
     {
         var updateResult = await _baseService.UpdateAsync(action.ItemIdToUpdate, action.ItemToUpdate);
 
-        if(!updateResult.IsSuccess() ||updateResult.Value == null)
+        if(!updateResult.IsSuccess())
         {
             // TODO show error message
             return;
@@ -82,5 +82,19 @@ public class BaseEffect<T>
         }
 
         dispatcher.Dispatch(new SearchByIdResultAction<T>(getByIdResult.Value));
+    }
+
+    [EffectMethod]
+    public async Task HandleSearchByNameMoreAction(SearchByNameMoreAction<T> action, IDispatcher dispatcher)
+    {
+        var getByNameResult = await _baseService.GetByNameAsync(action.NameToSearch, take: action.Take, skip: action.Skip);
+
+        if(!getByNameResult.IsSuccess() || getByNameResult.Value == null)
+        {
+            // TODO Show error
+            return;
+        }
+
+        dispatcher.Dispatch(new SearchByNameMoreResultAction<T>(getByNameResult.Value));
     }
 }

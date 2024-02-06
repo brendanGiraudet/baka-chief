@@ -1,5 +1,7 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Nutriments;
 using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
@@ -30,11 +32,11 @@ public partial class NutrimentForm
         switch (FormMode)
         {
             case FormMode.Update:
-                Dispatcher.Dispatch(new NutrimentSearchByIdAction(Id));
+                Dispatcher.Dispatch(new SearchByIdAction<Nutriment>(Id));
                 break;
                 
             case FormMode.Creation:
-                Dispatcher.Dispatch(new NutrimentCreationInitialisationAction());
+                Dispatcher.Dispatch(new CreationInitialisationAction<Nutriment>());
                 break;
         }
     }
@@ -49,11 +51,11 @@ public partial class NutrimentForm
         switch (FormMode)
         {
             case FormMode.Creation:
-                Dispatcher.Dispatch(new CreateNutrimentAction(NutrimentsState.Value.Nutriment));
+                Dispatcher.Dispatch(new CreateAction<Nutriment>(NutrimentsState.Value.Item));
                 break;
 
             case FormMode.Update:
-                Dispatcher.Dispatch(new UpdateNutrimentAction(NutrimentsState.Value.Nutriment));
+                Dispatcher.Dispatch(new UpdateAction<Nutriment>(NutrimentsState.Value.Item, NutrimentsState.Value.Item.Id));
                 break;
 
             default:
@@ -63,9 +65,9 @@ public partial class NutrimentForm
         NavigationManager.NavigateTo(PagesUrl.NutrimentsPathUrl);
     }
 
-    private void RemoveNutriment()
+    private void DeleteNutriment()
     {
-        Dispatcher.Dispatch(new RemoveNutrimentAction(NutrimentsState.Value.Nutriment.Id));
+        Dispatcher.Dispatch(new DeleteAction<Nutriment>(NutrimentsState.Value.Item.Id));
 
         NavigationManager.NavigateTo(PagesUrl.NutrimentsPathUrl);
     }
