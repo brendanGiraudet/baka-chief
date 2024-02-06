@@ -1,0 +1,31 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (MeasureUnitsState.Value.IsLoading)
+{
+    <Loader />
+}
+else
+{
+    <div>
+
+        <div>
+            <CustomInputSearch OnInputCallback="UpdateMeasureUnitSearchTerm" @bind-Value="searchTerm" />
+        </div>
+
+        @if (MeasureUnitsState.Value.Items == null || MeasureUnitsState.Value.Items.Count() == 0)
+        {
+            <div>vide</div>
+        }
+        else
+        {
+            <div class="measureUnits">
+                @foreach (var MeasureUnit in MeasureUnitsState.Value.Items)
+                {
+                    <Tag Content="@MeasureUnit.Name" Icon="@Icon" Size="@Size" Style="@Style"
+                        OnClickCallback="@(async () => await OnTagClick(MeasureUnit))" />
+                }
+            </div>
+        }
+
+    </div>
+}

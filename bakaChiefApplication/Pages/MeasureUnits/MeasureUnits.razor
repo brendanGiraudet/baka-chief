@@ -1,0 +1,15 @@
+﻿@page "/measureUnits"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>MeasureUnits</h3>
+
+@* Add button *@
+<div>
+    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToMeasureUnitForm(Enums.FormMode.Creation))" />
+</div>
+
+@* Search MeasureUnits *@
+<MeasureUnitsSearch OnTagClickCallback="@((MeasureUnit) => RedirectToMeasureUnitForm(Enums.FormMode.Update, MeasureUnit.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake"/>
+
+@* Show more *@
+<FlottedButton Text="Show more" OnClickCallback="@(ShowMoreMeasureUnits)" />

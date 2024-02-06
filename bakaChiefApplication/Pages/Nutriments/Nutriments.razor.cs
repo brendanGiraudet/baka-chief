@@ -28,7 +28,5 @@ public partial class Nutriments
         await Task.CompletedTask;
     }
 
-    // private void ShowMoreNutriments() => Dispatcher.Dispatch(new AddMoreNutrimentsAction(NutrimentsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, NutrimentsState.Value.Items.Count()));
-    
     private void ShowMoreNutriments() => Dispatcher.Dispatch(new SearchByNameMoreAction<Models.Nutriment>(NutrimentsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, NutrimentsState.Value.Items.Count()));
 }

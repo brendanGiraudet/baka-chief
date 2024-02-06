@@ -1,0 +1,29 @@
+﻿@page "/measureUnits/{Action}"
+@page "/measureUnits/{Id}/{Action}"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<h3>MeasureUnit form</h3>
+
+<EditForm Model="MeasureUnitsState.Value.Item" OnValidSubmit="@SaveMeasureUnit">
+    <DataAnnotationsValidator />
+
+    @* Name *@
+    <CustomInputText Label="Name" @bind-Value="@MeasureUnitsState.Value.Item.Name" />
+
+    @* Submit *@
+    <div>
+        <Button Type="submit" Text="Submit" />
+    </div>
+
+</EditForm>
+
+@if (CanDelete)
+{
+    <div>
+        <Button Type="button" Text="Remove" OnClickCallback="@(() => DeleteMeasureUnit())" />
+    </div>
+}
+
+<div>
+    <Button Type="button" Text="Return" OnClickCallback="@(async () => await RedirectToMeasureUnitsPage())" />
+</div>

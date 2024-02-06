@@ -34,5 +34,10 @@ namespace bakaChiefApplication.Constants
         public static string RecipTypesPathUrl => "/recipTypes";
         public static string GetRecipTypeFormUrl(FormMode formMode, string? recipTypeId) => recipTypeId == null ? $"{RecipTypesPathUrl}/{formMode}" : $"{RecipTypesPathUrl}/{recipTypeId}/{formMode}";
         #endregion
+
+        #region MeasureUnits
+        public static string MeasureUnitsPathUrl => "/measureUnits";
+        public static string GetMeasureUnitFormUrl(FormMode formMode, string? MeasureUnitId) => MeasureUnitId == null ? $"{MeasureUnitsPathUrl}/{formMode}" : $"{MeasureUnitsPathUrl}/{MeasureUnitId}/{formMode}";
+        #endregion
     }
 }
