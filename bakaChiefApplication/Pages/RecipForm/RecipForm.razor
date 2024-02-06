@@ -21,7 +21,7 @@
     
     @* RecipType *@
     <CustomInputSelect @bind-Value="@RecipsState.Value.Item.RecipTypeId" >
-        @foreach(var recipType in RecipTypesState.Value.RecipTypes)
+        @foreach(var recipType in RecipTypesState.Value.Items)
         {
             <option checked="@(RecipsState.Value.Item.RecipType?.Id == recipType.Id)" value="@recipType.Id">
                 @recipType.Name

@@ -3,7 +3,7 @@ using bakaChiefApplication.Services.BaseService;
 
 namespace bakaChiefApplication.Services.RecipsService;
 
-public interface IRecipsService: IBaseService<Recip>
+public interface IRecipsService : IBaseService<Recip>
 {
-    
+
 }

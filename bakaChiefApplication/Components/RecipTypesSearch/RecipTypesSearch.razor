@@ -12,14 +12,14 @@ else
             <CustomInputSearch OnInputCallback="UpdateRecipTypeSearchTerm" @bind-Value="searchTerm" />
         </div>
 
-        @if (RecipTypesState.Value.RecipTypes == null || RecipTypesState.Value.RecipTypes.Count() == 0)
+        @if (RecipTypesState.Value.Items == null || RecipTypesState.Value.Items.Count() == 0)
         {
             <div>vide</div>
         }
         else
         {
             <div class="recipTypes">
-                @foreach (var RecipType in RecipTypesState.Value.RecipTypes)
+                @foreach (var RecipType in RecipTypesState.Value.Items)
                 {
                     <Tag Content="@RecipType.Name" Icon="@Icon" Size="@Size" Style="@Style"
                         OnClickCallback="@(async () => await OnTagClick(RecipType))" />

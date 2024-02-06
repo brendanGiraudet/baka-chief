@@ -1,8 +1,9 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.RecipTypes;
-using bakaChiefApplication.Store.RecipTypes.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
@@ -28,5 +29,5 @@ public partial class RecipTypes
         await Task.CompletedTask;
     }
 
-    private void ShowMoreRecipTypes() => Dispatcher.Dispatch(new AddMoreRecipTypesAction(RecipTypesState.Value.RecipTypeSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, RecipTypesState.Value.RecipTypes.Count()));
+    private void ShowMoreRecipTypes() => Dispatcher.Dispatch(new SearchByNameMoreAction<RecipType>(RecipTypesState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, RecipTypesState.Value.Items.Count()));
 }

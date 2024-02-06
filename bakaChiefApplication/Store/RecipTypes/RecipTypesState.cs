@@ -1,39 +1,19 @@
 ﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore;
 using Fluxor;
 
-namespace bakaChiefApplication.Store.RecipTypes
-{
+namespace bakaChiefApplication.Store.RecipTypes;
+
     [FeatureState]
-    public class RecipTypesState
+    public class RecipTypesState : BaseState<RecipType>
+{
+    private RecipTypesState() : base()
     {
-        public bool IsLoading { get; }
 
-        public IEnumerable<RecipType> RecipTypes { get; }
-        
-        public RecipType RecipType { get; }
+    }
 
-        public string? RecipTypeSearchTerm { get; }
+    public RecipTypesState(RecipTypesState? currentState = null, bool? isLoading = null, IEnumerable<RecipType>? items = null, string? nameToSearch = null, RecipType? item = null, bool? needToReload = null) : base(currentState, isLoading, items, nameToSearch, item, needToReload)
+    {
 
-        public bool? NeedToReload { get; }
-
-        private RecipTypesState()
-        {
-            IsLoading = false;
-            RecipTypes = Enumerable.Empty<RecipType>();
-            RecipType = new();
-        }
-
-        public RecipTypesState(RecipTypesState? currentState = null,  bool? isLoading = null, IEnumerable<RecipType>? recipTypes = null, string? recipTypesearchTerm = null, RecipType? recipType = null, bool? needToReload = null)
-        {
-            IsLoading = isLoading != null ? isLoading.Value : currentState != null ? currentState.IsLoading : false;
-            
-            RecipTypes = recipTypes != null ? recipTypes : currentState != null ? currentState.RecipTypes : Enumerable.Empty<RecipType>();
-            
-            RecipTypeSearchTerm = recipTypesearchTerm != null ? recipTypesearchTerm : currentState != null ? currentState.RecipTypeSearchTerm : null;
-            
-            RecipType = recipType != null ? recipType : currentState != null ? currentState.RecipType : new();
-
-            NeedToReload = needToReload != null ? needToReload : currentState != null ? currentState.NeedToReload : true;
-        }
     }
 }

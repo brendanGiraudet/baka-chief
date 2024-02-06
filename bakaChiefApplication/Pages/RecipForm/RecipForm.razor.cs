@@ -7,7 +7,6 @@ using bakaChiefApplication.Store.Ingredients;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using bakaChiefApplication.Store.RecipTypes;
-using bakaChiefApplication.Store.RecipTypes.Actions;
 using bakaChiefApplication.Configurations;
 using Microsoft.Extensions.Options;
 using bakaChiefApplication.Store.BaseStore.Actions;
@@ -53,7 +52,7 @@ public partial class RecipForm
                 break;
         }
 
-        Dispatcher.Dispatch(new RecipTypeSearchByNameAction(string.Empty, take:SearchConfiguration.MaxNumberOfItemsToTake));
+        Dispatcher.Dispatch(new SearchByNameAction<RecipType>(string.Empty, take:SearchConfiguration.MaxNumberOfItemsToTake));
     }
 
     private async Task RedirectToRecipsPage()

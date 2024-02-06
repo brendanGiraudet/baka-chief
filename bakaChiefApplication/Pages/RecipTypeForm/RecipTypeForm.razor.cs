@@ -1,7 +1,8 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.RecipTypes;
-using bakaChiefApplication.Store.RecipTypes.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -30,11 +31,11 @@ public partial class RecipTypeForm
         switch (FormMode)
         {
             case FormMode.Update:
-                Dispatcher.Dispatch(new RecipTypeSearchByIdAction(Id));
+                Dispatcher.Dispatch(new SearchByIdAction<RecipType>(Id));
                 break;
                 
             case FormMode.Creation:
-                Dispatcher.Dispatch(new RecipTypeCreationInitialisationAction());
+                Dispatcher.Dispatch(new CreationInitialisationAction<RecipType>());
                 break;
         }
     }
@@ -49,11 +50,11 @@ public partial class RecipTypeForm
         switch (FormMode)
         {
             case FormMode.Creation:
-                Dispatcher.Dispatch(new CreateRecipTypeAction(RecipTypesState.Value.RecipType));
+                Dispatcher.Dispatch(new CreateAction<RecipType>(RecipTypesState.Value.Item));
                 break;
 
             case FormMode.Update:
-                Dispatcher.Dispatch(new UpdateRecipTypeAction(RecipTypesState.Value.RecipType));
+                Dispatcher.Dispatch(new UpdateAction<RecipType>(RecipTypesState.Value.Item, RecipTypesState.Value.Item.Id));
                 break;
 
             default:
@@ -65,7 +66,7 @@ public partial class RecipTypeForm
 
     private void RemoveRecipType()
     {
-        Dispatcher.Dispatch(new RemoveRecipTypeAction(RecipTypesState.Value.RecipType.Id));
+        Dispatcher.Dispatch(new DeleteAction<RecipType>(RecipTypesState.Value.Item.Id));
 
         NavigationManager.NavigateTo(PagesUrl.RecipTypesPathUrl);
     }

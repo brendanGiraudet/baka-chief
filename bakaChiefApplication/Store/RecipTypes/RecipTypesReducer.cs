@@ -1,69 +1,81 @@
-﻿using bakaChiefApplication.Store.RecipTypes.Actions;
+﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using Fluxor;
 
 namespace bakaChiefApplication.Store.RecipTypes;
 
 public static class RecipTypesReducer
 {
-    #region RecipTypeSearchByName
-    [ReducerMethod(typeof(RecipTypeSearchByNameAction))]
-    public static RecipTypesState ReduceRecipTypeSearchByNameAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true);
+    #region SearchByName
+    [ReducerMethod]
+    public static RecipTypesState ReduceSearchByNameAction(RecipTypesState state, SearchByNameAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static RecipTypesState ReduceRecipTypeSearchByNameAction(RecipTypesState state, RecipTypeSearchByNameResultAction action) => new RecipTypesState(currentState: state, isLoading: false, recipTypes: action.SearchedRecipTypes);
+    public static RecipTypesState ReduceSearchByNameResultAction(RecipTypesState state, SearchByNameResultAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: false, items: action.SearchedItems);
     #endregion
 
     [ReducerMethod]
-    public static RecipTypesState ReduceUpdateRecipTypeSearchTermAction(RecipTypesState state, UpdateRecipTypeSearchTermAction action) => new RecipTypesState(currentState: state, recipTypesearchTerm: action.RecipTypeSearchTerm);
+    public static RecipTypesState ReduceUpdateNameToSearchAction(RecipTypesState state, UpdateNameToSearchAction<RecipType> action) => new RecipTypesState(currentState: state, nameToSearch: action.NameToSearch);
 
-    #region CreateRecipType
-    [ReducerMethod(typeof(CreateRecipTypeAction))]
-    public static RecipTypesState ReduceCreateRecipTypeAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true, needToReload: false);
+    #region Create
+    [ReducerMethod]
+    public static RecipTypesState ReduceCreateAction(RecipTypesState state, CreateAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static RecipTypesState ReduceCreateRecipTypeSucceedAction(RecipTypesState state, CreateRecipTypeSucceedAction action) => new RecipTypesState(currentState: state, isLoading: false, recipTypes: state.RecipTypes.Append(action.CreatedRecipType), recipType: new());
+    public static RecipTypesState ReduceCreateSucceedAction(RecipTypesState state, CreateSucceedAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: false, items: state.Items.Append(action.CreatedItem), item: new());
     #endregion
 
-    #region RemoveRecipType
-    [ReducerMethod(typeof(RemoveRecipTypeAction))]
-    public static RecipTypesState ReduceRemoveRecipTypeAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true, needToReload: false);
+    #region Delete
+    [ReducerMethod]
+    public static RecipTypesState ReduceDeleteAction(RecipTypesState state, DeleteAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static RecipTypesState ReduceRemoveRecipTypeSucceedAction(RecipTypesState state, RemoveRecipTypeSucceedAction action) => new RecipTypesState(currentState: state, isLoading: false, recipTypes: state.RecipTypes.Where(n => n.Id != action.RemovedRecipTypeId));
-    #endregion
+    public static RecipTypesState ReduceDeleteSucceedAction(RecipTypesState state, DeleteAction<RecipType> action) {
+        var items = state.Items.Where(i => i.Id != action.ItemIdToRemove);
 
-    [ReducerMethod]
-    public static RecipTypesState ReduceRecipTypeSearchByIdAction(RecipTypesState state, RecipTypeSearchByIdAction action) => new RecipTypesState(currentState: state, recipType: state.RecipTypes.FirstOrDefault(n => n.Id == action.RecipTypeSearchTerm));
-
-    #region UpdateRecipType
-    [ReducerMethod(typeof(UpdateRecipTypeAction))]
-    public static RecipTypesState ReduceUpdateRecipTypeAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static RecipTypesState ReduceUpdateRecipTypeSucceedAction(RecipTypesState state, UpdateRecipTypeSucceedAction action)
-    {
-        var RecipTypes = state.RecipTypes.Where(i => i.Id != action.UpdatedRecipType.Id);
-        RecipTypes = RecipTypes.Append(action.UpdatedRecipType);
-
-        return new RecipTypesState(currentState: state, isLoading: false, recipTypes: RecipTypes, recipType: new(), needToReload: false);
+        return new RecipTypesState(currentState: state, isLoading: false, items: items);
     }
     #endregion
 
-    [ReducerMethod(typeof(RecipTypeCreationInitialisationAction))]
-    public static RecipTypesState ReduceRecipTypeCreationInitialisationAction(RecipTypesState state) => new RecipTypesState(currentState: state, recipType: new());
-
-    #region AddMoreRecipTypes
-    [ReducerMethod(typeof(AddMoreRecipTypesAction))]
-    public static RecipTypesState ReduceAddMoreRecipTypesAction(RecipTypesState state) => new RecipTypesState(currentState: state, isLoading: true);
+    #region SearchById
+    [ReducerMethod]
+    public static RecipTypesState ReduceSearchByIdAction(RecipTypesState state, SearchByIdAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static RecipTypesState ReduceAddMoreRecipTypesResultAction(RecipTypesState state, AddMoreRecipTypesResultAction action)
+    public static RecipTypesState ReduceSearchByIdResultAction(RecipTypesState state, SearchByIdResultAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: false, item: action.Item);
+
+    #endregion
+
+    #region Update
+    [ReducerMethod]
+    public static RecipTypesState ReduceUpdateAction(RecipTypesState state, UpdateAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipTypesState ReduceUpdateSucceedAction(RecipTypesState state, UpdateSucceedAction<RecipType> action)
     {
-        var recipTypes = state.RecipTypes.ToList();
+        var items = state.Items.Where(i => i.Id != action.UpdatedItem.Id);
 
-        recipTypes.AddRange(action.SearchedRecipTypes);
+        items = items.Append(action.UpdatedItem);
 
-        return new RecipTypesState(currentState: state, isLoading: false, recipTypes: recipTypes);
+        return new RecipTypesState(currentState: state, isLoading: false, items: items, item: new(), needToReload: false);
+    }
+    #endregion
+
+    [ReducerMethod]
+    public static RecipTypesState ReduceCreationInitialisationAction(RecipTypesState state, CreationInitialisationAction<RecipType> action) => new RecipTypesState(currentState: state, item: new());
+
+    #region SearchByNameMore
+    [ReducerMethod]
+    public static RecipTypesState ReduceSearchByNameMoreAction(RecipTypesState state, SearchByNameMoreAction<RecipType> action) => new RecipTypesState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static RecipTypesState ReduceSearchByNameMoreResultAction(RecipTypesState state, SearchByNameMoreResultAction<RecipType> action)
+    {
+        var items = state.Items.ToList();
+
+        items.AddRange(action.SearchedItems);
+
+        return new RecipTypesState(currentState: state, isLoading: false, items: items);
     }
     #endregion
 }

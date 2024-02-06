@@ -4,11 +4,11 @@
 
 <h3>RecipType form</h3>
 
-<EditForm Model="RecipTypesState.Value.RecipType" OnValidSubmit="@SaveRecipType">
+<EditForm Model="RecipTypesState.Value.Item" OnValidSubmit="@SaveRecipType">
     <DataAnnotationsValidator />
 
     @* Name *@
-    <CustomInputText Label="Name" @bind-Value="@RecipTypesState.Value.RecipType.Name" />
+    <CustomInputText Label="Name" @bind-Value="@RecipTypesState.Value.Item.Name" />
 
     @* Submit *@
     <div>

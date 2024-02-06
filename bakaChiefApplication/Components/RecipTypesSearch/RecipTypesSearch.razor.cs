@@ -1,6 +1,6 @@
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.RecipTypes;
-using bakaChiefApplication.Store.RecipTypes.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -26,16 +26,16 @@ public partial class RecipTypesSearch
     {
         base.OnInitialized();
 
-        searchTerm = RecipTypesState.Value.RecipTypeSearchTerm;// Keep search value in the input field after navigation
+        searchTerm = RecipTypesState.Value.NameToSearch;// Keep search value in the input field after navigation
 
         if(RecipTypesState.Value.NeedToReload ?? true)
-            Dispatcher.Dispatch(new RecipTypeSearchByNameAction(RecipTypesState.Value.RecipTypeSearchTerm));
+            Dispatcher.Dispatch(new SearchByNameAction<RecipType>(RecipTypesState.Value.NameToSearch));
     }
 
     private void UpdateRecipTypeSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new RecipTypeSearchByNameAction(name));
-        Dispatcher.Dispatch(new UpdateRecipTypeSearchTermAction(name));
+        Dispatcher.Dispatch(new SearchByNameAction<RecipType>(name));
+        Dispatcher.Dispatch(new UpdateNameToSearchAction<RecipType>(name));
     }
 
     private async Task OnTagClick(RecipType clikedRecipType)
