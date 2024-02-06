@@ -6,10 +6,8 @@ using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
 using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Nutriments;
-using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.IngredientForm;
@@ -43,11 +41,11 @@ public partial class IngredientForm
         switch (FormMode)
         {
             case FormMode.Update:
-                Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
+                Dispatcher.Dispatch(new SearchByIdAction<Ingredient>(Id));
                 break;
 
             case FormMode.Creation:
-                Dispatcher.Dispatch(new IngredientCreationInitialisationAction());
+                Dispatcher.Dispatch(new CreationInitialisationAction<Ingredient>());
                 break;
         }
     }
@@ -62,11 +60,11 @@ public partial class IngredientForm
         switch (FormMode)
         {
             case FormMode.Creation:
-                Dispatcher.Dispatch(new CreateIngredientAction(IngredientsState.Value.Ingredient));
+                Dispatcher.Dispatch(new CreateAction<Ingredient>(IngredientsState.Value.Item));
                 break;
 
             case FormMode.Update:
-                Dispatcher.Dispatch(new UpdateIngredientAction(IngredientsState.Value.Ingredient));
+                Dispatcher.Dispatch(new UpdateAction<Ingredient>(IngredientsState.Value.Item, IngredientsState.Value.Item.Id));
                 break;
             default:
                 break;
@@ -77,7 +75,7 @@ public partial class IngredientForm
 
     private async Task RemoveIngredient()
     {
-        Dispatcher.Dispatch(new RemoveIngredientAction(IngredientsState.Value.Ingredient.Id));
+        Dispatcher.Dispatch(new DeleteAction<Ingredient>(IngredientsState.Value.Item.Id));
 
         NavigationManager.NavigateTo(PagesUrl.IngredientsPathUrl);
     }

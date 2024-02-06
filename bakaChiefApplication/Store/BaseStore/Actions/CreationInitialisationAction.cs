@@ -1,4 +1,4 @@
-namespace bakaChiefApplication.Store.Nutriments.Actions;
+namespace bakaChiefApplication.Store.BaseStore.Actions;
 
 public class CreationInitialisationAction<T>
 {

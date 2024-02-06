@@ -1,7 +1,8 @@
 ﻿using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Nutriments;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
@@ -24,7 +25,7 @@ public partial class IngredientDetails
     {
         base.OnInitialized();
 
-        Dispatcher.Dispatch(new IngredientSearchByIdAction(Id));
+        Dispatcher.Dispatch(new SearchByIdAction<Ingredient>(Id));
     }
 
     private async Task RedirectToIngredientsPage()

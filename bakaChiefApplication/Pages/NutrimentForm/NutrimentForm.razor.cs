@@ -3,7 +3,6 @@ using bakaChiefApplication.Enums;
 using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Nutriments;
-using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 

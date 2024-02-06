@@ -1,8 +1,9 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
@@ -35,5 +36,5 @@ public partial class Ingredients
         await Task.CompletedTask;
     }
 
-    private void ShowMoreIngredients() => Dispatcher.Dispatch(new AddMoreIngredientsAction(IngredientsState.Value.IngredientSearchTerm, SearchConfiguration.DefaultNumberOfItemsToTake, IngredientsState.Value.Ingredients.Count()));
+    private void ShowMoreIngredients() => Dispatcher.Dispatch(new SearchByNameMoreAction<Ingredient>(IngredientsState.Value.NameToSearch, SearchConfiguration.DefaultNumberOfItemsToTake, IngredientsState.Value.Items.Count()));
 }

@@ -15,26 +15,26 @@
 @* Name *@
 <div class="ingredient-nutriment-row">
     <span>Name :</span>
-    <span>@IngredientsState.Value.Ingredient.Name</span>
+    <span>@IngredientsState.Value.Item.Name</span>
 </div>
 
 @* ImageUrl *@
 <div class="ingredient-nutriment-row">
     <span>ImageUrl :</span>
-    <span>@IngredientsState.Value.Ingredient.ImageUrl</span>
+    <span>@IngredientsState.Value.Item.ImageUrl</span>
 </div>
 
 @* KcalNumber *@
 <div class="ingredient-nutriment-row">
     <span>KcalNumber :</span>
-    <span>@IngredientsState.Value.Ingredient.KcalNumber</span>
+    <span>@IngredientsState.Value.Item.KcalNumber</span>
 </div>
 
 <h4>Nutriments</h4>
 <div>
-    @if (IngredientsState.Value.Ingredient.IngredientNutriments.Count() != 0)
+    @if (IngredientsState.Value.Item.IngredientNutriments.Count() != 0)
     {
-        @foreach (var ingredientNutriment in IngredientsState.Value.Ingredient.IngredientNutriments)
+        @foreach (var ingredientNutriment in IngredientsState.Value.Item.IngredientNutriments)
         {
             <div>
                 <span>@ingredientNutriment.Nutriment.Name</span>

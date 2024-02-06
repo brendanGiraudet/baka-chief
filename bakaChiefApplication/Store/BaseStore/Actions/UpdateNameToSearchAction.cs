@@ -1,4 +1,4 @@
-namespace bakaChiefApplication.Store.Ingredients.Actions;
+namespace bakaChiefApplication.Store.BaseStore.Actions;
 
 public class UpdateNameToSearchAction<T>
 {

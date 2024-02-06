@@ -1,7 +1,6 @@
 using bakaChiefApplication.Models;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Nutriments;
 using Fluxor;
 using Microsoft.AspNetCore.Components;

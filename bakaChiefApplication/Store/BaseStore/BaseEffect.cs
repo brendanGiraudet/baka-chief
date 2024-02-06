@@ -1,6 +1,5 @@
 ﻿using bakaChiefApplication.Services.BaseService;
 using bakaChiefApplication.Store.BaseStore.Actions;
-using bakaChiefApplication.Store.Nutriments.Actions;
 using Fluxor;
 
 namespace bakaChiefApplication.Store.BaseStore;

@@ -1,5 +1,6 @@
+using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Ingredients;
-using bakaChiefApplication.Store.Ingredients.Actions;
 using bakaChiefApplication.Store.Recips;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
@@ -34,16 +35,16 @@ public partial class RecipIngredientSearch
     {
         base.OnInitialized();
 
-        searchTerm = IngredientsState.Value.IngredientSearchTerm;// Keep search value in the input field after navigation
+        searchTerm = IngredientsState.Value.NameToSearch;// Keep search value in the input field after navigation
 
         if(IngredientsState.Value.NeedToReload ?? true)
-            Dispatcher.Dispatch(new IngredientSearchByNameAction(IngredientsState.Value.IngredientSearchTerm, Take));
+            Dispatcher.Dispatch(new SearchByNameAction<Ingredient>(IngredientsState.Value.NameToSearch, Take));
     }
 
     private void UpdateIngredientSearchTerm(string name)
     {
-        Dispatcher.Dispatch(new IngredientSearchByNameAction(name, Take));
-        Dispatcher.Dispatch(new UpdateIngredientSearchTermAction(name));
+        Dispatcher.Dispatch(new SearchByNameAction<Ingredient>(name, Take));
+        Dispatcher.Dispatch(new UpdateNameToSearchAction<Ingredient>(name));
     }
 
     private async Task OnTagClick(Models.RecipIngredient clikedIngredient)

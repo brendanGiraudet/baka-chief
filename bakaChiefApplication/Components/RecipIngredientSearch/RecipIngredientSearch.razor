@@ -12,14 +12,14 @@ else
             <CustomInputSearch OnInputCallback="UpdateIngredientSearchTerm" @bind-Value="searchTerm" />
         </div>
 
-        @if (IngredientsState.Value.Ingredients == null || IngredientsState.Value.Ingredients.Count() == 0)
+        @if (IngredientsState.Value.Items == null || IngredientsState.Value.Items.Count() == 0)
         {
             <div>vide</div>
         }
         else
         {
             <div class="recip-ingredients">
-                @foreach (var ingredient in IngredientsState.Value.Ingredients.Where(n => !(ExceptedIngredientIds?.Contains(n.Id) ?? false)))
+                @foreach (var ingredient in IngredientsState.Value.Items.Where(n => !(ExceptedIngredientIds?.Contains(n.Id) ?? false)))
                 {
                     var recipIngredient = new Models.RecipIngredient
                         {

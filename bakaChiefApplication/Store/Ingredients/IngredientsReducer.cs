@@ -1,94 +1,100 @@
-﻿using bakaChiefApplication.Store.Ingredients.Actions;
+﻿using bakaChiefApplication.Models;
+using bakaChiefApplication.Store.BaseStore.Actions;
+using bakaChiefApplication.Store.Ingredients.Actions;
 using Fluxor;
 
 namespace bakaChiefApplication.Store.Ingredients;
 
 public static class IngredientsReducer
 {
-    #region IngredientSearchByName
-    [ReducerMethod(typeof(IngredientSearchByNameAction))]
-    public static IngredientsState ReduceIngredientSearchByNameAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
+    #region SearchByName
+    [ReducerMethod]
+    public static IngredientsState ReduceSearchByNameAction(IngredientsState state, SearchByNameAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static IngredientsState ReduceIngredientSearchByNameResultAction(IngredientsState state, IngredientSearchByNameResultAction action) => new IngredientsState(currentState: state, isLoading: false, ingredients: action.SearchedIngredients);
+    public static IngredientsState ReduceSearchByNameResultAction(IngredientsState state, SearchByNameResultAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: false, items: action.SearchedItems);
     #endregion
 
     [ReducerMethod]
-    public static IngredientsState ReduceUpdateIngredientSearchTermAction(IngredientsState state, UpdateIngredientSearchTermAction action) => new IngredientsState(currentState: state, ingredientSearchTerm: action.IngredientSearchTerm);
+    public static IngredientsState ReduceUpdateNameToSearchAction(IngredientsState state, UpdateNameToSearchAction<Ingredient> action) => new IngredientsState(currentState: state, nameToSearch: action.NameToSearch);
 
-    #region CreateIngredient
-    [ReducerMethod(typeof(CreateIngredientAction))]
-    public static IngredientsState ReduceCreateIngredientAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
+    #region Create
+    [ReducerMethod]
+    public static IngredientsState ReduceCreateAction(IngredientsState state, CreateAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static IngredientsState ReduceCreateIngredientSucceedAction(IngredientsState state, CreateIngredientSucceedAction action) => new IngredientsState(currentState: state, isLoading: false, ingredients: state.Ingredients.Append(action.CreatedIngredient), ingredient: new(), needToReload: false);
+    public static IngredientsState ReduceCreateSucceedAction(IngredientsState state, CreateSucceedAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: false, items: state.Items.Append(action.CreatedItem), item: new());
     #endregion
 
-    #region RemoveIngredient
-    [ReducerMethod(typeof(RemoveIngredientAction))]
-    public static IngredientsState ReduceRemoveIngredientAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
+    #region Delete
+    [ReducerMethod]
+    public static IngredientsState ReduceDeleteAction(IngredientsState state, DeleteAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true, needToReload: false);
 
     [ReducerMethod]
-    public static IngredientsState ReduceRemoveIngredientSucceedAction(IngredientsState state, RemoveIngredientSucceedAction action) => new IngredientsState(currentState: state, isLoading: false, ingredients: state.Ingredients.Where(n => n.Id != action.RemovedIngredientId), ingredient: new(), needToReload: false);
+    public static IngredientsState ReduceDeleteSucceedAction(IngredientsState state, DeleteAction<Ingredient> action) {
+        var items = state.Items.Where(i => i.Id != action.ItemIdToRemove);
+
+        return new IngredientsState(currentState: state, isLoading: false, items: items);
+    }
     #endregion
 
-    #region IngredientSearchById
+    #region SearchById
     [ReducerMethod]
-    public static IngredientsState ReduceIngredientSearchByIdAction(IngredientsState state, IngredientSearchByIdAction action) => new IngredientsState(currentState: state, isLoading: true);
+    public static IngredientsState ReduceSearchByIdAction(IngredientsState state, SearchByIdAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static IngredientsState ReduceIngredientSearchByIdResultAction(IngredientsState state, IngredientSearchByIdResultAction action) => new IngredientsState(currentState: state, isLoading: false, ingredient: action.Ingredient);
+    public static IngredientsState ReduceSearchByIdResultAction(IngredientsState state, SearchByIdResultAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: false, item: action.Item);
 
     #endregion
 
-    #region UpdateIngredient
-    [ReducerMethod(typeof(UpdateIngredientAction))]
-    public static IngredientsState ReduceUpdateIngredientAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
+    #region Update
+    [ReducerMethod]
+    public static IngredientsState ReduceUpdateAction(IngredientsState state, UpdateAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true);
 
     [ReducerMethod]
-    public static IngredientsState ReduceUpdateIngredientSucceedAction(IngredientsState state, UpdateIngredientSucceedAction action)
+    public static IngredientsState ReduceUpdateSucceedAction(IngredientsState state, UpdateSucceedAction<Ingredient> action)
     {
-        var ingredients = state.Ingredients.Where(i => i.Id != action.UpdatedIngredient.Id);
-        ingredients = ingredients.Append(action.UpdatedIngredient);
+        var items = state.Items.Where(i => i.Id != action.UpdatedItem.Id);
 
-        return new IngredientsState(currentState: state, isLoading: false, ingredients: ingredients, ingredient: new(), needToReload: false);
+        items = items.Append(action.UpdatedItem);
+
+        return new IngredientsState(currentState: state, isLoading: false, items: items, item: new(), needToReload: false);
     }
     #endregion
 
     [ReducerMethod]
+    public static IngredientsState ReduceCreationInitialisationAction(IngredientsState state, CreationInitialisationAction<Ingredient> action) => new IngredientsState(currentState: state, item: new());
+
+    #region SearchByNameMore
+    [ReducerMethod]
+    public static IngredientsState ReduceSearchByNameMoreAction(IngredientsState state, SearchByNameMoreAction<Ingredient> action) => new IngredientsState(currentState: state, isLoading: true);
+
+    [ReducerMethod]
+    public static IngredientsState ReduceSearchByNameMoreResultAction(IngredientsState state, SearchByNameMoreResultAction<Ingredient> action)
+    {
+        var items = state.Items.ToList();
+
+        items.AddRange(action.SearchedItems);
+
+        return new IngredientsState(currentState: state, isLoading: false, items: items);
+    }
+    #endregion
+
+     [ReducerMethod]
     public static IngredientsState ReduceAppendNutrimentIntoIngredientAction(IngredientsState state, AppendNutrimentIntoIngredientAction action)
     {
-        var ingredient = state.Ingredient;
+        var ingredient = state.Item;
         ingredient.IngredientNutriments = ingredient.IngredientNutriments?.Append(action.SelectedNutriment).ToHashSet();
 
-        return new IngredientsState(currentState: state, ingredient: ingredient);
+        return new IngredientsState(currentState: state, item: ingredient);
     }
 
     [ReducerMethod]
     public static IngredientsState ReduceRemoveNutrimentIntoIngredientAction(IngredientsState state, RemoveNutrimentIntoIngredientAction action)
     {
-        var ingredient = state.Ingredient;
+        var ingredient = state.Item;
         ingredient.IngredientNutriments = ingredient.IngredientNutriments.Where(n => n.NutrimentId != action.RemovedNutriment.NutrimentId).ToHashSet();
 
-        return new IngredientsState(currentState: state, ingredient: ingredient);
+        return new IngredientsState(currentState: state, item: ingredient);
     }
-
-    [ReducerMethod(typeof(IngredientCreationInitialisationAction))]
-    public static IngredientsState ReduceIngredientCreationInitialisationAction(IngredientsState state) => new IngredientsState(currentState: state, ingredient: new());
-
-    #region AddMoreIngredients
-    [ReducerMethod(typeof(AddMoreIngredientsAction))]
-    public static IngredientsState ReduceAddMoreIngredientsAction(IngredientsState state) => new IngredientsState(currentState: state, isLoading: true);
-
-    [ReducerMethod]
-    public static IngredientsState ReduceAddMoreIngredientsResultAction(IngredientsState state, AddMoreIngredientsResultAction action)
-    {
-        var ingredients = state.Ingredients.ToList();
-
-        ingredients.AddRange(action.SearchedIngredients);
-
-        return new IngredientsState(currentState: state, isLoading: false, ingredients: ingredients);
-    }
-    #endregion
-
 }
