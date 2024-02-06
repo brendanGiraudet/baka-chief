@@ -5,6 +5,16 @@
         <CustomInputNumber @bind-Value="CurrentRecipIngredient.Quantity" />
     </div>
 
+    @* Measure Unit *@
+    <CustomInputSelect @bind-Value="@CurrentRecipIngredient.MeasureUnitId" >
+        @foreach(var measureUnit in MeasureUnitsState.Value.Items)
+        {
+            <option checked="@(CurrentRecipIngredient.MeasureUnitId == measureUnit.Id)" value="@measureUnit.Id">
+                @measureUnit.Name
+            </option>
+        }
+    </CustomInputSelect>
+
     @if (Icon != @Enums.Icon.NotSet && Size != @Enums.Size.NotSet && Style != @Enums.Style.NotSet)
     {
         <div class="tag-icon" @onclick="OnIconClick">
