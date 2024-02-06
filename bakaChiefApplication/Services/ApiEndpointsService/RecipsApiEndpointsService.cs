@@ -14,5 +14,5 @@ public class RecipsApiEndpointsService : IApiEndpointsService
     
     public string UpdatePathUrl(string id) => $"{BasePathUrl}/{id}";
 
-    public string GetByIdPathUrl(string id) => $"{BasePathUrl}?$filter=id eq '{id}'&$expand=RecipIngredients/Ingredient";
+    public string GetByIdPathUrl(string id) => $"{BasePathUrl}?$filter=id eq '{id}'&$expand=RecipIngredients/Ingredient&$expand=RecipIngredients/MeasureUnit";
 }

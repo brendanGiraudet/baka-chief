@@ -64,8 +64,8 @@
 
 /* SIZE */
 .small {
-    --card-size-height: 6rem;
-    --card-size-width: 6rem;
+    --card-size-height: 10rem;
+    --card-size-width: 10rem;
 }
 
 .normal {

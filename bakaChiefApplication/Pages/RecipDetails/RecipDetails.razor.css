@@ -21,10 +21,19 @@
     align-items: center;
 }
 
-.ingredients{
+.ingredients {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
 }
+
+.recip-ingredient{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+

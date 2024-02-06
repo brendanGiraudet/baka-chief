@@ -43,12 +43,16 @@
     {
         @foreach (var recipIngredient in RecipsState.Value.Item.RecipIngredients)
         {
-            <CardWithImage  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Title="@recipIngredient.Ingredient.Name" ImageUrl="@recipIngredient.Ingredient.ImageUrl" ImageSize="@Enums.Size.Small" />
+            <div class="recip-ingredient">
+                <CardWithImage  OnClickCallback="@(() => RedirectToIngredientDetails(recipIngredient.Ingredient.Id))" Title="@recipIngredient.Ingredient.Name" ImageUrl="@recipIngredient.Ingredient.ImageUrl" ImageSize="@Enums.Size.Small" />
+                
+                <span>@recipIngredient.Quantity @recipIngredient.MeasureUnit?.Name </span>
+            </div>
         }
     }
     else
     {
-        <div>No Ingredients</div>
+            <div>No Ingredients</div>
     }
 </div>
 
