@@ -18,16 +18,20 @@
 
     @* Preparation *@
     <CustomInputTextArea Label="Preparation" @bind-Value="@RecipsState.Value.Item.Preparation" />
-    
+
     @* RecipType *@
-    <CustomInputSelect @bind-Value="@RecipsState.Value.Item.RecipTypeId" >
-        @foreach(var recipType in RecipTypesState.Value.Items)
+    <CustomInputSelect @bind-Value="@RecipsState.Value.Item.RecipTypeId">
+        <option value="">
+            Pas choisi
+        </option>
+
+        @foreach (var recipType in RecipTypesState.Value.Items)
         {
             <option checked="@(RecipsState.Value.Item.RecipType?.Id == recipType.Id)" value="@recipType.Id">
                 @recipType.Name
             </option>
         }
-    
+
     </CustomInputSelect>
 
     <h4>Selected Ingredients</h4>
@@ -48,7 +52,9 @@
 
     <h4>Ingredients</h4>
     <RecipIngredientSearch Icon="@Enums.Icon.PlusSvg" Size="@Enums.Size.Small" Style="@Enums.Style.Success"
-        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Item.Id" Take="@SearchConfiguration.DefaultNumberOfItemsToTakeInForm" ExceptedIngredientIds="@RecipsState.Value.Item.RecipIngredients?.Select(r => r.IngredientId)" />
+        OnIconClickCallback="@((ingredient) => AddIngredient(ingredient))" RecipId="@RecipsState.Value.Item.Id"
+        Take="@SearchConfiguration.DefaultNumberOfItemsToTakeInForm"
+        ExceptedIngredientIds="@RecipsState.Value.Item.RecipIngredients?.Select(r => r.IngredientId)" />
 
     @* Submit *@
     <div>

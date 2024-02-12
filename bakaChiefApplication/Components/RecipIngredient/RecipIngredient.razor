@@ -7,6 +7,9 @@
 
     @* Measure Unit *@
     <CustomInputSelect @bind-Value="@CurrentRecipIngredient.MeasureUnitId" >
+        <option value="">
+            Pas choisi
+        </option>
         @foreach(var measureUnit in MeasureUnitsState.Value.Items)
         {
             <option checked="@(CurrentRecipIngredient.MeasureUnitId == measureUnit.Id)" value="@measureUnit.Id">
