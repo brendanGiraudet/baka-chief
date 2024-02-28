@@ -69,6 +69,6 @@
 }
 
 .normal {
-    --card-size-height: 17rem;
-    --card-size-width: 17rem;
+    --card-size-height: 12rem;
+    --card-size-width: 12rem;
 }
