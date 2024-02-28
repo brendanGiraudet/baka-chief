@@ -1,6 +1,6 @@
 ﻿.button {
     border-radius: 0.75rem;
-    padding: 0.5rem 1.5rem;
+    padding: .5rem;
     transition: 0.2s ease;
     width:100%;
 }

@@ -25,8 +25,7 @@ else
         <div class="selectedRecipHistories">
             @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.Items)
             {
-                <Card Title="@selectedRecipHistory.Date.ToString()"
-                    OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)" />
+                <Tag Content="@selectedRecipHistory.Date.ToString()" OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)" />
             }
         </div>
     }
