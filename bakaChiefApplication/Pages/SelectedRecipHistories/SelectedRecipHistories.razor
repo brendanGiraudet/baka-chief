@@ -15,15 +15,15 @@ else
     </div>
 
 
-    if (SelectedRecipHistoriesState.Value.SelectedRecipHistories == null ||
-    SelectedRecipHistoriesState.Value.SelectedRecipHistories.Count() == 0)
+    if (SelectedRecipHistoriesState.Value.Items == null ||
+    SelectedRecipHistoriesState.Value.Items.Count() == 0)
     {
         <div>vide</div>
     }
     else
     {
         <div class="selectedRecipHistories">
-            @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.SelectedRecipHistories)
+            @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.Items)
             {
                 <Card Title="@selectedRecipHistory.Date.ToString()"
                     OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)" />

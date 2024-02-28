@@ -3,7 +3,7 @@
 
 <h3>SelectedRecipHistory</h3>
 
-<div>@SelectedRecipHistoriesState.Value.SelectedRecipHistory.Date.ToString()</div>
+<div>@SelectedRecipHistoriesState.Value.Item.Date.ToString()</div>
 
 @if (SelectedRecipHistoriesState.Value.IsLoading)
 {
@@ -12,19 +12,22 @@
 else
 {
     
-    if (SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips == null || SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips.Count() == 0)
+    if (SelectedRecipHistoriesState.Value.Item.Recips == null || SelectedRecipHistoriesState.Value.Item.Recips.Count() == 0)
     {
         <div>vide</div>
     }
     else
     {
         <div class="selectedRecipHistories">
-            @foreach (var recip in SelectedRecipHistoriesState.Value.SelectedRecipHistory.Recips)
+            @foreach (var recip in SelectedRecipHistoriesState.Value.Item.Recips)
             {
                 <CardWithImage Title="@recip.Name" ImageUrl="@recip.ImageUrl" OnClickCallback="async () => await RedirectToRecipDetailsPage(recip.Id)"/>
             }
         </div>
     }
+
+    <ShoppingList Recips="SelectedRecipHistoriesState.Value.Item.Recips" />
+
 
     @* Delete button *@
     <div>

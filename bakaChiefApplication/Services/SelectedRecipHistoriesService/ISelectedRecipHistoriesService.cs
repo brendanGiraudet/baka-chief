@@ -1,33 +1,9 @@
-using bakaChiefApplication.Dtos;
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Services.BaseService;
 
 namespace bakaChiefApplication.Services.SelectedRecipHistoriesService;
 
-public interface ISelectedRecipHistoriesService
+public interface ISelectedRecipHistoriesService : IBaseService<SelectedRecipHistory>
 {
-    /// <summary>
-    /// Get the 10 newest selected recips history
-    /// </summary>
-    /// <returns></returns>
-    Task<MethodResult<IEnumerable<SelectedRecipHistory>>> GetSelectedRecipHistoriesAsync();
 
-    /// <summary>
-    /// Generate a selected recips history
-    /// </summary>
-    /// <returns></returns>
-    Task<MethodResult<SelectedRecipHistory>> GenerateSelectedRecipHistoriesAsync();
-
-    /// <summary>
-    /// Get selected recip history by id
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    Task<MethodResult<SelectedRecipHistory>> GetSelectedRecipHistoryByIdAsync(string id);
-
-    /// <summary>
-    /// Delete selected recip history
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    Task<MethodResult<string>> RemoveSelectedRecipHistoryAsync(string id);
 }

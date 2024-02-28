@@ -1,6 +1,6 @@
 ﻿using bakaChiefApplication.Constants;
+using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.SelectedRecipHistories;
-using bakaChiefApplication.Store.SelectedRecipHistories.Actions;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
@@ -19,8 +19,8 @@ public partial class SelectedRecipHistory
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
-        Dispatcher.Dispatch(new SelectedRecipHistorySearchByIdAction(Id));
+
+        Dispatcher.Dispatch(new SearchByIdAction<Models.SelectedRecipHistory>(Id));
     }
 
     private async Task RedirectToRecipDetailsPage(string id)
@@ -30,11 +30,11 @@ public partial class SelectedRecipHistory
 
     private async Task RemoveSelectedRecipHistory()
     {
-        Dispatcher.Dispatch(new RemoveSelectedRecipHistoryAction(Id));
+        Dispatcher.Dispatch(new DeleteAction<Models.SelectedRecipHistory>(Id));
 
         NavigationManager.NavigateTo(PagesUrl.SelectedRecipHistoriesPathUrl);
     }
-    
+
     private async Task RedirectToSelectedRecipHistoriesPage()
     {
         NavigationManager.NavigateTo(PagesUrl.SelectedRecipHistoriesPathUrl);

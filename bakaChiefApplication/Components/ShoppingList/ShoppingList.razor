@@ -1,0 +1,14 @@
+﻿
+<h3>Shopping List</h3>
+<div class="shopping-list">
+    @foreach (var recipIngredient in _recipIngredients)
+    {
+        <div class="shopping-list-ingredient @GetIngredientStatusClass(recipIngredient.Ingredient.Id)" @onclick="@(() => ChangeStatus(recipIngredient.Ingredient.Id))">
+            @{
+                var tagContent = $"{recipIngredient.Ingredient.Name} {recipIngredient.Quantity} {recipIngredient.MeasureUnit?.Name}";
+            }
+
+            <Tag Content="@tagContent" />
+        </div>
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿.shopping-list {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+
+.ingredient-status-take ::deep .tag {
+    background-color: var(--success-color);
+}
+
+.ingredient-status-unexist ::deep .tag {
+    background-color: var(--error-color);
+}
