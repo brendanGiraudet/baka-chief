@@ -1,20 +1,24 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Nutriments;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.Nutriments;
 
 public partial class Nutriments
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }
-    
+
     [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
 
     [Inject] public IOptions<SearchConfiguration> SearchConfigurationOptions { get; set; }

@@ -1,15 +1,27 @@
 ﻿@page "/nutriments"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-<h3>Nutriments</h3>
-
 @* Add button *@
-<div>
-    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))" />
-</div>
+<RadzenRow AlignItems="AlignItems.Center"
+           JustifyContent="JustifyContent.Center"
+           class="rz-p-1">
+    <RadzenColumn Size="2">
+        <RadzenButton Icon="add"
+                      Click="@(async () => await RedirectToNutrimentForm(Enums.FormMode.Creation))"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      IconColor="@Radzen.Colors.Primary"
+                      Size="ButtonSize.Large"/>
+    </RadzenColumn>
+
+    <RadzenColumn Size="10">
+        <RadzenText Text="@LabelTranslationsLocalizer["Nutriments"]"
+                    TextStyle="TextStyle.DisplayH3"
+                    Style="color:var(--rz-secondary)" />
+    </RadzenColumn>
+</RadzenRow>
 
 @* Search nutriments *@
-<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake"/>
+<NutrimentsSearch OnTagClickCallback="@((nutriment) => RedirectToNutrimentForm(Enums.FormMode.Update, nutriment.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake" />
 
 @* Show more *@
 <FlottedButton Text="Show more" OnClickCallback="@(ShowMoreNutriments)" />

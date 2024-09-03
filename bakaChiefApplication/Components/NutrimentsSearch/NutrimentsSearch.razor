@@ -14,17 +14,22 @@ else
 
         @if (NutrimentsState.Value.Items == null || NutrimentsState.Value.Items.Count() == 0)
         {
-            <div>vide</div>
+            <div>@LabelTranslationsLocalizer["Empty"]</div>
         }
         else
         {
-            <div class="nutriments">
+            <RadzenRow class="rz-p-1">
+                @* <div class="nutriments"> *@
                 @foreach (var nutriment in NutrimentsState.Value.Items)
                 {
-                    <Tag Content="@nutriment.Name" Icon="@Icon" Size="@Size" Style="@Style"
-                        OnClickCallback="@(async () => await OnTagClick(nutriment))" />
+                    @* <Tag Content="@nutriment.Name" Icon="@Icon" Size="@Size" Style="@Style"
+        OnClickCallback="@(async () => await OnTagClick(nutriment))" /> *@
+                    <RadzenColumn>
+                        <RadzenButton Text="@nutriment.Name" />
+                    </RadzenColumn>
                 }
-            </div>
+                @* </div> *@
+            </RadzenRow>
         }
 
     </div>

@@ -6,14 +6,16 @@
     --success-color: #3B9433;
     --error-color: #B00E0E;
     --warning-color: #f8b500;
-    --border-color:#425a52;
-    
+    --border-color: #425a52;
     /* SIZE */
     --icon-tall-size-width: 15rem;
     --icon-tall-size-height: 15rem;
-
-    --font-size-small:1rem;
-    --font-size-normal:2rem;
-
-    --input-height:3rem;
+    --font-size-small: 1rem;
+    --font-size-normal: 2rem;
+    --input-height: 3rem;
+    
+    
+    /* CUSTOM RADZEN */
+    --rz-primary: #202020;
+    --rz-secondary: #ffff;
 }

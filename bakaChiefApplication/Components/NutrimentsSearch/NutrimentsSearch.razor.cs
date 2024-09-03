@@ -1,13 +1,17 @@
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.Nutriments;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace bakaChiefApplication.Components.NutrimentsSearch;
 
 public partial class NutrimentsSearch
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public IState<NutrimentsState> NutrimentsState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }
