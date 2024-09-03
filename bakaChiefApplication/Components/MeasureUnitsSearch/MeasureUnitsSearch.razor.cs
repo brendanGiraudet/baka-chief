@@ -1,13 +1,17 @@
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.MeasureUnits;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace bakaChiefApplication.Components.MeasureUnitsSearch;
 
 public partial class MeasureUnitsSearch
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public IState<MeasureUnitsState> MeasureUnitsState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }

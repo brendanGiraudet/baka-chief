@@ -1,12 +1,24 @@
 ﻿@page "/measureUnits"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-<h3>MeasureUnits</h3>
-
 @* Add button *@
-<div>
-    <Button Type="button" Text="+" OnClickCallback="@(async () => await RedirectToMeasureUnitForm(Enums.FormMode.Creation))" />
-</div>
+<RadzenRow AlignItems="AlignItems.Center"
+           JustifyContent="JustifyContent.Center"
+           class="rz-p-1">
+    <RadzenColumn Size="2">
+        <RadzenButton Icon="add"
+                      Click="@(async () => await RedirectToMeasureUnitForm(Enums.FormMode.Creation))"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      IconColor="@Radzen.Colors.Primary"
+                      Size="ButtonSize.Large" />
+    </RadzenColumn>
+
+    <RadzenColumn Size="10">
+        <RadzenText Text="@LabelTranslationsLocalizer["MeasureUnits"]"
+                    TextStyle="TextStyle.DisplayH3"
+                    Style="color:var(--rz-secondary)" />
+    </RadzenColumn>
+</RadzenRow>
 
 @* Search MeasureUnits *@
 <MeasureUnitsSearch OnTagClickCallback="@((MeasureUnit) => RedirectToMeasureUnitForm(Enums.FormMode.Update, MeasureUnit.Id))" Take="SearchConfiguration.DefaultNumberOfItemsToTake"/>

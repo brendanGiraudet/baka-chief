@@ -1,16 +1,20 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
 using bakaChiefApplication.Enums;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.MeasureUnits;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.MeasureUnits;
 
 public partial class MeasureUnits
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }

@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Empty" xml:space="preserve">
-    <value>Vide</value>
+    <value>Empty</value>
   </data>
   <data name="MeasureUnits" xml:space="preserve">
-    <value>Unités de mesure</value>
+    <value>MeasureUnits</value>
   </data>
   <data name="Nutriments" xml:space="preserve">
     <value>Nutriments</value>
   </data>
   <data name="RecipTypes" xml:space="preserve">
-    <value>Types de recette</value>
+    <value>RecipTypes</value>
   </data>
   <data name="SelectedRecipHistories" xml:space="preserve">
-    <value>Historique des recettes selectionnées</value>
+    <value>SelectedRecipHistories</value>
   </data>
 </root>

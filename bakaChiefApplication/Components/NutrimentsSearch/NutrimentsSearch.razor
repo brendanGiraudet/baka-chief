@@ -19,16 +19,13 @@ else
         else
         {
             <RadzenRow class="rz-p-1">
-                @* <div class="nutriments"> *@
                 @foreach (var nutriment in NutrimentsState.Value.Items)
                 {
-                    @* <Tag Content="@nutriment.Name" Icon="@Icon" Size="@Size" Style="@Style"
-        OnClickCallback="@(async () => await OnTagClick(nutriment))" /> *@
                     <RadzenColumn>
-                        <RadzenButton Text="@nutriment.Name" />
+                        <RadzenButton Text="@nutriment.Name"
+                                      Click="@(async () => await OnTagClick(nutriment))" />
                     </RadzenColumn>
                 }
-                @* </div> *@
             </RadzenRow>
         }
 

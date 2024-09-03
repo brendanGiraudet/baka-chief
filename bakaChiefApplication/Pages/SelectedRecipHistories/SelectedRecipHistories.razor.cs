@@ -1,15 +1,19 @@
 ﻿using bakaChiefApplication.Configurations;
 using bakaChiefApplication.Constants;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.SelectedRecipHistories;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 
 namespace bakaChiefApplication.Pages.SelectedRecipHistories;
 
 public partial class SelectedRecipHistories
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public IState<SelectedRecipHistoriesState> SelectedRecipHistoriesState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }

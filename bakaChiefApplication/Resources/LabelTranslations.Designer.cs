@@ -70,11 +70,38 @@ namespace bakaChiefApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unités de mesure.
+        /// </summary>
+        public static string MeasureUnits {
+            get {
+                return ResourceManager.GetString("MeasureUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nutriments.
         /// </summary>
         public static string Nutriments {
             get {
                 return ResourceManager.GetString("Nutriments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types de recette.
+        /// </summary>
+        public static string RecipTypes {
+            get {
+                return ResourceManager.GetString("RecipTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historique des recettes selectionnées.
+        /// </summary>
+        public static string SelectedRecipHistories {
+            get {
+                return ResourceManager.GetString("SelectedRecipHistories", resourceCulture);
             }
         }
     }

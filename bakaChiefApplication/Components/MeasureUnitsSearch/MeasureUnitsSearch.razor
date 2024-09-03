@@ -14,17 +14,19 @@ else
 
         @if (MeasureUnitsState.Value.Items == null || MeasureUnitsState.Value.Items.Count() == 0)
         {
-            <div>vide</div>
+            <div>@LabelTranslationsLocalizer["Empty"]</div>
         }
         else
         {
-            <div class="measureUnits">
+            <RadzenRow class="rz-p-1">
                 @foreach (var MeasureUnit in MeasureUnitsState.Value.Items)
                 {
-                    <Tag Content="@MeasureUnit.Name" Icon="@Icon" Size="@Size" Style="@Style"
-                        OnClickCallback="@(async () => await OnTagClick(MeasureUnit))" />
+                    <RadzenColumn>
+                        <RadzenButton Text="@MeasureUnit.Name"
+                                      Click="@(async () => await OnTagClick(MeasureUnit))" />
+                    </RadzenColumn>
                 }
-            </div>
+            </RadzenRow>
         }
 
     </div>

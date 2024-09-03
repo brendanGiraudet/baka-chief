@@ -1,7 +1,24 @@
 ﻿@page "/selectedRecipHistories"
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-<h3>SelectedRecipHistories</h3>
+@* Add button *@
+<RadzenRow AlignItems="AlignItems.Center"
+           JustifyContent="JustifyContent.Center"
+           class="rz-p-1">
+    <RadzenColumn Size="2">
+        <RadzenButton Icon="add"
+                      Click="@(async () => await GenerateSelectedRecipHistory())"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      IconColor="@Radzen.Colors.Primary"
+                      Size="ButtonSize.Large" />
+    </RadzenColumn>
+
+    <RadzenColumn Size="10">
+        <RadzenText Text="@LabelTranslationsLocalizer["SelectedRecipHistories"]"
+                    TextStyle="TextStyle.DisplayH3"
+                    Style="color:var(--rz-secondary)" />
+    </RadzenColumn>
+</RadzenRow>
 
 @if (SelectedRecipHistoriesState.Value.IsLoading)
 {
@@ -9,24 +26,21 @@
 }
 else
 {
-    @* Add button *@
-    <div>
-        <Button Type="button" Text="+" OnClickCallback="@(async () => await  GenerateSelectedRecipHistory())" />
-    </div>
-
-
     if (SelectedRecipHistoriesState.Value.Items == null ||
     SelectedRecipHistoriesState.Value.Items.Count() == 0)
     {
-        <div>vide</div>
+        <div>@LabelTranslationsLocalizer["Empty"]</div>
     }
     else
     {
-        <div class="selectedRecipHistories">
+        <RadzenRow class="rz-p-1">
             @foreach (var selectedRecipHistory in SelectedRecipHistoriesState.Value.Items)
             {
-                <Tag Content="@selectedRecipHistory.Date.ToString()" OnClickCallback="async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id)" />
+                <RadzenColumn>
+                    <RadzenButton Text="@selectedRecipHistory.Date.ToString()"
+                                  Click="@(async () => await RedirectToSelectedRecipHistoryPage(selectedRecipHistory.Id))" />
+                </RadzenColumn>
             }
-        </div>
+        </RadzenRow>
     }
 }

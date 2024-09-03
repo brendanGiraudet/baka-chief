@@ -1,13 +1,17 @@
 using bakaChiefApplication.Models;
+using bakaChiefApplication.Resources;
 using bakaChiefApplication.Store.BaseStore.Actions;
 using bakaChiefApplication.Store.RecipTypes;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace bakaChiefApplication.Components.RecipTypesSearch;
 
 public partial class RecipTypesSearch
 {
+    [Inject] public IStringLocalizer<LabelTranslations> LabelTranslationsLocalizer { get; set; }
+
     [Inject] public IState<RecipTypesState> RecipTypesState { get; set; }
 
     [Inject] public IDispatcher Dispatcher { get; set; }

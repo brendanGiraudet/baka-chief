@@ -14,17 +14,19 @@ else
 
         @if (RecipTypesState.Value.Items == null || RecipTypesState.Value.Items.Count() == 0)
         {
-            <div>vide</div>
+            <div>@LabelTranslationsLocalizer["Empty"]</div>
         }
         else
         {
-            <div class="recipTypes">
+            <RadzenRow class="rz-p-1">
                 @foreach (var RecipType in RecipTypesState.Value.Items)
                 {
-                    <Tag Content="@RecipType.Name" Icon="@Icon" Size="@Size" Style="@Style"
-                        OnClickCallback="@(async () => await OnTagClick(RecipType))" />
+                    <RadzenColumn>
+                        <RadzenButton Text="@RecipType.Name"
+                                      Click="@(async () => await OnTagClick(RecipType))" />
+                    </RadzenColumn>
                 }
-            </div>
+            </RadzenRow>
         }
 
     </div>
